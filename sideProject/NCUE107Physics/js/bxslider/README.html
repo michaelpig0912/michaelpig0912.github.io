@@ -1,0 +1,599 @@
+<p>#⚠️ Looking for a maintainer ⚠️<br>
+Please contact me if you are interested in keeping our community alive:<br>
+<a href="https://github.com/stevenwanderski/bxslider-4/issues/1095">https://github.com/stevenwanderski/bxslider-4/issues/1095</a></p>
+<hr>
+<p>#bxSlider 4.2.12<br>
+##The fully-loaded, responsive jQuery content slider</p>
+<p>###Why should I use this slider?</p>
+<ul>
+<li>Fully responsive - will adapt to any device</li>
+<li>Horizontal, vertical, and fade modes</li>
+<li>Slides can contain images, video, or HTML content</li>
+<li>Full callback API and public methods</li>
+<li>Small file size, fully themed, simple to implement</li>
+<li>Browser support: Firefox, Chrome, Safari, iOS, Android, IE7+</li>
+<li>Tons of configuration options</li>
+</ul>
+<p>For complete documentation, tons of examples, and a good time, visit:</p>
+<p><a href="http://bxslider.com">http://bxslider.com</a></p>
+<p>Written by: Steven Wanderski - <a href="http://stevenwanderski.com">http://stevenwanderski.com</a></p>
+<p>###License<br>
+Released under the MIT license - <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></p>
+<p>Let’s get on with it!</p>
+<p>##Installation</p>
+<p>###Step 1: Link required files</p>
+<p>First and most important, the jQuery library needs to be included (no need to download - link directly from Google). Next, download the package from this site and link the bxSlider CSS file (for the theme) and the bxSlider Javascript file.</p>
+<pre><code class="language-html">&lt;!-- jQuery library (served from Google) --&gt;
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- bxSlider Javascript file --&gt;
+&lt;script src=&quot;/js/jquery.bxslider.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- bxSlider CSS file --&gt;
+&lt;link href=&quot;/lib/jquery.bxslider.css&quot; rel=&quot;stylesheet&quot; /&gt;
+</code></pre>
+<p>###Step 2: Create HTML markup</p>
+<p>Create a <code>&lt;ul class=&quot;bxslider&quot;&gt;</code> element, with a <code>&lt;li&gt;</code> for each slide. Slides can contain images, video, or any other HTML content!</p>
+<pre><code class="language-html">&lt;ul class=&quot;bxslider&quot;&gt;
+  &lt;li&gt;&lt;img src=&quot;/images/pic1.jpg&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;img src=&quot;/images/pic2.jpg&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;img src=&quot;/images/pic3.jpg&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;img src=&quot;/images/pic4.jpg&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>###Step 3: Call the bxSlider</p>
+<p>Call .bxSlider() on <code>&lt;ul class=&quot;bxslider&quot;&gt;</code>. Note that the call must be made inside of a $(document).ready() call, or the plugin will not work!</p>
+<pre><code class="language-javascript">$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});
+</code></pre>
+<p>##Configuration options</p>
+<p>###General</p>
+<p><strong>mode</strong><br>
+Type of transition between slides</p>
+<pre><code>default: 'horizontal'
+options: 'horizontal', 'vertical', 'fade'
+</code></pre>
+<p><strong>speed</strong><br>
+Slide transition duration (in ms)</p>
+<pre><code>default: 500
+options: integer
+</code></pre>
+<p><strong>slideMargin</strong><br>
+Margin between each slide</p>
+<pre><code>default: 0
+options: integer
+</code></pre>
+<p><strong>startSlide</strong><br>
+Starting slide index (zero-based)</p>
+<pre><code>default: 0
+options: integer
+</code></pre>
+<p><strong>randomStart</strong><br>
+Start slider on a random slide</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>slideSelector</strong><br>
+Element to use as slides (ex. <code>‘div.slide’</code>).<br />Note: by default, bxSlider will use all immediate children of the slider element</p>
+<pre><code>default: ''
+options: jQuery selector
+</code></pre>
+<p><strong>infiniteLoop</strong><br>
+If <code>true</code>, clicking “Next” while on the last slide will transition to the first slide and vice-versa</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>hideControlOnEnd</strong><br>
+If <code>true</code>, “Prev” and “Next” controls will receive a class <code>disabled</code> when slide is the first or the last<br/>Note: Only used when <code>infiniteLoop: false</code></p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>easing</strong><br>
+The type of “easing” to use during transitions. If using CSS transitions, include a value for the <code>transition-timing-function</code> property. If not using CSS transitions, you may include <code>plugins/jquery.easing.1.3.js</code> for many options.<br />See <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">http://gsgd.co.uk/sandbox/jquery/easing/</a> for more info.</p>
+<pre><code>default: null
+options: if using CSS: 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(n,n,n,n)'. If not using CSS: 'swing', 'linear' (see the above file for more options)
+</code></pre>
+<p><strong>captions</strong><br>
+Include image captions. Captions are derived from the image’s <code>title</code> attribute</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>ticker</strong><br>
+Use slider in ticker mode (similar to a news ticker)</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>tickerHover</strong><br>
+Ticker will pause when mouse hovers over slider. Note: this functionality does NOT work if using CSS transitions!</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>adaptiveHeight</strong><br>
+Dynamically adjust slider height based on each slide’s height</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>adaptiveHeightSpeed</strong><br>
+Slide height transition duration (in ms). Note: only used if <code>adaptiveHeight: true</code></p>
+<pre><code>default: 500
+options: integer
+</code></pre>
+<p><strong>video</strong><br>
+If any slides contain video, set this to <code>true</code>. Also, include <code>plugins/jquery.fitvids.js</code><br />See <a href="http://fitvidsjs.com/" target="_blank">http://fitvidsjs.com/</a> for more info</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>responsive</strong><br>
+Enable or disable auto resize of the slider. Useful if you need to use fixed width sliders.</p>
+<pre><code>default: true
+options: boolean (true /false)
+</code></pre>
+<p><strong>useCSS</strong><br>
+If true, CSS transitions will be used for horizontal and vertical slide animations (this uses native hardware acceleration). If false, jQuery animate() will be used.</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>preloadImages</strong><br>
+If ‘all’, preloads all images before starting the slider. If ‘visible’, preloads only images in the initially visible slides before starting the slider (tip: use ‘visible’ if all slides are identical dimensions)</p>
+<pre><code>default: 'visible'
+options: 'all', 'visible'
+</code></pre>
+<p><strong>touchEnabled</strong><br>
+If <code>true</code>, slider will allow touch swipe transitions</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>swipeThreshold</strong><br>
+Amount of pixels a touch swipe needs to exceed in order to execute a slide transition. Note: only used if <code>touchEnabled: true</code></p>
+<pre><code>default: 50
+options: integer
+</code></pre>
+<p><strong>oneToOneTouch</strong><br>
+If <code>true</code>, non-fade slides follow the finger as it swipes</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>preventDefaultSwipeX</strong><br>
+If <code>true</code>, touch screen will not move along the x-axis as the finger swipes</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>preventDefaultSwipeY</strong><br>
+If <code>true</code>, touch screen will not move along the y-axis as the finger swipes</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>wrapperClass</strong><br>
+Class to wrap the slider in. Change to prevent from using default bxSlider styles.</p>
+<pre><code>default: 'bx-wrapper'
+options: string
+</code></pre>
+<p>###Pager</p>
+<p><strong>pager</strong><br>
+If <code>true</code>, a pager will be added</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>pagerType</strong><br>
+If <code>‘full’</code>, a pager link will be generated for each slide. If <code>‘short’</code>, a x / y pager will be used (ex. 1 / 5)</p>
+<pre><code>default: 'full'
+options: 'full', 'short'
+</code></pre>
+<p><strong>pagerShortSeparator</strong><br>
+If <code>pagerType: ‘short’</code>, pager will use this value as the separating character</p>
+<pre><code>default: ' / '
+options: string
+</code></pre>
+<p><strong>pagerSelector</strong><br>
+Element used to populate the populate the pager. By default, the pager is appended to the bx-viewport</p>
+<pre><code>default: ''
+options: jQuery selector
+</code></pre>
+<p><strong>pagerCustom</strong><br>
+Parent element to be used as the pager. Parent element must contain a <code>&lt;a data-slide-index=“x”&gt;</code> element for each slide. See example <a href="/examples/thumbnail-method-1">here</a>. Not for use with dynamic carousels.</p>
+<pre><code>default: null
+options: jQuery selector
+</code></pre>
+<p><strong>buildPager</strong><br>
+If supplied, function is called on every slide element, and the returned value is used as the pager item markup.<br />See <a href="http://bxslider.com/examples">examples</a> for detailed implementation</p>
+<pre><code>default: null
+options: function(slideIndex)
+</code></pre>
+<p>###Controls</p>
+<p><strong>controls</strong><br>
+If <code>true</code>, “Next” / “Prev” controls will be added</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>nextText</strong><br>
+Text to be used for the “Next” control</p>
+<pre><code>default: 'Next'
+options: string
+</code></pre>
+<p><strong>prevText</strong><br>
+Text to be used for the “Prev” control</p>
+<pre><code>default: 'Prev'
+options: string
+</code></pre>
+<p><strong>nextSelector</strong><br>
+Element used to populate the “Next” control</p>
+<pre><code>default: null
+options: jQuery selector
+</code></pre>
+<p><strong>prevSelector</strong><br>
+Element used to populate the “Prev” control</p>
+<pre><code>default: null
+options: jQuery selector
+</code></pre>
+<p><strong>autoControls</strong><br>
+If <code>true</code>, “Start” / “Stop” controls will be added</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>startText</strong><br>
+Text to be used for the “Start” control</p>
+<pre><code>default: 'Start'
+options: string
+</code></pre>
+<p><strong>stopText</strong><br>
+Text to be used for the “Stop” control</p>
+<pre><code>default: 'Stop'
+options: string
+</code></pre>
+<p><strong>autoControlsCombine</strong><br>
+When slideshow is playing only “Stop” control is displayed and vice-versa</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>autoControlsSelector</strong><br>
+Element used to populate the auto controls</p>
+<pre><code>default: null
+options: jQuery selector
+</code></pre>
+<p><strong>keyboardEnabled</strong><br>
+Enable keyboard navigation for visible sliders</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p>###Auto</p>
+<p><strong>auto</strong><br>
+Slides will automatically transition</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>stopAutoOnClick</strong><br>
+Auto will stop on interaction with controls</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>pause</strong><br>
+The amount of time (in ms) between each auto transition</p>
+<pre><code>default: 4000
+options: integer
+</code></pre>
+<p><strong>autoStart</strong><br>
+Auto show starts playing on load. If <code>false</code>, slideshow will start when the “Start” control is clicked</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>autoDirection</strong><br>
+The direction of auto show slide transitions</p>
+<pre><code>default: 'next'
+options: 'next', 'prev'
+</code></pre>
+<p><strong>autoHover</strong><br>
+Auto show will pause when mouse hovers over slider</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p><strong>autoDelay</strong><br>
+Time (in ms) auto show should wait before starting</p>
+<pre><code>default: 0
+options: integer
+</code></pre>
+<p>###Carousel</p>
+<p><strong>minSlides</strong><br>
+The minimum number of slides to be shown. Slides will be sized down if carousel becomes smaller than the original size.</p>
+<pre><code>default: 1
+options: integer
+</code></pre>
+<p><strong>maxSlides</strong><br>
+The maximum number of slides to be shown. Slides will be sized up if carousel becomes larger than the original size.</p>
+<pre><code>default: 1
+options: integer
+</code></pre>
+<p><strong>moveSlides</strong><br>
+The number of slides to move on transition. This value must be <code>&gt;= minSlides</code>, and <code>&lt;= maxSlides</code>. If zero (default), the number of fully-visible slides will be used.</p>
+<pre><code>default: 0
+options: integer
+</code></pre>
+<p><strong>slideWidth</strong><br>
+The width of each slide. This setting is required for all horizontal carousels!</p>
+<pre><code>default: 0
+options: integer
+</code></pre>
+<p><strong>shrinkItems</strong><br>
+The Carousel will only show whole items and shrink the images to fit the viewport based on maxSlides/MinSlides.</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p>###Keyboard</p>
+<p><strong>keyboardEnabled</strong><br>
+Allows for keyboard control of visible slider. Keypress ignored if slider not visible.</p>
+<pre><code>default: false
+options: boolean (true / false)
+</code></pre>
+<p>###Accessibility<br>
+<strong>ariaLive</strong><br>
+Adds Aria Live attribute to slider.</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p><strong>ariaHidden</strong><br>
+Adds Aria Hidden attribute to any nonvisible slides.</p>
+<pre><code>default: true
+options: boolean (true / false)
+</code></pre>
+<p>###Callbacks</p>
+<p><strong>onSliderLoad</strong><br>
+Executes immediately after the slider is fully loaded</p>
+<pre><code>default: function(){}
+options: function(currentIndex){ // your code here }
+arguments:
+  currentIndex: element index of the current slide
+</code></pre>
+<p><strong>onSliderResize</strong><br>
+Executes immediately after the slider is resized</p>
+<pre><code>default: function(){}
+options: function(currentIndex){ // your code here }
+arguments:
+  currentIndex: element index of the current slide
+</code></pre>
+<p><strong>onSlideBefore</strong><br>
+Executes immediately before each slide transition.</p>
+<pre><code>default: function(){}
+options: function($slideElement, oldIndex, newIndex){ // your code here }
+arguments:
+  $slideElement: jQuery element of the destination element
+  oldIndex: element index of the previous slide (before the transition)
+  newIndex: element index of the destination slide (after the transition)
+</code></pre>
+<p><strong>onSlideAfter</strong><br>
+Executes immediately after each slide transition. Function argument is the current slide element (when transition completes).</p>
+<pre><code>default: function(){}
+options: function($slideElement, oldIndex, newIndex){ // your code here }
+arguments:
+  $slideElement: jQuery element of the destination element
+  oldIndex: element index of the previous slide (before the transition)
+  newIndex: element index of the destination slide (after the transition)
+</code></pre>
+<p><strong>onSlideNext</strong><br>
+Executes immediately before each “Next” slide transition. Function argument is the target (next) slide element.</p>
+<pre><code>default: function(){}
+options: function($slideElement, oldIndex, newIndex){ // your code here }
+arguments:
+  $slideElement: jQuery element of the destination element
+  oldIndex: element index of the previous slide (before the transition)
+  newIndex: element index of the destination slide (after the transition)
+</code></pre>
+<p><strong>onSlidePrev</strong><br>
+Executes immediately before each “Prev” slide transition. Function argument is the target (prev) slide element.</p>
+<pre><code>default: function(){}
+options: function($slideElement, oldIndex, newIndex){ // your code here }
+arguments:
+  $slideElement: jQuery element of the destination element
+  oldIndex: element index of the previous slide (before the transition)
+  newIndex: element index of the destination slide (after the transition)
+</code></pre>
+<p>###Public methods</p>
+<p><strong>goToSlide</strong><br>
+Performs a slide transition to the supplied slide index (zero-based)</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.goToSlide(3);
+</code></pre>
+<p><strong>goToNextSlide</strong><br>
+Performs a “Next” slide transition</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.goToNextSlide();
+</code></pre>
+<p><strong>goToPrevSlide</strong><br>
+Performs a “Prev” slide transition</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.goToPrevSlide();
+</code></pre>
+<p><strong>startAuto</strong><br>
+Starts the auto show. Provide an argument <code>false</code> to prevent the auto controls from being updated.</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.startAuto();
+</code></pre>
+<p><strong>stopAuto</strong><br>
+Stops the auto show. Provide an argument <code>false</code> to prevent the auto controls from being updated.</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.stopAuto();
+</code></pre>
+<p><strong>getCurrentSlide</strong><br>
+Returns the current active slide</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+var current = slider.getCurrentSlide();
+</code></pre>
+<p><strong>getSlideCount</strong><br>
+Returns the total number of slides in the slider</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+var slideQty = slider.getSlideCount();
+</code></pre>
+<p><strong>redrawSlider</strong><br>
+Redraw the slider. Useful when needing to redraw a hidden slider after it is unhidden.</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.redrawSlider();
+</code></pre>
+<p><strong>reloadSlider</strong><br>
+Reload the slider. Useful when adding slides on the fly. Accepts an optional settings object. <a href="/examples/reload-slider-settings">See here for an example.</a></p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.reloadSlider();
+</code></pre>
+<p><strong>destroySlider</strong><br>
+Destroy the slider. This reverts all slider elements back to their original state (before calling the slider).</p>
+<pre><code>example:
+slider = $('.bxslider').bxSlider();
+slider.destroySlider();
+</code></pre>
+<h3 id="Local-Development-with-Gulp">Local Development with Gulp</h3>
+<p><strong>Unfamiliar with npm? Don’t have node installed?</strong> <a href="http://nodejs.org/download/">Download and install node.js</a> before proceeding.</p>
+<p>From the command line:</p>
+<ol>
+<li>Install the CLI: <code>npm install --global gulp-cli</code></li>
+<li>Run <code>npm install</code> to install local development tools</li>
+<li>Run <code>gulp</code> which will build the project</li>
+</ol>
+<h2 id="Contributing">Contributing</h2>
+<p>Everyone is welcome to help <a href="CONTRIBUTING.md">contribute</a> and improve this project. There are several ways you can contribute:</p>
+<ul>
+<li>Reporting issues (please read <a href="https://github.com/necolas/issue-guidelines">issue guidelines</a>)</li>
+<li>Suggesting new features</li>
+<li>Writing or refactoring code</li>
+<li>Fixing <a href="https://github.com/roots/roots/issues">issues</a></li>
+</ul>
+<h2 id="Changelog">Changelog</h2>
+<h3 id="Version-4-2-12">Version 4.2.12</h3>
+<ul>
+<li>Fixes auto control theme</li>
+</ul>
+<h3 id="Version-4-2-11">Version 4.2.11</h3>
+<ul>
+<li>Removes auto-centering for sliders with no pager or controls</li>
+</ul>
+<h3 id="Version-4-2-10">Version 4.2.10</h3>
+<ul>
+<li>Bumps npm and bower versions</li>
+</ul>
+<h3 id="Version-4-2-9">Version 4.2.9</h3>
+<ul>
+<li>Removes node engine version requirement</li>
+</ul>
+<h3 id="Version-4-2-8">Version 4.2.8</h3>
+<ul>
+<li>Removes auto-centering from the theme file (<code>jquery.bxslider.css</code>)</li>
+</ul>
+<h3 id="Version-4-2-7">Version 4.2.7</h3>
+<ul>
+<li>Allows new version to be published to NPM</li>
+</ul>
+<h3 id="Version-4-2-6">Version 4.2.6</h3>
+<ul>
+<li>Fix: jQuery 3 support</li>
+<li>Adds Gulp and removes Grunt (for easier local development)</li>
+</ul>
+<h3 id="Version-4-2-5">Version 4.2.5</h3>
+<ul>
+<li>Fix: Vertical carousel minSlides not working #840</li>
+<li>Fix: slider breaks with css animations if settings.speed set to 0 #838</li>
+<li>Fix: Slider runs into undefined state when reloadSlider is called before initialization was finished #833</li>
+</ul>
+<h3 id="Version-4-2-4">Version 4.2.4</h3>
+<p>NOTICE: We have switched to a Grunt based build process in order to leverage <a href="http://assemble.io">Assemble</a> for local documentation building. Please review the above notes about Grunt for the commands available.</p>
+<ul>
+<li>Fix: Fixed transition from first to last slide during infinite loop #778</li>
+<li>Fix: Reload on multiple sliders doesn’t work? #755</li>
+<li>Fix: bxSlider with text only #746</li>
+<li>Fix: bower missing main and ignore entries #738</li>
+<li>Fix: Tickermode transitionend event bubbling #737</li>
+<li>Fix: Initializing before destroyed breaks slider #748</li>
+<li>Enhancement: Added shrinkItems carousel setting #772</li>
+<li>Enhancement: Maintain auto display of slides after a manual selection #594</li>
+<li>Enhancement: Slider getter through jquery object #739</li>
+<li>Enhancement: Add aria attributes #751</li>
+<li>Enhancement: Slider element in every callback and a new method getSliderElement (#780)</li>
+<li>Enhancement: Local Documentiation and examples. I have added buildable documentation to the repo. This will expand over time and allow for community corrections as needed. Please see above Grunt notes on how to build.</li>
+</ul>
+<h3 id="Version-4-2-3">Version 4.2.3</h3>
+<ul>
+<li>Minor bug fix</li>
+</ul>
+<h3 id="Version-4-2-2">Version 4.2.2</h3>
+<ul>
+<li>Fix: Remove unused plugin variable (#733)</li>
+<li>Fix: <code>updateAfterSlideTransition</code> not being called (#704)</li>
+<li>Fix: Slider stops auto advancing (#702)</li>
+<li>Fix: Refresh page, slider show the last item at the first in mode: ‘horizontal’ (#694)</li>
+<li>Fix: horizintal ticker stutters on loop (#669)</li>
+<li>Fix: Wrong bx-wrapper bottom margin with controls=true and pager=false (#647)</li>
+<li>Fix: add css tickerHover. (#629)</li>
+<li>Fix: Slider refusing to scale down, only up (#611)</li>
+<li>Fix: bxSlider freezes on touch devices (#540)</li>
+<li>Fix: Multiple fixes and improvements for Windows Mobile Devices (#596)</li>
+<li>Fix: Accessing bxslider’s slider object inside its “onSliderLoad” callback returns undefined (#475)</li>
+<li>Fix: infiniteLoop glitch when scrolling from first to last slide (#429)</li>
+<li>Enhancement: Cancel transitions on callbacks by returning false. (#411)</li>
+<li>Enhancement: Added Keyboard arrow left and right support (#239)</li>
+</ul>
+<h3 id="Version-4-2-1">Version 4.2.1</h3>
+<ul>
+<li>Fix: Merge Conflict in dist</li>
+<li>Fix: modified bower.json</li>
+</ul>
+<h3 id="Version-4-2-0">Version 4.2.0</h3>
+<ul>
+<li>Fix: Reverse #714, fixes #722.</li>
+<li>Fix: Repo Tag #729</li>
+<li>Fix: #720 pagerCustom issues</li>
+</ul>
+<p>4.2.0 Introduces a streamlined build process using <a href="www.gulpjs.com">gulp</a>. Along with this new build process the projects folder structure has been changed. You will find a <code>dist</code> folder with all assets ready to use, including both minified and unminified versions of the javascript. These assets should be ready to go. In <code>src</code> you will find the uncompiled assets, including a new less version of the css for bxslider. This is an important step for bxslider. It will help speed development up and keep work clean. It also paves the way for a big revamp we have planned in the future.</p>
+<p><strong>Unfamiliar with npm? Don’t have node installed?</strong> <a href="http://nodejs.org/download/">Download and install node.js</a> before proceeding.</p>
+<p>From the command line:</p>
+<ol>
+<li>Install <a href="http://gulpjs.com">gulp</a> globally with <code>npm install -g gulp</code></li>
+<li>Navigate to the project directory, then run <code>npm install</code></li>
+</ol>
+<p>You now have all the necessary dependencies to run the build process.</p>
+<h3 id="Available-gulp-commands">Available gulp commands</h3>
+<ul>
+<li><code>gulp</code> — Compile and optimize all files to <code>dist</code></li>
+<li><code>gulp styles</code> — Compile css assets only to <code>dist</code></li>
+<li><code>gulp scripts</code> — Compile js assets only to <code>dist</code></li>
+<li><code>gulp images</code> - Run lossless compression on all the images and copy to <code>dist</code></li>
+<li><code>gulp jshint</code> — Checks JS and JSON code for errors based on our .jshintrc settings</li>
+</ul>
+<h3 id="Version-4-1-3">Version 4.1.3</h3>
+<ul>
+<li>Fix: responsive issue for horizontal mode for issue #611, #714</li>
+<li>Fix: extra space on the left when using fade mode. #715</li>
+<li>Fix: wrongly removing custom pager in destroySlider #610</li>
+<li>Fix: bug with reloading slider with custom pager #545</li>
+<li>Fix: Issue with infinite scroll sometimes returning to 0 #481</li>
+<li>Fix: When “infiniteLoop” is used, true is not passed to a clone method. #346</li>
+<li>Fix: “pagerCustom” won’t work when using reloadSlider #171</li>
+<li>Fix: Remove vendor prefix for translateZ(0) #565</li>
+<li>Fix: give styles on focus for accessibility #228</li>
+<li>Fix: Minified Version out of sync.</li>
+<li>Fix: Remove -5px left #517</li>
+<li>Enhancement: Invert order call of appendControls() and appendPager() #226</li>
+<li>Enhancement: Various Indentation and typos in docs fixed. #551, #578</li>
+<li>Enhancement: Update jsDelivr with update.json for autoupdate of CDN</li>
+<li>Enhancement: Tag Repo so it can be included in CDNJS</li>
+<li>Created development branch to work from. Eventually will restructure entire repo to follow best practice setup.</li>
+</ul>
+<h3 id="Version-4-1-2">Version 4.1.2</h3>
+<ul>
+<li>Added <code>bower.json</code> configuration file. Manage bxSlider as a dependency using <a href="http://bower.io/">bower</a>.</li>
+</ul>
+<h3 id="Version-4-1-1">Version 4.1.1</h3>
+<ul>
+<li>Removed imagesLoaded library and added iframe preloading support</li>
+<li>Added responsive option - setting to false will prevent $(window).resize binding</li>
+</ul>
+<h3 id="Version-4-1">Version 4.1</h3>
+<ul>
+<li>Carousel mode (minSlides / maxSlides) was re-written to be more intuitive.</li>
+<li>SlideWidth now acts as it should (slides respect the width value).</li>
+<li>SlideWidth now properly parsed: accepts string (“600px”) or integer (600).</li>
+<li>Slider now only needs to load visible slides (by default) in order to initialize which results in much faster loading. A “preloadImages” setting allows for configuration.</li>
+</ul>
+<p>Long live Zep.</p>
