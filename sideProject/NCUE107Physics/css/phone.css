@@ -295,7 +295,7 @@ body{
   float: left;
   background-color: #222;
   width: 100%;
-  height: 220px;
+  height: 350px;
   margin:30px 10px 0 10px;
   display: block;
   border-radius: 50px;
@@ -306,9 +306,9 @@ body{
 
 .gameitem h4{
   font-family: "Cubic","微軟正黑體","cwTeXYen";
-  font-size: 1.1rem;
+  font-size: 2rem;
   font-weight: 200;
-  line-height: 1.5rem;
+  line-height: 2.5rem;
   text-align: left;
   padding-left: 10%;
 }
