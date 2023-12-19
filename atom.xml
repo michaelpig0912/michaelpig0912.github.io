@@ -6,7 +6,7 @@
   <link href="https://michaelpig0912.github.io/atom.xml" rel="self"/>
   
   <link href="https://michaelpig0912.github.io/"/>
-  <updated>2023-10-10T04:42:59.812Z</updated>
+  <updated>2023-11-25T04:04:05.544Z</updated>
   <id>https://michaelpig0912.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>logicGateByRelay</title>
+    <link href="https://michaelpig0912.github.io/2023/11/25/logicGateByRelay/"/>
+    <id>https://michaelpig0912.github.io/2023/11/25/logicGateByRelay/</id>
+    <published>2023-11-25T04:04:05.000Z</published>
+    <updated>2023-11-25T04:04:05.544Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>透過 blender 做克拉尼圖形 (Chladni patterns)</title>
@@ -588,32 +601,6 @@
     <category term="javascript" scheme="https://michaelpig0912.github.io/tags/javascript/"/>
     
     <category term="html" scheme="https://michaelpig0912.github.io/tags/html/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>網站功能基礎測試</title>
-    <link href="https://michaelpig0912.github.io/2023/02/11/webTest/"/>
-    <id>https://michaelpig0912.github.io/2023/02/11/webTest/</id>
-    <published>2023-02-10T16:53:04.000Z</published>
-    <updated>2023-02-12T17:19:44.606Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="網站的基本功能測試">網站的基本功能測試</h2><img src="/2023/02/11/webTest/20230204_195004.jpg" class="" title="This is an image"><table><thead><tr><th>Syntax</th><th>Description</th></tr></thead><tbody><tr><td>Header</td><td>Title</td></tr><tr><td>Paragraph</td><td>Text</td></tr></tbody></table><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;JavaScript syntax highlighting&quot;</span>;</span><br><span class="line"><span class="title function_">alert</span>(s);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">$initHighlight</span>(<span class="params">block, cls</span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (cls.<span class="title function_">search</span>(<span class="regexp">/\bno\-highlight\b/</span>) != -<span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">process</span>(block, <span class="literal">true</span>, <span class="number">0x0F</span>) +</span><br><span class="line">             <span class="string">&#x27; class=&quot;&quot;&#x27;</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="comment">/* handle exception */</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span> / <span class="number">2</span>; i &lt; classes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">checkCondition</span>(classes[i]) === <span class="literal">undefined</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="regexp">/\d+[\s/]/g</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>123</p><p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>if </mtext><mi>b</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>if </mtext><mi>d</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">x = \begin{cases}   a &amp;\text{if } b \\   c &amp;\text{if } d\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">a</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span></span><span class="mord mathdefault">b</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if </span></span><span class="mord mathdefault">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;網站的基本功能測試&quot;&gt;網站的基本功能測試&lt;/h2&gt;
-&lt;img src=&quot;/2023/02/11/webTest/20230204_195004.jpg&quot; class=&quot;&quot; title=&quot;This is an image&quot;&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="test" scheme="https://michaelpig0912.github.io/tags/test/"/>
     
   </entry>
   
