@@ -2,10 +2,11 @@
 title: 透過 blender 做克拉尼圖形 (Chladni patterns)
 katex: true
 date: 2023-10-10 01:30:00
-categories: 3D
+categories: animation
 tags: 
     - blender
     - 3D
+    - animation
 cover: ChladniPatterns02.webp
 ---
 

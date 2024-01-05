@@ -2,11 +2,13 @@
 title: Wonder Studio 簡單說明與自定義角色注意事項
 katex: true
 date: 2023-08-31 17:45:36
-categories: 3D
+categories: animation
 tags:
     - blender
     - wonderStudio
     - 3D
+    - animation
+    - motion Capture
 cover: output.webp
 
 ---
