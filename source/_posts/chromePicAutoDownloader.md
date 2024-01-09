@@ -8,7 +8,7 @@ tags:
   - html
   - code
   - chrome extension
-cover: Install-4.webp
+cover: install-4.webp
 ---
 
 ## 前言
