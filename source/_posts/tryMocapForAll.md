@@ -29,6 +29,12 @@ Note：可以免費試用，但在輸出動做到其他軟體的時候 (例如�
 
 {% asset_img steamDownload.webp Steam的下載頁面 %}
 
+### 效果
+
+測試追蹤的效果如下：
+
+<video width="100%" height="100%"  src="./demo.mp4" controls></video>
+
 ### 優點
 
 1. 即時的反應追蹤情況。
