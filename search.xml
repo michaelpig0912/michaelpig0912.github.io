@@ -13,13 +13,7 @@
       
       <categories>
           
-          <category> javascript </category>
-          
-          <category> html </category>
-          
           <category> code </category>
-          
-          <category> three.js </category>
           
       </categories>
       
@@ -27,6 +21,12 @@
         <tags>
             
             <tag> code </tag>
+            
+            <tag> javascript </tag>
+            
+            <tag> html </tag>
+            
+            <tag> three.js </tag>
             
         </tags>
       

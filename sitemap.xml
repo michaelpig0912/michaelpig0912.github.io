@@ -403,27 +403,6 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/html/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/SEO/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/esp8266/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/tags/science/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -445,7 +424,42 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/esp8266/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/html/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/SEO/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/musical/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/chrome-extension/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/electrolysis/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -467,20 +481,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/animation/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/chrome-extension/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/electrolysis/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -515,6 +515,27 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/optics/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/physics/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/three-js/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/technology/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -543,20 +564,6 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/optics/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/physics/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/tags/freemocap/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -578,6 +585,13 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/test/</loc>
+    <lastmod>2024-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/MoCapForALL/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -586,13 +600,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/VRM/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/test/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -658,34 +665,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/categories/technology/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/categories/javascript/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/categories/javascript/html/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/categories/javascript/html/code/</loc>
-    <lastmod>2024-02-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/categories/javascript/html/code/three-js/</loc>
     <lastmod>2024-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
