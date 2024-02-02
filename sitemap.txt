@@ -1,3 +1,4 @@
+https://michaelpig0912.github.io/2024/01/29/threejsJourney-1/
 https://michaelpig0912.github.io/2023/02/11/foodWeb/
 https://michaelpig0912.github.io/2023/10/09/hedwigAndTheAngryInch/
 https://michaelpig0912.github.io/2024/01/13/MadShow-stageShow/
@@ -9,7 +10,6 @@ https://michaelpig0912.github.io/2023/11/19/logicGateByRelay/
 https://michaelpig0912.github.io/2023/06/20/electrolysis/
 https://michaelpig0912.github.io/2024/01/29/newYearNewHope24/
 https://michaelpig0912.github.io/2023/10/10/blenderChladniPatterns/
-https://michaelpig0912.github.io/2024/01/29/threejsJourney-1/
 https://michaelpig0912.github.io/2024/01/15/SulfuricAcidTest/
 https://michaelpig0912.github.io/2023/11/17/GASwithGoogleSheet/
 https://michaelpig0912.github.io/2023/12/29/tryMocapForAll/
@@ -82,3 +82,7 @@ https://michaelpig0912.github.io/categories/drama/
 https://michaelpig0912.github.io/categories/science/
 https://michaelpig0912.github.io/categories/animation/
 https://michaelpig0912.github.io/categories/technology/
+https://michaelpig0912.github.io/categories/javascript/
+https://michaelpig0912.github.io/categories/javascript/html/
+https://michaelpig0912.github.io/categories/javascript/html/code/
+https://michaelpig0912.github.io/categories/javascript/html/code/three-js/
