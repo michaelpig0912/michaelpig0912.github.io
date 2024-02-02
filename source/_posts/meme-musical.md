@@ -20,7 +20,7 @@ cover: cover.webp
 3. 時間：12/03(日) 14:30~16:00
 4. 主觀評價：7.5/10
 
-{% asset_img  ntpc.webp 新北市藝文中心 演藝廳 %}
+   {% asset_img  ntpc.webp 新北市藝文中心 演藝廳 %}
 
 
 ## 簡介

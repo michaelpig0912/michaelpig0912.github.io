@@ -22,7 +22,7 @@ cover: out.webp
 3. 時間：10/8(六) 19:30~21:30
 4. 主觀評價：8/10
 5. 演員組合：蕭東意、金仁馨
-{% asset_img  cornerMax.webp CORNER MAX 大角落多功能展演館外觀 %}
+     {% asset_img  cornerMax.webp CORNER MAX 大角落多功能展演館外觀 %}
 
 ## 簡介
 

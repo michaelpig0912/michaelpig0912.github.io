@@ -20,7 +20,7 @@ cover: theWorldBetweenUs.webp
 2. 價位：750元(原價 1500元)
 3. 時間：7/9(日) 19:30~22:30
 4. 主觀評價：7/10
-{% asset_img  place.webp 城市舞台的外觀 %}
+     {% asset_img  place.webp 城市舞台的外觀 %}
 
 ## 個人觀感
 

@@ -20,6 +20,7 @@ cover: ChladniPatterns02.webp
 
 {% asset_img ChladniPatterns02.webp blender 做出來的效果%}
 
-<div style="text-align:center">
-<iframe width="720" height="412" src="https://www.youtube.com/embed/24Gd1EyiL1U?si=bOKrzngwiZFkLb8D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div style="text-align:center;position: relative;width: 100%;padding-bottom: 56.25%;height: 0;overflow: hidden;">
+
+<iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" src="https://www.youtube.com/embed/24Gd1EyiL1U?si=bOKrzngwiZFkLb8D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
