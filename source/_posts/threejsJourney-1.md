@@ -2,12 +2,12 @@
 title: 嘗試跟著 three.js Journey 學 three.js (學習紀錄)
 katex: true
 date: 2024-01-29 07:38:30
-categories:
+categories: code
+tags: 
   - javascript
   - html
   - code
   - three.js
-tags: code
 cover: pinkDemo.webp
 ---
 
