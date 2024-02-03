@@ -21,7 +21,7 @@ cover: titanicTheMusical.webp
 2. 價位：1800元
 3. 時間：9/2(六) 14:30~17:30 (中間休息20分鐘)
 4. 主觀評價：8.5/10
-{% asset_img  tpac.webp 台北表演藝術中心 %}
+    {% asset_img  tpac.webp 台北表演藝術中心 %}
 
 ## 簡介
 

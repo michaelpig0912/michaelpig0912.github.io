@@ -12,7 +12,7 @@ cover: cover.webp
 <p style="font-size:1.5rem;color:#f55;text-align:center">
 注意：這是一個非專業的戲劇紀錄，僅記錄我個人的觀影經驗，並不是專業的戲劇評論。且以下的內容可能會有劇透，如果你還沒看過的話，可以先去看完再回來看這篇文章。</p>
 
-<div style="width:50%;margin:auto">{% asset_img  cover.webp 有真與有真的節目冊 %}</div>
+{% asset_img  cover.webp 有真與有真的節目冊 %}
 
 ## 場域資訊
 
@@ -21,7 +21,7 @@ cover: cover.webp
 3. 時間：11/25(六) 19:30~21:20
 4. 主觀評價：7/10
 
-{% asset_img  npac_1.webp 國家兩廳院 %}
+   {% asset_img  npac_1.webp 國家兩廳院 %}
 
 ## 簡介
 

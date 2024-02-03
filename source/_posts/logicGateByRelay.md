@@ -114,8 +114,8 @@ $$
 {% asset_img threeLight.webp 開三個開關，兩個燈都會亮起來 %}
 
 下面是實際的演示影片。
-<div style="text-align:center">
-<iframe width="720" height="480" src="https://www.youtube.com/embed/7vHLpLg-dAI?si=q0xzSsVtU6YzyOK7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div style="text-align:center;position: relative;width: 100%;padding-bottom: 56.25%;height: 0;overflow: hidden;">
+<iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" src="https://www.youtube.com/embed/7vHLpLg-dAI?si=q0xzSsVtU6YzyOK7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <div>
 
 <div style="text-align:left">
