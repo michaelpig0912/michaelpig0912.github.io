@@ -34,10 +34,10 @@ https://michaelpig0912.github.io/2023/02/11/webTest/
 https://michaelpig0912.github.io/tags/index.html
 https://michaelpig0912.github.io/categories/index.html
 https://michaelpig0912.github.io/
+https://michaelpig0912.github.io/tags/life/
 https://michaelpig0912.github.io/tags/arduino/
 https://michaelpig0912.github.io/tags/code/
 https://michaelpig0912.github.io/tags/maker/
-https://michaelpig0912.github.io/tags/life/
 https://michaelpig0912.github.io/tags/unbox/
 https://michaelpig0912.github.io/tags/pc/
 https://michaelpig0912.github.io/tags/javascript/
@@ -75,8 +75,8 @@ https://michaelpig0912.github.io/tags/MoCapForALL/
 https://michaelpig0912.github.io/tags/VRM/
 https://michaelpig0912.github.io/tags/test/
 https://michaelpig0912.github.io/tags/wonderStudio/
-https://michaelpig0912.github.io/categories/maker/
 https://michaelpig0912.github.io/categories/life/
+https://michaelpig0912.github.io/categories/maker/
 https://michaelpig0912.github.io/categories/unbox/
 https://michaelpig0912.github.io/categories/code/
 https://michaelpig0912.github.io/categories/drama/

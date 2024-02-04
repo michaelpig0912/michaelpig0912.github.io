@@ -326,6 +326,13 @@
 
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/life/</loc>
+    <lastmod>2024-02-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/arduino/</loc>
     <lastmod>2024-02-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -341,13 +348,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/maker/</loc>
-    <lastmod>2024-02-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/life/</loc>
     <lastmod>2024-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -615,14 +615,14 @@
 
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/maker/</loc>
+    <loc>https://michaelpig0912.github.io/categories/life/</loc>
     <lastmod>2024-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/life/</loc>
+    <loc>https://michaelpig0912.github.io/categories/maker/</loc>
     <lastmod>2024-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
