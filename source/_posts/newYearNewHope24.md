@@ -66,7 +66,7 @@ cover:  star.webp
 
 ### <span style="color:#50A0FF">【★ 階段性完成】</span> 初步的 3D 和 blender 學習
 
-- 在今年在 3D 的專案前，我也只有初步的用過一點點 unity，而因為因應公司的 3D 的需求，開啟了一些對於 3D 與動態追蹤的學習。利用兩天跟著 Guru 的 blender 教學做了甜甜圈，對於 blender 有初步的認識。在這個基礎上，可以以看懂其他教學中所用的功能究竟是什麼。
+- 在今年在 3D 的專案前，我也只有初步的用過一點點 unity，而因應公司的 3D 的需求，開啟了一些對於 3D 與動態追蹤的學習。利用兩天跟著 Guru 的 blender 教學做了甜甜圈，對於 blender 有初步的認識。在這個基礎上，可以以看懂其他教學中所用的功能究竟是什麼。
 
     {% asset_img  blender.webp 跟著 Guru 做甜甜圈 %}
 
@@ -125,7 +125,7 @@ cover:  star.webp
 
 ### MP.sci 科學學習平台
 
-- 2024 年給自己的side project，是希望可以開發出物理實驗的平台，目標是想要做到類似 PHET 那樣，主要會使用 three.js 達到一些物理效果的實現，順便當作是練習 react 跟 three.js 。
+- 2024 年給自己的 side project，是希望可以開發出物理實驗的平台，目標是想要做到類似 PHET 那樣，主要會使用 three.js 達到一些物理效果的實現，順便當作是練習 react 跟 three.js 。
 
 ### 學日文與去日本玩
 
