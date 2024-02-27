@@ -216,13 +216,13 @@
     
     <category term="animation" scheme="https://michaelpig0912.github.io/tags/animation/"/>
     
-    <category term="motion Capture" scheme="https://michaelpig0912.github.io/tags/motion-Capture/"/>
-    
-    <category term="software" scheme="https://michaelpig0912.github.io/tags/software/"/>
-    
     <category term="MoCapForALL" scheme="https://michaelpig0912.github.io/tags/MoCapForALL/"/>
     
+    <category term="motion Capture" scheme="https://michaelpig0912.github.io/tags/motion-Capture/"/>
+    
     <category term="VRM" scheme="https://michaelpig0912.github.io/tags/VRM/"/>
+    
+    <category term="software" scheme="https://michaelpig0912.github.io/tags/software/"/>
     
   </entry>
   
@@ -407,11 +407,11 @@
     
     <category term="animation" scheme="https://michaelpig0912.github.io/tags/animation/"/>
     
-    <category term="freemocap" scheme="https://michaelpig0912.github.io/tags/freemocap/"/>
-    
     <category term="motion Capture" scheme="https://michaelpig0912.github.io/tags/motion-Capture/"/>
     
     <category term="software" scheme="https://michaelpig0912.github.io/tags/software/"/>
+    
+    <category term="freemocap" scheme="https://michaelpig0912.github.io/tags/freemocap/"/>
     
   </entry>
   
