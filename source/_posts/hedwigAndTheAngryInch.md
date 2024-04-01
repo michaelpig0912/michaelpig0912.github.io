@@ -1,5 +1,5 @@
 ---
-title: 非專業戲劇紀錄｜搖滾芭比-音樂劇
+title: 搖滾芭比-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2023-10-09 18:02:01
 categories: drama

@@ -1,5 +1,5 @@
 ---
-title: 非專業戲劇紀錄｜怪胎-音樂劇
+title: 怪胎-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2023-06-11 15:45:24
 categories: drama

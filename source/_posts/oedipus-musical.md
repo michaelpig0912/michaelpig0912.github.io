@@ -1,5 +1,5 @@
 ---
-title: 非專業戲劇紀錄｜伊底帕斯-音樂劇
+title: 伊底帕斯-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2023-09-12 01:54:08
 categories: drama

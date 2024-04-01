@@ -1,5 +1,5 @@
 ---
-title: 非專業戲劇紀錄｜有真與有真-音樂劇
+title: 有真與有真-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2023-11-26 17:03:58
 categories: drama

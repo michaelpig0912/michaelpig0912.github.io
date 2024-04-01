@@ -1,5 +1,5 @@
 ---
-title: 研究問卷小工具，基於 openCV 的簡易數劇判別工具
+title: 紙本問卷的圖像辨識程式，基於 openCV 的數劇判別工具
 katex: true
 date: 2024-03-16 00:10:27
 categories: code

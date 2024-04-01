@@ -1,5 +1,5 @@
 ---
-title: 非專業戲劇紀錄｜吼呦～杰哥不要啦-音樂劇
+title: 吼呦～杰哥不要啦-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2023-12-4 21:59:20
 categories: drama
