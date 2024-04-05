@@ -2,7 +2,9 @@
 title: 鐵達尼號-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2023-09-03 12:40:06
-categories: drama
+categories: 
+- drama
+- foreign
 tags:
     - musical
     - show

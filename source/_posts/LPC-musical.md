@@ -2,7 +2,9 @@
 title: I Love You, You're Perfect, Now Change-音樂劇｜非專業戲劇紀錄
 katex: true
 date: 2024-03-13 00:09:32
-categories: drama
+categories: 
+- drama
+- foreign
 tags:
   - musical
   - show

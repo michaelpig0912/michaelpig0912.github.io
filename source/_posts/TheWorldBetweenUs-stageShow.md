@@ -2,7 +2,9 @@
 title: 我們與惡的距離(公投版)-舞台劇｜非專業戲劇紀錄
 katex: true
 date: 2023-07-10 15:46:22
-categories: drama
+categories: 
+- drama
+- local
 tags:
     - stage
     - show

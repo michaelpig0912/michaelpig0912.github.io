@@ -2,7 +2,9 @@
 title: 瘋狂電視台(2024 總統大選開票版)-舞台劇｜非專業戲劇紀錄
 katex: true
 date: 2024-01-13 22:57:51
-categories: drama
+categories: 
+- drama
+- local
 tags:
     - stage
     - show

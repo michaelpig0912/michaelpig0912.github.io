@@ -2,7 +2,9 @@
 title: 內在的聲音-舞台劇｜非專業戲劇紀錄
 katex: true
 date: 2024-02-18 22:54:35
-categories: drama
+categories: 
+- drama
+- foreign
 tags:
     - stage
     - show
