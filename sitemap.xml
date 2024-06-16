@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://michaelpig0912.github.io/2024/06/16/stageLightingTechnologyAndMaterial-stageShow/</loc>
+    
+    <lastmod>2024-06-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/2024/05/20/Japan-240509-Trip/</loc>
     
     <lastmod>2024-06-16</lastmod>
@@ -30,15 +39,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/2024/04/15/PCBbusinessCard/</loc>
-    
-    <lastmod>2024-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/2024/06/16/stageLightingTechnologyAndMaterial-stageShow/</loc>
     
     <lastmod>2024-06-16</lastmod>
     
@@ -462,27 +462,6 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/javascript/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/code/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/Google-Apps-Script/</loc>
-    <lastmod>2024-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/tags/Japan/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -498,6 +477,27 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/Osaka/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/javascript/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/code/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/Google-Apps-Script/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -814,14 +814,14 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/code/</loc>
+    <loc>https://michaelpig0912.github.io/categories/travel/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/travel/</loc>
+    <loc>https://michaelpig0912.github.io/categories/code/</loc>
     <lastmod>2024-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
