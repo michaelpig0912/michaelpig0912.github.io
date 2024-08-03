@@ -63,8 +63,10 @@ IPad OS 要更新到 17.0 以上。
 {% asset_img delay.webp 連接電腦測延遲 %}
 
 ### 效果示範
-<div style="text-align:center">
+
+<div style="text-align:center;position: relative;width: 100%;padding-bottom: 177%;height: 0;overflow: hidden;">
 <iframe width="405" height="720" src="https://www.youtube.com/embed/IGjQn-tTEU0?si=J3xSCOYtIS9lil7u_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 </div>
 
 ## 結語

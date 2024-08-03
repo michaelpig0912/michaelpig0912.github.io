@@ -1,5 +1,5 @@
 ---
-title: 拓竹 A1 mini 開箱紀錄與彩色浮雕測試(尚未完成)
+title: (撰寫中)拓竹 A1 mini 開箱紀錄與彩色浮雕測試
 katex: true
 date: 2024-06-29 22:59:41
 categories: unbox

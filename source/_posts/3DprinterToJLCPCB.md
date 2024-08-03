@@ -1,5 +1,5 @@
 ---
-title: (尚未完成) 嘗試將 3D 列印的項目外包給 JLCPCB
+title: (撰寫中)嘗試將 3D 列印的項目外包給 JLCPCB
 katex: true
 date: 2024-04-21 02:01:26
 categories: maker

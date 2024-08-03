@@ -1,5 +1,5 @@
 ---
-title: (尚未完成)大阪、東京八日遊｜2024 旅行
+title: (撰寫中)大阪、東京八日遊｜2024 旅行
 katex: false
 date: 2024-05-20 00:17:39
 categories: travel

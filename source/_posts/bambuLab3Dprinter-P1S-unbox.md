@@ -1,5 +1,5 @@
 ---
-title: 拓竹 P1S 開箱與自行維修紀錄(尚未完成)
+title: (撰寫中)拓竹 P1S 開箱與自行維修紀錄
 katex: true
 date: 2024-06-01 22:10:00
 categories: unbox
@@ -41,9 +41,20 @@ cover: cover.webp
 
 整體的開箱過程，我基本上是跟著下面這個個教學做的，難度不高，大約半小時左右可以完成，不過會建議需要兩個人搬動機器會比較安全一點，我當時一個人搬動機器，感覺超重的 (大約 17 公斤左右)
 
-<div style="text-align:center">
-<iframe width="720" height="480" src="https://www.youtube.com/embed/fNz-9jZJ9ZQ?si=qpmXg_d_OMciI7rs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+<div style="text-align:center;position: relative;width: 100%;padding-bottom: 56.25%;height: 0;overflow: hidden;">
 
+<iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" src="https://www.youtube.com/embed/fNz-9jZJ9ZQ?si=qpmXg_d_OMciI7rs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 在裡面有附上了三綑線材，分別是綠色的 PLA、橘色的 PLA 跟 透明的 PLA 支撐材料和一個材料包。這個[材料包](https://store.bambulab.com/products/boat-model-components-kit-010)，拿到的是 Kit 010 的船，裡面只有附船後面的發條馬達，這個銷售方式滿特別的，也可以讓剛接觸 3D 列印機的人有一個東西可以印印看。
 
+{% asset_img  BambuLabP1SComboOfficialUnboxing.webp A1 mini %}
+{% asset_img  boat_1.webp A1 mini %}
+{% asset_img  boat_2.webp A1 mini %}
+{% asset_img  clog_1.webp A1 mini %}
+{% asset_img  clog_2.webp A1 mini %}
+{% asset_img  clog_3.webp A1 mini %}
+{% asset_img  clog_4.webp A1 mini %}
+{% asset_img  P1SInsite.webp A1 mini %}
+{% asset_img  P1Sopen.webp A1 mini %}
+{% asset_img  P1SwithKuaiKuai.webp A1 mini %}
+{% asset_img  testP1S.webp A1 mini %}
