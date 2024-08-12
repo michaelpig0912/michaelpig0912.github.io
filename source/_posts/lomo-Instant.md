@@ -12,6 +12,9 @@ cover: cover.webp
 
 {% asset_img  test_1.webp 亂拍一些東西 %}
 
+{% asset_img  lightApp_1.webp 測光APP %}
+{% asset_img  lightApp_2.webp 測光APP %}
+
 {% asset_img  apertureF8.webp 光圈 f8 %}
 {% asset_img  apertureF32.webp 光圈 f32 %}
 {% asset_img  powerOn.webp 相機的背面(底片與顯示張數、指示燈) %}
