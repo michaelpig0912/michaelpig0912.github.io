@@ -1,5 +1,5 @@
 ---
-title: (撰寫中)測試 web AR
+title: 測試 web AR | 筆記
 katex: true
 date: 2024-07-21 22:08:55
 categories: code
@@ -7,13 +7,16 @@ tags:
 - javascript 
 - AR.js
 - three.js
+- try
 cover: cover.webp
 ---
-{% asset_img  cover.webp 測試標記式 %}
+> 目前還是停留在參考範例的代碼，稍微寫成筆記，之後有機會再回來開發。
 
-目前還是停留在參考範例的代碼，不過發現有一些小重點可以注意，
+{% asset_img  cover.webp 600 測試標記式 %}
 
-像是新舊版本的 AR.js ，會受到 gltf 1.0 還是 gltf 2.0 的影響 。
+~~不過發現有一些小重點可以注意，像是新舊版本的 AR.js ，會受到 gltf 1.0 還是 gltf 2.0 的影響 。~~
+
+(後來發現這個假設好像不成立)
 
 ### 標記式
 ```html

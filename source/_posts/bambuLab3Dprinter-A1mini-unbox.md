@@ -31,4 +31,3 @@ cover: cover.webp
 
 ## 採購過程
 
-我是直接從

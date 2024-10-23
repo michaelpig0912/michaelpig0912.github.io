@@ -13,6 +13,8 @@ cover: output.webp
 
 ---
 
+> 本網站的內容指更新到 23/08/31 ，並不會持續更新，因此請注意官方文檔內容。
+
 ## 前言
 
 Wonder Studio 是一個分析影片中真實人物的動作，然後可以做動態追蹤到指定的 3D 模型的服務，可以將影片中的人物轉換成 3D 人物，並且可以自定義角色，並且可以輸出 Blender 檔案，以及可以自動合成背景，這邊將簡單說明如何使用，以及講解該網站的自定義角色規範。
@@ -68,14 +70,15 @@ Wonder Studio 是一個分析影片中真實人物的動作，然後可以做動
 
 ## 自定義角色建立與規範
 
-1. [官方的規範](https://wonderdynamics.notion.site/Wonder-Dynamics-Character-Creation-Guidelines-4e7a932d2ffd49a89723e8ea80ba307d)，如果有任何問題可以看一下，不過有點小複雜，當初看有一點久。
-2. [官方的快速開始文檔](https://wonderdynamics.notion.site/Quick-Start-Guide-for-Blender-ccf6968493f64a39b55cbc93c635839b)
+1. [官方的規範](https://help.wonderdynamics.com/character-creation/getting-started)，如果有任何問題可以看一下，不過有點小複雜，當初看有一點久。
+2. [官方的快速開始文檔](https://help.wonderdynamics.com/character-creation/getting-started/character-setup)
 3. 這邊已經假設你的角色已經是T pose，並且已經綁上所有骨架了。
 
 ### 以下將簡單講解 Blender 的規範
 
-1. 官方最建議的版本為 `3.3.1` 版本，用其他版本很容易出錯。
-	{% asset_img verOfBlender.webp 官方版本推薦 %}
+1. 官方最建議的版本為 `3.3.1` 版本，用其他版本很容易出錯。請注意這個版本會更新。
+    {% asset_img verOfBlender.webp 版本規則 %}
+    [請在這邊確認版本](https://help.wonderdynamics.com/working-with-wonder-studio/export-elements/export-scenes/blender-scene)
 
 ### 命名規範
 
@@ -149,7 +152,6 @@ Wonder Studio 是一個分析影片中真實人物的動作，然後可以做動
 	{% asset_img matSetting.webp 材質的命名規則 %}
 
     1. 如果在材質裡面有用到圖片或紋理之類的，請至少按照`[matName]_TEX_[type].[ext]` ，matName可以不用跟MAT一樣，另外要避免使用相同的名稱命名不同材質。
-        - [官方的說明文檔](https://wonderdynamics.notion.site/Shading-Texturing-220ac163b959401c921a0859795b7b8d)
         - 例如：一個衣服的材質圖片：`colt01_TEX_DIFF.png`
         - 以下是針對不同的材質命名規範
             <details>
@@ -178,7 +180,7 @@ Wonder Studio 是一個分析影片中真實人物的動作，然後可以做動
 
 
 ### 臉部規範
-1. [官方的臉部說明檔案](https://wonderdynamics.notion.site/Creating-Facial-for-Characters-6b938279399a4541914bccb5ba993436)
+1. [官方的臉部說明檔案](https://help.wonderdynamics.com/character-creation/ai-mocap-system/markerless-face-capture/blendshapes#a-list-of-all-blendshape-names)
 2. 命名規則是根據 `Facial Action Coding System (FACS)` 搭配 `shapeKey` 達成。
 3. 總共有 52 種，不一定每一種表情都要對到，可以挑幾個比較重要的做。
 4. 將 `ShapeKeys` 命名成官方文件上的名稱，就可讓角色有表情變化。

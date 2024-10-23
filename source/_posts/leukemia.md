@@ -1,5 +1,5 @@
 ---
-title: 關於我坐雲霄飛車發現白血病的這件事，從發現到結束治療。
+title: 關於我坐雲霄飛車發現白血病的這件事，從發現到結束治療|白血病紀錄
 katex: true
 date: 2024-02-04 15:46:19
 categories: life
@@ -14,7 +14,7 @@ cover: rollerCoaster.webp
 > 而那些文章對於當時的我幫助很大。在住院的期間就有在構思，如果可以的話，我也希望可以分享經歷。
 >
 > 因此，在這篇文章中，我將分享我從發現罹患白血病到接受治療的過程，希望能對與白血病的人提供一些幫助。
-><p style="font-size:0.8rem;color:#f55">注意：由於本人並非有醫學背景，因此相關治療及說明可能會不精確，詳細治療方式請依照醫生為準。</p>
+><p style="font-size:0.8rem;color:#f55">注意：由於本人並非醫學背景，因此相關治療及說明可能會不精確，詳細治療方式請依照醫生為準。</p>
 
 
 
@@ -112,9 +112,8 @@ cover: rollerCoaster.webp
     <style>
         #blurry-image {
             /* 初始模糊效果 */
-            filter: blur(30px);
+            filter: blur(20px);
             cursor: pointer;
-            transition: filter 0.3s ease;
             width:90%;
           }
     </style>
