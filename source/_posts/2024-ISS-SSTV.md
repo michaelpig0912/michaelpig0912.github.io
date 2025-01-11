@@ -130,4 +130,4 @@ cover: SSTV_4.jpg
 
 <br><br>
 
-{% asset_img Diploma.webp 600 參加的證書~ %}
+{% asset_img diploma_1.webp 600 參加的證書~ %}

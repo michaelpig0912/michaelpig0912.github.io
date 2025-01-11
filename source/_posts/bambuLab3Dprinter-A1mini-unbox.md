@@ -1,5 +1,5 @@
 ---
-title: (撰寫中)拓竹 A1 mini 開箱紀錄與彩色浮雕測試
+title: 【撰寫中】拓竹 A1 mini 開箱紀錄與彩色浮雕測試
 katex: true
 date: 2024-06-29 22:59:41
 categories: unbox
@@ -7,10 +7,8 @@ tags:
 - 3D printer
 - bambu Lab
 - A1 mini 
-cover: cover.webp
+cover: a1mini.webp 
 ---
-
-{% asset_img  cover.webp A1 mini 做出的浮雕效果 %}
 
 ## 前言
 
@@ -31,3 +29,40 @@ cover: cover.webp
 
 ## 採購過程
 
+
+
+{% asset_img  AMSliteTest.webp AMS lite 測試 %}
+
+## 製作浮雕效果
+
+bambu Lab 官方的浮雕製作，可以點此進入 [makerlab 網站](https://makerworld.com/zh/makerlab/makeMyLithophane?from=makerlab)
+
+可以做出這樣的效果
+
+{% asset_img  cover.webp A1 mini 做出的浮雕效果 %}
+
+{% asset_img  lithophane(dark).webp A1 mini %}
+
+{% asset_img  program_1.webp 列印程式 %}
+{% asset_img  program_2.webp 列印程式 %}
+{% asset_img  program_3.webp 列印程式 %}
+{% asset_img  program_4.webp 列印程式 %}
+{% asset_img  program_5.webp 列印程式 %}
+{% asset_img  program_6.webp 列印程式 %}
+{% asset_img  program_7.webp 列印程式 %}
+{% asset_img  program_8.webp 列印程式 %}
+{% asset_img  program_9.webp 列印程式 %}
+{% asset_img  program_10.webp 列印程式 %}
+{% asset_img  program_11.webp 列印程式 %}
+{% asset_img  program_12.webp 列印程式 %}
+
+{% asset_img  setting_1.webp 線材準備 %}
+
+
+{% asset_img  cover.webp A1 mini 做出的浮雕效果 %}
+
+{% asset_img  lithophane(dark).webp A1 mini %}
+
+## 最近使用發生的問題
+
+1. 最近發現我的機器一號的會提示卡料，但是實際上沒有卡，我都把 AMS lite 拆掉了，但是還是沒發現問題。如果之後有發現問題所在，再來更新。

@@ -6,23 +6,11 @@ categories: science
 tags:
   - science
   - newtonian mechanics
-  - phsics
+  - physics
   - 九上
   - 直線運動
 cover: result_2.webp
 ---
-
-<style>
-.button-link_1:hover {
-  background-color: #3030AA !important;
-  transform: scale(1.05);
-}
-
-.button-link_2:hover {
-  background-color: #222 !important;
-  transform: scale(1.05);
-}
-</style>
 
 ## 介紹
 
@@ -152,7 +140,7 @@ cover: result_2.webp
    - 在疊加過程完成後，系統會生成一張不透明的最終圖像。
    - 首先繪製白色背景，然後將多重曝光圖像疊加其上。
 
-## 已知問題
+## ⚠️已知問題
 
 1. 發現在拍照的間隔時間會有 100 ms 左右的誤差。
 
@@ -169,3 +157,16 @@ cover: result_2.webp
 如果您在使用過程中遇到任何問題或有任何建議，歡迎在下方留言區與我們分享。盡快進行修正或改進。同時，如果您有新功能的想法或需求，也請不吝告訴我們。您的意見對我們來說非常寶貴，我們將努力使這個工具變得更加完善和實用。
 
 這個程式更新的時候，會保留舊的版本，所以不用擔心以後的版本會不會壞掉。
+
+
+<style>
+.button-link_1:hover {
+  background-color: #3030AA !important;
+  transform: scale(1.05);
+}
+
+.button-link_2:hover {
+  background-color: #222 !important;
+  transform: scale(1.05);
+}
+</style>
