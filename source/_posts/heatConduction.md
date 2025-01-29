@@ -22,6 +22,7 @@ cover: heat_1.webp
 |---|---|---|---|
 |{% asset_img heat_1.webp %} | {% asset_img heat_2.webp %} | {% asset_img heat_3.webp %} |{% asset_img heat_4.webp %} |
 
+我們還有買了另外一種教具，是感熱變色的貼紙，只要貼在金屬片後，加熱後就會變色，降溫後就會恢復原色。
 
 |剛開始|加溫以後|降溫以後|
 |---|---|---|
