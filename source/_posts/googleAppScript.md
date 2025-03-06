@@ -10,6 +10,7 @@ tags:
   - Google Apps Script
 cover: cover.webp
 ---
+
 ## 引言：
 最近公司想要製作一個表單，但是裡面有一欄是有關於各個學校的名稱，但是請使用者輸入可能會有不符合規定的學校名稱，因此希望有一下功能：
 
@@ -366,3 +367,9 @@ function submitForm(data) {
 
 ## 結語：
 通過這個表單的例子，我們介紹了如何使用 Google Apps Script 建立一個具有自動完成功能的表單應用程式。這個應用程式不僅能夠讓你輕鬆收集群眾的資訊，還提供了良好的使用者體驗和資料管理功能。無論你是需要舉辦活動、進行調查，還是收集任何類型的資料，只要稍微修改這個表單應用程式都能夠滿足你的需求。讓我們利用自動完成功能的便利，提升資料收集的效率和準確性吧！
+
+## 宣傳：
+
+<p style="font-size:1.1rem;color:#5ff;text-align:center">
+如果有自動化流程的需求，歡迎寄信到 <a href="mailto:michaelink24@gmail.com" style="color:#5ff;text-decoration:underline">michaelink24@gmail.com</a>
+</p>

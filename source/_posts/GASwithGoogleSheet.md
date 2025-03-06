@@ -10,6 +10,7 @@ tags:
 cover: code.webp
 ---
 
+
 ## 前言
 
 最近公司同事許願做出 google 文件的一個功能，因為在寫分鏡時，會需要可以快速統計分鏡的字數和分鏡持續的秒數，以便做後續的影片製作，為此我將透過 google apps script 來實現這個功能。
@@ -156,3 +157,10 @@ function countWordsAndTime() {
 這時會發現文件上面的導覽列多出了一個選項，按該選項即可更新字數。
 
 {% asset_img UI.webp 更新字數按鈕 %}
+
+
+## 宣傳 
+
+<p style="font-size:1.1rem;color:#5ff;text-align:center">
+如果有自動化流程的需求，歡迎寄信到 <a href="mailto:michaelink24@gmail.com" style="color:#5ff;text-decoration:underline">michaelink24@gmail.com</a>
+</p>

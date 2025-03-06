@@ -15,6 +15,10 @@ cover: madShow.webp
 <p style="font-size:1.1rem;color:#f55;text-align:center">
 注意：這是一個非專業的戲劇紀錄，僅記錄我個人的觀影經驗，並不是專業的戲劇評論。且以下的內容會有劇透，如果你還沒看過的話，可以先去看完再回來看這篇文章。</p>
 
+<p style="font-size:1.1rem;color:#fff;text-align:center">
+本次觀劇體驗有一些<b style="color:#f55">負評</b>的部分，請斟酌觀看以下內容。
+</p>
+
 {% asset_img  stage.webp 內部場地 %}
 
 ## 場域資訊

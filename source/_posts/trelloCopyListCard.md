@@ -1,5 +1,5 @@
----
-title: 用 GAS 與 Trello 複製清單
+
+title: 快速用 GAS 與 Trello 複製清單(含 trello API 申請教學)|Trello 列表複製工具 Ver 1.0.0
 katex: true
 date: 2025-01-25 17:28:59
 categories: code
@@ -9,7 +9,76 @@ tags:
 cover: cover.webp
 ---
 
-寫一個用 Google Apps Script 與 Trello 複製清單的工具，可以複製卡片、成員、標籤、待辦清單。
+## 介紹
+
+這是一個基於 Google Apps Script 開發的網頁應用程式，主要用於協助使用者在 Trello 中複製列表內容。主要是因為我們公司在使用 Trello 的時候，需要將一個看板的所有卡片，複製到另外一欄會覺得麻煩，因此就開發了這個工具。目前是部屬在 Google app script 上，可以透過網頁的方式。而且可以指定為公司內部的人才能讀取這個表格。
+
+{% asset_img trelloCopy_2.webp 600 複製列表 %}
+{% asset_img trelloCopy_3.webp 600 其他篩選功能 %}
+
+---
+
+## 主要功能
+
+{% asset_img trelloCopy_1.webp 複製列表中的所有卡片 %}
+
+1. 直觀的方式選擇來源看板和列表與目標看板和列表
+2. 支援將卡片批量從一個列表複製到另一個列表
+3. 文字處理
+    1. 支援搜尋和替換卡片標題中的文字
+    2. 例如：可將所有包含「X_EPX_XX」的標題改為「熱_EP4_熱輻射」
+4. 標籤過濾
+    1. 可設定要過濾的標籤名稱
+    2. 具有指定標籤的卡片將不會被複製(例如標題列可以設定標籤就不會被複製了)
+    3. 適合過濾已完成或不需要複製的卡片
+5. 日期設定 
+    1. 可為複製的卡片批次設定到期日
+    2. 支援設定基準日期
+    3. 可使用日期偏移值（如 -5, -2, -1, 1, 5 天）
+    4. 支援使用 x 跳過特定卡片的日期設定
+7. 額外複製選項
+    1. 複製成員：保留原卡片的成員指派
+    2. 複製標籤：保留原卡片的標籤
+    3. 複製待辦清單：保留原卡片的待辦事項
+
+## 安裝方法
+
+### 先到 Google App Script 上建立一個新的專案
+
+### 將程式碼複製到專案中(程式碼在文章下方)
+   1. 要有一個是 `Index.html` 的檔案
+   2. 另一個是 `程式碼.gs` 的檔案
+
+### 設定 Trello API 金鑰和權杖
+
+1. 到 Trello 的Power-Up 與整合 (https://trello.com/power-ups/admin/)
+2. 按右上角的"全新"
+   {% asset_img trelloAPI_1.webp Power-Up 與整合頁面 %}
+3. 設定全新的 Power-Up 或整合
+   {% asset_img trelloAPI_2.webp 簡單的命名與選擇要用的工作區和填好以下的資訊，iframe 可以不用填 %}
+4. 回到 Power-Up 與整合頁面，可以看到剛剛建立的 Power-Up，選擇旁邊的"API 金鑰"，這時就有 API 金鑰了
+   {% asset_img trelloAPI_3.webp API 金鑰 %}
+5. 接著要生成一個權杖，點選頁面中的使用"手動生成權杖"的超連結。
+   {% asset_img trelloAPI_4.webp 手動生成權杖的授權頁 %}
+6. 選擇"授權"，就可以看到權杖了(會是 ATT... 這樣的格式)
+   {% asset_img trelloAPI_5.webp 權杖 %}
+
+### 將 tello API 金鑰跟權杖複製 Google App Script 中
+
+### 部屬
+
+1. 部屬>新增部屬作業>網頁應用程式
+2. 選擇執行身份>選擇存取網頁應用程式的使用者
+3. 誰可以存取這個網站 > 選擇 "OO公司內部的所有使用者" 或 "只有我自己" 
+4. 然後點選網址，就可以看到複製列表的網站了。
+
+<p style="color:#f55">
+  注意：這個程式請設定成需要登入才能操作網站，不然 trello 的資料可能會被陌生人操作。
+</p>
+
+## 程式碼
+
+### 程式碼.gs
 
 ```javascript
 // 設置你的 Trello API 金鑰和令牌
@@ -141,8 +210,9 @@ function copyTrelloList(sourceBoardId, sourceListId, targetBoardId, targetListId
       
       Logger.log(`正在處理第 ${i + 1}/${cards.length} 張卡片：${card.name}`);
       
-      const searchRegex = searchText ? new RegExp(searchText, 'g') : null;
-      const newCardName = searchText ? card.name.replace(searchRegex, replaceText) : card.name;
+      // 修改為完全匹配
+      const newCardName = searchText ? 
+        card.name.split(searchText).join(replaceText) : card.name;
       
       // 計算日期
       let dueDate = null;
@@ -272,6 +342,8 @@ function doGet() {
     .setFaviconUrl('https://trello.com/favicon.ico');
 }
 ```
+
+### Index.html
 
 ```html
 <!DOCTYPE html>
@@ -484,9 +556,9 @@ function doGet() {
   
   <!-- 添加標題區域 -->
   <div class="header">
-    <h1>Trello 列表複製工具 Ver 1.0.0 </h1>
+    <h1>Trello 列表複製工具 Ver 1.0.3 </h1>
     <p>輕鬆複製看板列表及其內容到其他位置</p>
-    <p>update at 2025/01/22</p>
+    <p>update at 2025/02/14</p>
   </div>
   
   <div class="form-group">
@@ -517,7 +589,7 @@ function doGet() {
     </select>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="display:none">
     <label>選擇成員：</label>
     <div id="membersList" class="checkbox-group">
       <!-- 成員選項將在這裡動態添加 -->
@@ -774,3 +846,12 @@ function doGet() {
 </body>
 </html> 
 ```
+
+## 目前已知問題：
+1. 指定成員的功能好像有點問題。
+
+## 宣傳 
+
+<p style="font-size:1.1rem;color:#5ff;text-align:center">
+如果有自動化流程的需求，歡迎寄信到 <a href="mailto:michaelink24@gmail.com" style="color:#5ff;text-decoration:underline">michaelink24@gmail.com</a>
+</p>

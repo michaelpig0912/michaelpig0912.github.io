@@ -1,5 +1,5 @@
 ---
-title: GSC 黏土人後藤一里_承認欲求怪獸_開箱紀錄
+title: 黏土人後藤一里_承認欲求怪獸|GSC 開箱紀錄
 katex: true
 date: 2024-09-18 13:03:14
 categories: unbox

@@ -194,3 +194,9 @@ var CALENDAR_IDS = ['dummy','dummy']
 
 note：不過比較奇怪的是無法設定準確的時間提醒，
 我們測試後發現都會在設定時間的20分鐘左右才收到系統的通知。
+
+## 宣傳 
+
+<p style="font-size:1.1rem;color:#5ff;text-align:center">
+如果有自動化流程的需求，歡迎寄信到 <a href="mailto:michaelink24@gmail.com" style="color:#5ff;text-decoration:underline">michaelink24@gmail.com</a>
+</p>

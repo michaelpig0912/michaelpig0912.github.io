@@ -1,5 +1,5 @@
 ---
-title: 物體軌跡記錄器_MPsci
+title: 物體軌跡記錄器|MPsci
 katex: true
 date: 2024-10-19 12:37:47
 categories: science

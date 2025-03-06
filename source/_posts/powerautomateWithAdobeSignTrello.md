@@ -1,5 +1,5 @@
 ---
-title: 透過 Power Automate 來自動化 Adobe Sign 的簽署流程與串聯 trello 和 slack (及踩坑紀錄)
+title: 【撰寫中】透過 Power Automate 來自動化 Adobe Sign 的簽署流程與串聯 trello 和 slack (及踩坑紀錄)
 katex: true
 date: 2025-01-15 17:10:46
 categories: code

@@ -1,5 +1,5 @@
 ---
-title: GSC Isaac Clarke(dead Space)_POP UP PARADE系列_開箱紀錄
+title: Isaac Clarke(dead Space)_POP UP PARADE系列 |GSC 開箱紀錄
 katex: true
 date: 2024-11-12 00:30:00
 categories: unbox

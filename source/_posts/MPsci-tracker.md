@@ -1,5 +1,5 @@
 ---
-title: 運動追蹤分析系統_MPsci
+title: 運動追蹤分析系統|MPsci
 katex: true
 date: 2024-11-03 22:16:33
 categories: science
