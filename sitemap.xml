@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://michaelpig0912.github.io/2025/03/02/Nikomat-FT-N/</loc>
+    <loc>https://michaelpig0912.github.io/2025/03/01/Japan-250217-Trip/</loc>
     
     <lastmod>2025-03-11</lastmod>
     
@@ -11,9 +11,9 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/2025/03/01/Japan-250217-Trip/</loc>
+    <loc>https://michaelpig0912.github.io/2025/03/02/Nikomat-FT-N/</loc>
     
-    <lastmod>2025-03-08</lastmod>
+    <lastmod>2025-03-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -461,7 +461,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/2024/02/18/theSoundInside-stageShow/</loc>
+    <loc>https://michaelpig0912.github.io/2023/09/03/titanicTheMusical/</loc>
     
     <lastmod>2024-04-06</lastmod>
     
@@ -470,7 +470,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/2023/09/03/titanicTheMusical/</loc>
+    <loc>https://michaelpig0912.github.io/2024/02/18/theSoundInside-stageShow/</loc>
     
     <lastmod>2024-04-06</lastmod>
     
@@ -758,13 +758,6 @@
 
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/life/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/tags/radio/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -786,14 +779,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/unbox/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/pc/</loc>
+    <loc>https://michaelpig0912.github.io/tags/life/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -808,20 +794,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/3Dprinter/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/show/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/drama/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -891,6 +863,20 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/show/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/drama/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/dead-Space/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -898,7 +884,14 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/Bocchi-the-rock/</loc>
+    <loc>https://michaelpig0912.github.io/tags/unbox/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/pc/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -920,6 +913,13 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/Osaka/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/Bocchi-the-rock/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1038,6 +1038,34 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/arduino/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/esp8266/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/keyboard/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/royalkludge/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/html/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1059,42 +1087,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/keyboard/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/royalkludge/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/tags/acid-base/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/solo-Travel/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/Taiwan/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/Ulay/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1143,6 +1136,34 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/solo-Travel/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/Taiwan/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/Ulay/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/chrome-extension/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/P1S/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1165,20 +1186,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/animation/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/chrome-extension/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/arduino/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1214,41 +1221,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/python/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/device/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/ipad/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/app/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/story/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/leukemia/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1311,42 +1283,42 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/esp8266/</loc>
+    <loc>https://michaelpig0912.github.io/tags/device/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/VR/</loc>
+    <loc>https://michaelpig0912.github.io/tags/ipad/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/AR/</loc>
+    <loc>https://michaelpig0912.github.io/tags/app/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/MR/</loc>
+    <loc>https://michaelpig0912.github.io/tags/story/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/meta/</loc>
+    <loc>https://michaelpig0912.github.io/tags/leukemia/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/Quest-3/</loc>
+    <loc>https://michaelpig0912.github.io/tags/optics/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1361,13 +1333,6 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/MobiScribe/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/optics/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1437,41 +1402,6 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/tags/toolbean/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/snoppa/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/tool/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/rangefinder/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/gimbal/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/tags/steelseries/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1507,6 +1437,41 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/toolbean/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/snoppa/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/tool/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/rangefinder/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/gimbal/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/board-game/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1521,42 +1486,42 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/VR/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/AR/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/MR/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/meta/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/Quest-3/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/three-js/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/ComfyUI/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/AI-%E7%B9%AA%E5%9C%96/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/stable-diffusion/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/trello/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://michaelpig0912.github.io/tags/gas/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1584,6 +1549,27 @@
   </url>
   
   <url>
+    <loc>https://michaelpig0912.github.io/tags/ComfyUI/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/AI-%E7%B9%AA%E5%9C%96/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/stable-diffusion/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://michaelpig0912.github.io/tags/MoCapForALL/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1592,6 +1578,20 @@
   
   <url>
     <loc>https://michaelpig0912.github.io/tags/VRM/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/trello/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/tags/gas/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1635,13 +1635,6 @@
 
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/life/</loc>
-    <lastmod>2025-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://michaelpig0912.github.io/categories/radio/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1649,7 +1642,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/unbox/</loc>
+    <loc>https://michaelpig0912.github.io/categories/life/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1663,14 +1656,21 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/drama/</loc>
+    <loc>https://michaelpig0912.github.io/categories/code/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/code/</loc>
+    <loc>https://michaelpig0912.github.io/categories/unbox/</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://michaelpig0912.github.io/categories/drama/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1684,7 +1684,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/drama/local/</loc>
+    <loc>https://michaelpig0912.github.io/categories/science/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1698,7 +1698,7 @@
   </url>
   
   <url>
-    <loc>https://michaelpig0912.github.io/categories/science/</loc>
+    <loc>https://michaelpig0912.github.io/categories/drama/local/</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
