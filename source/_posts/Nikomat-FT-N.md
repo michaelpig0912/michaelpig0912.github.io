@@ -1,17 +1,17 @@
 ---
 title: Nikomat_FTn 開箱紀錄|亂買二手紀錄
 katex: true
-date: 2025-03-02 01:10:22
-categories: unbox
-tags: 
-- unbox
-- nikomat
-- nikon
-- 相機
-- 二手
+categories:
+  - unbox
+tags:
+  - unbox
+  - nikomat
+  - nikon
+  - 相機
+  - 二手
 cover: cover.webp
+date: 2025-03-02 01:10:00
 ---
-
 最近收到學長給的一台 Nikomat (Nikon 的前身) FTn 相機，這台相機是 1970 年代的產品，而且全部都是手動操作，除了測光功能外，沒有任何電子功能，全部都是機械式。這種純機械式的相機，從其中的齒輪轉動的聲音與震動，真的能感受到當時代製作的精良，而且拿在手中是滿重的，這種重量感，真的只有在機械式相機上才能感受到。
 
 ## 外觀
@@ -59,11 +59,39 @@ cover: cover.webp
 
 ## 拍攝效果
 
-(待補)
+色調看起來滿好看的~顆粒感滿重的，很有底片機的感覺，不過對焦方面還是需要多練練，目前還是報廢了 8 張左右。
+
+{% asset_img 000040.webp 三和夜市的早上 %}
+{% asset_img 000039.webp 三重的街景 %}
+{% asset_img 000038.webp 台北車站 %}
+{% asset_img 000037.webp 象山公園的雕塑 %}
+{% asset_img 000036.webp 象山步道告示牌 %}
+{% asset_img 000035.webp 告示牌 %}
+{% asset_img 000032.webp 象山自然步道 %}
+{% asset_img 000030.webp 台北 101 與周邊建築群 %}
+{% asset_img 000028.webp 台北 101 與周邊建築群 %}
+{% asset_img 000027.webp 白色小花 %}
+{% asset_img 000025.webp 淡水海邊 %}
+{% asset_img 000024.webp 淡水邊的小船 %}
+{% asset_img 000023.webp 淡水的夕陽 %}
+{% asset_img 000020.webp 賣氣球的攤販 %}
+{% asset_img 000018.webp 淡水紅毛城 %}
+{% asset_img 000016.webp 淡水海景 %}
+{% asset_img 000015.webp 中正路 %}
+{% asset_img 000014.webp 船隻 %}
+{% asset_img 000013.webp 淡江大橋 %}
+{% asset_img 000012.webp 淡江大橋 %}
+{% asset_img 000011.webp 大都會公園燈光 %}
+{% asset_img 000010.webp 大都會公園燈光(近拍) %}
+{% asset_img 000009.webp 大都會公園愛情鎖 %}
+{% asset_img 000008.webp 大都會公園夜景 %}
+{% asset_img 000007.webp 大都會公園燈光 %}
 
 ## 有趣的事情
 
 假日帶著這台相機去象山拍攝，在途中看到光透過葉子灑下來，覺得這個光影很美，所以就拍了幾張照片，結果拍完就被路人問說剛剛在拍什麼，
+
+{% asset_img 000026.webp 山林間的光線穿透 %}
 
 *我：「葉子」*
 *他：「所以你對葉子很有研究囉？」*

@@ -90,7 +90,6 @@ cover: cover.webp
 📌 **特別提醒**
 - 以上時間請供參考
 - 交通以 **ICOCA** 為主 🚆
-- eSIM：上 kkday 買 <https://www.kkday.com/zh-tw/order/show/25KK226322732>
 - 相關票卷使用 kkday 或 klook 購買。
 
 ---
@@ -234,9 +233,9 @@ cover: cover.webp
 下午去做地鐵到心齋橋，下午到的時候人潮滿多的，不過到超過 8 點以後人潮就會慢慢散去，很多店家都會陸續關門。晚餐有預約燒肉力丸，他是屬於吃到飽的餐廳，不過吃起來的感覺好像跟台灣一般的燒肉店差不多，不過肉質還不錯。
 
 <img src="DAY4\20240512_071822730_iOS.webp"  width=80%  alt="心齋橋站" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="DAY4\20240512_081744207_iOS.webp"  width=80%  alt="著名的炮跑人" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="DAY4\20240512_103932353_iOS.webp"  width=80%  alt="在滿多動畫中有出線的道頓堀招牌" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="DAY4\20240512_104556151_iOS.webp"  width=80%  alt="著名的炮跑人(晚上)" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="DAY4\20240512_081744207_iOS.webp"  width=80%  alt="著名的跑跑人" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="DAY4\20240512_103932353_iOS.webp"  width=80%  alt="在滿多動畫中有出現的道頓堀招牌" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="DAY4\20240512_104556151_iOS.webp"  width=80%  alt="著名的跑跑人(晚上)" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 <img src="DAY4\20240512_121123771_iOS.webp"  width=80%  alt="下雨時候的心齋橋" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 ## DAY5 24/05/13 (雨)
