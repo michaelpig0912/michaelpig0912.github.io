@@ -1,0 +1,36 @@
+name: Deploy Hexo Blog
+
+on:
+  push:
+    branches:
+      - source  # ← 每次推到 source 分支時自動部署
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: |
+          npm install -g hexo-cli
+          npm install
+
+      - name: Deploy Hexo
+        env:
+          GIT_USER: michaelpig0912
+          GIT_EMAIL: pig7034392@gmail.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "$GIT_USER"
+          git config --global user.email "$GIT_EMAIL"
+          npx hexo clean
+          npx hexo generate
+          npx hexo deploy

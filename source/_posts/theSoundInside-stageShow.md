@@ -22,7 +22,7 @@ cover: theSoundInside.webp
 1. 位置：國家兩廳院 實驗劇場
 2. 價位：1000 元
 3. 時間：2/19(日) 14:30~16:30
-4. 主觀評價：9.5/10 
+4. 主觀評價：9.7/10 
 <br>
 {% asset_img  experimentalTheater_2.webp 很難找到入口的實驗劇場 %}
 

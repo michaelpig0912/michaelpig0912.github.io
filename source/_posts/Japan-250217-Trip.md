@@ -1,5 +1,5 @@
 ---
-title: 【撰寫中】一個人去大阪六天五夜｜一個人的旅行｜通天閣、環球影城、海遊館、空庭溫泉、心齋橋、木津市場、任天堂博物館、大阪摩天輪、嵐山、京都八坂神社、奈良東大寺、梅田空中花園
+title: 一個人去大阪六天五夜｜一個人的旅行｜通天閣、環球影城、海遊館、空庭溫泉、心齋橋、木津市場、任天堂博物館、大阪摩天輪、嵐山、京都八坂神社、奈良東大寺、梅田空中花園
 katex: true
 date: 2025-03-01 03:32:53
 categories: travel
@@ -28,7 +28,7 @@ cover: cover.webp
 ## 旅遊紀錄的短片
 
 <div style="text-align:center">
-<iframe width="800" height="450" src="https://www.youtube.com/embed/jebllJHSbuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="450" src="https://www.youtube.com/embed/jebllJHSbuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 ---
@@ -110,8 +110,8 @@ cover: cover.webp
     <th colspan="2">大鳥大社的御守</th>
   </tr>
   <tr>
-    <td><img src="day1/20250217_073126203_iOS.webp" width=80% alt="透明御守" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
-    <td><img src="day1/20250217_073421865_iOS.webp" width=80% alt="可愛的背包御守" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_073126203_iOS.webp" width=100% alt="透明御守" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_073421865_iOS.webp" width=100% alt="可愛的背包御守" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
   </tr>
 </table>
 
@@ -126,16 +126,16 @@ cover: cover.webp
     <th colspan="2">通天閣觀景台</th>
   </tr>
   <tr>
-    <td><img src="day1/20250217_082811606_iOS.webp" width=80% alt="通天閣上的夕陽" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
-    <td><img src="day1/20250217_082843000_iOS.MOV_20250223_193440.960.webp" width=80% alt="通天閣上的夕陽" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_082811606_iOS.webp" width=100% alt="通天閣上的夕陽" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_082843000_iOS.MOV_20250223_193440.960.webp" width=100% alt="通天閣上的夕陽" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
   </tr>
     <tr>
-    <td><img src="day1/20250217_083801980_iOS.webp" width=80% alt="通天閣觀景台有有一個玻璃的觀景台，可以透過玻璃看到下面的景色" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
-    <td><img src="day1/20250217_083509000_iOS.MOV_20250224_225549.649.webp" width=80% alt="遠眺大阪市區" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_083801980_iOS.webp" width=100% alt="通天閣觀景台有有一個玻璃的觀景台，可以透過玻璃看到下面的景色" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_083509000_iOS.MOV_20250224_225549.649.webp" width=100% alt="遠眺大阪市區" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
   </tr>
     <tr>
-    <td><img src="day1/20250217_084115842_iOS.webp" width=80% alt="在通天閣上面的時候一直聽到女學生的尖叫，原來是因為有這個分貝計的活動，他們已經叫到 118 分貝，大概已經是飛機起降的音量了" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
-    <td><img src="day1/20250217_084557000_iOS.MOV_20250224_223716.301.webp" width=80% alt="通天閣要回去的時候，會看到類似夜店的旋轉球燈" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_084115842_iOS.webp" width=100% alt="在通天閣上面的時候一直聽到女學生的尖叫，原來是因為有這個分貝計的活動，他們已經叫到 118 分貝，大概已經是飛機起降的音量了" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+    <td><img src="day1/20250217_084557000_iOS.MOV_20250224_223716.301.webp" width=100% alt="通天閣要回去的時候，會看到類似夜店的旋轉球燈" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
   </tr>
 </table>
 
@@ -259,7 +259,7 @@ Super potato 算是滿有名的復古遊戲店，內容相當的齊全，不過�
 
 ### 【20:30~21:00】Uniqlo
 
-去玩環球影城後，因為日本的天氣很冷，所以就先去 Uniqlo 買衣服，日本 uniqlo 真的超便宜的。
+去玩環球影城後，因為日本的天氣很冷，所以就先去 Uniqlo 買衣服，日本 uniqlo 真的超便宜的。買完以後回到飯店，看到自己所託運的行李也到達了。
 
 ### 【23:00~00:00】心齋橋 唐吉訶德
 
@@ -487,7 +487,8 @@ Super potato 算是滿有名的復古遊戲店，內容相當的齊全，不過�
 <img src="day4/20250220_020940000_iOS.MOV_20250223_195417.206.webp" width=80% alt="傳說中的蜜蜂遊樂器材(?)" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 終於到了 hard off 了，這邊的東西真的滿多的，有各式各樣的遊戲卡帶，還有黑膠唱片機，真的好想帶回家。我在這邊買了幾張遊戲卡帶，其中也買了薩爾達傳說織夢島的 GBA 卡帶(2700 日幣)、馬力歐第一代 FC 卡帶(880 日幣)、洛克人 ZERO 的 GBA 卡帶和一塊多啦 A 夢的紅白機卡帶。
-<img src="day4/20250220_132419271_iOS.webp" width=80% alt="總共買了這些" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+<img src="day4/20250220_132419271_iOS.webp" width=80% alt="總共買了這些~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 <table>
 <tr>
 <td><img src="day4/20250220_021553148_iOS.webp" width=100% alt="hard off 和 Hobby off"  style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
@@ -510,141 +511,352 @@ Super potato 算是滿有名的復古遊戲店，內容相當的齊全，不過�
 
 ### 【13:10~17:00】任天堂博物館
 
-> 這邊補充一件事情，我在買票的時候，不小心把姓名寫反了，任天堂的購票系統跟台灣習慣用的順序一樣，是先姓後名，所以我在買票的時候，不小心把姓名寫反了，後來根據購票時所寄的信件上的電話，直接打了國際電話，幸好任天堂博物館有英文客服，才解決掉這件事情。
+<img src="day4/20250220_035736505_iOS.webp" width=80% alt="小倉站" style="filter: saturate(1) brightness(1) contrast(1);">
+
+
+後來做電車到了小倉站（京都），接著再轉車到任天堂博物館。
 
 <img src="day4/20250220_035940315_iOS.webp" width=80% alt="任天堂博物館" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
-<img src="day4/20250220_040406880_iOS.webp" width=80% alt="入場的卡片" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_041055588_iOS.webp" width=80% alt="任天堂家的各種遊戲 IP" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+> 買票的時候發生了一些小事情，我在網路上訂票的時候，不小心把姓名寫反了，因為任天堂的購票系統跟台灣習慣用的順序一樣，是先姓後名。後來根據購票時所寄的信件上的電話，直接打了國際電話，幸好任天堂博物館有英文客服，才幫我解決掉了這件事情。
 
-<img src="day4/20250220_045851000_iOS.MOV_20250223_195449.883.webp" width=80% alt="光線槍遊戲" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
-<img src="day4/20250220_051325539_iOS.webp" width=80% alt="任天堂博物館的地圖" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="day4/20250220_040406880_iOS.webp" width=80% alt="入場的卡片，可以上傳你的 Mii 的造型" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
-<img src="day4/20250220_050412972_iOS.webp" width=80% alt="光線槍遊戲" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_051329000_iOS.MOV_20250224_013512.136.webp" width=80% alt="任天堂的各種主機" >
-<img src="day4/20250220_051336981_iOS.webp" width=80% alt="任天堂商店" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_052602272_iOS.webp" width=80% alt="超巨大抱枕" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_052608690_iOS.webp" width=80% alt="各種超可愛的遊戲主機外觀的貼紙" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_053824503_iOS.webp" width=80% alt="跟超大抱枕的留影" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_055815656_iOS.webp" width=80% alt="任天堂的漢堡店" style="filter: saturate(1) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_062638234_iOS.webp" width=80% alt="gameboy 造型的傘架" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_062857245_iOS.webp" width=80% alt="在任天堂博物館的留影" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_065024716_iOS.webp" width=80% alt="發球機小遊戲" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_070322702_iOS.webp" width=80% alt="飛天的卡比" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_073610877_iOS.webp" width=80% alt="花扎製作課程" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_073827627_iOS.webp" width=80% alt="花扎製作課程" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_080459762_iOS.webp" width=80% alt="太陽要下山了" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+任天堂博物館主要有兩個建築物，一個是主要的博物館(2F)、體驗區跟商店(1F)，另外一個是花牌體驗(2F)跟餐廳(1F)，我首先是先到主要的博物館那棟，在那棟預約花牌體驗，接著再慢慢逛博物館。
+
+#### 任天堂博物館
+
+博物館非常建議逛，看完不知道為什麼有一種莫名的感動，有可能是因為以前小時候都是玩任天堂的遊戲長大的，從任天堂的展品中，也可以看到 枯れた技術の水平思考 的實踐，從各種嘗試與失敗中，找到新的可能。從博物館中，有區分為以主機和以不同類型的遊戲(例如合作遊戲、運動遊戲、3D 遊戲等等)的發展史，可以從中看到任天堂的遊戲是如何從最初的紅白機，到後來的 Game Boy、GameCube、Wii、Switch 等主機的發展。
+
+其中覺得最感動的是可以親眼看到 Virtual Boy 的展示，雖然這個主機在當時的銷量非常差，不過想法非常的前衛，在 1995 年推出時，就可以推出 VR 的遊戲，雖然只有單色，不過在當時的技術下，已經非常厲害了。
+
+只可惜博物館內不能拍照，所以就沒有辦法跟大家分享了。
+
+<table>
+<tr>
+<td><img src="day4/20250220_041055588_iOS.webp" width=100% alt="任天堂家的各種遊戲 IP" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_051325539_iOS.webp" width=100% alt="任天堂博物館的地圖" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+接下來，逛完博物館以後，回到了二樓遊戲體驗區，每個人有 10 枚代幣，可以玩各式各樣的遊戲，不過這邊人都超級多的，所以排隊排了超久。玩遊戲的過程中，任天堂博物館的機器也會幫你拍照記錄，而且路人也會幫你馬賽克掉，不過當時看畫質覺得有以點差。
+
+#### Zapper & Scope SP ( 4 枚代幣_排隊時間：15 分鐘)
+
+我滿喜換這個遊戲的，玩起來很爽，準度還不錯，一次會 13 個人一起比賽，最後會有排名。而槍有兩種可以選，我選的是 Zapper，另外一種看起來類似火箭筒，聽說兩種槍的火力效果差不多。建議用 Zapper 玩，我玩到那場中第一名 XD，打了 200 多分。
+
+<table>
+<tr>
+<td><img src="day4/20250220_045851000_iOS.MOV_20250223_195449.883.webp" width=600px alt="光線槍遊戲" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_050412972_iOS.webp" width=600px alt="光線槍遊戲" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_050949397_iOS.webp" width=350px alt="第一名~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+#### Game & Watch SP ( 1 枚代幣_排隊時間：0 分鐘)
+
+這個遊戲是 Game & Watch 的遊戲，可以透過投影機的方式玩 Game & Watch 小遊戲，有不同總類的遊戲可以玩，不過我覺得完這個滿羞恥的，因為機器放的位置是排隊的動線上，因此排隊的人都會看著你玩，而且如果沒有失敗會一直繼續下去，就算時間結束也可以繼續玩。
 
 <img src="day4/GW.webp" width=80% alt="Game & Watch SP 的遊戲畫面紀錄" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+#### Ultra Hand SP ( 1 枚代幣_排隊時間：15 分鐘)
+
+透過任天堂以前所推出的 Ultra Hand 來夾起橫向移動的物品，不過我覺得這個遊戲有點難，因為夾子很難控制，而且有時候還會卡卡的。而且排隊時間快要 15 分鐘，以 CP 值來說個人不是很推薦這個遊戲。
+
 <img src="day4/nin_1.webp" width=80% alt="Ultra Hand SP" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/SP_1.webp" width=80% alt="Ultra Machine SP" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_051045000_iOS.MOV_20250224_013506.349.webp" width=80% alt="任天堂各式遊戲展示" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+#### Ultra Machine SP ( 2 枚代幣_排隊時間：3 分鐘)
+
+另外玩了 Ultra Machine SP，這個遊戲也是從任天堂早期所開發的發球機而來，當球打到場景中的物件時，會有不同的效果，並且會加球數，不過有時候覺得感應器有點遲鈍，有時候球打過去，明明有打到物件，但是沒反應，不知道為什麼會這樣。
+<table>
+<tr>
+<td><img src="day4/20250220_065024716_iOS.webp" width=300px alt="場景設計滿有趣的" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/SP_1.webp" width=600px alt="Ultra Machine SP" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+</td>
+</tr>
+</table>
+
+#### Nintendo Classics ( 1 枚代幣)
+
+這邊是可以體驗超過 80 款任天堂的各種懷舊遊戲，但是感覺沒什麼特別的，所以就沒有玩了。
+<td><img src="day4/20250220_051045000_iOS.MOV_20250224_013506.349.webp" width=80% alt="任天堂各式遊戲展示" style="filter: saturate(1) brightness(1) contrast(1);">
+
+#### 大控制器( 2 人共 4 枚代幣)
+
+<img src="day4/20250220_064325635_iOS.webp" width=80% alt="大控制器" style="filter: saturate(1) brightness(1) contrast(1);">
+原本想去找陌生人一起玩大控制器的，但是看到人超多的，所以就放棄了。
+
+#### 商店
+
+我在商店買了超多相關的周邊，也買了傳說中的超大控制器抱枕，如果要買抱枕的話，推薦來之前要準備一個真空袋，因為這個抱枕可以壓縮得非常小，可以省下很多行李空間。不過這邊很多商品都有限量只能買一個，我原本以為只有吊飾跟抱枕，結果貼紙也有限量。
+
+<table>
+<tr>
+<td><img src="day4/20250220_051329000_iOS.MOV_20250224_013512.136.webp" width=100% alt="展示牆" style="filter: saturate(1.1) brightness(1.0) contrast(1.0);"></td>
+<td><img src="day4/20250220_051336981_iOS.webp" width=100% alt="各種商品" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day4/20250220_052602272_iOS.webp" width=100% alt="超巨大抱枕" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_052608690_iOS.webp" width=100% alt="各種超可愛的遊戲主機外觀的貼紙" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+<img src="day4/20250220_132412579_iOS.webp" width=80% alt="任天堂博物館買的各種戰利品~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+#### 拍照
+
+任天堂博物館很貼心的在每個拍照點都有人員可以幫忙拍照，而且還會引導要怎麼拍，這個對於我這種不太習慣麻煩陌生人拍照的人來說，真的是太棒了。
+
+<img src="day4/20250220_053824503_iOS.webp" width=80% alt="跟超大抱枕的留影" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="day4/20250220_055815656_iOS.webp" width=80% alt="任天堂的漢堡店" style="filter: saturate(1) brightness(1.1) contrast(1.2);">
+<img src="day4/20250220_062857245_iOS.webp" width=80% alt="任天堂博物館的入口" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+#### 小細節
+
+博物館中也處處藏著小彩蛋，像是他們的傘架是 Gameboy 的造型，還有飛天的卡比，真的超可愛的。
+
+<table>
+<tr>
+<td><img src="day4/20250220_062638234_iOS.webp" width=600px alt="gameboy 造型的傘架" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_070322702_iOS.webp" width=300px alt="飛天的卡比" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_073006000_iOS.MOV_20250226_135226.940.webp" width=600px alt="紅白機的摩托車遊戲" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+#### HATENA BURGER 餐廳
+
+他們的餐廳是任天堂博物館的另一個特色，可以透過可愛的手機介面來客製化餐點，不過我覺得餐點的口味普通，價格偏貴一點。
+
+<table>
+<tr>
+<td><img src="day4/20250220_055531000_iOS.MOV_20250224_013516.333.webp" width=600px alt="HATENA BURGER"></td>
+<td><img src="day4/20250220_060424276_iOS.webp" width=600px alt="餐點"></td>
+<td><img src="day4/20250220_070851000_iOS.webp" width=300px alt="可愛的點餐介面"></td>
+</tr>
+</table>
+
+#### 花札體驗
+
+花札製作體驗是任天堂博物館的另一個特色，可以親自體驗花札的製作，不過我覺得這個體驗有點貴，因為要 2000 日幣，不過我在體驗的時候，因為我時間算錯，發現會趕不上下一個行程，有問館方人員能不能把材料帶回去自己完成就好，也很感謝館方人員很有耐心處理我這個要求，他們說可以中途離開的。
+<table>
+<tr>
+<td><img src="day4/20250220_073610877_iOS.webp" width=100% alt="花扎製作課程" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_073827627_iOS.webp" width=100% alt="花扎製作課程" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+我有點急於完成，做得有點醜。這個活動對於顏料的量很要求，不能用的太多，要維持筆刷乾乾的，不然會變成一團糟。感覺任天堂博物館的時間安排有點緊，如果可以的話，可以安排多一點時間在這邊。接下來就要前往下一個行程了。
+
+<img src="day4/20250220_080459762_iOS.webp" width=80% alt="太陽要下山了" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 
-### 【19:10~20:10】大阪摩天輪
+### 【19:10~20:10】大阪摩天輪(Redhorse OSAKA WHEEL)
 
-(不建議這樣排，因為時間上會有點趕)
-<img src="day4/20250220_105944000_iOS.MOV_20250224_013835.827.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+> 不建議這樣排，因為時間上會有點趕，任天堂博物館到大阪摩天輪大約需要兩個小時的通勤時間，大阪摩天輪平日最後的時間是大約 19:40 。
 
-<img src="day4/20250220_100454929_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+大阪摩天輪下方是一個 shopping mall，還有一個水族館，不過我到的時候已經快要打烊了，就沒有進去逛了。附近有萬博紀念公園，不過晚上會關起來，這次也沒機會參觀到。
 
-<img src="day4/20250220_102040442_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_100206000_iOS.MOV_20250224_013526.118.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+大阪摩天輪有許多的主題可以選，我這次選擇的是暖桌主題，整體造型走復古路線，會附上一個清酒跟關東煮罐頭，那個關東煮罐頭好好吃，清酒(黑松劍菱)也滿好喝的。在下面搭車的地方也有外套可以穿，這次很幸運的是我在摩天輪上面的時候，剛好遇到飄雪，超美的。
 
-<img src="day4/20250220_103430000_iOS.MOV_20250224_013644.133.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_104304000_iOS.MOV_20250224_013730.373.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_105037000_iOS.MOV_20250224_013756.006.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_105349248_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+我這次買的方案是繞摩天輪 2 圈，時間是 36 分鐘(每圈 18 分鐘)，當轉完第一圈的時候，工作人員熱情的跟我揮手，感覺還不錯(?)，不知道是不是覺得我一個人去座摩天輪很奇怪 XD。
 
-<img src="day4/20250220_104238912_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_105247948_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_105952111_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/ 20250220_111055528_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<table>
+<tr>
+<td><img src="day4/20250220_105944000_iOS.MOV_20250224_013835.827.webp" width=100% alt="大阪摩天輪下方" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_100206000_iOS.MOV_20250224_013526.118.webp" width=100% alt="大阪摩天輪入口" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day4/20250220_100454929_iOS.webp" width=100% alt="這次選擇暖桌主題" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_102040442_iOS.webp" width=100% alt="內部的感覺" ></td>
+</tr>
+<tr>
+<td><img src="day4/20250220_104238912_iOS.webp" width=100% alt="可以看到太陽之塔" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day4/20250220_104304000_iOS.MOV_20250224_013730.373.webp" width=100% alt="裡面的告示牌也做得很復古" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
 
-<img src="day4/20250220_110945000_iOS.MOV_20250224_013854.667.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_111109000_iOS.MOV_20250224_013858.013.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_112621226_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="day4/20250220_105037000_iOS.MOV_20250224_013756.006.webp" width=80% alt="從摩天輪上看到在飄雪~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
+<td><img src="day4/20250220_105349248_iOS.webp" width=80% alt="在摩天輪中喝清酒~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
+<img src="day4/20250220_111109000_iOS.MOV_20250224_013858.013.webp" width=80% alt="大阪摩天輪" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
-<img src="day4/20250220_124337162_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day4/20250220_132412579_iOS.webp" width=80% alt="Day 4" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+坐完摩天輪，原本想要到萬博公園看看，沒想到外面已經鎖起來了，只好遠遠的看太陽之塔。當初會知道太陽之塔是因為蠟筆小新的大人帝國的反擊，這部真的很經典，其中裡面就有太陽之塔，因此想說來朝聖一下。不過夜晚的太陽之塔又多了一些陰森的感覺。 XD
 
+<img src="day4/20250220_110945000_iOS.MOV_20250224_013854.667.webp" width=80% alt="太陽之塔" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+### 回到飯店【22:00】
+
+接著，我搭著大阪單軌列車再轉電車，很快地就回到了心齋橋。隔天因為要跟著 kkday 的旅行團，所以簡單的吃個晚餐，很早就睡了。
+
+<img src="day4/20250220_112621226_iOS.webp" width=80% alt="大阪單軌列車" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+<img src="day4/20250220_124337162_iOS.webp" width=80% alt="晚餐~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 ---
 
 ## Day 5 25/02/21 京都、奈良、梅田一日遊
 
+這次是報名 kkday 上的[京都一日遊](https://www.kkday.com/zh-tw/product/139634-kyoto-day-tour-arashiyama-yasaka-shrine-hanamikoji-nara-park-todaiji-temple-kimono-experience-japan) 這個行程整體來說很舒服，輕鬆的逛逛景點，然後把大阪走過一次，導遊也很專業，在車上會說明一些日本的小知識，不過下車以後基本上是自己逛，也不會有人介紹，所以適合喜歡自己逛的人。
+
+交通方式是透過一個小型的廂型車，這次總共應該有 8 個人左右，兩個人獨旅，一組是一個馬來西亞的家庭。
+
 
 ### 【07:00~08:00】到梅田車站附近集合
 
-<img src="day5/20250220_223204571_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250220_230637427_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="day5/20250220_223204571_iOS.webp" width=80% alt="熱鬧的梅田車站" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+<img src="day5/20250220_230637427_iOS.webp" width=80% alt="前往嵐山，今天天氣也還不錯" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 ### 【09:00~10:30】嵐山_竹林小徑
 
-<img src="day5/20250221_001219000_iOS.MOV_20250224_014050.982.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_001526000_iOS.MOV_20250224_014054.082.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_001553000_iOS.MOV_20250224_014059.699.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_002218000_iOS.MOV_20250224_014106.747.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_003637808_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_004525000_iOS.MOV_20250224_014122.104.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_004631000_iOS.MOV_20250224_014126.081.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_011935000_iOS.MOV_20250224_014149.759.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_012210136_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+第一站來到嵐山的竹林小徑，裡面也有許多的神社，後來看到野宮神社有學生跟老師在祈求考試順利(或是戶外教學)，感覺滿有趣的。入口處也有許多的小攤販，賣著許多的小吃，不過這次沒機會吃到京豆庵的冰淇淋，因為她是 10 點多才開門，我們準備離開的時候，才看到他開門，有點可惜。
+
+附近景點還有天龍寺，不過因為要門票，所以就沒有進去逛了。
+
+<table>
+<tr>
+<td><img src="day5/20250221_001219000_iOS.MOV_20250224_014050.982.webp" width=100% alt="嵐山的告示牌" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_002840287_iOS.webp" width=100% alt="嵐山竹林小徑" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_001553000_iOS.MOV_20250224_014059.699.webp" width=100% alt="嵐山竹林小徑" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_002218000_iOS.MOV_20250224_014106.747.webp" width=100% alt="嵐山竹林小徑" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_003637808_iOS.webp" width=100% alt="野宮神社" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_004627735_iOS.webp" width=100% alt="嵐山竹林小徑" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_004155801_iOS.webp" width=100% alt="野宮神社" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_012210136_iOS.webp" width=100% alt="天龍寺" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_005151052_iOS.webp" width=100% alt="竹林小徑外的攤販" style="filter: saturate(1.4) brightness(1.5) contrast(1.2);"></td>
+<td><img src="day5/20250221_005248151_iOS.webp" width=100% alt="抹茶團子" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+
+</tr>
+</table>
 
 ### 【11:30~14:10】京都_八坂神社
 
-<img src="day5/20250221_021837925_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_025238684_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_032041493_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_032245000_iOS.MOV_20250224_014217.947.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_033859680_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_035527000_iOS.MOV_20250224_014222.897.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_041004000_iOS.MOV_20250224_014228.022.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_044944197_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+後來搭車來到了八坂神社，導遊有詢問是否有要參加和服體驗，不過我覺得太貴了，再加上我是獨旅，想好好地再逛逛，所以就沒有參加。也因為沒有參加和服體驗，所以我們在這邊的時間很長，可以自行慢慢走到二年坂，再回來八坂神社。
 
+逛完八坂神社後，也接近要吃午餐的時間，我在附近找了一間漬物店，這次去的是「お茶漬処 ぶぶ家」，來體驗看看漬物和茶泡飯，很新奇的體驗。吃完以後就慢慢地亂逛，我從八坂神社一路走到了二年坂，人潮沒有很擁擠。二月多來大阪滿適合的。
+
+<table>
+<tr>
+<td><img src="day5/20250221_021837925_iOS.webp" width=100% alt="八坂神社" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_021748694_iOS.webp" width=100% alt="八坂神社" style="filter: saturate(1.4) brightness(1.6) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_033859680_iOS.webp" width=100% alt="很貼心地說明每個漬物是什麼" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_032245000_iOS.MOV_20250224_014217.947.webp" width=100% alt="茶泡飯" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_032041493_iOS.webp" width=100% alt="看起來超豐富的~" style="filter: saturate(1.2) brightness(1) contrast(1);"></td>
+<td><img src="day5/20250221_031217384_iOS.webp" width=100% alt="京都的街景" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td colspan="2"><img src="day5/20250221_041004000_iOS.MOV_20250224_014228.022.webp" width=100% alt="一年坂" style="filter: saturate(1.4) brightness(1) contrast(1);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_040613581_iOS.webp" width=100% alt="可以看到八坂之塔" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_040901315_iOS.webp" width=100% alt="一年坂" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td colspan="2"><img src="day5/20250221_042003141_iOS.webp" width=100% alt="八坂神社~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+
+</table>
+
+<img src="day5/20250221_044944197_iOS.webp" width=100% alt="花見小路" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+逛完八坂神社後，又搭了一個小時左右的車子到了奈良，題外話著這個團的另外一個好處是很容易補眠，很適合旅行逛累了，其中幾天安排這種行程，可以休息不用趕路。
+
+<img src="day5/20250221_050623000_iOS.MOV_20250224_014235.485.webp" width=100% alt="準備到奈良" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 ### 【15:10~16:10】奈良_東大寺
 
-<img src="day5/20250221_050623000_iOS.MOV_20250224_014235.485.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_054928576_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_055408000_iOS.MOV_20250224_014249.461.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_060810808_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_061105000_iOS.MOV_20250224_014253.748.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_062530083_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_062534585_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_062739000_iOS.MOV_20250224_014305.103.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_062936000_iOS.MOV_20250224_014312.395.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_063435000_iOS.MOV_20250224_014354.998.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_065926000_iOS.MOV_20250224_014421.795.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_070043000_iOS.MOV_20250224_014444.155.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_071643000_iOS.MOV_20250224_014506.875.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+奈良的鹿真的超級多，而且不怕人，看到你手上拿著鹿仙貝(200 円)，就會一直跟你要，而且還會咬你的包包，還有我新買的外套 QQ，所以一定要小心。另外，可以對鹿做一些動作，他就會跟你點頭，超可愛的。鹿仙貝到附近的攤販都會有賣。
+
+<table>
+<tr>
+<td colspan="2"><img src="day5/20250221_054928576_iOS.webp" width=100% alt="奈良東大寺前的小攤販" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_055408000_iOS.MOV_20250224_014249.461.webp" width=100% alt="奈良東大寺" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_062530083_iOS.webp" width=100% alt="鹿仙貝_每份 200 円" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_061105000_iOS.MOV_20250224_014253.748.webp" width=100% alt="到處都是鹿" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_060810808_iOS.webp" width=100% alt="奈良東大寺" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_062534585_iOS.webp" width=100% alt="手上這樣拿著仙貝，很容易就被搶了" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_062739000_iOS.MOV_20250224_014305.103.webp" width=100% alt="鹿" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_062936000_iOS.MOV_20250224_014312.395.webp" width=100% alt="餵鹿" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_063435000_iOS.MOV_20250224_014354.998.webp" width=100% alt="另外一隻鹿看到了，虎視眈眈地走過來" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_065926000_iOS.MOV_20250224_014421.795.webp" width=100% alt="餵鹿" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_070043000_iOS.MOV_20250224_014444.155.webp" width=100% alt="餵鹿" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td colspan="2"><img src="day5/20250221_071643000_iOS.MOV_20250224_014506.875.webp" width=100% alt="奈良公園" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+
 
 ### 【17:00~19:30】梅田車站周遭
 
-<img src="day5/20250221_083840000_iOS.MOV_20250224_014535.710.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_083858575_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_091035738_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_094417923_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_102609089_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_104240949_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_111038251_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+最後，奈良餵完鹿以後，就結束了今天的跟團的行程了，我準備在梅田車站附近大採購，因為梅田車站附近有許多的百貨公司，也剛好到晚餐時間，所以就到了美食街吃點東西，也想順便逛逛看有沒有卡納赫拉和吉伊卡哇的商品，所以馬上到了 Kiddy Land 逛了一下。也有看到附近有吉伊卡哇的專賣店，不過需要事前抽整理卷，所以就沒有去排了，有點可惜。不過另外一棟百貨公司剛好有魔法吉伊卡哇的專賣店，所以就進去逛了一下。
+
+<table>
+<tr>
+<td><img src="day5/20250221_083840000_iOS.MOV_20250224_014535.710.webp" width=100% alt="大阪車站" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_083858575_iOS.webp" width=100% alt="萬博會的吉祥物" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_091035738_iOS.webp" width=100% alt="美食街的雞排飯" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_094417923_iOS.webp" width=100% alt=" Kiddy Land 買了卡納赫拉的東西" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_102609089_iOS.webp" width=100% alt="魔法吉伊卡哇" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_104240949_iOS.webp" width=100% alt="魔法吉伊卡哇" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td colspan="2"><img src="day5/20250221_111038251_iOS.webp" width=100% alt="熱鬧的梅田車站" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
 
 ### 【20:00~21:30】梅田_空中庭院
 
-<img src="day5/20250221_112129000_iOS.MOV_20250224_014546.965.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_112513000_iOS.MOV_20250224_014557.262.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_112838000_iOS.MOV_20250224_014602.159.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_113409000_iOS.MOV_20250225_023553.437.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_113449000_iOS.MOV_20250224_014625.369.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_115155468_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_120402000_iOS.MOV_20250224_014636.034.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_121533000_iOS.MOV_20250224_014647.811.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_122753687_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_124850765_iOS.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day5/20250221_124851000_iOS.MOV_20250224_014717.383.webp" width=80% alt="Day 5" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+接著準備到本次日本行的最後一個付費景點，就是梅田的空中庭院，主要建築物裡面走的是一個白色的份圍，在這邊可以遠眺大阪的夜景，也有戶外的展望台，底板會透過紫外線燈光讓地面的螢光顏料，看起來有銀河的感覺。最後坐在室內的觀景台中，點了一個聖代，看著夜景，回想著這幾天在日本發生的事情，覺得這趟旅程很值得，也沒發生太多的意外。感覺未來可以再次安排這樣的行程。
+
+<img src="day5/20250221_112806448_iOS.webp" width=100% alt="空中庭院入口" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+
+<table>
+<tr>
+<td colspan="2"><img src="day5/20250221_113409000_iOS.MOV_20250225_023553.437.webp" width=100% alt="空中庭院的夜景" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_115155468_iOS.webp" width=100% alt="戶外觀景台" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_115816860_iOS.webp" width=100% alt="抹茶聖代" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_114640966_iOS.webp" width=100% alt="空中庭院的夜景" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_122753687_iOS.webp" width=100% alt="空中庭院的夜景" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day5/20250221_124850765_iOS.webp" width=100% alt="很有份圍感的電梯" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day5/20250221_125456115_iOS.webp" width=100% alt="從樓下往上看空中庭院" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
 
 ---
 
@@ -652,44 +864,88 @@ Super potato 算是滿有名的復古遊戲店，內容相當的齊全，不過�
 
 ### 【09:00~09:30】飯店早餐
 
-<img src="day6/20250222_002952497_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_003021000_iOS.MOV_20250224_014738.339.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_003208306_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_004404954_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_004613000_iOS.MOV_20250224_014747.948.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+今天準備要回去台灣了，也要面對不想面對的工作內容了 QQ 所以今天早上沒排額外的行程，輕鬆愜意的在飯店吃早餐，這家的早餐烤肉真的很好吃~大推。
+
+<table>
+<tr>
+<td colspan="2"><img src="day6/20250222_002952497_iOS.webp" width=100% alt="早餐吃烤肉" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day6/20250222_003021000_iOS.MOV_20250224_014738.339.webp" width=100% alt="前面有一個小火爐可以自己烤" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_004404954_iOS.webp" width=100% alt="再見了~APA飯店" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+
+<td colspan="2"><img src="day6/20250222_004613000_iOS.MOV_20250224_014747.948.webp" width=100% alt="大阪的街頭" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
 
 ### 【10:00~10:30】book_off
 
-<img src="day6/20250222_005623026_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_005843000_iOS.MOV_20250224_014753.049.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+最後再逛一下 book off ，買了一片神奇寶貝(寶可夢)黃版的 gameboy 卡帶，這片真的是經典，從我幼稚園開始接觸的第一款神奇寶貝遊戲。不過那時候是用模擬器玩得，長大以後可以支持正版，就買了 gameboy 卡帶。
 
-### 【11:20~12:30】坐直達車到機場
+<img src="day6/20250222_005623026_iOS.webp" width=80% alt="book_off" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="day6/20250222_005843000_iOS.MOV_20250224_014753.049.webp" width=80% alt="早上的心齋橋" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
-<img src="day6/20250222_020742501_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_020746327_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_030159000_iOS.MOV_20250224_014814.515.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_031950000_iOS.MOV_20250224_014819.568.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_033717084_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_035123644_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_041456517_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_045517589_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_060728563_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_061254064_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_061258381_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_063628000_iOS.MOV_20250224_014841.995.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_065227170_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_065835763_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_065837000_iOS.MOV_20250224_014858.148.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_073822136_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_083739897_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_093242000_iOS.MOV_20250224_014900.924.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_094417000_iOS.MOV_20250224_014928.623.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_094417000_iOS.MOV_20250224_014934.604.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+### 【11:20~12:30】機場直達車
 
-### 【18:00】回到台灣，結束行程
+因為怕帶著大行李搭電車會影響到其他需要通勤的人，剛好看到附近有往機場的直達車(利木津巴士)，因此我就從 APA 飯店坐計程車到近鐵上本町(大阪喜來登都酒店)那邊搭車。只要現場買票就可以了，每個人是 1800 元，班次也滿密集的，相當的方便。乘車資訊可以[點此觀看](https://www.kate.co.jp/tcn/timetable/detail/UH)
 
-<img src="day6/20250222_100439579_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
-<img src="day6/20250222_134528846_iOS.webp" width=80% alt="Day 6" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<table>
+<tr>
+<td><img src="day6/20250222_020742501_iOS.webp" width=100% alt="買巴士票" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_020746327_iOS.webp" width=100% alt="準備搭車囉" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+### 【12:30~15:30】候機
+
+在機場候機室附近亂逛了一下，買了一堆伴手禮，然後樂桃對於機上飲食好像沒有限制(根據網路上的一些回饋)，可以帶自己的食物去吃，所以候機室買了一個牛肉便當，不過要注意便當一定要在飛機上面吃完，因為有含肉類，不能帶入境。
+
+<table>
+<tr>
+<td ><img src="day6/20250222_030159000_iOS.MOV_20250224_014814.515.webp" width=100% alt="大阪機場" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_031950000_iOS.MOV_20250224_014819.568.webp" width=100% alt="經天天氣也不錯" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day6/20250222_033717084_iOS.webp" width=100% alt="日本人不知道為什麼會熱賣的扭蛋(?)" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_035123644_iOS.webp" width=100% alt="在候機的過程玩了一下寶可夢" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day6/20250222_041456517_iOS.webp" width=100% alt="準備要回去台灣了 QQ" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_045517589_iOS.webp" width=100% alt="不用微波，在飛機上可以吃的便當" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td colspan="2"><img src="day6/20250222_060728563_iOS.webp" width=100% alt="準備搭機了" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+### 【15:30~18:00】搭飛機
+
+<table>
+<tr>
+<td  colspan="2"><img src="day6/20250222_063628000_iOS.MOV_20250224_014841.995.webp" width=100% alt="地勤跟旅客鞠躬~" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day6/20250222_065837000_iOS.MOV_20250224_014858.148.webp" width=100% alt="窗外景色" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_073822136_iOS.webp" width=100% alt="這個便當肉感覺有點柴" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day6/20250222_083739897_iOS.webp" width=100% alt="窗外景色" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_093242000_iOS.MOV_20250224_014900.924.webp" width=100% alt="窗外景色" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+<tr>
+<td><img src="day6/20250222_094417000_iOS.MOV_20250224_014928.623.webp" width=100% alt="看到陸地" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+<td><img src="day6/20250222_094417000_iOS.MOV_20250224_014934.604.webp" width=100% alt="準備降落" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);"></td>
+</tr>
+</table>
+
+### 【18:00】回到台灣
+
+順利地回到台灣了，也結束了這六天的行程。
+
+<img src="day6/20250222_100439579_iOS.webp" width=80% alt="台灣的歡迎標示" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
+<img src="day6/20250222_134528846_iOS.webp" width=80% alt="這六天的戰利品，不過有一大部分是要送人的" style="filter: saturate(1.4) brightness(1.1) contrast(1.2);">
 
 ## 結語
 
