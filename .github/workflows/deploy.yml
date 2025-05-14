@@ -23,6 +23,11 @@ jobs:
           npm install -g hexo-cli
           npm install
 
+      - name: Configure Git identity
+        run: |
+          git config --global user.name 'michaelpig0912'
+          git config --global user.email 'michaelpig0912@example.com'
+
       - name: Deploy Hexo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
