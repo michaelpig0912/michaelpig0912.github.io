@@ -25,12 +25,8 @@ jobs:
 
       - name: Deploy Hexo
         env:
-          GIT_USER: michaelpig0912
-          GIT_EMAIL: pig7034392@gmail.com
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name "$GIT_USER"
-          git config --global user.email "$GIT_EMAIL"
           npx hexo clean
           npx hexo generate
           npx hexo deploy
