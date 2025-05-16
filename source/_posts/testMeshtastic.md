@@ -1,5 +1,5 @@
 ---
-title: 初次嘗試 Meshtastic(撰寫中) 
+title: 初次嘗試 Meshtastic (撰寫中）
 katex: true
 date: 2025-05-16 15:11:58
 categories: maker
@@ -18,7 +18,7 @@ Meshtastic 是一個開源的無線電通訊協定，可以讓使用者透過無
 
 ## 開箱照片
 
-{% asset_img unbox_1.webp %}
+{% asset_img unbox_1.webp 開箱%}
 {% asset_img unbox_2.webp %}
 {% asset_img unbox_3.webp %}
 {% asset_img unbox_4.webp %}
