@@ -111,3 +111,4 @@ markdown:
     - name: '@neilsustc/markdown-it-katex'
       options:
         strict: false
+

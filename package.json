@@ -6,7 +6,8 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "local": "hexo s --config _config.yml,_config_local.yml"
   },
   "hexo": {
     "version": "6.3.0"
