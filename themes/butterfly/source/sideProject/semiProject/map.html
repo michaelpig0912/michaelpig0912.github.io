@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晶片的誕生(開發中)</title>
+  <style>
+    :root {
+      /* 暗色主题变量 */
+      --dark-primary-color: #3f51b5;
+      --dark-bg-color: #0a0a1a;
+      --dark-text-color: #e0e0e0;
+      --dark-card-bg: rgba(25, 25, 35, 0.95);
+      --dark-shadow-color: rgba(0,0,0,0.1);
+      --dark-timeline-color: rgba(92, 107, 192, 0.3);
+      --dark-glow-color: rgba(92, 107, 192, 0.5);
+
+      /* 亮色主题变量 */
+      --light-primary-color: #3f51b5;
+      --light-bg-color: #ffffff;
+      --light-text-color: #1a1a1a;
+      --light-card-bg: #ffffff;
+      --light-shadow-color: rgba(0,0,0,0.15);
+      --light-timeline-color: #3f51b5;
+      --light-glow-color: rgba(63, 81, 181, 0.3);
+
+      /* 通用颜色 */
+      --logic-color: #9c27b0;
+      --switch-color: #2196f3;
+      --memory-color: #ff9800;
+      --input-color: #009688;
+      --display-color: #f44336;
+      --border-radius: 10px;
+      --transition-time: 0.3s;
+
+      /* 默认使用暗色主题 */
+      --primary-color: var(--dark-primary-color);
+      --bg-color: var(--dark-bg-color);
+      --text-color: var(--dark-text-color);
+      --card-bg: var(--dark-card-bg);
+      --shadow-color: var(--dark-shadow-color);
+      --timeline-color: var(--dark-timeline-color);
+      --glow-color: var(--dark-glow-color);
+    }
+
+    /* 亮色主题类 */
+    :root[data-theme="light"] {
+      --primary-color: var(--light-primary-color);
+      --bg-color: var(--light-bg-color);
+      --text-color: var(--light-text-color);
+      --card-bg: var(--light-card-bg);
+      --shadow-color: var(--light-shadow-color);
+      --timeline-color: var(--light-timeline-color);
+      --glow-color: var(--light-glow-color);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 50px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(92, 107, 192, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(156, 39, 176, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(63, 81, 181, 0.8), rgba(92, 107, 192, 0.8));
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(63, 81, 181, 0.5);
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .fixed-filter-container {
+      display: none;
+    }
+
+    .filter-container {
+      display: none;
+    }
+
+    .era-filter {
+      display: none;
+    }
+
+    .era-btn {
+      display: none;
+    }
+
+    .category-label {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      color: #333;
+      font-weight: 500;
+    }
+
+    .category-label:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-label.active {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 2px 10px rgba(63, 81, 181, 0.3);
+      transform: translateY(-2px);
+      font-weight: bold;
+    }
+
+    .category-color {
+      width: 14px;
+      height: 14px;
+      margin-right: 5px;
+      border-radius: 50%;
+    }
+
+    .category-logic { background-color: var(--logic-color); }
+    .category-switch { background-color: var(--switch-color); }
+    .category-memory { background-color: var(--memory-color); }
+    .category-input { background-color: var(--input-color); }
+    .category-display { background-color: var(--display-color); }
+    
+    .timeline-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-left: 120px;
+      border-left: 4px solid var(--timeline-color);
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .timeline-wrapper::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, 
+        transparent,
+        var(--glow-color),
+        var(--timeline-color),
+        var(--glow-color),
+        transparent
+      );
+      animation: timelineGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes timelineGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .era-divider {
+      margin: 100px 0 60px -120px;
+      padding: 10px 0;
+      border-top: 2px dashed var(--timeline-color);
+      width: calc(100% + 120px);
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .era-title {
+      position: absolute;
+      top: -18px;
+      left: 60px;
+      background: linear-gradient(135deg, 
+        rgba(63, 81, 181, 0.95), 
+        rgba(92, 107, 192, 0.95)
+      );
+      color: #fff;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px var(--glow-color);
+      z-index: 5;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      transform: translateY(0);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .era-title:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px var(--glow-color);
+    }
+
+    .era-divider::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--timeline-color),
+        transparent
+      );
+    }
+
+    .year-label {
+      width: 90px;
+      margin-left: -120px;
+      text-align: right;
+      font-weight: bold;
+      color: #fff;
+      position: absolute;
+      left: 0;
+      z-index: 2;
+      background: rgba(63, 81, 181, 0.3);
+      padding: 8px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 15px var(--glow-color);
+      margin-right: 30px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      font-size: 1rem;
+    }
+
+    .event {
+      min-width: 120px;
+      max-width: 160px;
+      min-height: 32px;
+      background: var(--card-bg);
+      padding: 6px 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    .event h3 {
+      margin: 0;
+      font-size: 13px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+      position: relative;
+      padding-right: 0;
+    }
+
+    .event h3::after {
+      display: none;
+      content: '';
+    }
+
+    .event.expanded h3::after {
+      transform: none;
+    }
+
+    .event p {
+      margin: 0;
+      height: 0;
+      font-size: 12px;
+      color: #e0e0e0;
+      line-height: 1.4;
+      opacity: 0;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .event:hover {
+      min-height: 80px;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px var(--glow-color);
+      padding: 10px;
+    }
+
+    .event:hover h3 {
+      white-space: normal;
+      margin-bottom: 6px;
+    }
+
+    .event:hover p {
+      height: auto;
+      opacity: 0.8;
+    }
+
+    .event:after {
+      display: none;
+    }
+
+    .event.fadeOut {
+      opacity: 0;
+      transform: scale(0.8);
+      max-height: 0;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+      position: absolute;
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    .placeholder {
+      min-width: 200px;
+      max-width: 250px;
+      min-height: 120px;
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      cursor: default;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      max-height: 500px;
+    }
+
+    .placeholder.fadeOut {
+      opacity: 0;
+      width: 0;
+      min-width: 0;
+      max-width: 0;
+      max-height: 0;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+      position: absolute;
+      visibility: hidden;
+    }
+
+    .event-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      position: relative;
+      margin-left: 30px;
+      width: calc(100% - 30px);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 32px;
+      align-items: center;
+    }
+
+    .event-row.compact {
+      min-height: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .event h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+      position: relative;
+      padding-right: 20px;
+    }
+
+    .event h3::after {
+      content: '▼';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .event.expanded h3::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .event.expanded {
+      min-height: 120px;
+    }
+
+    .event.expanded p {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 8px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 25px;
+      max-width: 500px;
+      width: 90%;
+      border-radius: var(--border-radius);
+      position: relative;
+      box-shadow: 0 0 30px var(--glow-color);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.show .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+    }
+
+    #modalTitle {
+      font-size: 20px;
+      margin-bottom: 5px;
+      color: var(--text-color);
+    }
+
+    #modalYear {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 15px;
+    }
+
+    #modalContent {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+
+    @media (max-width: 1200px) {
+      .event, .placeholder {
+        min-width: 180px;
+        max-width: 220px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-wrapper {
+        margin-left: 50px;
+      }
+      .year-label {
+        width: auto;
+        margin-left: -50px;
+        font-size: 0.8rem;
+      }
+      .era-divider {
+        margin: 80px 0 40px -50px;
+      }
+      .era-title {
+        left: 30px;
+        font-size: 0.9rem;
+        padding: 8px 20px;
+      }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--primary-color), #5c6bc0);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px var(--glow-color);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px var(--glow-color);
+    }
+
+    .spacer {
+      height: 50px;
+      display: none;
+    }
+    .spacer.visible {
+      display: block;
+    }
+
+    .event.logic { border-left: 3px solid var(--logic-color); }
+    .event.switch { border-left: 3px solid var(--switch-color); }
+    .event.memory { border-left: 3px solid var(--memory-color); }
+    .event.input { border-left: 3px solid var(--input-color); }
+    .event.display { border-left: 3px solid var(--display-color); }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .event-row > .event:nth-child(1) { animation-delay: 0.1s; }
+    .event-row > .event:nth-child(2) { animation-delay: 0.2s; }
+    .event-row > .event:nth-child(3) { animation-delay: 0.3s; }
+    .event-row > .event:nth-child(4) { animation-delay: 0.4s; }
+    .event-row > .event:nth-child(5) { animation-delay: 0.5s; }
+
+    /* 主题切换按钮样式 */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--shadow-color);
+    }
+
+    .theme-toggle i {
+      font-size: 20px;
+      color: var(--text-color);
+    }
+
+    .era-btn.active {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 2px 10px rgba(63, 81, 181, 0.3);
+    }
+
+    .era-section {
+      position: relative;
+      margin: 50px 0;
+      padding: 20px 0;
+      border-left: 4px solid var(--timeline-color);
+    }
+
+    .era-title {
+      position: absolute;
+      left: -10px;
+      top: -30px;
+      background: var(--card-bg);
+      padding: 5px 15px;
+      border-radius: var(--border-radius);
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--text-color);
+      box-shadow: 0 2px 10px var(--shadow-color);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .era-title::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -12px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 12px solid rgba(92, 107, 192, 0.95);
+    }
+
+    .era-title::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid var(--dark-bg-color);
+    }
+
+    .era-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .era-nav-btn {
+      background: #ffffff;
+      color: #1a1a1a;
+      border: 1px solid #3f51b5;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      white-space: nowrap;
+    }
+
+    .era-nav-btn:hover {
+      background: #f5f7ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(63, 81, 181, 0.2);
+      border-color: #3f51b5;
+    }
+
+    .era-nav-btn.active {
+      background: #3f51b5;
+      color: #ffffff;
+      border-color: #3f51b5;
+      box-shadow: 0 2px 8px rgba(63, 81, 181, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .era-nav-btn {
+        font-size: 0.8rem;
+        padding: 6px 15px;
+      }
+    }
+
+    /* 亮色主题基本样式 */
+    :root[data-theme="light"] .event {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    :root[data-theme="light"] .event h3 {
+      color: #1a1a1a;
+      text-shadow: none;
+    }
+
+    :root[data-theme="light"] .event p {
+      color: #333333;
+      text-shadow: none;
+    }
+
+    :root[data-theme="light"] .year-label {
+      background: #3f51b5;
+      color: #ffffff;
+      border: none;
+    }
+
+    :root[data-theme="light"] .era-title {
+      background: #ffffff;
+      color: #1a1a1a;
+      border: 2px solid #3f51b5;
+      text-shadow: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    :root[data-theme="light"] .era-divider {
+      border-top: 2px solid #3f51b5;
+    }
+
+    :root[data-theme="light"] .era-divider::before {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #3f51b5,
+        transparent
+      );
+    }
+
+    :root[data-theme="light"] .timeline-wrapper::before {
+      background: linear-gradient(to bottom, 
+        transparent,
+        rgba(63, 81, 181, 0.5),
+        #3f51b5,
+        rgba(63, 81, 181, 0.5),
+        transparent
+      );
+    }
+
+    :root[data-theme="light"] .timeline-wrapper {
+      border-left: 4px solid #3f51b5;
+    }
+
+    :root[data-theme="light"] .category-label {
+      color: #1a1a1a;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    :root[data-theme="light"] .category-label.active {
+      color: #ffffff;
+    }
+
+    :root[data-theme="light"] .era-btn {
+      color: #1a1a1a;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    :root[data-theme="light"] .era-btn.active {
+      color: #ffffff;
+    }
+
+    :root[data-theme="light"] .modal-content {
+      background: #ffffff;
+    }
+
+    :root[data-theme="light"] .modal-content h2 {
+      color: #1a1a1a;
+      text-shadow: none;
+    }
+
+    :root[data-theme="light"] .modal-content p {
+      color: #333333;
+    }
+
+    /* 亮色模式的向下箭头 */
+    :root[data-theme="light"] .era-title::before {
+      border-top-color: #3f51b5;
+    }
+
+    :root[data-theme="light"] .era-title::after {
+      border-top-color: #ffffff;
+    }
+
+    /* 亮色模式下的项目颜色 */
+    :root[data-theme="light"] .event.logic { 
+      border-left: 5px solid var(--logic-color); 
+      box-shadow: 0 0 20px rgba(156, 39, 176, 0.15);
+      background: linear-gradient(135deg, 
+        rgba(156, 39, 176, 0.05),
+        #ffffff
+      );
+    }
+
+    :root[data-theme="light"] .event.switch { 
+      border-left: 5px solid var(--switch-color); 
+      box-shadow: 0 0 20px rgba(33, 150, 243, 0.15);
+      background: linear-gradient(135deg, 
+        rgba(33, 150, 243, 0.05),
+        #ffffff
+      );
+    }
+
+    :root[data-theme="light"] .event.memory { 
+      border-left: 5px solid var(--memory-color); 
+      box-shadow: 0 0 20px rgba(255, 152, 0, 0.15);
+      background: linear-gradient(135deg, 
+        rgba(255, 152, 0, 0.05),
+        #ffffff
+      );
+    }
+
+    :root[data-theme="light"] .event.input { 
+      border-left: 5px solid var(--input-color); 
+      box-shadow: 0 0 20px rgba(0, 150, 136, 0.15);
+      background: linear-gradient(135deg, 
+        rgba(0, 150, 136, 0.05),
+        #ffffff
+      );
+    }
+
+    :root[data-theme="light"] .event.display { 
+      border-left: 5px solid var(--display-color); 
+      box-shadow: 0 0 20px rgba(244, 67, 54, 0.15);
+      background: linear-gradient(135deg, 
+        rgba(244, 67, 54, 0.05),
+        #ffffff
+      );
+    }
+
+    /* 亮色模式下类别标签的颜色指示器 */
+    :root[data-theme="light"] .category-color.category-logic { background-color: var(--logic-color); }
+    :root[data-theme="light"] .category-color.category-switch { background-color: var(--switch-color); }
+    :root[data-theme="light"] .category-color.category-memory { background-color: var(--memory-color); }
+    :root[data-theme="light"] .category-color.category-input { background-color: var(--input-color); }
+    :root[data-theme="light"] .category-color.category-display { background-color: var(--display-color); }
+
+    /* 弹窗基本样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* 亮色模式下的弹窗样式 */
+    :root[data-theme="light"] .modal {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    :root[data-theme="light"] .modal-content {
+      background: #ffffff;
+      color: #1a1a1a;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    :root[data-theme="light"] .modal-content h2 {
+      color: #1a1a1a;
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    :root[data-theme="light"] .modal-content p {
+      color: #333333;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    :root[data-theme="light"] #modalYear {
+      color: #666666;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    :root[data-theme="light"] .modal-close {
+      color: #1a1a1a;
+      opacity: 0.7;
+      font-size: 24px;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    :root[data-theme="light"] .modal-close:hover {
+      opacity: 1;
+    }
+
+    /* 深色模式下的弹窗样式 */
+    :root[data-theme="dark"] .modal-content {
+      background: var(--dark-card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    :root[data-theme="dark"] .modal-content h2 {
+      color: #ffffff;
+    }
+
+    :root[data-theme="dark"] .modal-content p {
+      color: #e0e0e0;
+    }
+
+    :root[data-theme="dark"] #modalYear {
+      color: #cccccc;
+    }
+
+    :root[data-theme="dark"] .modal-close {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>晶片的誕生</h1>
+      <div class="subtitle">從數學理論到數位時代的關鍵技術演進</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="navigation-wrapper">
+      <!-- 時代導航 -->
+      <div class="era-navigation">
+        <button class="era-nav-btn" data-era="數位時代">數位時代</button>
+        <button class="era-nav-btn" data-era="個人電腦時代">個人電腦時代</button>
+        <button class="era-nav-btn" data-era="半導體時代">半導體時代</button>
+        <button class="era-nav-btn" data-era="電子時代">電子時代</button>
+        <button class="era-nav-btn" data-era="機電時代">機電時代</button>
+        <button class="era-nav-btn" data-era="機械自動化時代">機械自動化時代</button>
+        <button class="era-nav-btn" data-era="數學理論時代">數學理論時代</button>
+      </div>
+
+      <!-- 類別過濾器 -->
+      <div class="category-filter">
+        <div class="category-label active" data-category="all">
+          <span>全部類別</span>
+        </div>
+        <div class="category-label" data-category="logic">
+          <div class="category-color category-logic"></div>
+          <span>邏輯與計算</span>
+        </div>
+        <div class="category-label" data-category="switch">
+          <div class="category-color category-switch"></div>
+          <span>開關元件</span>
+        </div>
+        <div class="category-label" data-category="memory">
+          <div class="category-color category-memory"></div>
+          <span>記憶體技術</span>
+        </div>
+        <div class="category-label" data-category="input">
+          <div class="category-color category-input"></div>
+          <span>輸入設備</span>
+        </div>
+        <div class="category-label" data-category="display">
+          <div class="category-color category-display"></div>
+          <span>顯示技術</span>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .navigation-wrapper {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .era-navigation {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .era-nav-btn {
+        background: transparent;
+        color: var(--text-color);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .era-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .era-nav-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 15px var(--glow-color);
+      }
+
+      .category-filter {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .category-label {
+        background: transparent;
+        color: var(--text-color);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 6px 12px;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .category-label:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .category-label.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 15px var(--glow-color);
+      }
+
+      .category-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      @media (max-width: 768px) {
+        .navigation-wrapper {
+          padding: 15px;
+        }
+
+        .era-nav-btn, .category-label {
+          font-size: 0.8rem;
+          padding: 6px 10px;
+        }
+      }
+    </style>
+
+    <div class="spacer"></div>
+
+    <div class="timeline-wrapper">
+
+      <!-- 數位時代 (1990-2000) -->
+      <div class="era-divider" id="數位時代">
+        <div class="era-title">數位時代 (1990-2000)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">2000</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>DDR2 SDRAM</h3>
+            <p>第二代雙倍數據速率同步動態隨機存取記憶體，時脈速度提升至400-800MHz，進一步提高了記憶體頻寬。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1998</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>DDR SDRAM</h3>
+            <p>雙倍數據速率同步動態隨機存取記憶體問世，在時脈的上升和下降邊緣都傳輸數據，使頻寬翻倍。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1996</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>DIMM DDR</h3>
+            <p>現代 DRAM 記憶體架構，提供更高頻寬和更低功耗，成為現代電腦主記憶體的標準。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1993</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>SDRAM</h3>
+            <p>同步動態隨機存取記憶體，與系統時脈同步運作，大幅提升了記憶體的存取效率。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1992</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>SSD 架構提出</h3>
+            <p>固態硬碟技術發展，採用記錄單元儲存方式，解決機械硬碟讀寫速度瓶頸，大幅提升儲存效率。</p>
+          </div>
+          <div class="event input" data-category="input">
+            <h3>SSD 問世</h3>
+            <p>由 IBM 和 SanDisk 共同開發，固態硬碟技術實用化，革新了輸入輸出流程，加速數據處理。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1990</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event input" data-category="input">
+            <h3>GPU 發展</h3>
+            <p>圖形處理單元專門處理圖像運算，減輕 CPU 負擔，開啟 2D 和 3D 圖像運算新紀元，奠定現代電腦圖形技術基礎。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <!-- 個人電腦時代 (1980-1990) -->
+      <div class="era-divider" id="個人電腦時代">
+        <div class="era-title">個人電腦時代 (1980-1990)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1988</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>FPM DRAM</h3>
+            <p>快頁模式DRAM，通過快取最近訪問的行數據，提高了連續讀取效率。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1987</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event display" data-category="display">
+            <h3>OLED 發明</h3>
+            <p>鄧青雲和 Steven Van Slyke 發明實用性的有機發光二極體，創造自發光顯示技術，開創更輕薄、更省電的顯示設備時代。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1985</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>VRAM</h3>
+            <p>視訊隨機存取記憶體，專門設計用於圖形處理，具有雙埠設計，可同時進行讀寫操作。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1983</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>快閃記憶體</h3>
+            <p>Fujio Masuoka 在東芝發明，採用非揮發性記憶技術，電源關閉後仍能保存數據，為隨身碟、記憶卡等便攜式儲存裝置奠定基礎。</p>
+          </div>
+          <div class="event input" data-category="input">
+            <h3>3.5寸軟碟機</h3>
+            <p>SONY 與 HP 共同建立標準格式，相較早期 5.25 寸軟碟機體積更小、容量更大，成為 PC 時代重要存儲媒介。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1982</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>CD-ROM</h3>
+            <p>飛利浦和索尼共同制定標準格式，採用光學讀取技術，單張容量達 650MB，遠超當時的軟碟，革新了數據和多媒體存儲方式。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1980</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event switch" data-category="switch">
+            <h3>HDD 問世</h3>
+            <p>希捷科技推出 ST506 硬碟，容量達 5MB，採用磁碟技術存儲數據，標誌著個人電腦大容量存儲時代來臨。</p>
+          </div>
+          <div class="event memory" data-category="memory">
+            <h3>Pseudo SRAM</h3>
+            <p>假靜態隨機存取記憶體，結合DRAM的高密度和SRAM的易用性，內部自動執行重整動作。</p>
+          </div>
+          <div class="event input" data-category="input">
+            <h3>2D 顯示功能顯示卡</h3>
+            <p>IBM 8514 顯示卡問世，支援更高解析度和更多顏色，在個人電腦領域推動了圖形界面的發展。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1978</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>雷射光碟</h3>
+            <p>MCA 和飛利浦開發，使用雷射光束讀取數據，不僅提供大容量存儲空間，還奠定了後來 CD、DVD 等光碟技術的基礎。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <!-- 半導體時代 (1960-1980) -->
+      <div class="era-divider" id="半導體時代">
+        <div class="era-title">半導體時代 (1960-1980)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1975</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>EPROM</h3>
+            <p>可擦除可編程唯讀記憶體，通過紫外線照射可以擦除數據，實現了可重複編程的非揮發性存儲。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1971</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>PROM</h3>
+            <p>可編程唯讀記憶體，使用熔絲技術，可以一次性編程，提供了更靈活的非揮發性存儲方案。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1970</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event display" data-category="display">
+            <h3>CRT螢幕取代紙張</h3>
+            <p>隨著 CRT 顯示技術成熟和價格降低，電腦開始使用螢幕作為主要輸出介面，取代了早期的紙張打印輸出方式。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1967</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>MOS DRAM</h3>
+            <p>金屬氧化物半導體動態隨機存取記憶體，半導體技術應用於記憶體，體積小、成本低，取代了體積龐大的磁芯記憶體。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1966</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event display" data-category="display">
+            <h3>LCD 液晶顯示器</h3>
+            <p>RCA 的 George Heilmeier 發明，基於 1888 年發現的液晶特性，創造出能夠電控顯示的新技術，為輕薄顯示設備開創了可能。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1965</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>ROM</h3>
+            <p>唯讀記憶體，在製造時寫入固定數據，不可更改，用於存儲固定程序和數據。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1963</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>SRAM 發明</h3>
+            <p>Robert Norman 在仙童半導體開發靜態隨機存取記憶體，速度快但密度低，主要用於高速緩存，功耗低於 DRAM。</p>
+          </div>
+          <div class="event memory" data-category="memory">
+            <h3>DRAM 問世</h3>
+            <p>「Toscal」BC-1411 計算機的 M+ 功能採用動態隨機存取記憶體，結構簡單，一位元一個晶體體和電容，密度高於 SRAM。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1960</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>集成電路記憶體</h3>
+            <p>首個集成電路記憶體晶片問世，標誌著記憶體技術進入集成電路時代。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <!-- 電子時代 (1940-1960) -->
+      <div class="era-divider" id="電子時代">
+        <div class="era-title">電子時代 (1940-1960)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1958</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event switch" data-category="switch">
+            <h3>積體電路</h3>
+            <p>傑克·基爾與羅伯特·諾伊斯解決接線問題，將多個電子元件集成在單一半導體晶片上，徹底改變了電子設備的製造方式。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1955</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>磁鼓記憶體改進</h3>
+            <p>磁鼓記憶體技術改進，存儲密度和讀寫速度大幅提升，成為早期大型計算機的主要存儲設備。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1954</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>磁芯記憶體</h3>
+            <p>非揮發性記憶體技術，使用微小磁環和電流磁效應儲存數據，相比早期的存儲設備體積大幅縮小，成為當時主流記憶體。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="event display" data-category="display">
+            <h3>彩色CRT</h3>
+            <p>彩色陰極射線管顯示技術問世，通過控制三種不同顏色的電子束，實現全彩顯示，開創了彩色顯示時代。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1950</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event memory" data-category="memory">
+            <h3>磁鼓記憶體</h3>
+            <p>美國海軍開發的早期電腦存儲設備，利用旋轉磁鼓表面記錄數據，容量較大但體積龐大，是硬碟技術的前身。</p>
+          </div>
+          <div class="event input" data-category="input">
+            <h3>紙帶輸入</h3>
+            <p>早期電腦使用穿孔紙帶或磁帶輸入資訊，每個孔洞代表一個二進制位，是當時主要的程序和數據輸入方式。</p>
+          </div>
+          <div class="event display" data-category="display">
+            <h3>列表機</h3>
+            <p>早期計算機的輸出設備，將計算結果打印在紙張上，是當時電腦與使用者之間的主要視覺介面。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1947</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event switch" data-category="switch">
+            <h3>電晶體</h3>
+            <p>巴丁、布拉頓和肖克利在貝爾實驗室發明，利用半導體的特性控制電流，體積小、耗電低、壽命長，解決了真空管易損壞的問題。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1946</div>
+        <div class="event-row">
+          <div class="event logic" data-category="logic">
+            <h3>ENIAC</h3>
+            <p>第一台通用電子計算機，使用 18,000 個真空管，每秒可進行 5,000 次加法運算，開創了數字計算機時代。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1945</div>
+        <div class="event-row">
+          <div class="event logic" data-category="logic">
+            <h3>馮紐曼架構</h3>
+            <p>以運算單元為中心的架構，採用儲存程序原理，記憶體按位址訪問，奠定了現代計算機系統的基本結構。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <!-- 機電時代 (1900-1940) -->
+      <div class="era-divider" id="機電時代">
+        <div class="era-title">機電時代 (1900-1940)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1938</div>
+        <div class="event-row">
+          <div class="event logic" data-category="logic">
+            <h3>夏農邏輯電路</h3>
+            <p>克勞德·夏農將布爾代數應用於電路設計，實現模組化邏輯設計，讓電路像積木一樣可以組裝出不同功能。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1937</div>
+        <div class="event-row">
+          <div class="event logic" data-category="logic">
+            <h3>Model K</h3>
+            <p>喬治·史蒂比茲在貝爾實驗室開發的邏輯閘二進位計算機，通過繼電器電路實現二進制加法運算，是早期二進制計算機的原型。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1904</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event switch" data-category="switch">
+            <h3>真空管</h3>
+            <p>弗萊明發明二極管，德佛瑞斯特改進為三極管，利用熱電子發射控制電流，成為早期電子設備的關鍵元件，開創電子時代。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <!-- 機械自動化時代 (1800-1900) -->
+      <div class="era-divider" id="機械自動化時代">
+        <div class="era-title">機械自動化時代 (1800-1900)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1890</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event input" data-category="input">
+            <h3>霍勒瑞斯製表機</h3>
+            <p>赫爾曼·霍勒瑞斯為美國人口普查開發的打孔卡片系統，能自動統計人口數據，大幅提高工作效率，後來發展為 IBM 公司。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1809</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="event switch" data-category="switch">
+            <h3>繼電器</h3>
+            <p>約瑟夫·亨利發明，利用電流磁效應控制電路開關，使電報信號能傳遞更遠距離，是早期自動控制系統的基礎元件。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1801</div>
+        <div class="event-row">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="event input" data-category="input">
+            <h3>卡片織布機</h3>
+            <p>約瑟夫·雅卡爾發明，通過可更換的穿孔卡片控制織布圖案，是最早的可編程設備之一，為後來的計算機編程提供了靈感。</p>
+          </div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <!-- 數學理論時代 (1600-1800) -->
+      <div class="era-divider" id="數學理論時代">
+        <div class="era-title">數學理論時代 (1600-1800)</div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1703</div>
+        <div class="event-row">
+          <div class="event logic" data-category="logic">
+            <h3>二進位</h3>
+            <p>萊布尼茲受易經啟發提出二進位數系統，發現用最少的砝碼可測量所有重量，後來成為現代計算機的基礎表示法。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+      <div class="year-block">
+        <div class="year-label">1642</div>
+        <div class="event-row">
+          <div class="event logic" data-category="logic">
+            <h3>滾輪式加法器</h3>
+            <p>帕斯卡為簡化稅務計算工作發明，通過機械齒輪實現十進位數字計算，是最早的機械計算機，開創了自動計算時代。</p>
+          </div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal" id="eventModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalYear"></p>
+      <hr>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="back-to-top">↑</div>
+
+  <script>
+    const categoryLabels = document.querySelectorAll('.category-label');
+    const events = document.querySelectorAll('.event');
+    const placeholders = document.querySelectorAll('.placeholder');
+    const eventRows = document.querySelectorAll('.event-row');
+    const eraNavBtns = document.querySelectorAll('.era-nav-btn');
+    const eraDividers = document.querySelectorAll('.era-divider');
+    const modal = document.getElementById('eventModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalYear = document.getElementById('modalYear');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.querySelector('.modal-close');
+    const backToTop = document.querySelector('.back-to-top');
+
+    // 處理時代導航點擊
+    eraNavBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        eraNavBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const targetEra = btn.dataset.era;
+        const targetSection = document.getElementById(targetEra);
+        
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // 處理類別過濾
+    categoryLabels.forEach(label => {
+      label.addEventListener('click', () => {
+        categoryLabels.forEach(l => l.classList.remove('active'));
+        label.classList.add('active');
+        
+        const category = label.dataset.category;
+        
+        events.forEach(event => {
+          if (category === 'all' || event.dataset.category === category) {
+            event.classList.remove('fadeOut');
+          } else {
+            event.classList.add('fadeOut');
+          }
+        });
+
+        eventRows.forEach(row => {
+          const hasVisibleEvent = Array.from(row.querySelectorAll('.event')).some(event => 
+            category === 'all' || event.dataset.category === category
+          );
+          row.classList.toggle('compact', !hasVisibleEvent);
+        });
+      });
+    });
+
+    // 監聽滾動以高亮當前時代
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      
+      eraDividers.forEach(divider => {
+        const dividerPosition = divider.offsetTop;
+        const eraId = divider.id;
+        
+        if (scrollPosition >= dividerPosition) {
+          eraNavBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.era === eraId);
+          });
+        }
+      });
+
+      // 顯示/隱藏回到頂部按鈕
+      backToTop.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // 回到頂部
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // 恢復事件點擊功能
+    events.forEach(event => {
+      event.addEventListener('click', (e) => {
+        const title = event.querySelector('h3').textContent;
+        const content = event.querySelector('p').textContent;
+        const yearLabel = event.closest('.year-block').querySelector('.year-label').textContent;
+        
+        modalTitle.textContent = title;
+        modalYear.textContent = `${yearLabel}年`;
+        modalContent.textContent = content;
+        
+        modal.classList.add('show');
+        e.stopPropagation();
+      });
+    });
+
+    // 關閉模態框
+    modalClose.addEventListener('click', (e) => {
+      modal.classList.remove('show');
+      e.stopPropagation();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+
+    // ESC鍵關閉模態框
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        modal.classList.remove('show');
+      }
+    });
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+  </div>
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const themeToggle = document.querySelector('.theme-toggle i');
+      const currentTheme = root.getAttribute('data-theme');
+      
+      if (currentTheme === 'light') {
+        root.setAttribute('data-theme', 'dark');
+        themeToggle.className = 'fas fa-moon';
+      } else {
+        root.setAttribute('data-theme', 'light');
+        themeToggle.className = 'fas fa-sun';
+      }
+    }
+  </script>
+</body>
+</html>
+
+

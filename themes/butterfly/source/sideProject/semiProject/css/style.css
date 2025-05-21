@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'CubicFont';
+    src: url('https://michaelpig0912.github.io/font/Cubic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Improves perceived performance */
+}
+
+/* Global and Body Styles */
+body {
+    font-family: 'CubicFont', 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding-top: 70px; /* Added padding to prevent content overlap by fixed navbar */
+}
+
+/* Container for main content */
+.container {
+    max-width: 750px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Content Area Links */
+.container a {
+    color: #007bff; /* Primary link color */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+    font-weight: 500; /* Slightly bolder than normal text */
+}
+
+.container a:hover,
+.container a:focus { 
+    color: #0056b3; /* Darker shade on hover/focus */
+    text-decoration: underline;
+    text-decoration-color: #0056b3; /* Underline color matches text */
+}
+
+/* Headings */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: rgba(20, 20, 30, 0.7);
+    padding: 15px 30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    position: fixed; /* Changed from sticky to fixed */
+    top: 0;
+    left: 0; /* Ensure it spans the full width */
+    right: 0; /* Ensure it spans the full width */
+    z-index: 1000;
+    width: 100%; /* Explicitly set width, though with left/right 0 it might be redundant */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links li a {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Email link specific style - This will be largely covered by .container a now.
+   If specific styling is still needed for .email-link, it can be adjusted here.
+   For now, ensuring it doesn't conflict or override too much. */
+.email-link {
+    /* color: #007bff; Already set by .container a */
+    /* text-decoration: none; Already set by .container a */
+    /* font-weight will also be inherited or can be made specific */
+}
+
+.email-link:hover {
+    /* text-decoration: underline; Already set by .container a:hover */
+}
+
+/* Button style from index.html (if it's meant to be global) */
+.button {
+    display: inline-block;
+    background-color: #17a2b8; /* 鮮豔的青色 */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button:hover {
+    background-color: #138496; /* 滑鼠懸停時顏色變深 */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Status message style from index.html (if it's meant to be global) */
+.status {
+    font-style: italic;
+    color: #0056b3; /* 深藍色文字 */
+    background-color: #e7f3ff; /* 淺藍色背景 */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+} 
