@@ -3,19 +3,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>入口網站</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- 連結共用 CSS -->
+    <title>半導體教學_計畫</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- 連結共用 CSS (應確保 CubicFont 在此定義) -->
+    <!-- Nunito Font link removed as per previous instruction -->
+    <style>
+        /* Reset and Basic Body Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* font-family is now inherited from css/style.css (CubicFont) */
+            background-color: #f8f9fa; /* Light grey background */
+            color: #333;
+            line-height: 1.6;
+            display: flex; /* Use flex for overall page structure if navbar is separate */
+            flex-direction: column; /* Or adjust if navbar is part of the course-layout */
+            min-height: 100vh;
+            overflow-y: scroll; /* Always show scrollbar to prevent jumping */
+        }
+
+        :root {
+            --color-module-1: #007bff; /* Blue */
+            --color-module-2: #28a745; /* Green */
+            --color-module-3: #fd7e14; /* Orange */
+            --color-module-4: #6f42c1; /* Purple */
+            --sidebar-active-text-color: #ffffff;
+        }
+
+        /* Overall Course Layout: Sidebar + Content */
+        .course-layout {
+            display: flex;
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1600px; /* Max width for the layout */
+            margin: 0 auto; /* Center the layout */
+        }
+
+        /* Sidebar Styling */
+        .course-sidebar {
+            width: 280px; /* Fixed width for sidebar */
+            background-color: #eef2f5; /* Slightly darker light grey for sidebar */
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .sidebar-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #d4dae0;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.4em;
+            color: #0056b3; /* Primary accent color for header */
+            text-align: center;
+        }
+
+        .course-sidebar nav {
+            flex-grow: 1;
+        }
+
+        .course-sidebar ul {
+            list-style: none;
+        }
+
+        .course-sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: #495057; /* Darker text for links */
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            font-weight: bold; /* Make sidebar text bold like example */
+        }
+
+        .course-sidebar ul li a .module-number {
+            margin-right: 12px;
+            font-size: 0.9em;
+            /* color: #007bff; Removed general accent color here */
+            font-weight: bold;
+            width: 25px; /* Ensure alignment */
+            text-align: center;
+            transition: color 0.2s ease; /* Add transition for color change */
+        }
+        
+        .course-sidebar ul li a .module-name {
+            flex-grow: 1;
+        }
+
+        .course-sidebar ul li a:hover {
+            background-color: #dce5eb;
+            color: #0056b3;
+        }
+
+        /* Default state for module number color, can be a neutral color or inherit */
+        .course-sidebar ul li a .module-number {
+            color: #5a6268; /* Default color for module numbers */
+        }
+
+        /* Active sidebar item colors */
+        .course-sidebar ul li a[href="#module1"].active {
+            background-color: var(--color-module-1);
+            color: var(--sidebar-active-text-color);
+        }
+        .course-sidebar ul li a[href="#module1"].active .module-number {
+            color: var(--sidebar-active-text-color);
+        }
+
+        .course-sidebar ul li a[href="#module2"].active {
+            background-color: var(--color-module-2);
+            color: var(--sidebar-active-text-color);
+        }
+        .course-sidebar ul li a[href="#module2"].active .module-number {
+            color: var(--sidebar-active-text-color);
+        }
+
+        .course-sidebar ul li a[href="#module3"].active {
+            background-color: var(--color-module-3);
+            color: var(--sidebar-active-text-color);
+        }
+        .course-sidebar ul li a[href="#module3"].active .module-number {
+            color: var(--sidebar-active-text-color);
+        }
+
+        .course-sidebar ul li a[href="#module4"].active {
+            background-color: var(--color-module-4);
+            color: var(--sidebar-active-text-color);
+        }
+        .course-sidebar ul li a[href="#module4"].active .module-number {
+            color: var(--sidebar-active-text-color);
+        }
+
+        .sidebar-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #d4dae0;
+            text-align: center;
+        }
+
+        .sidebar-footer .about-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.95em;
+            padding: 8px 15px;
+            border-radius: 5px;
+            /* transition: background-color 0.2s ease, color 0.2s ease; 移除以防止切換模組時動畫 */
+        }
+        .sidebar-footer .about-link:hover {
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Main Content Area Styling */
+        .course-content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #ffffff; /* White background for content area */
+            overflow-y: auto; /* Allow scrolling for content */
+        }
+        
+        .page-main-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            font-weight: 800;
+            margin: 20px 0 30px 0;
+            /* This title is outside .course-layout, if it exists */
+        }
+
+        .content-module {
+            /* display: none; */ /* Replaced for animation */
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            /* Adjust transition timing as desired */
+            transition: max-height 0.5s ease-in-out, 
+                        opacity 0.4s ease-in-out 0.1s; /* Opacity transition starts slightly after height */
+            /* Ensure no top/bottom margin on the module itself that would break collapse, 
+               or ensure it's also part of the transition or set to 0 when collapsed. 
+               Inner elements like module-header handle their own margins correctly with overflow:hidden. */
+        }
+        .content-module.active {
+            /* display: block; */ /* Replaced for animation */
+            max-height: 3000px; /* Adjust if your content might exceed this height */
+            opacity: 1;
+        }
+
+        .module-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecee;
+        }
+        
+        .module-header .module-image-placeholder { /* Placeholder for images like in example */
+            width: 150px; /* Adjust as needed */
+            height: 100px; /* Adjust as needed */
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            /* display: flex; align-items: center; justify-content: center; color: #6c757d; */
+            /* float: left; margin-right: 20px; (alternative for layout) */
+        }
+
+
+        .module-header h1 {
+            font-size: 2.2em;
+            /* color: #2c3e50; Will be overridden by module-specific color */
+            margin-bottom: 10px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .module-meta {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .module-meta .icon-lessons {
+            margin-right: 8px;
+            font-size: 1.2em; /* For emoji icons */
+        }
+        
+        .module-description {
+            font-size: 1em;
+            color: #4A4A4A;
+            margin-bottom: 20px;
+        }
+
+        .lesson-list {
+            list-style: none;
+        }
+
+        .lesson-list li {
+            border-bottom: 1px solid #f1f3f5; /* Light border for separation */
+        }
+        .lesson-list li:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-list li a {
+            display: flex;
+            align-items: center;
+            padding: 18px 10px;
+            text-decoration: none;
+            color: #343a40;
+            transition: background-color 0.2s ease;
+            border-radius: 4px;
+        }
+        .lesson-list li a:hover {
+            background-color: #f8f9fa; /* Slight hover effect */
+        }
+
+        .lesson-list .lesson-number {
+            width: 40px; /* For W1, W2 etc. */
+            font-weight: bold;
+            /* color: #007bff; Will be overridden by module-specific color */
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: color 0.3s ease-in-out;
+        }
+        .lesson-list .lesson-title {
+            flex-grow: 1;
+            font-weight: 500; /* Example uses bolder titles */
+        }
+        .lesson-list .lesson-details,
+        .lesson-list .lesson-duration { /* Example showed duration on right */
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Content module specific colors */
+        #module1.active .module-header h1,
+        #module1.active .lesson-list .lesson-number {
+            color: var(--color-module-1);
+        }
+        #module2.active .module-header h1,
+        #module2.active .lesson-list .lesson-number {
+            color: var(--color-module-2);
+        }
+        #module3.active .module-header h1,
+        #module3.active .lesson-list .lesson-number {
+            color: var(--color-module-3);
+        }
+        #module4.active .module-header h1,
+        #module4.active .lesson-list .lesson-number {
+            color: var(--color-module-4);
+        }
+
+        /* Responsive adjustments (basic) */
+        @media (max-width: 992px) {
+            .course-layout {
+                flex-direction: column;
+            }
+            .course-sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+                padding: 20px 15px; /* Adjusted padding for tablet */
+            }
+            .sidebar-header {
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+            .sidebar-header h2 {
+                font-size: 1.3em;
+            }
+            .course-sidebar nav ul {
+                display: flex;
+                flex-wrap: wrap; 
+                justify-content: space-around; /* Better distribution */
+            }
+             .course-sidebar ul li a {
+                margin: 5px;
+                padding: 10px 12px; /* Adjusted padding for items */
+                flex-basis: calc(50% - 10px); /* Attempt two columns on tablet if space allows */
+                text-align: center; /* Center text in items */
+            }
+            .course-sidebar ul li a .module-number {
+                margin-right: 8px;
+            }
+            .sidebar-footer {
+                margin-top: 20px;
+                padding-top: 15px;
+            }
+            .course-content {
+                padding: 25px;
+            }
+            .module-header h1 {
+                font-size: 2em; /* Slightly larger for tablet */
+            }
+            .lesson-list li a {
+                padding: 15px 8px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .course-sidebar {
+                padding: 15px 10px;
+            }
+            .sidebar-header h2 {
+                font-size: 1.2em;
+            }
+            .course-sidebar nav ul li a {
+                flex-basis: calc(100% - 10px); /* Full width for mobile */
+                padding: 12px 15px;
+                margin-bottom: 10px;
+            }
+            .course-sidebar ul li a .module-number {
+                font-size: 0.85em;
+            }
+             .course-sidebar ul li a .module-name {
+                font-size: 0.95em; /* Adjust name font size */
+            }
+
+            .course-content {
+                padding: 20px 15px;
+            }
+            .module-header {
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+            }
+            .module-header h1 {
+                font-size: 1.6em;
+            }
+            .module-meta {
+                font-size: 0.9em;
+            }
+            .module-description {
+                font-size: 0.95em;
+            }
+
+            .lesson-list li a {
+                flex-direction: column; /* Stack lesson parts vertically */
+                align-items: flex-start; /* Align to left */
+                padding: 12px 10px;
+            }
+            .lesson-list .lesson-number {
+                width: auto; /* Auto width for lesson number */
+                margin-right: 0;
+                margin-bottom: 5px; /* Space below lesson number */
+                font-size: 0.9em;
+            }
+            .lesson-list .lesson-title {
+                margin-bottom: 5px; /* Space below title */
+                font-size: 1em;
+            }
+            .lesson-list .lesson-details,
+            .lesson-list .lesson-duration {
+                margin-left: 0; /* No left margin when stacked */
+                font-size: 0.85em;
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <div id="navbar-placeholder"></div> <!-- 導覽列佔位符 -->
+    <!-- Assuming navbar might be loaded by js/main.js into #navbar-placeholder if it's a separate component -->
+    <div id="navbar-placeholder"></div> 
+    
+    <!-- Optional Main Page Title (if needed, outside the two-column layout) -->
+    <!-- <h1 class="page-main-title">半導體小學堂</h1> -->
 
-    <div class="container">
-        <h1>專案入口</h1>
-        <p>目前規劃中</p>
-        <p><a href="about.html">關於此計畫</a></p>
+    <div class="course-layout">
+        <aside class="course-sidebar">
+            <div class="sidebar-header">
+                <h2>課程單元</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#module1" class="active" onclick="showModule('module1'); return false;"><span class="module-number">CH1</span> <span class="module-name">電腦究竟是什麼？</span></a></li>
+                    <li><a href="#module2" onclick="showModule('module2'); return false;"><span class="module-number">CH2</span> <span class="module-name">電腦與開關(硬體)</span></a></li>
+                    <li><a href="#module3" onclick="showModule('module3'); return false;"><span class="module-number">CH3</span> <span class="module-name">邏輯與開關(軟體)</span></a></li>
+                    <li><a href="#module4" onclick="showModule('module4'); return false;"><span class="module-number">CH4</span> <span class="module-name">晶片與製程</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="about.html" class="about-link">關於此計畫</a>
+            </div>
+        </aside>
+
+        <main class="course-content">
+            <!-- Module 1: 電腦是什麼？古老的計算智慧 -->
+            <section id="module1" class="content-module active">
+                <header class="module-header">
+                    <!-- <div class="module-image-placeholder">圖示預留</div> -->
+                    <h1>單元一：電腦究竟是什麼？古老的計算智慧</h1>
+                    <!-- <p class="module-meta"><span class="icon-lessons">📚</span> 3 週課程</p> -->
+                    <p class="module-description">從古老的計算方法到早期機械計算的夢想，認識電腦的起源。</p>
+                </header>
+                <ul class="lesson-list">
+                    <li><a href="#"><span class="lesson-number">S1</span> <span class="lesson-title">電腦究竟是什麼？</span> <span class="lesson-details">電腦用途、輸入/處理/輸出</span></a></li>
+                    <li><a href="#"><span class="lesson-number">S2</span> <span class="lesson-title">手指頭與小石頭—最早的計算機</span> <span class="lesson-details">古代計算工具、算盤</span></a></li>
+                    <li><a href="#"><span class="lesson-number">S3</span> <span class="lesson-title">機械計算的夢想—帕斯卡與巴貝奇</span> <span class="lesson-details">帕斯卡計算器、巴貝奇與愛達</span></a></li>
+                </ul>
+            </section>
+
+            <!-- Module 2: 從機械到電的轉變 -->
+            <section id="module2" class="content-module">
+                <header class="module-header">
+                    <h1>模組二：從機械到電的轉變</h1>
+                    <p class="module-meta"><span class="icon-lessons">💡</span> 5 週課程</p>
+                    <p class="module-description">探索從繼電器到真空管、電晶體，再到積體電路的電子計算革命。</p>
+                </header>
+                <ul class="lesson-list">
+                    <li><a href="#"><span class="lesson-number">W4</span> <span class="lesson-title">會「咔咔」響的開關—繼電器時代</span> <span class="lesson-details">繼電器原理、早期繼電器計算機</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W5</span> <span class="lesson-title">電的魔力—真空管時代</span> <span class="lesson-details">真空管原理、ENIAC</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W6</span> <span class="lesson-title">小兵立大功—電晶體的發明</span> <span class="lesson-details">電晶體優勢、電腦小型化</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W7</span> <span class="lesson-title">晶片的奇蹟—積體電路 (IC) 的誕生</span> <span class="lesson-details">IC概念、發明故事</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W8</span> <span class="lesson-title">晶片是什麼做的？—從沙子到黃金</span> <span class="lesson-details">矽材料、晶圓到晶片製程簡介</span></a></li>
+                </ul>
+            </section>
+
+            <!-- Module 3: 電腦走進你我家 -->
+            <section id="module3" class="content-module">
+                <header class="module-header">
+                    <h1>模組三：電腦走進你我家</h1>
+                    <p class="module-meta"><span class="icon-lessons">🏠</span> 4 週課程</p>
+                    <p class="module-description">見證個人電腦的普及與圖形介面、網路如何改變我們的生活。</p>
+                </header>
+                <ul class="lesson-list">
+                    <li><a href="#"><span class="lesson-number">W9</span> <span class="lesson-title">摩爾定律—晶片越來越厲害！</span> <span class="lesson-details">摩爾定律概念、電腦進步</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W10</span> <span class="lesson-title">個人電腦的時代來臨！</span> <span class="lesson-details">Apple II、IBM PC</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W11</span> <span class="lesson-title">滑鼠與視窗—電腦變好用了！</span> <span class="lesson-details">GUI、滑鼠發明</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W12</span> <span class="lesson-title">網路串起全世界</span> <span class="lesson-details">網際網路概念、網路應用</span></a></li>
+                </ul>
+            </section>
+
+            <!-- Module 4: 晶片無所不在與未來展望 -->
+            <section id="module4" class="content-module">
+                <header class="module-header">
+                    <h1>模組四：晶片無所不在與未來展望</h1>
+                    <p class="module-meta"><span class="icon-lessons">🔮</span> 5 週課程</p>
+                    <p class="module-description">了解晶片在現代生活中的無所不在，以及對未來科技的展望。</p>
+                </header>
+                <ul class="lesson-list">
+                    <li><a href="#"><span class="lesson-number">W13</span> <span class="lesson-title">口袋裡的超級電腦—智慧型手機</span> <span class="lesson-details">手機內的晶片、強大功能</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W14</span> <span class="lesson-title">晶片藏在哪裡？—生活中的隱形英雄</span> <span class="lesson-details">家電、汽車、玩具中的晶片</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W15</span> <span class="lesson-title">晶片設計師與工程師—打造晶片的人</span> <span class="lesson-details">晶片設計製造流程簡介</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W16</span> <span class="lesson-title">未來的電腦與晶片</span> <span class="lesson-details">AI、VR/AR、量子電腦展望</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W17</span> <span class="lesson-title">成果發表与回顧</span> <span class="lesson-details">學期總結、作品分享</span></a></li>
+                </ul>
+            </section>
+        </main>
     </div>
 
-    <script src="js/main.js"></script> <!-- 引入共用 JavaScript -->
+    <script>
+        function showModule(moduleId) {
+            // Hide all modules
+            document.querySelectorAll('.course-content .content-module').forEach(function(module) {
+                module.classList.remove('active');
+            });
+            // Show the selected module
+            document.getElementById(moduleId).classList.add('active');
+
+            // Update active state in sidebar
+            document.querySelectorAll('.course-sidebar nav ul li a').forEach(function(link) {
+                link.classList.remove('active');
+            });
+            document.querySelector('.course-sidebar nav ul li a[href="#' + moduleId + '"]').classList.add('active');
+        }
+        // Optionally, show the first module by default if no hash is present or on page load
+        // document.addEventListener('DOMContentLoaded', function() {
+        //    if (!window.location.hash) {
+        //        showModule('module1');
+        //    } else {
+        //        showModule(window.location.hash.substring(1));
+        //    }
+        // });
+    </script>
+    <!-- Old script link, assuming js/main.js might have other global functions or navbar logic -->
+    <script src="js/main.js"></script> 
 </body>
 </html>
 

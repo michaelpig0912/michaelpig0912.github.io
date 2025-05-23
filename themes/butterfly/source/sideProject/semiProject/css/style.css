@@ -18,7 +18,7 @@ body {
 
 /* Container for main content */
 .container {
-    max-width: 750px;
+    max-width: 1100px;
     margin: 30px auto;
     background: #ffffff;
     padding: 30px;
@@ -50,7 +50,7 @@ h1 {
 
 /* Navigation Bar Styles */
 .navbar {
-    background-color: rgba(20, 20, 30, 0.7);
+    background-color: rgba(20, 20, 30, 0.5);
     padding: 15px 30px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     position: fixed; /* Changed from sticky to fixed */
@@ -148,4 +148,121 @@ h1 {
     border-radius: 5px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+/* =================================================
+   響應式設計 (Responsive Design)
+   ================================================= */
+
+/* 平板電腦 (Tablet) */
+@media screen and (max-width: 768px) {
+    /* 導覽列調整 */
+    .navbar {
+        padding: 10px 20px;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .nav-links li {
+        margin-left: 0;
+        margin: 5px;
+    }
+    
+    .nav-logo {
+        font-size: 1.4em;
+    }
+    
+    /* 主要內容調整 */
+    body {
+        padding-top: 120px; /* 增加頂部間距以適應更高的導覽列 */
+    }
+    
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    h3 {
+        font-size: 1.3em;
+    }
+}
+
+/* 手機 (Mobile) */
+@media screen and (max-width: 480px) {
+    /* 導覽列進一步調整 */
+    .navbar {
+        padding: 8px 15px;
+    }
+    
+    .nav-logo {
+        font-size: 1.2em;
+    }
+    
+    .nav-links li a {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+    
+    /* 主要內容調整 */
+    body {
+        padding-top: 140px; /* 手機上需要更多頂部間距 */
+    }
+    
+    .container {
+        margin: 15px auto;
+        padding: 15px;
+        max-width: 95%;
+        border-radius: 8px;
+    }
+    
+    h1 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    
+    h3 {
+        font-size: 1.2em;
+        margin-bottom: 12px;
+    }
+    
+    p {
+        font-size: 0.95em;
+        line-height: 1.7;
+    }
+    
+    /* 按鈕調整 */
+    .button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+        border-radius: 20px;
+    }
+    
+    /* 狀態消息調整 */
+    .status {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
 } 

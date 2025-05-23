@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>晶片的誕生(開發中)</title>
   <style>
+    /* CubicFont 字體定義 */
+    @font-face {
+      font-family: 'CubicFont';
+      src: url('https://michaelpig0912.github.io/font/Cubic.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       /* 暗色主题变量 */
       --dark-primary-color: #3f51b5;
@@ -54,6 +63,63 @@
       --glow-color: var(--light-glow-color);
     }
 
+    /* Navigation Bar Styles */
+    .navbar {
+      background-color: rgba(20, 20, 30, 0.7);
+      padding: 15px 30px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin-left: 25px;
+    }
+
+    .nav-links li a {
+      color: #c0c0c0;
+      text-decoration: none;
+      font-size: 1em;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -61,11 +127,12 @@
     }
 
     body {
-      font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+      font-family: 'CubicFont', 'Microsoft JhengHei', 'Segoe UI', sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
       padding-bottom: 50px;
+      padding-top: 70px; /* Add top padding for fixed navbar */
       position: relative;
       overflow-x: hidden;
     }
@@ -109,7 +176,7 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -303,10 +370,10 @@
 
     .event h3 {
       margin: 0;
-      font-size: 13px;
+      font-size: 16px;
       color: #fff;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      font-weight: bold;
+      font-weight: normal;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -423,7 +490,7 @@
       font-size: 16px;
       color: #fff;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      font-weight: bold;
+      font-weight: normal;
       position: relative;
       padding-right: 20px;
     }
@@ -531,7 +598,84 @@
       }
     }
 
+    @media (max-width: 992px) { /* 新增斷點 */
+      /* 導覽列調整 */
+      .navbar {
+        padding: 12px 25px;
+      }
+      
+      .nav-logo {
+        font-size: 1.5em;
+      }
+      
+      .nav-links li {
+        margin-left: 20px;
+      }
+      
+      .nav-links li a {
+        font-size: 0.95em;
+        padding: 7px 11px;
+      }
+      
+      /* 原有的樣式規則 */
+      .container {
+        padding: 0 15px;
+      }
+      .timeline-wrapper {
+        margin-left: 80px;
+      }
+      .year-label {
+        width: 70px;
+        margin-left: -80px;
+        font-size: 0.9rem;
+      }
+      .era-divider {
+        margin: 80px 0 40px -80px;
+      }
+       .event, .placeholder {
+        min-width: 150px;
+        max-width: 180px;
+      }
+      .event h3 {
+        font-size: 14px; /* 調整標題字體大小 */
+      }
+      .event p {
+        font-size: 11px; /* 調整內文字體大小 */
+      }
+    }
+
     @media (max-width: 768px) {
+      /* 導覽列響應式調整 */
+      .navbar {
+        padding: 10px 20px;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      
+      .nav-links li {
+        margin-left: 0;
+        margin: 5px;
+      }
+      
+      .nav-logo {
+        font-size: 1.4em;
+      }
+      
+      /* 調整body的padding-top以適應更高的導覽列 */
+      body {
+        padding-top: 120px;
+      }
+      
+      /* 原有的樣式規則 */
       .timeline-wrapper {
         margin-left: 50px;
       }
@@ -547,6 +691,120 @@
         left: 30px;
         font-size: 0.9rem;
         padding: 8px 20px;
+      }
+      .event, .placeholder { /* 調整 event 和 placeholder 在768px下的樣式 */
+        min-width: 120px;
+        max-width: 150px;
+      }
+      .event h3 {
+        font-size: 13px; /* 調整標題字體大小 */
+      }
+      .event p {
+        font-size: 10px; /* 調整內文字體大小 */
+      }
+      .event-row {
+        gap: 5px; /* 縮小 event 之間的間距 */
+      }
+    }
+
+    @media (max-width: 576px) { /* 新增斷點 */
+      /* 導覽列進一步調整 */
+      .navbar {
+        padding: 8px 15px;
+      }
+      
+      .nav-logo {
+        font-size: 1.2em;
+      }
+      
+      .nav-links li a {
+        font-size: 0.9em;
+        padding: 6px 10px;
+      }
+      
+      /* 調整body的padding-top */
+      body {
+        padding-top: 140px;
+      }
+      
+      /* 原有的樣式規則 */
+      header {
+        padding: 20px 0;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .subtitle {
+        font-size: 1rem;
+      }
+      .timeline-wrapper {
+        margin-left: 10px; /* 大幅縮小左邊距 */
+        border-left: 2px solid var(--timeline-color); /* 減少邊框寬度 */
+      }
+      .year-label {
+        position: static; /* 改為靜態定位，使其在 event-row 上方 */
+        width: 100%;
+        margin-left: 0;
+        text-align: left; /* 文字靠左 */
+        margin-bottom: 10px; /* 增加與下方 event-row 的間距 */
+        background: transparent; /* 背景透明 */
+        box-shadow: none; /* 去除陰影 */
+        padding: 5px 0;
+        color: var(--text-color); /* 確保文字顏色正確 */
+        font-size: 0.9rem;
+      }
+      .era-divider {
+        margin: 60px 0 30px 0px; /* 調整 margin */
+        width: 100%;
+      }
+      .era-title {
+        left: 10px; /* 調整位置 */
+        font-size: 0.8rem;
+        padding: 6px 15px;
+      }
+      .event-row {
+        flex-direction: column; /* 改為垂直排列 */
+        align-items: flex-start; /* 事件靠左對齊 */
+        margin-left: 10px; /* 配合 timeline-wrapper 左邊距 */
+        width: calc(100% - 10px);
+      }
+      .event, .placeholder {
+        min-width: calc(100% - 20px); /* 事件寬度接近滿版 */
+        max-width: calc(100% - 20px);
+        margin-bottom: 10px; /* 增加事件間的垂直間距 */
+      }
+      .event:hover {
+         min-height: auto; /* hover 時高度自適應 */
+      }
+      .navigation-wrapper {
+        padding: 10px;
+      }
+      .era-nav-btn,
+      .category-label {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+      }
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+      #modalTitle {
+        font-size: 18px;
+      }
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+      }
+      .theme-toggle i {
+        font-size: 18px;
+      }
+      .back-to-top {
+        width: 35px;
+        height: 35px;
+        bottom: 10px;
+        right: 10px;
       }
     }
 
@@ -975,9 +1233,105 @@
     :root[data-theme="dark"] .modal-close {
       color: #ffffff;
     }
+
+    .navigation-wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .era-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .era-nav-btn {
+      background: transparent;
+      color: var(--text-color);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .era-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .era-nav-btn.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 15px var(--glow-color);
+    }
+
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .category-label {
+      background: transparent;
+      color: var(--text-color);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .category-label:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .category-label.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 15px var(--glow-color);
+    }
+
+    .category-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+      .navigation-wrapper {
+        padding: 15px;
+      }
+
+      .era-nav-btn,
+      .category-label {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+      }
+    }
   </style>
 </head>
 <body>
+  <div id="navbar-placeholder"></div>
+
   <header>
     <div class="container">
       <h1>晶片的誕生</h1>
@@ -1025,101 +1379,6 @@
         </div>
       </div>
     </div>
-
-    <style>
-      .navigation-wrapper {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 20px;
-        margin-bottom: 30px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .era-navigation {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-      }
-
-      .era-nav-btn {
-        background: transparent;
-        color: var(--text-color);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 8px 15px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-      }
-
-      .era-nav-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-      }
-
-      .era-nav-btn.active {
-        background: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 15px var(--glow-color);
-      }
-
-      .category-filter {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        padding-top: 15px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .category-label {
-        background: transparent;
-        color: var(--text-color);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 6px 12px;
-        border-radius: 15px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-
-      .category-label:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-      }
-
-      .category-label.active {
-        background: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 15px var(--glow-color);
-      }
-
-      .category-color {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-      }
-
-      @media (max-width: 768px) {
-        .navigation-wrapper {
-          padding: 15px;
-        }
-
-        .era-nav-btn, .category-label {
-          font-size: 0.8rem;
-          padding: 6px 10px;
-        }
-      }
-    </style>
 
     <div class="spacer"></div>
 
@@ -1841,6 +2100,7 @@
       }
     }
   </script>
+  <script src="js/main.js"></script> <!-- Added script for navbar loading -->
 </body>
 </html>
 
