@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相機測試</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #videoPreview {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border: 1px solid #ccc;
+            background-color: #000;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        #errorMessage {
+            color: red;
+            margin-top: 10px;
+        }
+        .controls button {
+            margin-right: 10px;
+        }
+         #instructions {
+            margin-top:15px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>相機 (Camera) 測試</h1>
+    </header>
+
+    <main>
+        <p><a href="../index.html">&larr; 返回主頁</a></p>
+        <section>
+            <h2>功能說明</h2>
+            <p>此頁面將測試您的瀏覽器是否可以存取裝置的相機。如果成功，您將在下方看到相機的即時影像串流。您可以嘗試切換前置和後置鏡頭（如果裝置支援）。</p>
+            <p><strong>IPO 範例：</strong></p>
+            <ul>
+                <li><strong>I (Input):</strong> 手機相機捕捉影像。</li>
+                <li><strong>P (Process):</strong> 網頁 JavaScript 處理影像數據，例如識別顏色或簡單的人臉/物體（本範例僅顯示串流）。</li>
+                <li><strong>O (Output):</strong> 網頁上顯示相機串流，或疊加虛擬物件、顯示識別結果。</li>
+            </ul>
+             <div id="instructions">
+                <p><strong>操作提示：</strong> 請先點擊「啟動相機」按鈕。瀏覽器會要求您授予相機存取權限。如果有多個相機，您可以嘗試「切換相機」按鈕。</p>
+            </div>
+        </section>
+        <section>
+            <h2>測試區域</h2>
+            <div class="controls">
+                <button id="startCameraButton">啟動/停止相機</button>
+                <button id="switchCameraButton" style="display:none;">切換相機</button>
+            </div>
+            <div id="sensorStatus" style="margin-top:10px; font-weight:bold;">狀態：未啟動</div>
+            <video id="videoPreview" autoplay playsinline></video>
+            <div id="errorMessage"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 手機感測器測試平台</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

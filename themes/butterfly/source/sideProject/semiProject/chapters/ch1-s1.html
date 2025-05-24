@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1: 電腦究竟是什麼？ - 半導體教學計畫</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Reset and Basic Body Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .lesson-header h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-header .breadcrumb {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .lesson-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .lesson-content h2 {
+            color: #007bff;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            border-left: 4px solid #007bff;
+            padding-left: 15px;
+        }
+
+        .lesson-content h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        .lesson-content p {
+            margin-bottom: 20px;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .lesson-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #e7f3ff;
+            border-left: 5px solid #007bff;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .back-to-index {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-index a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-to-index a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 20px 15px;
+            }
+            
+            .lesson-header h1 {
+                font-size: 2em;
+            }
+            
+            .lesson-content {
+                font-size: 1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <header class="lesson-header">
+            <h1>電腦究竟是什麼？</h1>
+            <div class="breadcrumb">第一章 第一節 (S1)</div>
+        </header>
+
+        <main class="lesson-content">
+            <h2>學習目標</h2>
+            <ul>
+                <li>理解電腦的基本概念和用途</li>
+                <li>認識電腦的基本組成部分</li>
+                <li>了解電腦處理資訊的基本原理：輸入、處理、輸出</li>
+                <li>探索電腦在日常生活中的應用</li>
+            </ul>
+
+            <h2>電腦到底是什麼？</h2>
+            <p>
+                當我們說到「電腦」，你會想到什麼？是桌上那台方方正正的機器？還是你手中的智慧型手機？
+                或者是家裡的電視、洗衣機？其實，這些都可以算是電腦的一種！
+            </p>
+
+            <div class="highlight-box">
+                <p><strong>電腦的定義：</strong>電腦是一種能夠接收資料、處理資料，並輸出結果的機器。
+                它能夠按照我們給它的指令，快速而準確地完成各種計算和處理工作。</p>
+            </div>
+
+            <h2>電腦的基本原理：輸入 → 處理 → 輸出</h2>
+            <p>
+                所有的電腦，不管是大是小、是新是舊，都遵循著同一個基本原理：
+            </p>
+
+            <h3>1. 輸入 (Input)</h3>
+            <p>
+                我們把資料或指令告訴電腦。這就像是我們對電腦說話，告訴它我們想要做什麼。
+            </p>
+            <div class="example-box">
+                <h4>輸入的例子：</h4>
+                <ul>
+                    <li>用鍵盤打字</li>
+                    <li>用滑鼠點擊</li>
+                    <li>對手機說話</li>
+                    <li>觸摸螢幕</li>
+                    <li>插入USB隨身碟</li>
+                </ul>
+            </div>
+
+            <h3>2. 處理 (Processing)</h3>
+            <p>
+                電腦的「大腦」會分析我們給它的資料，按照程式的指令進行計算和處理。
+                這個「大腦」就是我們常聽到的CPU（中央處理器）。
+            </p>
+            <div class="example-box">
+                <h4>處理的例子：</h4>
+                <ul>
+                    <li>計算數學題目</li>
+                    <li>整理照片</li>
+                    <li>播放音樂</li>
+                    <li>執行遊戲程式</li>
+                    <li>搜尋檔案</li>
+                </ul>
+            </div>
+
+            <h3>3. 輸出 (Output)</h3>
+            <p>
+                電腦把處理好的結果告訴我們。就像是電腦回答我們的問題，或是完成我們要求的工作。
+            </p>
+            <div class="example-box">
+                <h4>輸出的例子：</h4>
+                <ul>
+                    <li>螢幕顯示文字或圖片</li>
+                    <li>喇叭播放聲音</li>
+                    <li>印表機列印文件</li>
+                    <li>手機震動</li>
+                    <li>LED燈閃爍</li>
+                </ul>
+            </div>
+
+            <h2>電腦在生活中的應用</h2>
+            <p>
+                電腦已經成為我們生活中不可缺少的一部分。讓我們看看電腦在哪些地方幫助我們：
+            </p>
+
+            <h3>🏠 家庭生活</h3>
+            <ul>
+                <li><strong>智慧型手機：</strong>通訊、拍照、導航、遊戲</li>
+                <li><strong>電視：</strong>數位訊號處理、智慧功能</li>
+                <li><strong>洗衣機：</strong>自動控制洗衣程序</li>
+                <li><strong>微波爐：</strong>時間和溫度控制</li>
+            </ul>
+
+            <h3>🏫 教育學習</h3>
+            <ul>
+                <li><strong>線上學習：</strong>遠距教學、數位教材</li>
+                <li><strong>研究工具：</strong>資料搜尋、分析</li>
+                <li><strong>創作工具：</strong>繪圖、寫作、程式設計</li>
+            </ul>
+
+            <h3>🏥 醫療健康</h3>
+            <ul>
+                <li><strong>醫療設備：</strong>X光機、超音波、MRI</li>
+                <li><strong>健康監測：</strong>智慧手錶、血壓計</li>
+                <li><strong>醫療記錄：</strong>病歷管理、預約系統</li>
+            </ul>
+
+            <h3>🚗 交通運輸</h3>
+            <ul>
+                <li><strong>汽車：</strong>導航系統、安全輔助、引擎控制</li>
+                <li><strong>捷運：</strong>自動駕駛、票務系統</li>
+                <li><strong>飛機：</strong>自動駕駛、飛行控制</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>想想看：</strong>在你的一天中，你使用了哪些電腦？
+                從早上起床到晚上睡覺，電腦是如何幫助你的？</p>
+            </div>
+
+            <h2>電腦的特點</h2>
+            <p>為什麼電腦這麼有用？因為電腦有以下特點：</p>
+            
+            <ul>
+                <li><strong>速度快：</strong>能夠在很短的時間內完成大量計算</li>
+                <li><strong>準確性高：</strong>只要程式正確，電腦不會出錯</li>
+                <li><strong>儲存容量大：</strong>能夠記住大量的資料</li>
+                <li><strong>自動化：</strong>能夠按照程式自動執行工作</li>
+                <li><strong>重複性：</strong>能夠重複執行同樣的工作而不會疲倦</li>
+            </ul>
+
+            <h2>小結</h2>
+            <p>
+                電腦是現代生活中的重要工具，它們遵循「輸入→處理→輸出」的基本原理，
+                幫助我們處理各種工作和解決問題。從最簡單的計算器到最複雜的超級電腦，
+                它們都是基於同樣的基本概念運作的。
+            </p>
+            <p>
+                在下一節課中，我們將回到歷史，看看人類最早是如何進行計算的，
+                這將幫助我們更好地理解電腦的發展歷程。
+            </p>
+        </main>
+
+        <nav class="navigation">
+            <a href="../index.html" class="nav-button">← 回到課程總覽</a>
+            <a href="ch1-s2.html" class="nav-button">下一節：手指頭與小石頭 →</a>
+        </nav>
+
+        <div class="back-to-index">
+            <a href="../index.html">← 返回課程首頁</a>
+        </div>
+    </div>
+</body>
+</html> 

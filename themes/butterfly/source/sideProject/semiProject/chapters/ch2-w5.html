@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W5: 電的魔力—真空管時代 - 半導體教學計畫</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Reset and Basic Body Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #28a745;
+        }
+
+        .lesson-header h1 {
+            color: #28a745;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-header .breadcrumb {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .lesson-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .lesson-content h2 {
+            color: #28a745;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
+        }
+
+        .lesson-content h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        .lesson-content p {
+            margin-bottom: 20px;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .lesson-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .technical-box {
+            background-color: #e2f3ff;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .historical-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .innovation-box {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #218838;
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-to-index {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-index a {
+            color: #28a745;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-to-index a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 20px 15px;
+            }
+            
+            .lesson-header h1 {
+                font-size: 2em;
+            }
+            
+            .lesson-content {
+                font-size: 1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <header class="lesson-header">
+            <h1>電的魔力—真空管時代</h1>
+            <div class="breadcrumb">第二章 第二節 (W5)</div>
+        </header>
+
+        <main class="lesson-content">
+            <h2>學習目標</h2>
+            <ul>
+                <li>了解真空管的發明和工作原理</li>
+                <li>認識第一台電子計算機ENIAC</li>
+                <li>理解真空管相對於繼電器的優勢</li>
+                <li>探討真空管時代的重要發展</li>
+            </ul>
+
+            <h2>真空管的神奇發明</h2>
+            <p>
+                1904年，英國物理學家約翰・佛萊明（John Fleming）發明了第一個真空管—二極管。
+                這個看起來像燈泡的小裝置，竟然能夠控制電流的方向，
+                為電子時代的來臨打開了大門！
+            </p>
+
+            <div class="technical-box">
+                <h4>💡 真空管的工作原理：</h4>
+                <ol>
+                    <li><strong>熱電子發射：</strong>加熱燈絲，讓電子從陰極射出</li>
+                    <li><strong>真空環境：</strong>玻璃管內沒有空氣，電子可以自由移動</li>
+                    <li><strong>電場控制：</strong>控制極的電壓決定電子是否能通過</li>
+                    <li><strong>電流開關：</strong>實現電子開關的功能</li>
+                </ol>
+            </div>
+
+            <h3>真空管的演進</h3>
+            <div class="historical-box">
+                <h4>📜 真空管發展史：</h4>
+                <ul>
+                    <li><strong>1904年：</strong>佛萊明發明二極管（兩個電極）</li>
+                    <li><strong>1906年：</strong>李德佛斯特發明三極管（增加控制極）</li>
+                    <li><strong>1940年代：</strong>真空管技術成熟，開始用於計算機</li>
+                </ul>
+            </div>
+
+            <h2>真空管 vs 繼電器：技術大躍進</h2>
+            <p>
+                真空管的出現為計算機技術帶來了革命性的改變：
+            </p>
+
+            <div class="example-box">
+                <h4>真空管相較於繼電器的優勢：</h4>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="background-color: #f8f9fa;">
+                        <th style="border: 1px solid #dee2e6; padding: 10px;">特性</th>
+                        <th style="border: 1px solid #dee2e6; padding: 10px;">繼電器</th>
+                        <th style="border: 1px solid #dee2e6; padding: 10px;">真空管</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;"><strong>速度</strong></td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">1-10毫秒</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">微秒級</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;"><strong>可靠性</strong></td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">機械磨損</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">無機械部件</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;"><strong>噪音</strong></td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">咔咔響</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">安靜無聲</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;"><strong>尺寸</strong></td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">較大</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">較小</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>ENIAC：電子計算的巨人</h2>
+            <p>
+                1946年，世界上第一台大型電子計算機ENIAC（Electronic Numerical Integrator and Computer）
+                在美國賓夕法尼亞大學誕生。這台使用17,468個真空管的巨型機器，
+                標誌著真正的電子計算時代開始！
+            </p>
+
+            <div class="highlight-box">
+                <h4>🖥️ ENIAC的驚人規格：</h4>
+                <ul>
+                    <li><strong>真空管數量：</strong>17,468個</li>
+                    <li><strong>重量：</strong>30噸</li>
+                    <li><strong>佔地面積：</strong>167平方公尺（相當於一個大教室）</li>
+                    <li><strong>電力消耗：</strong>150千瓦（相當於150個家庭用電）</li>
+                    <li><strong>運算速度：</strong>每秒5000次加法運算</li>
+                    <li><strong>成本：</strong>約48萬美元（相當於現在的600萬美元）</li>
+                </ul>
+            </div>
+
+            <h3>ENIAC的革命性特點</h3>
+            <ul>
+                <li><strong>全電子：</strong>沒有機械移動部件</li>
+                <li><strong>程式化：</strong>可以透過重新配線來執行不同程式</li>
+                <li><strong>十進位：</strong>使用十進位數字系統</li>
+                <li><strong>平行處理：</strong>多個運算單元可同時工作</li>
+            </ul>
+
+            <div class="innovation-box">
+                <h4>💡 ENIAC的設計創新：</h4>
+                <p>ENIAC採用了模組化設計，包含20個「累加器」，每個都可以儲存一個10位數的數字。
+                這種設計讓ENIAC能夠同時進行多個運算，大大提高了計算效率。</p>
+            </div>
+
+            <h2>真空管的工作生活</h2>
+            <p>
+                雖然真空管帶來了計算速度的大幅提升，但它們也有自己的「脾氣」：
+            </p>
+
+            <h3>真空管的優點</h3>
+            <ul>
+                <li><strong>超快速度：</strong>開關速度比繼電器快1000倍以上</li>
+                <li><strong>無機械磨損：</strong>沒有移動部件，理論上更耐用</li>
+                <li><strong>安靜運作：</strong>不會發出咔咔聲</li>
+                <li><strong>精確控制：</strong>可以精確控制電流大小</li>
+            </ul>
+
+            <h3>真空管的挑戰</h3>
+            <ul>
+                <li><strong>容易燒壞：</strong>高溫工作，燈絲容易燒斷</li>
+                <li><strong>耗電量大：</strong>需要加熱燈絲，消耗大量電力</li>
+                <li><strong>發熱嚴重：</strong>需要強力冷卻系統</li>
+                <li><strong>體積龐大：</strong>雖然比繼電器小，但仍然很大</li>
+            </ul>
+
+            <div class="technical-box">
+                <h4>🔧 ENIAC的維護工作</h4>
+                <p>ENIAC平均每天要更換數個燒壞的真空管。維護工程師必須像醫生一樣，
+                隨時準備「手術」來替換故障的「器官」。當時有個笑話說：
+                「ENIAC不是在計算，就是在修理！」</p>
+            </div>
+
+            <h2>真空管時代的其他重要電腦</h2>
+            
+            <h3>英國的Colossus（1943）</h3>
+            <p>
+                實際上比ENIAC更早的電子計算機，用於破解德軍密碼，
+                但在戰爭期間被列為機密，直到1970年代才公開。
+            </p>
+
+            <h3>EDVAC和存儲程式概念</h3>
+            <p>
+                1949年的EDVAC引入了「存儲程式」概念，
+                程式和資料都儲存在同一個記憶體中，這個設計一直沿用到今天。
+            </p>
+
+            <div class="example-box">
+                <h4>其他重要的真空管電腦：</h4>
+                <ul>
+                    <li><strong>UNIVAC I (1951)：</strong>第一台商業用電腦</li>
+                    <li><strong>IBM 701 (1952)：</strong>IBM第一台大型電腦</li>
+                    <li><strong>WHIRLWIND (1951)：</strong>第一台即時電腦</li>
+                </ul>
+            </div>
+
+            <h2>程式設計的誕生</h2>
+            <p>
+                真空管電腦催生了現代程式設計的概念：
+            </p>
+
+            <ul>
+                <li><strong>機器語言：</strong>直接用數字指令控制電腦</li>
+                <li><strong>組合語言：</strong>用助記符號代替數字</li>
+                <li><strong>高階語言：</strong>FORTRAN（1954）等的開發</li>
+                <li><strong>編譯器：</strong>將高階語言轉換為機器語言</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>有趣的事實：</strong>「Bug」這個詞真的來自蟲子！1947年，
+                程式設計師Grace Hopper在Harvard Mark II中發現了一隻卡在繼電器中的飛蛾，
+                從此「debugging」就成了修復程式錯誤的標準術語。</p>
+            </div>
+
+            <h2>真空管時代的影響</h2>
+            <p>
+                真空管時代雖然只持續了約20年，但它的影響深遠：
+            </p>
+
+            <ul>
+                <li><strong>計算速度革命：</strong>讓複雜計算成為可能</li>
+                <li><strong>科學研究推進：</strong>促進了核物理、氣象等研究</li>
+                <li><strong>商業應用開始：</strong>大型企業開始使用電腦</li>
+                <li><strong>程式設計學科：</strong>軟體工程開始發展</li>
+                <li><strong>電腦工業基礎：</strong>奠定了現代電腦工業基礎</li>
+            </ul>
+
+            <div class="innovation-box">
+                <h4>🚀 真空管的意外用途</h4>
+                <p>除了計算機，真空管還被用於：電視機、收音機、雷達系統、
+                甚至早期的電子樂器！它們真正開啟了電子時代。</p>
+            </div>
+
+            <h2>小結</h2>
+            <p>
+                真空管時代是電腦發展史上的重要里程碑。雖然這些「電子燈泡」
+                體積龐大、耗電量高、容易故障，但它們證明了電子計算的巨大潛力。
+                從繼電器的「咔咔」聲到真空管的安靜運作，
+                電腦正朝著更快、更可靠的方向發展。
+            </p>
+            <p>
+                然而，真空管的限制也很明顯：太大、太熱、太不可靠。
+                科學家們開始尋找更好的解決方案，
+                這就導致了下一個革命性發明的誕生—電晶體！
+            </p>
+        </main>
+
+        <nav class="navigation">
+            <a href="ch2-w4.html" class="nav-button">← 上一節：繼電器時代</a>
+            <a href="ch2-w6.html" class="nav-button">下一節：電晶體的發明 →</a>
+        </nav>
+
+        <div class="back-to-index">
+            <a href="../index.html">← 返回課程首頁</a>
+        </div>
+    </div>
+</body>
+</html> 

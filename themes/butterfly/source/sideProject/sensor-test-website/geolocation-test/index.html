@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理位置測試</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #locationData p {
+            margin: 5px 0;
+            font-family: monospace;
+        }
+        #mapContainer {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            border: 1px solid #ccc;
+            background-color: #e0e0e0;
+            margin-top: 15px;
+            text-align: center;
+            line-height: 300px; /* Vertically center text if map doesn't load */
+            color: #555;
+            border-radius: 5px;
+        }
+         #instructions {
+            margin-top:15px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>地理位置 (Geolocation) 測試</h1>
+    </header>
+
+    <main>
+        <p><a href="../index.html">&larr; 返回主頁</a></p>
+        <section>
+            <h2>功能說明</h2>
+            <p>此頁面將測試您的瀏覽器是否可以獲取裝置的地理位置資訊 (GPS)。點擊按鈕後，瀏覽器會請求權限，成功後將顯示您的經緯度、海拔、精確度等資訊。</p>
+            <p><strong>IPO 範例：</strong></p>
+            <ul>
+                <li><strong>I (Input):</strong> GPS 模組偵測位置。</li>
+                <li><strong>P (Process):</strong> 網頁 JavaScript 處理位置數據，與預設目標位置比較。</li>
+                <li><strong>O (Output):</strong> 網頁上顯示距離目標點的遠近、觸發新地圖標記。</li>
+            </ul>
+            <div id="instructions">
+                <p><strong>操作提示：</strong> 請點擊「獲取當前位置」按鈕。瀏覽器將會詢問您是否允許網站存取您的位置資訊。為了獲得較佳的精確度，請確保裝置的 GPS 功能已開啟，且在室外或訊號良好的地方進行測試。</p>
+            </div>
+        </section>
+        <section>
+            <h2>測試區域</h2>
+            <button id="getLocationButton">獲取當前位置</button>
+            <button id="watchLocationButton">開始/停止持續監控位置</button>
+            <div id="sensorStatus" style="margin-top:10px; font-weight:bold;">狀態：未啟動</div>
+            <div id="locationData" style="margin-top:15px;">
+                <p>緯度 (Latitude): <span id="latitude">-</span></p>
+                <p>經度 (Longitude): <span id="longitude">-</span></p>
+                <p>精確度 (Accuracy): <span id="accuracy">-</span> 米</p>
+                <p>海拔 (Altitude): <span id="altitude">-</span> 米</p>
+                <p>海拔精確度 (Altitude Accuracy): <span id="altitudeAccuracy">-</span> 米</p>
+                <p>方向 (Heading): <span id="heading">-</span> 度</p>
+                <p>速度 (Speed): <span id="speed">-</span> 米/秒</p>
+                <p>時間戳 (Timestamp): <span id="timestamp">-</span></p>
+            </div>
+            <div id="mapContainer">
+                地圖將在此顯示 (如果API可用且位置獲取成功)
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 手機感測器測試平台</p>
+    </footer>
+    <!-- Leaflet CSS for map display -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html> 

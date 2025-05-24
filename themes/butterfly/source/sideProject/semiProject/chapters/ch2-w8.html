@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W8: 晶片是什麼做的？—從沙子到黃金 - 半導體教學計畫</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Reset and Basic Body Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #28a745;
+        }
+
+        .lesson-header h1 {
+            color: #28a745;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-header .breadcrumb {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .lesson-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .lesson-content h2 {
+            color: #28a745;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
+        }
+
+        .lesson-content h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        .lesson-content p {
+            margin-bottom: 20px;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .lesson-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .technical-box {
+            background-color: #e2f3ff;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .historical-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .innovation-box {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .material-box {
+            background-color: #e7e4ff;
+            border-left: 5px solid #6f42c1;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #218838;
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-to-index {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-index a {
+            color: #28a745;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-to-index a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 20px 15px;
+            }
+            
+            .lesson-header h1 {
+                font-size: 2em;
+            }
+            
+            .lesson-content {
+                font-size: 1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <header class="lesson-header">
+            <h1>晶片是什麼做的？—從沙子到黃金</h1>
+            <div class="breadcrumb">第二章 第五節 (W8)</div>
+        </header>
+
+        <main class="lesson-content">
+            <h2>學習目標</h2>
+            <ul>
+                <li>了解半導體材料的基本特性</li>
+                <li>認識矽材料從沙子到晶圓的製作過程</li>
+                <li>探索晶片製造的精密工藝</li>
+                <li>理解為什麼矽被稱為「數位時代的黃金」</li>
+            </ul>
+
+            <h2>一個令人驚訝的事實</h2>
+            <p>
+                你知道嗎？你手中價值數萬元的智慧型手機，它的核心晶片竟然是用沙子做的！
+                沒錯，就是海灘上那些平凡無奇的沙子。通過神奇的技術，
+                沙子可以變成比黃金還珍貴的半導體晶片！
+            </p>
+
+            <div class="highlight-box">
+                <p><strong>神奇的轉變：</strong>從一粒沙子到一顆晶片，
+                經過數百道精密工序，價值可以增加數萬倍！
+                這就是為什麼矽被稱為「數位時代的黃金」。</p>
+            </div>
+
+            <h2>什麼是半導體？</h2>
+            <p>
+                要了解晶片材料，首先要知道什麼是「半導體」。
+                半導體是一種神奇的材料，它的導電能力介於導體和絕緣體之間，
+                而且可以通過外力來控制它的導電性。
+            </p>
+
+            <h3>材料的導電性比較</h3>
+            <div class="material-box">
+                <h4>⚡ 三種材料的導電性：</h4>
+                <ul>
+                    <li><strong>導體（如銅、銀）：</strong>電流很容易通過</li>
+                    <li><strong>絕緣體（如橡膠、玻璃）：</strong>電流很難通過</li>
+                    <li><strong>半導體（如矽、鍺）：</strong>導電能力可以被控制</li>
+                </ul>
+                <p><strong>半導體的神奇之處：</strong>在不同條件下，可以表現得像導體或絕緣體！</p>
+            </div>
+
+            <h2>為什麼選擇矽？</h2>
+            <p>
+                地球上有很多半導體材料，為什麼矽（Silicon）成為製作晶片的首選呢？
+            </p>
+
+            <div class="example-box">
+                <h4>矽的優勢：</h4>
+                <ul>
+                    <li><strong>含量豐富：</strong>地球地殼中第二豐富的元素</li>
+                    <li><strong>原料便宜：</strong>沙子的主要成分就是二氧化矽</li>
+                    <li><strong>性能穩定：</strong>在高溫下也能正常工作</li>
+                    <li><strong>容易加工：</strong>適合大規模工業製造</li>
+                    <li><strong>純度高：</strong>可以提純到99.9999999%以上</li>
+                </ul>
+            </div>
+
+            <h2>從沙子到矽晶圓的奇妙旅程</h2>
+            <p>
+                讓我們跟隨一粒沙子，看看它是如何變成高科技晶片的原料：
+            </p>
+
+            <h3>第一步：提取矽</h3>
+            <div class="technical-box">
+                <h4>🏭 從沙子提取矽的過程：</h4>
+                <ol>
+                    <li><strong>原料：</strong>石英砂（主要成分SiO₂）</li>
+                    <li><strong>高溫冶煉：</strong>在2000°C的電弧爐中加熱</li>
+                    <li><strong>化學反應：</strong>SiO₂ + C → Si + CO₂</li>
+                    <li><strong>初步產品：</strong>工業級矽（純度約98%）</li>
+                </ol>
+            </div>
+
+            <h3>第二步：提純矽</h3>
+            <p>
+                工業級的矽還不夠純淨，需要進一步提純到「電子級」的純度：
+            </p>
+
+            <div class="technical-box">
+                <h4>🧪 西門子提純法：</h4>
+                <ol>
+                    <li><strong>製作氯化矽：</strong>Si + HCl → SiHCl₃</li>
+                    <li><strong>蒸餾純化：</strong>去除雜質</li>
+                    <li><strong>化學氣相沉積：</strong>在高溫下分解，析出高純度矽</li>
+                    <li><strong>最終純度：</strong>99.9999999%（9個9）</li>
+                </ol>
+                <p><strong>驚人的純度：</strong>相當於在一億個矽原子中，只能有一個雜質原子！</p>
+            </div>
+
+            <h3>第三步：製作單晶矽</h3>
+            <p>
+                高純度的矽還需要製作成「單晶」，也就是所有原子排列整齊的矽晶體：
+            </p>
+
+            <div class="innovation-box">
+                <h4>💎 柴可拉斯基法（CZ法）：</h4>
+                <ol>
+                    <li><strong>熔化矽料：</strong>在1415°C熔化高純度矽</li>
+                    <li><strong>種晶引導：</strong>用完美的種晶接觸矽液</li>
+                    <li><strong>緩慢拉升：</strong>邊轉邊拉，讓矽慢慢結晶</li>
+                    <li><strong>形成矽棒：</strong>得到直徑20-30公分的單晶矽棒</li>
+                </ol>
+            </div>
+
+            <h3>第四步：製作矽晶圓</h3>
+            <p>
+                單晶矽棒需要切片成薄薄的圓片，這就是製作晶片的基礎—矽晶圓：
+            </p>
+
+            <div class="technical-box">
+                <h4>🔪 晶圓製作過程：</h4>
+                <ol>
+                    <li><strong>切片：</strong>用鑽石線鋸將矽棒切成0.7mm厚的圓片</li>
+                    <li><strong>研磨：</strong>用磨料把表面磨平</li>
+                    <li><strong>拋光：</strong>達到原子級平整度</li>
+                    <li><strong>清洗：</strong>去除所有微粒和雜質</li>
+                    <li><strong>檢查：</strong>確保品質達到標準</li>
+                </ol>
+            </div>
+
+            <h2>晶圓有多平？</h2>
+            <p>
+                矽晶圓的平整度要求極高，這種精密度令人難以置信：
+            </p>
+
+            <div class="highlight-box">
+                <h4>🏁 平整度的比喻：</h4>
+                <p>如果把一片12吋（30公分）的矽晶圓放大到整個台灣這麼大，
+                它表面的起伏不能超過一個籃球的高度！
+                這就是製作晶片所需的精密度。</p>
+            </div>
+
+            <h2>晶片製造：在矽晶圓上「畫」電路</h2>
+            <p>
+                有了完美的矽晶圓，接下來就是在上面製作電路了。
+                這個過程就像是在原子級別上進行的「雕刻藝術」：
+            </p>
+
+            <h3>光刻技術：用光來「畫」電路</h3>
+            <div class="technical-box">
+                <h4>📸 光刻的神奇過程：</h4>
+                <ol>
+                    <li><strong>塗光阻：</strong>在晶圓上塗一層感光材料</li>
+                    <li><strong>對準曝光：</strong>用極紫外光通過光罩照射</li>
+                    <li><strong>顯影：</strong>被光照射的部分變得可溶</li>
+                    <li><strong>清洗：</strong>洗去可溶部分，露出矽表面</li>
+                    <li><strong>蝕刻：</strong>用化學方法蝕刻露出的部分</li>
+                </ol>
+            </div>
+
+            <h3>製程的精密度</h3>
+            <p>
+                現代晶片製造的精密度已經達到了原子級別：
+            </p>
+
+            <div class="material-box">
+                <h4>🔬 製程節點的演進：</h4>
+                <ul>
+                    <li><strong>1990年代：</strong>500奈米（5000個原子寬）</li>
+                    <li><strong>2000年代：</strong>130奈米（1300個原子寬）</li>
+                    <li><strong>2010年代：</strong>28奈米（280個原子寬）</li>
+                    <li><strong>現在：</strong>3奈米（約30個原子寬）</li>
+                </ul>
+                <p><strong>驚人對比：</strong>頭髮絲的直徑約50,000奈米，現在的晶片線寬只有頭髮絲的1/16,000！</p>
+            </div>
+
+            <h2>製造晶片需要什麼設備？</h2>
+            <p>
+                製造現代晶片需要世界上最精密的設備：
+            </p>
+
+            <div class="example-box">
+                <h4>晶片廠的關鍵設備：</h4>
+                <ul>
+                    <li><strong>光刻機：</strong>價值超過1億美元的精密設備</li>
+                    <li><strong>蝕刻機：</strong>用於精確雕刻電路圖案</li>
+                    <li><strong>離子植入機：</strong>向矽中植入雜質原子</li>
+                    <li><strong>化學氣相沉積機：</strong>沉積各種薄膜材料</li>
+                    <li><strong>檢測設備：</strong>確保每個步驟的品質</li>
+                </ul>
+            </div>
+
+            <h2>無塵室：比手術室還乾淨的環境</h2>
+            <p>
+                製造晶片需要極度潔淨的環境，因為一個灰塵微粒就能毀掉整個晶片：
+            </p>
+
+            <div class="technical-box">
+                <h4>🧼 無塵室的潔淨度：</h4>
+                <ul>
+                    <li><strong>Class 1 無塵室：</strong>每立方公尺空氣中只能有1個0.5微米的微粒</li>
+                    <li><strong>對比：</strong>一般室內空氣有3500萬個微粒</li>
+                    <li><strong>防護：</strong>工作人員必須穿全身防護服</li>
+                    <li><strong>控制：</strong>溫度、濕度、氣流都嚴格控制</li>
+                </ul>
+            </div>
+
+            <h2>晶片製造的複雜度</h2>
+            <p>
+                製造一顆現代晶片需要數百道工序，整個過程可能需要2-3個月：
+            </p>
+
+            <div class="innovation-box">
+                <h4>🏭 製造流程的複雜度：</h4>
+                <ul>
+                    <li><strong>工序數量：</strong>超過1000道工序</li>
+                    <li><strong>光刻次數：</strong>可能需要50-100次光刻</li>
+                    <li><strong>薄膜層數：</strong>可達100多層</li>
+                    <li><strong>總厚度：</strong>所有薄膜加起來只有頭髮絲的1/100</li>
+                    <li><strong>製造時間：</strong>8-12週</li>
+                </ul>
+            </div>
+
+            <h2>晶片中的其他材料</h2>
+            <p>
+                除了矽，現代晶片還使用了很多其他珍貴材料：
+            </p>
+
+            <div class="material-box">
+                <h4>💎 晶片中的「元素週期表」：</h4>
+                <ul>
+                    <li><strong>銅：</strong>製作極細的導線</li>
+                    <li><strong>鋁：</strong>較粗的連接線</li>
+                    <li><strong>鎢：</strong>接觸插頭</li>
+                    <li><strong>金：</strong>接合線和接點</li>
+                    <li><strong>稀土元素：</strong>摻雜用的特殊材料</li>
+                    <li><strong>氮化矽、氧化鉿：</strong>絕緣和介電材料</li>
+                </ul>
+            </div>
+
+            <h2>為什麼晶片這麼貴？</h2>
+            <p>
+                了解了製造過程，就知道為什麼先進晶片比黃金還珍貴了：
+            </p>
+
+            <ul>
+                <li><strong>設備成本：</strong>建一座晶片廠需要100-200億美元</li>
+                <li><strong>技術門檻：</strong>需要頂尖的科學技術</li>
+                <li><strong>良品率：</strong>複雜製程導致成功率不是100%</li>
+                <li><strong>研發投入：</strong>每個新製程需要數十億美元研發</li>
+                <li><strong>專利保護：</strong>核心技術掌握在少數公司手中</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>💰 價值對比</h4>
+                <p>以重量計算，先進晶片的價值可以是黃金的1000倍以上！
+                這就是為什麼它們被稱為「數位時代的黃金」。</p>
+            </div>
+
+            <h2>台灣在全球晶片產業的地位</h2>
+            <p>
+                台灣在全球半導體產業中扮演著關鍵角色：
+            </p>
+
+            <div class="example-box">
+                <h4>🇹🇼 台灣的半導體實力：</h4>
+                <ul>
+                    <li><strong>晶圓代工：</strong>台積電是全球最大的晶圓代工廠</li>
+                    <li><strong>封裝測試：</strong>日月光等公司在全球領先</li>
+                    <li><strong>IC設計：</strong>聯發科、瑞昱等知名公司</li>
+                    <li><strong>材料設備：</strong>提供關鍵的製造材料和設備</li>
+                    <li><strong>市場地位：</strong>全球約63%的晶片在台灣製造</li>
+                </ul>
+            </div>
+
+            <h2>小結</h2>
+            <p>
+                從海灘上的沙子到手機裡的晶片，這個轉變過程展現了人類科技的奇蹟。
+                通過精密的提純、結晶、切片、光刻等工藝，
+                平凡的矽原子被排列成完美的電路，
+                成為推動數位時代的核心動力。
+            </p>
+            <p>
+                這個過程不僅需要頂尖的科學技術，
+                更需要數千名工程師和技術人員的協同合作。
+                每一片晶片都是人類智慧的結晶，
+                值得我們深深地讚嘆和尊敬。
+            </p>
+            <p>
+                現在我們已經了解了從繼電器到積體電路的發展歷程，
+                接下來讓我們看看這些技術如何改變整個世界，
+                讓電腦走進千家萬戶！
+            </p>
+        </main>
+
+        <nav class="navigation">
+            <a href="ch2-w7.html" class="nav-button">← 上一節：積體電路的誕生</a>
+            <a href="../index.html" class="nav-button">完成第二章 →</a>
+        </nav>
+
+        <div class="back-to-index">
+            <a href="../index.html">← 返回課程首頁</a>
+        </div>
+    </div>
+</body>
+</html> 

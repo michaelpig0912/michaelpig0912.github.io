@@ -22,6 +22,7 @@ menu:
      互動影片問答: /sideProject/InteractiQuiz/index.html || fas fa-solid fa-question
      半導體計畫: /sideProject/semiProject/index.html || fas fa-microchip
      NCUE107Physics: /sideProject/NCUE107Physics/ || fas fa-solid fa-book
+     手機感測器: /sideProject/sensor-test-website/index.html || fas fa-phone
 
 nav:
   logo: # image
