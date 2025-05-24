@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>實驗室記錄 - 機密檔案</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            padding-top: 0;
+        }
+
+        .classified-header {
+            background: #8B0000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ff0000;
+        }
+
+        .container {
+            max-width: 900px;
+            background: rgba(30, 30, 30, 0.95);
+            border: 2px solid #444;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        .document-header {
+            background: #2a2a2a;
+            padding: 20px;
+            border-bottom: 1px solid #555;
+        }
+
+        .document-header h1 {
+            color: #ff6b6b;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .content-section {
+            padding: 30px;
+            line-height: 1.8;
+        }
+
+        .timestamp {
+            color: #4ecdc4;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 2px 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .redacted:hover {
+            background: #333;
+            color: #ff6b6b;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .cipher-text {
+            background: #2a2a2a;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #ffa726;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
+        .hidden-message {
+            opacity: 0;
+            transition: opacity 2s ease;
+            background: #1a4d3a;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .hidden-message.revealed {
+            opacity: 1;
+        }
+
+        .coordinate {
+            color: #4ecdc4;
+            font-weight: bold;
+            cursor: help;
+        }
+
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .navigation-hint {
+            background: rgba(76, 205, 196, 0.1);
+            border: 1px dashed #4ecdc4;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .binary-sequence {
+            font-family: monospace;
+            color: #4ecdc4;
+            letter-spacing: 2px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-header">
+        機密檔案 - 僅限授權人員查閱 - 安全等級：RESTRICTED
+    </div>
+
+    <div class="container">
+        <div class="document-header">
+            <h1>實驗室記錄 #M-1973-047</h1>
+            <div class="metadata">
+                <div><strong>研究員：</strong> Dr. <span class="redacted">███████</span> Maxwell</div>
+                <div><strong>部門：</strong> 先進計算研究所</div>
+                <div><strong>分類等級：</strong> <span style="color: #ff6b6b;">機密</span></div>
+                <div><strong>最後更新：</strong> 1973.03.<span class="coordinate">15</span></div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="timestamp">[1973.02.28 - 23:47]</div>
+            <p>實驗進展順利。新的<span class="redacted">電路設計</span>比預期的效率高出40%。如果這個發現被證實，它將徹底改變我們對半導體技術的理解。</p>
+
+            <p>但是我開始擔心這項研究的影響。昨天收到了來自<span class="redacted">██████</span>的壓力，要求我停止某些實驗。他們說這"太危險了"，但我知道真正的原因。</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 以下內容可能包含敏感技術信息
+            </div>
+
+            <div class="timestamp">[1973.03.05 - 14:22]</div>
+            <p>今天在整理<span class="coordinate">巴貝奇</span>的筆記時，我發現了一些令人震驚的東西。在第<span class="coordinate">142</span>頁，他不只是在設計分析引擎，他還在思考一些更深層的問題...</p>
+
+            <div class="code-block">
+                實驗代碼序列：
+                <br>INDEX_PATTERN: <span class="binary-sequence">01101001 01101110 01100100 01100101 01111000</span>
+                <br>MAP_COORDINATES: <span class="coordinate">map.html</span>
+                <br>ABOUT_REFERENCE: <span class="coordinate">about.html</span>
+            </div>
+
+            <div class="timestamp">[1973.03.12 - 02:15]</div>
+            <p class="glitch">他們來了。我能聽到走廊裡的腳步聲。我必須隱藏這些研究。</p>
+
+            <p>如果有人發現這份記錄，請記住：<strong>真相隱藏在數字之間</strong>。尋找模式，跟隨線索。</p>
+
+            <div class="cipher-text">
+                加密訊息 [Caesar +13]：
+                <br>GUR NOFPRAG CEBWRPG VF VA GUR ZVPEBFPBCR
+                <br>YBBX SBE GUR UVQQRA SVYR VA GUR FBHEPR
+            </div>
+
+            <div class="timestamp">[1973.03.14 - 19:33]</div>
+            <p>最後一個晚上。明天我就要"消失"了。但這項發現太重要了，不能就這樣埋葬。</p>
+
+            <p>我在其他地方留下了線索。如果你夠聰明，就能找到它們：</p>
+            <ul>
+                <li>第一個線索在時間軸的<span class="coordinate">1642</span>年</li>
+                <li>第二個線索隱藏在更新日誌中</li>
+                <li>最後的真相需要你解開<span class="binary-sequence">01001101</span>的秘密</li>
+            </ul>
+
+            <div class="hidden-message" id="secretMessage">
+                <strong>解密成功！</strong><br>
+                如果你看到這條訊息，說明你找對了方向。Dr. Maxwell的研究並沒有消失，它被藏在了網站的其他角落。
+                繼續尋找吧，探索者！
+            </div>
+
+            <div class="timestamp">[1973.03.15 - 06:00]</div>
+            <p><span class="redacted">記錄終止</span></p>
+
+            <div class="navigation-hint">
+                🔍 探索提示：嘗試點擊被遮蔽的文字，解密密碼，或尋找隱藏在網站其他頁面的線索...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 點擊遮蔽文字顯示內容
+        document.querySelectorAll('.redacted').forEach(element => {
+            element.addEventListener('click', function() {
+                this.style.background = '#333';
+                this.style.color = '#ff6b6b';
+                
+                // 特殊觸發器
+                if (this.textContent.includes('電路設計')) {
+                    setTimeout(() => {
+                        document.getElementById('secretMessage').classList.add('revealed');
+                    }, 1000);
+                }
+            });
+        });
+
+        // 座標點擊事件
+        document.querySelectorAll('.coordinate').forEach(element => {
+            element.addEventListener('click', function() {
+                if (this.textContent === 'map.html') {
+                    alert('線索：在發展地圖中尋找1973年的異常...');
+                } else if (this.textContent === 'about.html') {
+                    alert('線索：關於頁面的隱藏段落可能包含重要信息...');
+                } else if (this.textContent === '巴貝奇') {
+                    alert('線索：查看歷史時間軸，巴貝奇的條目可能有特殊標記...');
+                } else if (this.textContent === '142') {
+                    alert('線索：頁面中的第142個字符可能有特殊意義...');
+                } else if (this.textContent === '15') {
+                    alert('線索：3月15日...尋找與這個日期相關的其他記錄...');
+                } else if (this.textContent === '1642') {
+                    alert('線索：1642年，帕斯卡計算器...前往時間軸查看詳細信息！');
+                }
+            });
+        });
+
+        // 二進制解碼器
+        document.querySelectorAll('.binary-sequence').forEach(element => {
+            element.addEventListener('click', function() {
+                const binary = this.textContent.replace(/\s/g, '');
+                
+                if (binary === '01101001011011100110010001100101011110000') {
+                    alert('解碼結果：index');
+                } else if (binary === '01001101') {
+                    alert('解碼結果：M (這就是線索！你正在正確的頁面上)');
+                } else {
+                    // 簡單的二進制轉ASCII
+                    const chunks = binary.match(/.{8}/g);
+                    if (chunks) {
+                        const decoded = chunks.map(chunk => 
+                            String.fromCharCode(parseInt(chunk, 2))
+                        ).join('');
+                        alert('解碼結果：' + decoded);
+                    }
+                }
+            });
+        });
+
+        // Caesar密碼解密提示
+        document.querySelector('.cipher-text').addEventListener('click', function() {
+            alert('Caesar密碼提示：將每個字母向後移動13位...\n解密結果：THE ANSWER PROJECT IS IN THE MICROSCOPE\nLOOK FOR THE HIDDEN FILE IN THE SOURCE');
+        });
+
+        // 添加一些氛圍效果
+        setInterval(() => {
+            const glitchElements = document.querySelectorAll('.glitch');
+            glitchElements.forEach(el => {
+                if (Math.random() < 0.1) {
+                    el.style.color = '#ff6b6b';
+                    setTimeout(() => {
+                        el.style.color = '#e0e0e0';
+                    }, 200);
+                }
+            });
+        }, 3000);
+
+        // 隱藏的彩蛋：檢查源碼
+        console.log(`
+        ╔══════════════════════════════════════╗
+        ║  恭喜你！你找到了隱藏的開發者訊息！    ║
+        ║                                      ║
+        ║  Dr. Maxwell的最後一條訊息：           ║
+        ║  "真相就在代碼之中，探索者。"          ║
+        ║                                      ║
+        ║  下一個線索：檢查 updates.html         ║
+        ║  尋找日期 1973.03.15                 ║
+        ╚══════════════════════════════════════╝
+        `);
+
+        // 隱藏攻略觸發器
+        let clickSequence = [];
+        const secretSequence = ['15', 'M', '142', '巴貝奇'];
+        let sequenceIndex = 0;
+
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('coordinate') || e.target.classList.contains('binary-sequence')) {
+                const clickedText = e.target.textContent.replace(/\s/g, '');
+                
+                if (clickedText === secretSequence[sequenceIndex]) {
+                    sequenceIndex++;
+                    if (sequenceIndex === secretSequence.length) {
+                        showWalkthrough();
+                        sequenceIndex = 0;
+                    }
+                } else {
+                    sequenceIndex = 0;
+                }
+            }
+        });
+
+        function showWalkthrough() {
+            const walkthroughDiv = document.createElement('div');
+            walkthroughDiv.id = 'walkthrough';
+            walkthroughDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.95);
+                color: #00ff00;
+                padding: 30px;
+                border: 2px solid #00ff00;
+                border-radius: 10px;
+                max-width: 800px;
+                max-height: 80vh;
+                overflow-y: auto;
+                z-index: 10000;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.6;
+            `;
+
+            walkthroughDiv.innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: #00ff00; margin: 0;">🎮 ARG完整攻略</h2>
+                    <p style="color: #ffff00; margin: 5px 0;">《Dr. Maxwell的失蹤研究》</p>
+                </div>
+                
+                <div style="border-bottom: 1px solid #333; margin: 20px 0;"></div>
+                
+                <h3 style="color: #ff6b6b;">📋 第一階段：基礎探索</h3>
+                <ol style="margin-left: 20px;">
+                    <li><strong>點擊遮蔽文字：</strong>所有黑色方塊都可以點擊顯示隱藏內容</li>
+                    <li><strong>特別注意"電路設計"：</strong>點擊後會觸發隱藏訊息出現</li>
+                    <li><strong>時間戳記錄：</strong>注意所有日期，特別是 1973.03.15</li>
+                </ol>
+
+                <h3 style="color: #ff6b6b;">🔢 第二階段：密碼解析</h3>
+                <ol style="margin-left: 20px;">
+                    <li><strong>二進制序列：</strong>
+                        <ul style="margin-left: 20px; color: #4ecdc4;">
+                            <li>01101001...→ "index" (指向首頁)</li>
+                            <li>01001101 → "M" (當前頁面確認)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Caesar密碼：</strong>
+                        <ul style="margin-left: 20px; color: #4ecdc4;">
+                            <li>每個字母後移13位</li>
+                            <li>解密結果："THE ANSWER PROJECT IS IN THE MICROSCOPE"</li>
+                            <li>"LOOK FOR THE HIDDEN FILE IN THE SOURCE"</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3 style="color: #ff6b6b;">🗺️ 第三階段：跨頁面線索</h3>
+                <ol style="margin-left: 20px;">
+                    <li><strong>map.html：</strong>尋找1973年的異常事件</li>
+                    <li><strong>about.html：</strong>查找隱藏段落</li>
+                    <li><strong>updates.html：</strong>尋找1973.03.15的記錄</li>
+                    <li><strong>index.html：</strong>1642年帕斯卡計算器條目</li>
+                </ol>
+
+                <h3 style="color: #ff6b6b;">🎯 第四階段：座標線索</h3>
+                <ul style="margin-left: 20px;">
+                    <li><strong>巴貝奇：</strong>查看歷史時間軸</li>
+                    <li><strong>142：</strong>頁面第142個字符</li>
+                    <li><strong>15：</strong>3月15日相關記錄</li>
+                    <li><strong>1642：</strong>帕斯卡計算器線索</li>
+                </ul>
+
+                <h3 style="color: #ff6b6b;">🕵️ 第五階段：隱藏內容</h3>
+                <ol style="margin-left: 20px;">
+                    <li><strong>開發者工具：</strong>按F12查看控制台訊息</li>
+                    <li><strong>源碼檢查：</strong>右鍵"檢視原始碼"尋找隱藏註釋</li>
+                    <li><strong>特殊序列：</strong>按順序點擊 15 → M → 142 → 巴貝奇 (你已經成功了！)</li>
+                </ol>
+
+                <h3 style="color: #ff6b6b;">🏆 完整解謎路徑</h3>
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                    <p style="color: #ffff00;">1. 在M.html閱讀Dr. Maxwell的日記</p>
+                    <p style="color: #ffff00;">2. 點擊所有遮蔽文字，特別是"電路設計"</p>
+                    <p style="color: #ffff00;">3. 解密Caesar密碼獲得"MICROSCOPE"線索</p>
+                    <p style="color: #ffff00;">4. 前往map.html尋找1973年異常</p>
+                    <p style="color: #ffff00;">5. 檢查about.html的隱藏段落</p>
+                    <p style="color: #ffff00;">6. 在updates.html找到1973.03.15記錄</p>
+                    <p style="color: #ffff00;">7. 返回index.html的1642年條目</p>
+                    <p style="color: #ffff00;">8. 最終在"顯微鏡"中發現Dr. Maxwell的研究真相</p>
+                </div>
+
+                <h3 style="color: #ff6b6b;">💡 額外提示</h3>
+                <ul style="margin-left: 20px; color: #4ecdc4;">
+                    <li>注意所有藍綠色文字，它們通常是可點擊的</li>
+                    <li>故障效果的文字可能包含重要信息</li>
+                    <li>時間戳的順序可能是線索</li>
+                    <li>數字142可能指向特定位置或編碼</li>
+                    <li>"MICROSCOPE"暗示要仔細檢查細節</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="document.getElementById('walkthrough').remove()" 
+                            style="background: #ff6b6b; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                        關閉攻略
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(walkthroughDiv);
+        }
+    </script>
+</body>
+</html>
