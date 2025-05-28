@@ -16,21 +16,41 @@
 
         body {
             /* font-family is now inherited from css/style.css (CubicFont) */
-            background-color: #f8f9fa; /* Light grey background */
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
             color: #333;
             line-height: 1.6;
-            display: flex; /* Use flex for overall page structure if navbar is separate */
-            flex-direction: column; /* Or adjust if navbar is part of the course-layout */
+            display: flex;
+            flex-direction: column;
             min-height: 100vh;
-            overflow-y: scroll; /* Always show scrollbar to prevent jumping */
+            overflow-y: scroll;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tech-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/><circle cx="0" cy="0" r="0.5" fill="rgba(0,255,255,0.3)"/><circle cx="20" cy="20" r="0.5" fill="rgba(0,255,255,0.3)"/></pattern></defs><rect width="100" height="100" fill="url(%23tech-grid)"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+            animation: techPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes techPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         :root {
-            --color-module-1: #007bff; /* Blue */
-            --color-module-2: #28a745; /* Green */
-            --color-module-3: #fd7e14; /* Orange */
-            --color-module-4: #6f42c1; /* Purple */
-            --sidebar-active-text-color: #ffffff;
+            --color-module-1: #ffffff; /* White */
+            --color-module-2: #ffffff; /* White */
+            --color-module-3: #ffffff; /* White */
+            --color-module-4: #ffffff; /* White */
+            --sidebar-active-text-color: #2c3e50;
         }
 
         /* Overall Course Layout: Sidebar + Content */
@@ -38,30 +58,55 @@
             display: flex;
             flex-grow: 1;
             width: 100%;
-            max-width: 1600px; /* Max width for the layout */
-            margin: 0 auto; /* Center the layout */
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            gap: 20px;
+            padding: 20px;
         }
 
         /* Sidebar Styling */
         .course-sidebar {
-            width: 280px; /* Fixed width for sidebar */
-            background-color: #eef2f5; /* Slightly darker light grey for sidebar */
+            width: 280px;
+            background: rgba(0, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid #dee2e6;
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(0, 255, 255, 0.1);
+            height: fit-content;
+            position: relative;
+        }
+
+        .course-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.03) 50%, transparent 70%);
+            border-radius: 20px;
+            pointer-events: none;
         }
 
         .sidebar-header {
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #d4dae0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
         }
 
         .sidebar-header h2 {
             font-size: 1.4em;
-            color: #0056b3; /* Primary accent color for header */
+            color: #e0e6ed;
             text-align: center;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
         }
 
         .course-sidebar nav {
@@ -78,10 +123,29 @@
             padding: 12px 15px;
             margin-bottom: 8px;
             text-decoration: none;
-            color: #495057; /* Darker text for links */
-            border-radius: 6px;
-            transition: background-color 0.2s ease, color 0.2s ease;
-            font-weight: bold; /* Make sidebar text bold like example */
+            color: #e0e6ed;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-sidebar ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .course-sidebar ul li a:hover::before {
+            left: 100%;
         }
 
         .course-sidebar ul li a .module-number {
@@ -96,47 +160,39 @@
         
         .course-sidebar ul li a .module-name {
             flex-grow: 1;
+            position: relative;
+            z-index: 2;
         }
 
         .course-sidebar ul li a:hover {
-            background-color: #dce5eb;
-            color: #0056b3;
+            background: rgba(0, 255, 255, 0.12);
+            color: #f0f4f8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2), 0 0 15px rgba(0, 255, 255, 0.08);
+            border-color: rgba(0, 255, 255, 0.3);
         }
 
-        /* Default state for module number color, can be a neutral color or inherit */
+        /* Default state for module number color */
         .course-sidebar ul li a .module-number {
-            color: #5a6268; /* Default color for module numbers */
+            color: #b8c5d1;
+            position: relative;
+            z-index: 2;
         }
 
         /* Active sidebar item colors */
-        .course-sidebar ul li a[href="#module1"].active {
+        .course-sidebar ul li a[href="#module1"].active,
+        .course-sidebar ul li a[href="#module2"].active,
+        .course-sidebar ul li a[href="#module3"].active,
+        .course-sidebar ul li a[href="#module4"].active {
             background-color: var(--color-module-1);
             color: var(--sidebar-active-text-color);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
         }
-        .course-sidebar ul li a[href="#module1"].active .module-number {
-            color: var(--sidebar-active-text-color);
-        }
-
-        .course-sidebar ul li a[href="#module2"].active {
-            background-color: var(--color-module-2);
-            color: var(--sidebar-active-text-color);
-        }
-        .course-sidebar ul li a[href="#module2"].active .module-number {
-            color: var(--sidebar-active-text-color);
-        }
-
-        .course-sidebar ul li a[href="#module3"].active {
-            background-color: var(--color-module-3);
-            color: var(--sidebar-active-text-color);
-        }
-        .course-sidebar ul li a[href="#module3"].active .module-number {
-            color: var(--sidebar-active-text-color);
-        }
-
-        .course-sidebar ul li a[href="#module4"].active {
-            background-color: var(--color-module-4);
-            color: var(--sidebar-active-text-color);
-        }
+        
+        .course-sidebar ul li a[href="#module1"].active .module-number,
+        .course-sidebar ul li a[href="#module2"].active .module-number,
+        .course-sidebar ul li a[href="#module3"].active .module-number,
         .course-sidebar ul li a[href="#module4"].active .module-number {
             color: var(--sidebar-active-text-color);
         }
@@ -144,7 +200,7 @@
         .sidebar-footer {
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #d4dae0;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
             text-align: center;
         }
 
@@ -166,8 +222,26 @@
         .course-content {
             flex-grow: 1;
             padding: 40px;
-            background-color: #ffffff; /* White background for content area */
-            overflow-y: auto; /* Allow scrolling for content */
+            background: rgba(0, 20, 40, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(0, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .course-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 255, 0.02) 50%, transparent 100%);
+            border-radius: 20px;
+            pointer-events: none;
         }
         
         .page-main-title {
@@ -184,9 +258,13 @@
             max-height: 0;
             opacity: 0;
             overflow: hidden;
+            padding: 0;
+            margin-bottom: 0;
             /* Adjust transition timing as desired */
             transition: max-height 0.5s ease-in-out, 
-                        opacity 0.4s ease-in-out 0.1s; /* Opacity transition starts slightly after height */
+                        opacity 0.4s ease-in-out 0.1s,
+                        padding 0.3s ease-in-out,
+                        margin 0.3s ease-in-out; /* Opacity transition starts slightly after height */
             /* Ensure no top/bottom margin on the module itself that would break collapse, 
                or ensure it's also part of the transition or set to 0 when collapsed. 
                Inner elements like module-header handle their own margins correctly with overflow:hidden. */
@@ -195,12 +273,21 @@
             /* display: block; */ /* Replaced for animation */
             max-height: 3000px; /* Adjust if your content might exceed this height */
             opacity: 1;
+            padding: 0;
+            margin-bottom: 0;
         }
 
         .module-header {
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #eaecee;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            transition: margin 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+
+        .content-module:not(.active) .module-header {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
         
         .module-header .module-image-placeholder { /* Placeholder for images like in example */
@@ -216,17 +303,23 @@
 
         .module-header h1 {
             font-size: 2.2em;
-            /* color: #2c3e50; Will be overridden by module-specific color */
+            color: #00ffff;
             margin-bottom: 10px;
             transition: color 0.3s ease-in-out;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
         }
 
         .module-meta {
             font-size: 0.95em;
-            color: #555;
+            color: #5a6c7d;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            font-weight: 500;
         }
         .module-meta .icon-lessons {
             margin-right: 8px;
@@ -235,16 +328,23 @@
         
         .module-description {
             font-size: 1em;
-            color: #4A4A4A;
+            color: #2c3e50;
             margin-bottom: 20px;
+            font-weight: 500;
         }
 
         .lesson-list {
             list-style: none;
+            transition: margin 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+
+        .content-module:not(.active) .lesson-list {
+            margin: 0;
+            padding: 0;
         }
 
         .lesson-list li {
-            border-bottom: 1px solid #f1f3f5; /* Light border for separation */
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1); /* Light border for separation */
         }
         .lesson-list li:last-child {
             border-bottom: none;
@@ -253,20 +353,29 @@
         .lesson-list li a {
             display: flex;
             align-items: center;
-            padding: 18px 10px;
+            padding: 18px 15px;
             text-decoration: none;
-            color: #343a40;
-            transition: background-color 0.2s ease;
-            border-radius: 4px;
+            color: #e0e6ed;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            background: rgba(0, 20, 40, 0.4);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
         }
         .lesson-list li a:hover {
-            background-color: #f8f9fa; /* Slight hover effect */
+            background: rgba(0, 30, 60, 0.6);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2), 0 0 20px rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+            border-color: rgba(0, 255, 255, 0.4);
         }
 
         .lesson-list .lesson-number {
-            width: 40px; /* For W1, W2 etc. */
+            width: 40px;
             font-weight: bold;
-            /* color: #007bff; Will be overridden by module-specific color */
+            color: #5a6c7d;
             margin-right: 15px;
             flex-shrink: 0;
             transition: color 0.3s ease-in-out;
@@ -276,29 +385,23 @@
             font-weight: 500; /* Example uses bolder titles */
         }
         .lesson-list .lesson-details,
-        .lesson-list .lesson-duration { /* Example showed duration on right */
+        .lesson-list .lesson-duration {
             font-size: 0.9em;
-            color: #6c757d;
+            color: #5a6c7d;
             margin-left: 15px;
             flex-shrink: 0;
         }
         
-        /* Content module specific colors */
+        /* Content module specific colors - unified white theme */
         #module1.active .module-header h1,
-        #module1.active .lesson-list .lesson-number {
-            color: var(--color-module-1);
-        }
+        #module1.active .lesson-list .lesson-number,
         #module2.active .module-header h1,
-        #module2.active .lesson-list .lesson-number {
-            color: var(--color-module-2);
-        }
+        #module2.active .lesson-list .lesson-number,
         #module3.active .module-header h1,
-        #module3.active .lesson-list .lesson-number {
-            color: var(--color-module-3);
-        }
+        #module3.active .lesson-list .lesson-number,
         #module4.active .module-header h1,
         #module4.active .lesson-list .lesson-number {
-            color: var(--color-module-4);
+            color: #e0e6ed;
         }
 
         /* Responsive adjustments (basic) */
@@ -407,6 +510,791 @@
             }
         }
 
+
+
+        /* Student Map Styles */
+        .student-map {
+            padding: 20px 10px;
+        }
+
+        .adventure-path {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .map-stage {
+            background: rgba(0, 30, 60, 0.6);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            color: #e0e6ed;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);
+            position: relative;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .map-stage::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.3), rgba(0, 128, 255, 0.3), rgba(128, 0, 255, 0.3), rgba(255, 0, 128, 0.3));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .map-stage:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 255, 255, 0.25);
+            color: #f0f4f8;
+        }
+
+        .map-stage:hover::before {
+            opacity: 0.6;
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .map-stage:hover {
+                transform: none;
+                box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);
+            }
+            
+            .map-stage:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+            
+            body.student-mode .lesson-list li a:hover {
+                transform: none;
+            }
+            
+            body.student-mode .lesson-list li a:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+            
+
+        }
+
+        .map-stage[data-module="module2"] {
+            background: rgba(0, 40, 80, 0.6);
+            border-color: rgba(0, 150, 255, 0.4);
+        }
+
+        .map-stage[data-module="module3"] {
+            background: rgba(40, 0, 80, 0.6);
+            border-color: rgba(150, 0, 255, 0.4);
+        }
+
+        .map-stage[data-module="module4"] {
+            background: rgba(0, 80, 40, 0.6);
+            border-color: rgba(0, 255, 150, 0.4);
+        }
+
+        .stage-icon {
+            font-size: 3em;
+            margin-bottom: 12px;
+            filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .stage-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stage-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .path-connector {
+            width: 3px;
+            height: 20px;
+            background: linear-gradient(to bottom, #ddd, #999);
+            border-radius: 2px;
+        }
+
+        /* Hide teacher-only content in student mode */
+        body.student-mode .teacher-only {
+            display: none !important;
+        }
+
+        /* Teacher mode - Simple and clean */
+        body.teacher-mode {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background-attachment: fixed;
+        }
+
+        body.teacher-mode::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="simple-dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(108,117,125,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23simple-dots)"/></svg>');
+            animation: none;
+        }
+
+        body.teacher-mode .course-sidebar {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.teacher-mode .course-sidebar::before {
+            display: none;
+        }
+
+        body.teacher-mode .sidebar-header h2 {
+            color: #495057;
+            text-shadow: none;
+            letter-spacing: normal;
+        }
+
+        body.teacher-mode .course-sidebar ul li a {
+            color: #495057;
+            background: rgba(248, 249, 250, 0.8);
+            border: 1px solid #dee2e6;
+        }
+
+        body.teacher-mode .course-sidebar ul li a::before {
+            display: none;
+        }
+
+        body.teacher-mode .course-sidebar ul li a:hover {
+            background: #e9ecef;
+            color: #212529;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-color: #adb5bd;
+        }
+
+        body.teacher-mode .course-sidebar ul li a .module-number {
+            color: #6c757d;
+        }
+
+        body.teacher-mode .course-content {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.teacher-mode .course-content::before {
+            display: none;
+        }
+
+        body.teacher-mode .module-header h1 {
+            color: #212529;
+            text-shadow: none;
+            letter-spacing: normal;
+        }
+
+        body.teacher-mode #module1.active .module-header h1,
+        body.teacher-mode #module1.active .lesson-list .lesson-number,
+        body.teacher-mode #module2.active .module-header h1,
+        body.teacher-mode #module2.active .lesson-list .lesson-number,
+        body.teacher-mode #module3.active .module-header h1,
+        body.teacher-mode #module3.active .lesson-list .lesson-number,
+        body.teacher-mode #module4.active .module-header h1,
+        body.teacher-mode #module4.active .lesson-list .lesson-number {
+            color: #212529;
+        }
+
+        body.teacher-mode .lesson-list li a {
+            color: #495057;
+            background: rgba(248, 249, 250, 0.8);
+            border: 1px solid #dee2e6;
+        }
+
+        body.teacher-mode .lesson-list li a:hover {
+            background: #e9ecef;
+            color: #212529;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-color: #adb5bd;
+        }
+
+        body.teacher-mode .lesson-number {
+            color: #6c757d;
+        }
+
+        body.teacher-mode .lesson-list .lesson-number {
+            color: #6c757d;
+        }
+
+
+
+        body.teacher-mode .course-sidebar ul li a[href="#module1"].active,
+        body.teacher-mode .course-sidebar ul li a[href="#module2"].active,
+        body.teacher-mode .course-sidebar ul li a[href="#module3"].active,
+        body.teacher-mode .course-sidebar ul li a[href="#module4"].active {
+            background-color: #ffffff;
+            color: #2c3e50;
+            border-color: #dee2e6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.teacher-mode .course-sidebar ul li a[href="#module1"].active .module-number,
+        body.teacher-mode .course-sidebar ul li a[href="#module2"].active .module-number,
+        body.teacher-mode .course-sidebar ul li a[href="#module3"].active .module-number,
+        body.teacher-mode .course-sidebar ul li a[href="#module4"].active .module-number {
+            color: #2c3e50;
+        }
+
+        /* Teacher mode border adjustments */
+        body.teacher-mode .sidebar-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        body.teacher-mode .sidebar-footer {
+            border-top: 1px solid #dee2e6;
+        }
+
+        body.teacher-mode .module-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        body.teacher-mode .lesson-list li {
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        /* Student mode content adjustments - Keep tech style */
+        body.student-mode {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+        }
+
+        /* Student mode border adjustments */
+        body.student-mode .sidebar-header {
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        body.student-mode .sidebar-footer {
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        body.student-mode .module-header {
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        body.student-mode .lesson-list li {
+            border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+        }
+
+        body.student-mode::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tech-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/><circle cx="0" cy="0" r="0.5" fill="rgba(0,255,255,0.3)"/><circle cx="20" cy="20" r="0.5" fill="rgba(0,255,255,0.3)"/></pattern></defs><rect width="100" height="100" fill="url(%23tech-grid)"/></svg>');
+            animation: techPulse 4s ease-in-out infinite;
+        }
+
+        body.student-mode .course-content {
+            background: rgba(0, 20, 40, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(0, 255, 255, 0.1);
+        }
+
+        body.student-mode .content-module {
+            background: rgba(0, 20, 40, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        body.student-mode .content-module:not(.active) {
+            padding: 0;
+            margin-bottom: 0;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        body.student-mode .content-module .module-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        body.student-mode .content-module:not(.active) .module-header {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        body.student-mode .content-module .module-header h1 {
+            color: #e0e6ed;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+
+        body.student-mode .lesson-list li a {
+            background: rgba(0, 30, 60, 0.6);
+            color: #e0e6ed;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        body.student-mode .lesson-list li a:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15), 0 0 15px rgba(0, 255, 255, 0.08);
+            background: rgba(0, 30, 60, 0.7);
+            color: #f0f4f8;
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        body.student-mode .lesson-number {
+            background: rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.15);
+            color: #e0e6ed;
+        }
+
+        /* Student Mode Responsive Design */
+        
+        /* Tablet and Medium Desktop (768px - 1024px) */
+        @media (max-width: 1024px) {
+            body.student-mode .course-layout {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            body.student-mode .course-sidebar {
+                width: 100%;
+                padding: 20px 15px;
+            }
+            
+            body.student-mode .student-map {
+                padding: 15px 5px;
+            }
+            
+            body.student-mode .adventure-path {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                justify-items: center;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            body.student-mode .map-stage {
+                width: 180px;
+                padding: 20px;
+                margin: 0;
+            }
+            
+            body.student-mode .path-connector {
+                display: none;
+            }
+            
+            body.student-mode .course-content {
+                padding: 25px 20px;
+            }
+        }
+        
+        /* Large Tablet/Small Desktop (600px - 1024px) - 4 blocks in a row */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            body.student-mode .adventure-path {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+                justify-items: center;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            body.student-mode .map-stage {
+                width: 160px;
+                padding: 15px;
+            }
+            
+            body.student-mode .stage-icon {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+            }
+            
+            body.student-mode .stage-title {
+                font-size: 1em;
+                margin-bottom: 4px;
+            }
+            
+            body.student-mode .stage-subtitle {
+                font-size: 0.85em;
+            }
+        }
+        
+        /* Mobile Large (480px - 767px) - 2 blocks in a row */
+        @media (min-width: 480px) and (max-width: 767px) {
+            body.student-mode .course-layout {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            body.student-mode .course-sidebar {
+                padding: 15px 10px;
+            }
+            
+            body.student-mode .sidebar-header h2 {
+                font-size: 1.2em;
+            }
+            
+            body.student-mode .mode-toggle {
+                flex-direction: row;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            body.student-mode .mode-btn {
+                padding: 8px 12px;
+                font-size: 0.8em;
+                flex: 1;
+                max-width: 120px;
+            }
+            
+            body.student-mode .student-map {
+                padding: 10px 5px;
+            }
+            
+            body.student-mode .adventure-path {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                justify-items: center;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            body.student-mode .map-stage {
+                width: 150px;
+                padding: 15px;
+                margin: 0;
+            }
+            
+            body.student-mode .stage-icon {
+                font-size: 2em;
+                margin-bottom: 8px;
+            }
+            
+            body.student-mode .stage-title {
+                font-size: 0.95em;
+                margin-bottom: 3px;
+            }
+            
+            body.student-mode .stage-subtitle {
+                font-size: 0.8em;
+            }
+            
+            body.student-mode .course-content {
+                padding: 20px 15px;
+            }
+            
+            body.student-mode .content-module {
+                padding: 20px;
+                margin-bottom: 15px;
+                border-radius: 15px;
+            }
+            
+            body.student-mode .content-module .module-header h1 {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+            }
+            
+            body.student-mode .lesson-list li a {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 12px;
+                text-align: left;
+            }
+            
+            body.student-mode .lesson-number {
+                width: 35px;
+                height: 35px;
+                margin-bottom: 8px;
+                margin-right: 0;
+                font-size: 0.9em;
+            }
+            
+            body.student-mode .lesson-title {
+                font-size: 0.95em;
+                margin-bottom: 5px;
+                line-height: 1.4;
+            }
+            
+            body.student-mode .lesson-details {
+                font-size: 0.8em;
+                margin-left: 0;
+                opacity: 0.8;
+            }
+        }
+        
+        /* Mobile Small (max-width: 479px) - Single column */
+        @media (max-width: 479px) {
+            body.student-mode .course-layout {
+                padding: 8px;
+                gap: 8px;
+            }
+            
+            body.student-mode .course-sidebar {
+                padding: 12px 8px;
+            }
+            
+            body.student-mode .sidebar-header h2 {
+                font-size: 1.1em;
+            }
+            
+            body.student-mode .mode-toggle {
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            body.student-mode .mode-btn {
+                padding: 8px 12px;
+                font-size: 0.8em;
+                width: 100%;
+            }
+            
+            body.student-mode .student-map {
+                padding: 8px 5px;
+            }
+            
+            body.student-mode .adventure-path {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            body.student-mode .map-stage {
+                width: 160px;
+                padding: 15px;
+                margin: 0;
+            }
+            
+            body.student-mode .stage-icon {
+                font-size: 2em;
+                margin-bottom: 8px;
+            }
+            
+            body.student-mode .stage-title {
+                font-size: 1em;
+                margin-bottom: 3px;
+            }
+            
+            body.student-mode .stage-subtitle {
+                font-size: 0.8em;
+            }
+            
+            body.student-mode .course-content {
+                padding: 15px 10px;
+            }
+            
+            body.student-mode .content-module {
+                padding: 15px;
+                margin-bottom: 12px;
+                border-radius: 15px;
+            }
+            
+            body.student-mode .content-module .module-header h1 {
+                font-size: 1.4em;
+                margin-bottom: 12px;
+            }
+            
+            body.student-mode .lesson-list li a {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 10px;
+                text-align: left;
+            }
+            
+            body.student-mode .lesson-number {
+                width: 30px;
+                height: 30px;
+                margin-bottom: 6px;
+                margin-right: 0;
+                font-size: 0.8em;
+            }
+            
+            body.student-mode .lesson-title {
+                font-size: 0.9em;
+                margin-bottom: 4px;
+                line-height: 1.4;
+            }
+            
+            body.student-mode .lesson-details {
+                font-size: 0.75em;
+                margin-left: 0;
+                opacity: 0.8;
+            }
+        }
+        
+
+        
+        /* Large Desktop (min-width: 1200px) */
+        @media (min-width: 1200px) {
+            body.student-mode .course-layout {
+                max-width: 1400px;
+                gap: 25px;
+                padding: 25px;
+            }
+            
+            body.student-mode .course-sidebar {
+                width: 320px;
+                padding: 35px 25px;
+            }
+            
+            body.student-mode .map-stage {
+                width: 240px;
+                padding: 30px;
+            }
+            
+            body.student-mode .stage-icon {
+                font-size: 3.5em;
+                margin-bottom: 15px;
+            }
+            
+            body.student-mode .course-content {
+                padding: 45px;
+            }
+            
+                         body.student-mode .content-module {
+                 padding: 35px;
+                 margin-bottom: 30px;
+             }
+         }
+
+        /* Additional Student Mode Enhancements */
+        
+        /* Loading animation for smooth transitions */
+        body.student-mode .content-module {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Better focus states for accessibility */
+        body.student-mode .map-stage:focus,
+        body.student-mode .lesson-list li a:focus,
+        body.student-mode .mode-btn:focus {
+            outline: 3px solid rgba(0, 255, 255, 0.5);
+            outline-offset: 2px;
+        }
+        
+        /* Improved text readability on small screens */
+        @media (max-width: 480px) {
+            body.student-mode .lesson-title {
+                line-height: 1.5;
+                word-break: break-word;
+            }
+            
+            body.student-mode .stage-title {
+                line-height: 1.3;
+            }
+        }
+        
+        /* Landscape orientation optimizations for mobile */
+        @media (max-width: 767px) and (orientation: landscape) {
+            body.student-mode .course-layout {
+                flex-direction: row;
+                height: 100vh;
+                overflow: hidden;
+            }
+            
+            body.student-mode .course-sidebar {
+                width: 300px;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            
+            body.student-mode .course-content {
+                flex: 1;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            
+            body.student-mode .adventure-path {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            body.student-mode .map-stage {
+                width: 120px;
+                padding: 10px;
+            }
+            
+            body.student-mode .stage-icon {
+                font-size: 1.5em;
+                margin-bottom: 5px;
+            }
+            
+            body.student-mode .stage-title {
+                font-size: 0.8em;
+                margin-bottom: 2px;
+            }
+            
+            body.student-mode .stage-subtitle {
+                font-size: 0.7em;
+            }
+        }
+        
+        /* High DPI display optimizations */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body.student-mode .map-stage {
+                border-width: 1px;
+            }
+            
+            body.student-mode .lesson-list li a {
+                border-width: 1px;
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            body.student-mode .stage-icon {
+                animation: none;
+            }
+            
+            body.student-mode .map-stage,
+            body.student-mode .lesson-list li a,
+            body.student-mode .mode-btn {
+                transition: none;
+            }
+            
+            body.student-mode .content-module {
+                transition: opacity 0.2s ease;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -419,16 +1307,46 @@
     <div class="course-layout">
         <aside class="course-sidebar">
             <div class="sidebar-header">
-                <h2>課程單元</h2>
+                <h2 id="sidebar-title">課程單元</h2>
             </div>
-            <nav>
+            <!-- 老師模式導航 -->
+            <nav id="teacher-nav">
                 <ul>
                     <li><a href="#module1" class="active" onclick="showModule('module1'); return false;"><span class="module-number">CH1</span> <span class="module-name">電腦究竟是什麼？</span></a></li>
-                    <li><a href="#module2" onclick="showModule('module2'); return false;"><span class="module-number">CH2</span> <span class="module-name">開關的進化</span></a></li>
-                    <li><a href="#module3" onclick="showModule('module3'); return false;"><span class="module-number">CH3</span> <span class="module-name">開關與邏輯</span></a></li>
-                    <li><a href="#module4" onclick="showModule('module4'); return false;"><span class="module-number">CH4</span> <span class="module-name">晶片與製程</span></a></li>
+                    <li><a href="#module2" onclick="showModule('module2'); return false;"><span class="module-number">CH2</span> <span class="module-name">從機械到電的轉變</span></a></li>
+                    <li><a href="#module3" onclick="showModule('module3'); return false;"><span class="module-number">CH3</span> <span class="module-name">電腦走進你我家</span></a></li>
+                    <li><a href="#module4" onclick="showModule('module4'); return false;"><span class="module-number">CH4</span> <span class="module-name">晶片無所不在</span></a></li>
                 </ul>
             </nav>
+            
+            <!-- 學生模式地圖導航 -->
+            <div id="student-map" class="student-map" style="display: none;">
+                <div class="adventure-path">
+                    <div class="map-stage" data-module="module1" tabindex="0" role="button" aria-label="第一關：古老智慧 - 電腦的起源">
+                        <div class="stage-icon">🏛️</div>
+                        <div class="stage-title">古老智慧</div>
+                        <div class="stage-subtitle">電腦的起源</div>
+                    </div>
+                    <div class="path-connector"></div>
+                    <div class="map-stage" data-module="module2" tabindex="0" role="button" aria-label="第二關：電的魔力 - 開關的進化">
+                        <div class="stage-icon">⚡</div>
+                        <div class="stage-title">電的魔力</div>
+                        <div class="stage-subtitle">開關的進化</div>
+                    </div>
+                    <div class="path-connector"></div>
+                    <div class="map-stage" data-module="module3" tabindex="0" role="button" aria-label="第三關：走進家庭 - 個人電腦時代">
+                        <div class="stage-icon">🏠</div>
+                        <div class="stage-title">走進家庭</div>
+                        <div class="stage-subtitle">個人電腦時代</div>
+                    </div>
+                    <div class="path-connector"></div>
+                    <div class="map-stage" data-module="module4" tabindex="0" role="button" aria-label="第四關：未來世界 - 晶片無所不在">
+                        <div class="stage-icon">🚀</div>
+                        <div class="stage-title">未來世界</div>
+                        <div class="stage-subtitle">晶片無所不在</div>
+                    </div>
+                </div>
+            </div>
             <div class="sidebar-footer">
                 <a href="about.html" class="about-link">關於此計畫</a>
             </div>
@@ -441,12 +1359,12 @@
                     <!-- <div class="module-image-placeholder">圖示預留</div> -->
                     <h1>單元一：電腦究竟是什麼？古老的計算智慧</h1>
                     <!-- <p class="module-meta"><span class="icon-lessons">📚</span> 3 週課程</p> -->
-                    <p class="module-description">從古老的計算方法到早期機械計算的夢想，認識電腦的起源。</p>
+                    <p class="module-description teacher-only">從古老的計算方法到早期機械計算的夢想，認識電腦的起源。</p>
                 </header>
                 <ul class="lesson-list">
-                    <li><a href="chapters/ch1-s1.html"><span class="lesson-number">S1</span> <span class="lesson-title">電腦究竟是什麼？</span> <span class="lesson-details">電腦用途、輸入/處理/輸出</span></a></li>
-                    <li><a href="chapters/ch1-s2.html"><span class="lesson-number">S2</span> <span class="lesson-title">手指頭與小石頭—最早的計算機</span> <span class="lesson-details">古代計算工具、算盤</span></a></li>
-                    <li><a href="chapters/ch1-s3.html"><span class="lesson-number">S3</span> <span class="lesson-title">機械計算的夢想—帕斯卡與巴貝奇</span> <span class="lesson-details">帕斯卡計算器、巴貝奇與愛達</span></a></li>
+                    <li><a href="chapters/ch1-s1.html"><span class="lesson-number">S1</span> <span class="lesson-title">電腦究竟是什麼？</span> <span class="lesson-details teacher-only">電腦用途、輸入/處理/輸出</span></a></li>
+                    <li><a href="chapters/ch1-s2.html"><span class="lesson-number">S2</span> <span class="lesson-title">手指頭與小石頭—最早的計算機</span> <span class="lesson-details teacher-only">古代計算工具、算盤</span></a></li>
+                    <li><a href="chapters/ch1-s3.html"><span class="lesson-number">S3</span> <span class="lesson-title">機械計算的夢想—帕斯卡與巴貝奇</span> <span class="lesson-details teacher-only">帕斯卡計算器、巴貝奇與愛達</span></a></li>
                 </ul>
             </section>
 
@@ -454,15 +1372,15 @@
             <section id="module2" class="content-module">
                 <header class="module-header">
                     <h1>模組二：從機械到電的轉變</h1>
-                    <p class="module-meta"><span class="icon-lessons">💡</span> 5 週課程</p>
-                    <p class="module-description">探索從繼電器到真空管、電晶體，再到積體電路的電子計算革命。</p>
+                    <p class="module-meta teacher-only"><span class="icon-lessons">💡</span> 5 週課程</p>
+                    <p class="module-description teacher-only">探索從繼電器到真空管、電晶體，再到積體電路的電子計算革命。</p>
                 </header>
                 <ul class="lesson-list">
-                    <li><a href="chapters/ch2-w4.html"><span class="lesson-number">W4</span> <span class="lesson-title">會「咔咔」響的開關—繼電器時代</span> <span class="lesson-details">繼電器原理、早期繼電器計算機</span></a></li>
-                    <li><a href="chapters/ch2-w5.html"><span class="lesson-number">W5</span> <span class="lesson-title">電的魔力—真空管時代</span> <span class="lesson-details">真空管原理、ENIAC</span></a></li>
-                    <li><a href="chapters/ch2-w6.html"><span class="lesson-number">W6</span> <span class="lesson-title">小兵立大功—電晶體的發明</span> <span class="lesson-details">電晶體優勢、電腦小型化</span></a></li>
-                    <li><a href="chapters/ch2-w7.html"><span class="lesson-number">W7</span> <span class="lesson-title">晶片的奇蹟—積體電路 (IC) 的誕生</span> <span class="lesson-details">IC概念、發明故事</span></a></li>
-                    <li><a href="chapters/ch2-w8.html"><span class="lesson-number">W8</span> <span class="lesson-title">晶片是什麼做的？—從沙子到黃金</span> <span class="lesson-details">矽材料、晶圓到晶片製程簡介</span></a></li>
+                    <li><a href="chapters/ch2-w4.html"><span class="lesson-number">W4</span> <span class="lesson-title">會「咔咔」響的開關—繼電器時代</span> <span class="lesson-details teacher-only">繼電器原理、早期繼電器計算機</span></a></li>
+                    <li><a href="chapters/ch2-w5.html"><span class="lesson-number">W5</span> <span class="lesson-title">電的魔力—真空管時代</span> <span class="lesson-details teacher-only">真空管原理、ENIAC</span></a></li>
+                    <li><a href="chapters/ch2-w6.html"><span class="lesson-number">W6</span> <span class="lesson-title">小兵立大功—電晶體的發明</span> <span class="lesson-details teacher-only">電晶體優勢、電腦小型化</span></a></li>
+                    <li><a href="chapters/ch2-w7.html"><span class="lesson-number">W7</span> <span class="lesson-title">晶片的奇蹟—積體電路 (IC) 的誕生</span> <span class="lesson-details teacher-only">IC概念、發明故事</span></a></li>
+                    <li><a href="chapters/ch2-w8.html"><span class="lesson-number">W8</span> <span class="lesson-title">晶片是什麼做的？—從沙子到黃金</span> <span class="lesson-details teacher-only">矽材料、晶圓到晶片製程簡介</span></a></li>
                 </ul>
             </section>
 
@@ -470,14 +1388,14 @@
             <section id="module3" class="content-module">
                 <header class="module-header">
                     <h1>模組三：電腦走進你我家</h1>
-                    <p class="module-meta"><span class="icon-lessons">🏠</span> 4 週課程</p>
-                    <p class="module-description">見證個人電腦的普及與圖形介面、網路如何改變我們的生活。</p>
+                    <p class="module-meta teacher-only"><span class="icon-lessons">🏠</span> 4 週課程</p>
+                    <p class="module-description teacher-only">見證個人電腦的普及與圖形介面、網路如何改變我們的生活。</p>
                 </header>
                 <ul class="lesson-list">
-                    <li><a href="#"><span class="lesson-number">W9</span> <span class="lesson-title">摩爾定律—晶片越來越厲害！</span> <span class="lesson-details">摩爾定律概念、電腦進步</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W10</span> <span class="lesson-title">個人電腦的時代來臨！</span> <span class="lesson-details">Apple II、IBM PC</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W11</span> <span class="lesson-title">滑鼠與視窗—電腦變好用了！</span> <span class="lesson-details">GUI、滑鼠發明</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W12</span> <span class="lesson-title">網路串起全世界</span> <span class="lesson-details">網際網路概念、網路應用</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W9</span> <span class="lesson-title">摩爾定律—晶片越來越厲害！</span> <span class="lesson-details teacher-only">摩爾定律概念、電腦進步</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W10</span> <span class="lesson-title">個人電腦的時代來臨！</span> <span class="lesson-details teacher-only">Apple II、IBM PC</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W11</span> <span class="lesson-title">滑鼠與視窗—電腦變好用了！</span> <span class="lesson-details teacher-only">GUI、滑鼠發明</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W12</span> <span class="lesson-title">網路串起全世界</span> <span class="lesson-details teacher-only">網際網路概念、網路應用</span></a></li>
                 </ul>
             </section>
 
@@ -485,21 +1403,23 @@
             <section id="module4" class="content-module">
                 <header class="module-header">
                     <h1>模組四：晶片無所不在與未來展望</h1>
-                    <p class="module-meta"><span class="icon-lessons">🔮</span> 5 週課程</p>
-                    <p class="module-description">了解晶片在現代生活中的無所不在，以及對未來科技的展望。</p>
+                    <p class="module-meta teacher-only"><span class="icon-lessons">🔮</span> 5 週課程</p>
+                    <p class="module-description teacher-only">了解晶片在現代生活中的無所不在，以及對未來科技的展望。</p>
                 </header>
                 <ul class="lesson-list">
-                    <li><a href="#"><span class="lesson-number">W13</span> <span class="lesson-title">口袋裡的超級電腦—智慧型手機</span> <span class="lesson-details">手機內的晶片、強大功能</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W14</span> <span class="lesson-title">晶片藏在哪裡？—生活中的隱形英雄</span> <span class="lesson-details">家電、汽車、玩具中的晶片</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W15</span> <span class="lesson-title">晶片設計師與工程師—打造晶片的人</span> <span class="lesson-details">晶片設計製造流程簡介</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W16</span> <span class="lesson-title">未來的電腦與晶片</span> <span class="lesson-details">AI、VR/AR、量子電腦展望</span></a></li>
-                    <li><a href="#"><span class="lesson-number">W17</span> <span class="lesson-title">成果發表与回顧</span> <span class="lesson-details">學期總結、作品分享</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W13</span> <span class="lesson-title">口袋裡的超級電腦—智慧型手機</span> <span class="lesson-details teacher-only">手機內的晶片、強大功能</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W14</span> <span class="lesson-title">晶片藏在哪裡？—生活中的隱形英雄</span> <span class="lesson-details teacher-only">家電、汽車、玩具中的晶片</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W15</span> <span class="lesson-title">晶片設計師與工程師—打造晶片的人</span> <span class="lesson-details teacher-only">晶片設計製造流程簡介</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W16</span> <span class="lesson-title">未來的電腦與晶片</span> <span class="lesson-details teacher-only">AI、VR/AR、量子電腦展望</span></a></li>
+                    <li><a href="#"><span class="lesson-number">W17</span> <span class="lesson-title">成果發表与回顧</span> <span class="lesson-details teacher-only">學期總結、作品分享</span></a></li>
                 </ul>
             </section>
         </main>
     </div>
 
     <script>
+        let currentMode = 'student'; // Default mode
+
         function showModule(moduleId) {
             // Hide all modules
             document.querySelectorAll('.course-content .content-module').forEach(function(module) {
@@ -508,20 +1428,186 @@
             // Show the selected module
             document.getElementById(moduleId).classList.add('active');
 
-            // Update active state in sidebar
-            document.querySelectorAll('.course-sidebar nav ul li a').forEach(function(link) {
-                link.classList.remove('active');
-            });
-            document.querySelector('.course-sidebar nav ul li a[href="#' + moduleId + '"]').classList.add('active');
+            // Update active state in sidebar (teacher mode)
+            if (currentMode === 'teacher') {
+                document.querySelectorAll('.course-sidebar nav ul li a').forEach(function(link) {
+                    link.classList.remove('active');
+                });
+                const activeLink = document.querySelector('.course-sidebar nav ul li a[href="#' + moduleId + '"]');
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
         }
-        // Optionally, show the first module by default if no hash is present or on page load
-        // document.addEventListener('DOMContentLoaded', function() {
-        //    if (!window.location.hash) {
-        //        showModule('module1');
-        //    } else {
-        //        showModule(window.location.hash.substring(1));
-        //    }
-        // });
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const body = document.body;
+            const teacherNav = document.getElementById('teacher-nav');
+            const studentMap = document.getElementById('student-map');
+            const sidebarTitle = document.getElementById('sidebar-title');
+            const teacherBtn = document.getElementById('teacher-mode');
+            const studentBtn = document.getElementById('student-mode');
+
+            if (mode === 'student') {
+                // Switch to student mode
+                body.classList.add('student-mode');
+                body.classList.remove('teacher-mode');
+                teacherNav.style.display = 'none';
+                studentMap.style.display = 'block';
+                sidebarTitle.textContent = '學習地圖';
+                
+                // Update button states
+                teacherBtn.classList.remove('active');
+                studentBtn.classList.add('active');
+                
+                // Add click and keyboard handlers to map stages
+                document.querySelectorAll('.map-stage').forEach(function(stage) {
+                    // Remove existing listeners to avoid duplicates
+                    stage.removeEventListener('click', stage.clickHandler);
+                    stage.removeEventListener('keydown', stage.keydownHandler);
+                    
+                    // Create new handlers
+                    stage.clickHandler = function() {
+                        const moduleId = this.getAttribute('data-module');
+                        showModule(moduleId);
+                    };
+                    
+                    stage.keydownHandler = function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            const moduleId = this.getAttribute('data-module');
+                            showModule(moduleId);
+                        }
+                    };
+                    
+                    // Add new listeners
+                    stage.addEventListener('click', stage.clickHandler);
+                    stage.addEventListener('keydown', stage.keydownHandler);
+                });
+                
+            } else {
+                // Switch to teacher mode
+                body.classList.remove('student-mode');
+                body.classList.add('teacher-mode');
+                teacherNav.style.display = 'block';
+                studentMap.style.display = 'none';
+                sidebarTitle.textContent = '課程單元';
+                
+                // Update button states
+                teacherBtn.classList.add('active');
+                studentBtn.classList.remove('active');
+            }
+            
+            // Update all lesson links with current mode
+            updateLessonLinks();
+        }
+
+        // Function to update all lesson links with current mode
+        function updateLessonLinks() {
+            document.querySelectorAll('.lesson-list a').forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href && href.includes('chapters/') && !href.includes('#')) {
+                    // Remove existing mode parameter if present
+                    const baseUrl = href.split('?')[0];
+                    // Add current mode as URL parameter
+                    link.setAttribute('href', baseUrl + '?mode=' + currentMode);
+                }
+            });
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const body = document.body;
+            const teacherNav = document.getElementById('teacher-nav');
+            const studentMap = document.getElementById('student-map');
+            const sidebarTitle = document.getElementById('sidebar-title');
+
+            if (mode === 'student') {
+                // Switch to student mode
+                body.classList.add('student-mode');
+                body.classList.remove('teacher-mode');
+                teacherNav.style.display = 'none';
+                studentMap.style.display = 'block';
+                sidebarTitle.textContent = '學習地圖';
+                
+                // Add click and keyboard handlers to map stages
+                document.querySelectorAll('.map-stage').forEach(function(stage) {
+                    // Remove existing listeners to avoid duplicates
+                    stage.removeEventListener('click', stage.clickHandler);
+                    stage.removeEventListener('keydown', stage.keydownHandler);
+                    
+                    // Create new handlers
+                    stage.clickHandler = function() {
+                        const moduleId = this.getAttribute('data-module');
+                        showModule(moduleId);
+                    };
+                    
+                    stage.keydownHandler = function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            const moduleId = this.getAttribute('data-module');
+                            showModule(moduleId);
+                        }
+                    };
+                    
+                    // Add new listeners
+                    stage.addEventListener('click', stage.clickHandler);
+                    stage.addEventListener('keydown', stage.keydownHandler);
+                });
+                
+            } else {
+                // Switch to teacher mode
+                body.classList.remove('student-mode');
+                body.classList.add('teacher-mode');
+                teacherNav.style.display = 'block';
+                studentMap.style.display = 'none';
+                sidebarTitle.textContent = '課程單元';
+            }
+            
+            // Update all lesson links with current mode
+            updateLessonLinks();
+        }
+
+        // Function to get URL parameter
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if mode parameter exists in URL
+            const modeFromUrl = getUrlParameter('mode');
+            
+            if (modeFromUrl === 'teacher' || modeFromUrl === 'student') {
+                // Use mode from URL
+                switchMode(modeFromUrl);
+            } else {
+                // Set default mode
+                switchMode('student');
+            }
+            
+            // Show first module by default
+            showModule('module1');
+            
+            // Add click and keyboard handlers to map stages (for student mode)
+            document.querySelectorAll('.map-stage').forEach(function(stage) {
+                stage.addEventListener('click', function() {
+                    const moduleId = this.getAttribute('data-module');
+                    showModule(moduleId);
+                });
+                
+                // Keyboard navigation support
+                stage.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const moduleId = this.getAttribute('data-module');
+                        showModule(moduleId);
+                    }
+                });
+            });
+        });
     </script>
     <!-- Old script link, assuming js/main.js might have other global functions or navbar logic -->
     <script src="js/main.js"></script> 

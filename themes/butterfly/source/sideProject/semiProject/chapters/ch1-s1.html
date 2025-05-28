@@ -14,59 +14,112 @@
         }
 
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+            color: #e0e6ed;
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tech-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/><circle cx="0" cy="0" r="0.5" fill="rgba(0,255,255,0.3)"/><circle cx="20" cy="20" r="0.5" fill="rgba(0,255,255,0.3)"/></pattern></defs><rect width="100" height="100" fill="url(%23tech-grid)"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+            animation: techPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes techPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         .lesson-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
-            background-color: #ffffff;
-            min-height: 100vh;
+            background: rgba(0, 20, 40, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            min-height: calc(100vh - 80px);
+            margin-top: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1), inset 0 1px 0 rgba(0, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
         }
+
+        .lesson-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 255, 0.02) 50%, transparent 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+
 
         .lesson-header {
             text-align: center;
             margin-bottom: 40px;
             padding-bottom: 20px;
-            border-bottom: 2px solid #007bff;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+            z-index: 3;
         }
 
         .lesson-header h1 {
-            color: #007bff;
+            color: #00ffff;
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .lesson-header .breadcrumb {
-            color: #666;
+            color: #b8c5d1;
             font-size: 1.1em;
+            opacity: 0.9;
         }
 
         .lesson-content {
             font-size: 1.1em;
             line-height: 1.8;
+            position: relative;
+            z-index: 3;
         }
 
         .lesson-content h2 {
-            color: #007bff;
+            color: #00ffff;
             font-size: 1.8em;
             margin: 30px 0 20px 0;
-            border-left: 4px solid #007bff;
+            border-left: 4px solid #00ffff;
             padding-left: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
 
         .lesson-content h3 {
-            color: #333;
+            color: #e0e6ed;
             font-size: 1.4em;
             margin: 25px 0 15px 0;
         }
 
         .lesson-content p {
             margin-bottom: 20px;
+            color: #e0e6ed;
         }
 
         .lesson-content ul, .lesson-content ol {
@@ -76,28 +129,69 @@
 
         .lesson-content li {
             margin-bottom: 10px;
+            color: #e0e6ed;
         }
 
         .highlight-box {
-            background-color: #e7f3ff;
-            border-left: 5px solid #007bff;
+            background: rgba(0, 255, 255, 0.1);
+            border-left: 5px solid #00ffff;
             padding: 20px;
             margin: 30px 0;
-            border-radius: 5px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.1);
         }
 
         .example-box {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
+            background: rgba(0, 30, 60, 0.4);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             padding: 20px;
             margin: 30px 0;
-            border-radius: 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .example-box h4 {
-            color: #495057;
+            color: #00ffff;
             margin-bottom: 15px;
             font-size: 1.2em;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+        }
+
+        .student-activity {
+            background: rgba(255, 100, 150, 0.1);
+            border: 2px solid rgba(255, 100, 150, 0.3);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .student-activity h4 {
+            color: #ff6496;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-shadow: 0 0 8px rgba(255, 100, 150, 0.3);
+        }
+
+        .teacher-notes {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .teacher-notes h4 {
+            color: #ffc107;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            text-shadow: 0 0 8px rgba(255, 193, 7, 0.3);
         }
 
         .navigation {
@@ -105,49 +199,186 @@
             justify-content: space-between;
             margin-top: 50px;
             padding-top: 30px;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+            z-index: 3;
         }
 
         .nav-button {
             padding: 12px 24px;
-            background-color: #007bff;
-            color: white;
+            background: rgba(0, 255, 255, 0.2);
+            color: #e0e6ed;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .nav-button:hover {
-            background-color: #0056b3;
-            color: white;
+            background: rgba(0, 255, 255, 0.3);
+            color: #f0f4f8;
             text-decoration: none;
-        }
-
-        .nav-button:disabled {
-            background-color: #6c757d;
-            cursor: not-allowed;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.25);
         }
 
         .back-to-index {
             text-align: center;
             margin-top: 30px;
+            position: relative;
+            z-index: 3;
         }
 
         .back-to-index a {
-            color: #007bff;
+            color: #00ffff;
             text-decoration: none;
             font-size: 1.1em;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
         }
 
         .back-to-index a:hover {
             text-decoration: underline;
         }
 
+        /* Teacher Mode Styles */
+        body.teacher-mode {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        body.teacher-mode::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="simple-dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(108,117,125,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23simple-dots)"/></svg>');
+            animation: none;
+        }
+
+        body.teacher-mode .lesson-container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.teacher-mode .lesson-container::before {
+            display: none;
+        }
+
+        body.teacher-mode .lesson-header {
+            border-bottom: 2px solid #007bff;
+        }
+
+        body.teacher-mode .lesson-header h1 {
+            color: #007bff;
+            text-shadow: none;
+            letter-spacing: normal;
+        }
+
+        body.teacher-mode .lesson-header .breadcrumb {
+            color: #666;
+        }
+
+        body.teacher-mode .lesson-content {
+            color: #333;
+        }
+
+        body.teacher-mode .lesson-content h2 {
+            color: #007bff;
+            border-left-color: #007bff;
+            text-shadow: none;
+        }
+
+        body.teacher-mode .lesson-content h3 {
+            color: #333;
+        }
+
+        body.teacher-mode .lesson-content p,
+        body.teacher-mode .lesson-content li {
+            color: #333;
+        }
+
+        body.teacher-mode .highlight-box {
+            background-color: #e7f3ff;
+            border-left-color: #007bff;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        body.teacher-mode .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        body.teacher-mode .example-box h4 {
+            color: #495057;
+            text-shadow: none;
+        }
+
+        body.teacher-mode .student-activity {
+            background-color: #fff5f5;
+            border-color: #ff6b9d;
+        }
+
+        body.teacher-mode .student-activity h4 {
+            color: #d63384;
+            text-shadow: none;
+        }
+
+        body.teacher-mode .teacher-notes {
+            background-color: #fffbf0;
+            border-color: #ffc107;
+        }
+
+        body.teacher-mode .teacher-notes h4 {
+            color: #b45309;
+            text-shadow: none;
+        }
+
+
+
+        body.teacher-mode .navigation {
+            border-top-color: #dee2e6;
+        }
+
+        body.teacher-mode .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        body.teacher-mode .nav-button:hover {
+            background-color: #0056b3;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.teacher-mode .back-to-index a {
+            color: #007bff;
+            text-shadow: none;
+        }
+
+        /* Hide content based on mode */
+        body.student-mode .teacher-only {
+            display: none !important;
+        }
+
+        body.teacher-mode .student-only {
+            display: none !important;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .lesson-container {
                 padding: 20px 15px;
+                margin: 20px 10px;
             }
+            
+
             
             .lesson-header h1 {
                 font-size: 2em;
@@ -166,19 +397,37 @@
 </head>
 <body>
     <div class="lesson-container">
+
         <header class="lesson-header">
             <h1>電腦究竟是什麼？</h1>
             <div class="breadcrumb">第一章 第一節 (S1)</div>
         </header>
 
         <main class="lesson-content">
-            <h2>學習目標</h2>
-            <ul>
-                <li>理解電腦的基本概念和用途</li>
-                <li>認識電腦的基本組成部分</li>
-                <li>了解電腦處理資訊的基本原理：輸入、處理、輸出</li>
-                <li>探索電腦在日常生活中的應用</li>
-            </ul>
+            <div class="teacher-only">
+                <h2>教學目標</h2>
+                <ul>
+                    <li>讓學生理解電腦的基本概念和用途</li>
+                    <li>引導學生認識電腦的基本組成部分</li>
+                    <li>教授電腦處理資訊的基本原理：輸入、處理、輸出</li>
+                    <li>探索電腦在日常生活中的應用實例</li>
+                </ul>
+
+                <div class="teacher-notes">
+                    <h4>📝 教學建議</h4>
+                    <ul>
+                        <li><strong>課程時間：</strong>45分鐘</li>
+                        <li><strong>教學方式：</strong>互動討論 + 實例展示</li>
+                        <li><strong>準備物品：</strong>各種電子設備（手機、平板、遙控器等）</li>
+                        <li><strong>評量方式：</strong>課堂問答、學習單</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="student-only">
+                <h2>🎯 學習任務</h2>
+                <p>歡迎來到電腦世界的探險！今天我們要一起發現電腦的秘密，看看它們是如何幫助我們的生活變得更便利的。</p>
+            </div>
 
             <h2>電腦到底是什麼？</h2>
             <p>
@@ -186,9 +435,27 @@
                 或者是家裡的電視、洗衣機？其實，這些都可以算是電腦的一種！
             </p>
 
+            <div class="student-activity student-only">
+                <h4>🔍 探索活動：電腦大搜查</h4>
+                <p>看看你的周圍，找找看有哪些東西可能是「電腦」？</p>
+                <ul>
+                    <li>手機 📱</li>
+                    <li>平板 📱</li>
+                    <li>電視 📺</li>
+                    <li>遊戲機 🎮</li>
+                    <li>還有什麼呢？</li>
+                </ul>
+            </div>
+
             <div class="highlight-box">
                 <p><strong>電腦的定義：</strong>電腦是一種能夠接收資料、處理資料，並輸出結果的機器。
                 它能夠按照我們給它的指令，快速而準確地完成各種計算和處理工作。</p>
+            </div>
+
+            <div class="teacher-notes teacher-only">
+                <h4>💡 教學提示</h4>
+                <p>可以讓學生舉手分享他們找到的「電腦」，引導他們思考這些設備的共同特點。
+                強調「接收→處理→輸出」這個核心概念。</p>
             </div>
 
             <h2>電腦的基本原理：輸入 → 處理 → 輸出</h2>
@@ -196,22 +463,28 @@
                 所有的電腦，不管是大是小、是新是舊，都遵循著同一個基本原理：
             </p>
 
-            <h3>1. 輸入 (Input)</h3>
+            <h3>1. 輸入 (Input) 📥</h3>
             <p>
                 我們把資料或指令告訴電腦。這就像是我們對電腦說話，告訴它我們想要做什麼。
             </p>
             <div class="example-box">
                 <h4>輸入的例子：</h4>
                 <ul>
-                    <li>用鍵盤打字</li>
-                    <li>用滑鼠點擊</li>
-                    <li>對手機說話</li>
-                    <li>觸摸螢幕</li>
-                    <li>插入USB隨身碟</li>
+                    <li>🖮 用鍵盤打字</li>
+                    <li>🖱️ 用滑鼠點擊</li>
+                    <li>🎤 對手機說話</li>
+                    <li>👆 觸摸螢幕</li>
+                    <li>💾 插入USB隨身碟</li>
                 </ul>
             </div>
 
-            <h3>2. 處理 (Processing)</h3>
+            <div class="student-activity student-only">
+                <h4>🎮 互動遊戲：我是輸入裝置</h4>
+                <p>想像你是一個輸入裝置，你會怎麼把訊息傳給電腦？</p>
+                <p>試著模仿：打字、點擊、說話的動作！</p>
+            </div>
+
+            <h3>2. 處理 (Processing) ⚙️</h3>
             <p>
                 電腦的「大腦」會分析我們給它的資料，按照程式的指令進行計算和處理。
                 這個「大腦」就是我們常聽到的CPU（中央處理器）。
@@ -219,26 +492,42 @@
             <div class="example-box">
                 <h4>處理的例子：</h4>
                 <ul>
-                    <li>計算數學題目</li>
-                    <li>整理照片</li>
-                    <li>播放音樂</li>
-                    <li>執行遊戲程式</li>
-                    <li>搜尋檔案</li>
+                    <li>🧮 計算數學題目</li>
+                    <li>📸 整理照片</li>
+                    <li>🎵 播放音樂</li>
+                    <li>🎮 執行遊戲程式</li>
+                    <li>🔍 搜尋檔案</li>
                 </ul>
             </div>
 
-            <h3>3. 輸出 (Output)</h3>
+            <div class="teacher-notes teacher-only">
+                <h4>🔬 延伸說明</h4>
+                <p>可以用「廚師做菜」的比喻：輸入是食材，處理是烹飪過程，輸出是美味的料理。
+                CPU就像是廚師的大腦，決定如何處理食材。</p>
+            </div>
+
+            <h3>3. 輸出 (Output) 📤</h3>
             <p>
                 電腦把處理好的結果告訴我們。就像是電腦回答我們的問題，或是完成我們要求的工作。
             </p>
             <div class="example-box">
                 <h4>輸出的例子：</h4>
                 <ul>
-                    <li>螢幕顯示文字或圖片</li>
-                    <li>喇叭播放聲音</li>
-                    <li>印表機列印文件</li>
-                    <li>手機震動</li>
-                    <li>LED燈閃爍</li>
+                    <li>🖥️ 螢幕顯示文字或圖片</li>
+                    <li>🔊 喇叭播放聲音</li>
+                    <li>🖨️ 印表機列印文件</li>
+                    <li>📳 手機震動</li>
+                    <li>💡 LED燈閃爍</li>
+                </ul>
+            </div>
+
+            <div class="student-activity student-only">
+                <h4>🎯 挑戰任務：完整流程體驗</h4>
+                <p>選擇一個你熟悉的電腦操作（比如拍照），說出它的：</p>
+                <ul>
+                    <li><strong>輸入：</strong>按下拍照按鈕</li>
+                    <li><strong>處理：</strong>相機處理光線和影像</li>
+                    <li><strong>輸出：</strong>顯示拍好的照片</li>
                 </ul>
             </div>
 
@@ -276,6 +565,21 @@
                 <li><strong>飛機：</strong>自動駕駛、飛行控制</li>
             </ul>
 
+            <div class="student-activity student-only">
+                <h4>🌟 生活觀察家</h4>
+                <p><strong>任務：</strong>記錄你今天使用了哪些電腦？</p>
+                <p>從早上起床到現在，電腦是如何幫助你的？寫下至少5個例子！</p>
+            </div>
+
+            <div class="teacher-notes teacher-only">
+                <h4>📋 課堂活動建議</h4>
+                <ul>
+                    <li><strong>分組討論：</strong>讓學生分組討論不同領域的電腦應用</li>
+                    <li><strong>實物展示：</strong>帶來各種電子設備讓學生觀察</li>
+                    <li><strong>角色扮演：</strong>讓學生扮演輸入、處理、輸出的角色</li>
+                </ul>
+            </div>
+
             <div class="highlight-box">
                 <p><strong>想想看：</strong>在你的一天中，你使用了哪些電腦？
                 從早上起床到晚上睡覺，電腦是如何幫助你的？</p>
@@ -285,12 +589,22 @@
             <p>為什麼電腦這麼有用？因為電腦有以下特點：</p>
             
             <ul>
-                <li><strong>速度快：</strong>能夠在很短的時間內完成大量計算</li>
-                <li><strong>準確性高：</strong>只要程式正確，電腦不會出錯</li>
-                <li><strong>儲存容量大：</strong>能夠記住大量的資料</li>
-                <li><strong>自動化：</strong>能夠按照程式自動執行工作</li>
-                <li><strong>重複性：</strong>能夠重複執行同樣的工作而不會疲倦</li>
+                <li><strong>⚡ 速度快：</strong>能夠在很短的時間內完成大量計算</li>
+                <li><strong>🎯 準確性高：</strong>只要程式正確，電腦不會出錯</li>
+                <li><strong>💾 儲存容量大：</strong>能夠記住大量的資料</li>
+                <li><strong>🤖 自動化：</strong>能夠按照程式自動執行工作</li>
+                <li><strong>🔄 重複性：</strong>能夠重複執行同樣的工作而不會疲倦</li>
             </ul>
+
+            <div class="teacher-notes teacher-only">
+                <h4>📊 評量重點</h4>
+                <ul>
+                    <li>學生能否說出電腦的基本定義</li>
+                    <li>學生能否理解輸入→處理→輸出的流程</li>
+                    <li>學生能否舉出生活中電腦應用的例子</li>
+                    <li>學生能否說出電腦的主要特點</li>
+                </ul>
+            </div>
 
             <h2>小結</h2>
             <p>
@@ -302,16 +616,86 @@
                 在下一節課中，我們將回到歷史，看看人類最早是如何進行計算的，
                 這將幫助我們更好地理解電腦的發展歷程。
             </p>
+
+            <div class="student-activity student-only">
+                <h4>🏆 課後挑戰</h4>
+                <p>回家後，觀察家中的電器設備，找出5個你認為有「電腦」功能的物品，
+                並思考它們的輸入、處理、輸出分別是什麼？下次上課時分享你的發現！</p>
+            </div>
         </main>
 
         <nav class="navigation">
-            <a href="../index.html" class="nav-button">← 回到課程總覽</a>
-            <a href="ch1-s2.html" class="nav-button">下一節：手指頭與小石頭 →</a>
+            <a href="../index.html" class="nav-button" id="back-to-overview">← 回到課程總覽</a>
+            <a href="ch1-s2.html" class="nav-button" id="next-lesson">下一節：手指頭與小石頭 →</a>
         </nav>
 
         <div class="back-to-index">
-            <a href="../index.html">← 返回課程首頁</a>
+            <a href="../index.html" id="back-to-home">← 返回課程首頁</a>
         </div>
     </div>
+
+    <script>
+        let currentMode = 'student'; // Default mode
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const body = document.body;
+
+            if (mode === 'student') {
+                // Switch to student mode
+                body.classList.add('student-mode');
+                body.classList.remove('teacher-mode');
+                
+            } else {
+                // Switch to teacher mode
+                body.classList.remove('student-mode');
+                body.classList.add('teacher-mode');
+            }
+            
+            // Update navigation links to preserve mode
+            updateNavigationLinks();
+        }
+
+        // Function to update navigation links with current mode
+        function updateNavigationLinks() {
+            // Update back to overview links
+            const backToOverview = document.getElementById('back-to-overview');
+            const backToHome = document.getElementById('back-to-home');
+            
+            if (backToOverview) {
+                backToOverview.href = '../index.html?mode=' + currentMode;
+            }
+            if (backToHome) {
+                backToHome.href = '../index.html?mode=' + currentMode;
+            }
+            
+            // Update next lesson link
+            const nextLesson = document.getElementById('next-lesson');
+            if (nextLesson) {
+                const baseHref = nextLesson.href.split('?')[0];
+                nextLesson.href = baseHref + '?mode=' + currentMode;
+            }
+        }
+
+        // Function to get URL parameter
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if mode parameter exists in URL
+            const modeFromUrl = getUrlParameter('mode');
+            
+            if (modeFromUrl === 'teacher' || modeFromUrl === 'student') {
+                // Use mode from URL
+                switchMode(modeFromUrl);
+            } else {
+                // Set default mode
+                switchMode('student');
+            }
+        });
+    </script>
 </body>
 </html> 
