@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2: 手指頭與小石頭—最早的計算機 - 半導體教學計畫</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Reset and Basic Body Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .lesson-header h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-header .breadcrumb {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .lesson-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .lesson-content h2 {
+            color: #007bff;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            border-left: 4px solid #007bff;
+            padding-left: 15px;
+        }
+
+        .lesson-content h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        .lesson-content p {
+            margin-bottom: 20px;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .lesson-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #e7f3ff;
+            border-left: 5px solid #007bff;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .historical-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .activity-box {
+            background-color: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-to-index {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-index a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-to-index a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 20px 15px;
+            }
+            
+            .lesson-header h1 {
+                font-size: 2em;
+            }
+            
+            .lesson-content {
+                font-size: 1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <header class="lesson-header">
+            <h1>手指頭與小石頭—最早的計算機</h1>
+            <div class="breadcrumb">第一章 第二節 (S2)</div>
+        </header>
+
+        <main class="lesson-content">
+            <h2>學習目標</h2>
+            <ul>
+                <li>了解人類最早的計算方法</li>
+                <li>認識古代計算工具的發展歷史</li>
+                <li>理解算盤的原理和使用方法</li>
+                <li>體驗古代計算工具的智慧</li>
+            </ul>
+
+            <h2>人類最早的計算器：手指頭！</h2>
+            <p>
+                想像一下，在很久很久以前，還沒有電腦、沒有計算機，甚至連紙筆都沒有的時候，
+                人們是怎麼計算的呢？答案就在我們身上—我們的手指頭！
+            </p>
+
+            <div class="activity-box">
+                <h4>🖐️ 動手試試看：用手指計算</h4>
+                <p>試試用你的手指頭計算以下問題：</p>
+                <ul>
+                    <li>3 + 2 = ?</li>
+                    <li>5 + 4 = ?</li>
+                    <li>7 - 3 = ?</li>
+                </ul>
+                <p>你發現什麼問題了嗎？當數字超過10時，手指就不夠用了！</p>
+            </div>
+
+            <h3>手指計算的優點和限制</h3>
+            <p><strong>優點：</strong></p>
+            <ul>
+                <li>隨時可用，不用攜帶任何工具</li>
+                <li>直觀易懂，適合小數字計算</li>
+                <li>幫助建立數字概念</li>
+            </ul>
+
+            <p><strong>限制：</strong></p>
+            <ul>
+                <li>只能計算到10（雙手）</li>
+                <li>無法處理複雜運算</li>
+                <li>無法記錄計算過程</li>
+            </ul>
+
+            <h2>小石頭也能計算？</h2>
+            <p>
+                當古代人需要計算更大的數字時，他們想到了使用小石頭、貝殼、或是木棒等物品來幫助計算。
+                這就是最早的「計算工具」！
+            </p>
+
+            <div class="historical-box">
+                <h4>📜 歷史小知識</h4>
+                <p>英文中的「計算」(Calculate)這個字，就是來自拉丁文的「calculus」，
+                意思就是「小石頭」！可見小石頭在計算歷史上的重要地位。</p>
+            </div>
+
+            <h3>小石頭計算法</h3>
+            <p>古代人使用小石頭計算的方法：</p>
+            <ol>
+                <li><strong>表示數字：</strong>一顆石頭代表一個單位</li>
+                <li><strong>加法：</strong>把石頭放在一起</li>
+                <li><strong>減法：</strong>把石頭拿走</li>
+                <li><strong>分組：</strong>十顆石頭代表一個十位數</li>
+            </ol>
+
+            <div class="example-box">
+                <h4>小石頭計算示例：</h4>
+                <p><strong>計算 7 + 5：</strong></p>
+                <ul>
+                    <li>放7顆石頭代表7</li>
+                    <li>再放5顆石頭代表5</li>
+                    <li>數一數總共有12顆石頭</li>
+                    <li>把10顆石頭分成一組，剩下2顆</li>
+                    <li>結果：1組十位數 + 2個單位 = 12</li>
+                </ul>
+            </div>
+
+            <h2>算盤：古代的超級計算機</h2>
+            <p>
+                隨著時間的發展，人們發明了更精巧的計算工具—算盤。
+                算盤可以說是古代最先進的「計算機」了！
+            </p>
+
+            <h3>算盤的特點</h3>
+            <ul>
+                <li><strong>便攜性：</strong>小巧輕便，容易攜帶</li>
+                <li><strong>效率高：</strong>熟練的人可以很快進行計算</li>
+                <li><strong>準確性：</strong>不容易出錯</li>
+                <li><strong>耐用性：</strong>可以使用很長時間</li>
+            </ul>
+
+            <h3>中國算盤的構造</h3>
+            <p>中國算盤通常有以下部分：</p>
+            <ul>
+                <li><strong>框架：</strong>木製的外框</li>
+                <li><strong>橫樑：</strong>把算盤分為上下兩部分</li>
+                <li><strong>算珠：</strong>用來表示數字的珠子</li>
+                <li><strong>算桿：</strong>串起算珠的直桿</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>算盤的數字表示法：</h4>
+                <ul>
+                    <li><strong>下珠：</strong>每顆代表1</li>
+                    <li><strong>上珠：</strong>每顆代表5</li>
+                    <li><strong>計算方法：</strong>把珠子撥向橫樑表示這個數字</li>
+                </ul>
+            </div>
+
+            <h3>算盤在世界各地</h3>
+            <p>算盤不只在中國有，世界各地都發明了類似的計算工具：</p>
+
+            <div class="example-box">
+                <h4>世界各地的算盤：</h4>
+                <ul>
+                    <li><strong>中國：</strong>珠算（上1下5制）</li>
+                    <li><strong>日本：</strong>算盤（そろばん）</li>
+                    <li><strong>俄羅斯：</strong>算盤（счёты）</li>
+                    <li><strong>歐洲：</strong>計算板（Counting Board）</li>
+                    <li><strong>南美：</strong>奇普（Quipu，結繩記數）</li>
+                </ul>
+            </div>
+
+            <h2>算盤的計算原理</h2>
+            <p>
+                算盤的計算原理其實和我們現在使用的十進位系統是一樣的：
+            </p>
+
+            <h3>位值概念</h3>
+            <ul>
+                <li>每一根算桿代表一個位數（個位、十位、百位...）</li>
+                <li>右邊是個位，左邊依序是十位、百位、千位</li>
+                <li>每個位置的值會乘以對應的位數</li>
+            </ul>
+
+            <div class="activity-box">
+                <h4>🧮 想像一下算盤計算：</h4>
+                <p>如果你有一個算盤，要表示數字25：</p>
+                <ul>
+                    <li>十位桿：撥2顆下珠（代表20）</li>
+                    <li>個位桿：撥1顆上珠（代表5）</li>
+                    <li>結果：20 + 5 = 25</li>
+                </ul>
+            </div>
+
+            <h2>古代計算工具的智慧</h2>
+            <p>
+                雖然古代的計算工具看起來很簡單，但它們體現了人類的智慧：
+            </p>
+
+            <ul>
+                <li><strong>位值系統：</strong>發明了位數的概念</li>
+                <li><strong>進位制：</strong>理解了十進位的原理</li>
+                <li><strong>抽象思維：</strong>用物體代表抽象的數字</li>
+                <li><strong>系統化：</strong>建立了有規則的計算方法</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>思考一下：</strong>這些古代計算工具的原理，
+                和現代電腦有什麼相似的地方呢？</p>
+            </div>
+
+            <h2>從古代到現代的啟發</h2>
+            <p>
+                古代的計算工具雖然簡單，但已經包含了現代電腦的基本概念：
+            </p>
+
+            <ul>
+                <li><strong>資料表示：</strong>用符號或物體代表數字</li>
+                <li><strong>運算規則：</strong>有固定的計算方法</li>
+                <li><strong>位值系統：</strong>不同位置有不同的意義</li>
+                <li><strong>機械化：</strong>減少人為錯誤，提高效率</li>
+            </ul>
+
+            <h2>小結</h2>
+            <p>
+                從手指頭到小石頭，再到算盤，人類一直在尋找更好的計算方法。
+                這些古老的計算工具不僅幫助人們解決實際問題，
+                更重要的是建立了計算的基本概念和原理。
+            </p>
+            <p>
+                這些概念為後來機械計算機和電子計算機的發明奠定了基礎。
+                在下一節課中，我們將看到歐洲科學家如何嘗試製造第一台機械計算機。
+            </p>
+        </main>
+
+        <nav class="navigation">
+            <a href="ch1-s1.html" class="nav-button">← 上一節：電腦究竟是什麼？</a>
+            <a href="ch1-s3.html" class="nav-button">下一節：機械計算的夢想 →</a>
+        </nav>
+
+        <div class="back-to-index">
+            <a href="../index.html">← 返回課程首頁</a>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圖片轉WebP小工具</title>
+  <style>
+    @font-face {
+      font-family: 'Cubic';
+      font-display: fallback;
+      src: url('../../font/Cubic.woff2');
+    }
+
+    body {
+      font-family: "Cubic", Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+      letter-spacing: 5px;
+    }
+
+    p {
+      padding: 10px;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 80%;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #ddd;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #4CAF50;
+      cursor: pointer;
+    }
+
+    .slider-container {
+      margin: 10px 0;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .value {
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+      margin-left: 5px;
+    }
+
+    .button {
+
+      display: inline-block;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+      border: 0px;
+    }
+    #downloadButton{
+      font-family: "Cubic", Arial, sans-serif;
+    }
+
+    #result {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .thumbnail-container {
+      text-align: center;
+    }
+
+    .thumbnail {
+      margin: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #download {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    p.select-files-button-container {
+      text-align: center;
+    }
+
+    .button.disabled {
+    font-family: "Cubic", Arial, sans-serif;
+    background-color: #AAA;
+    cursor: not-allowed;
+    border: 0px;
+    }
+
+    .icon {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 9999;
+      width: 50px;
+      height: 50px;
+      background-color: #f0f0f0;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .icon img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(216, 238, 217, 0.4);
+      }
+
+      70% {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 10px rgba(231, 172, 168, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(245, 210, 208, 0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="icon" onclick="window.location.href='./auto2WebP.html'">
+    <img src="icon.webp" alt="icon" title="點我進入自動化的WebP轉檔程式 ( •̀ ω •́ )✧ ">
+  </div>
+  <h1>圖片轉 WebP 小工具</h1>
+  <p class="select-files-button-container">
+    <label>
+      <input type="file" id="inputFile" accept="image/*" multiple style="display: none;">
+      <span class="button" id="selectFilesButton">選擇圖片檔案</span>
+    </label>
+  </p>
+  <div class="slider-container">
+    <label for="resolutionScale">解析度：</label>
+    <input type="range" id="resolutionScale" min="0.01" max="1.2" step="0.01" value="1">
+    <span class="value" id="resolutionValue">1.00</span>
+  </div>
+  <div class="slider-container">
+    <label for="compressionQuality">壓縮品質：</label>
+    <input type="range" id="compressionQuality" min="0" max="100" step="1" value="80">
+    <span class="value" id="compressionValue">0.80</span>
+  </div>
+  <div id="result"></div>
+  <p id="download">
+    <button class="button" id="downloadButton" disabled>下載轉換完成的檔案</button>
+
+  </p>
+  <script src="jszip.min.js"></script>
+
+  <script>
+  // 初始化按鈕
+  document.addEventListener("DOMContentLoaded", () => {
+  const mainDownloadButton = document.getElementById("downloadButton");
+  mainDownloadButton.disabled = true;
+  mainDownloadButton.classList.add("disabled");
+});
+    // 初始化 JSZip 實例
+    const zip = new JSZip();
+    const cachedResults = new Map(); // 儲存已轉換的檔案
+    const debouncedUpdateResults = debounce(updateResults, 300); // 300毫秒的延遲
+
+    document.getElementById("inputFile").addEventListener("change", handleFileSelect);
+    document.getElementById("selectFilesButton").addEventListener("click", () => {
+      const inputFile = document.getElementById("inputFile");
+      inputFile.value = ""; // 重置 inputFile 的值
+    });
+
+    document.getElementById("resolutionScale").addEventListener("input", function () {
+      document.getElementById("resolutionValue").textContent = (this.value / 100 * 100).toFixed(2);
+      debouncedUpdateResults(); // 更新結果
+    });
+
+    document.getElementById("compressionQuality").addEventListener("input", function () {
+      document.getElementById("compressionValue").textContent = (this.value / 100).toFixed(2);
+      debouncedUpdateResults(); // 更新結果
+    });
+
+    document.getElementById("downloadButton").addEventListener("click", async () => {
+      if (zip.files.length === 0) {
+        return;
+      }
+      const zipBlob = await zip.generateAsync({
+        type: "blob"
+      });
+      const url = URL.createObjectURL(zipBlob);
+      const downloadLink = document.createElement("a");
+
+      downloadLink.href = url;
+      downloadLink.download = "converted-images.zip";
+      downloadLink.style.display = "none";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+    });
+
+
+    async function handleFileSelect(event) {
+      const files = event.target.files;
+
+      if (files.length === 0) {
+        return;
+      }
+
+      for (const file of files) {
+        const fileName = file.name.split(".").slice(0, -1).join(".");
+
+        if (!cachedResults.has(file)) {
+          const {
+            blob,
+            width,
+            height
+          } = await convertToWebP(file);
+          cachedResults.set(file, { blob, width, height }); // 儲存已轉換的檔案
+          showResult(blob, fileName, width, height);
+        } else {
+          const { blob, width, height } = cachedResults.get(file);
+          showResult(blob, fileName, width, height);
+        }
+      }
+    }
+
+    async function updateResults() {
+      clearResults(); // 清除之前的結果
+      zip.remove(/.*/); // 移除之前 ZIP 檔案內的檔案
+
+      for (const [file, result] of cachedResults.entries()) {
+        const fileName = file.name.split(".").slice(0, -1).join(".");
+        const {
+          blob,
+          width,
+          height
+        } = await convertToWebP(file);
+        showResult(blob, fileName, width, height);
+      }
+    }
+
+    function debounce(func, wait) {
+      let timeout;
+      return (...args) => {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    async function convertToWebP(file) {
+      const resolutionScale = parseFloat(document.getElementById("resolutionScale").value);
+      const compressionQuality = parseFloat(document.getElementById("compressionQuality").value) / 100;
+
+      return new Promise((resolve) => {
+        const img = new Image();
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+          const width = img.width * resolutionScale;
+          const height = img.height * resolutionScale;
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(img, 0, 0, width, height);
+          canvas.toBlob((blob) => resolve({
+            blob,
+            width,
+            height
+          }), "image/webp", compressionQuality);
+          URL.revokeObjectURL(img.src);
+        };
+      });
+    }
+
+
+    async function showResult(blob, fileName, width, height) {
+      // 將轉換後的圖像添加到 ZIP 檔案
+      const arrayBuffer = await blob.arrayBuffer();
+      zip.file(fileName + ".webp", arrayBuffer, {
+        binary: true
+      });
+
+      // 顯示縮略圖
+      const fileSize = blob.size;
+      const fileSizeKB = (fileSize / 1024).toFixed(2);
+      const resultDiv = document.getElementById("result");
+      const thumbnailContainer = document.createElement("div");
+      const thumbnail = document.createElement("img");
+      const thumbnailText = document.createElement("p");
+      const downloadButton = document.createElement("a");
+      const resolutionText = document.createElement("p");
+
+      thumbnailContainer.style.textAlign = "center";
+      thumbnail.src = URL.createObjectURL(blob);
+      thumbnail.width = 100;
+      thumbnail.style.margin = "10px";
+      thumbnailText.textContent = `${fileName}.webp (${fileSizeKB} KB)`;
+      resolutionText.textContent = `解析度：${width.toFixed(0)} x ${height.toFixed(0)}`;
+
+      downloadButton.href = URL.createObjectURL(blob);
+      downloadButton.download = `${fileName}.webp`;
+      downloadButton.textContent = "下載";
+      downloadButton.classList.add("button");
+      thumbnailContainer.appendChild(thumbnail);
+      thumbnailContainer.appendChild(thumbnailText);
+      thumbnailContainer.appendChild(resolutionText);
+      thumbnailContainer.appendChild(downloadButton);
+      resultDiv.appendChild(thumbnailContainer);
+
+      downloadButton.addEventListener("click", () => {
+        downloadButton.href = URL.createObjectURL(blob);
+        downloadButton.download = `${fileName}.webp`;
+      });
+      const mainDownloadButton = document.getElementById("downloadButton");
+      mainDownloadButton.disabled = false;
+      mainDownloadButton.classList.remove("disabled");
+    }
+
+    function clearResults() {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = ""; // 清除 resultDiv 的內容
+      const mainDownloadButton = document.getElementById("downloadButton");
+      mainDownloadButton.disabled = true;
+      mainDownloadButton.classList.add("disabled");
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W4: 會「咔咔」響的開關—繼電器時代 - 半導體教學計畫</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Reset and Basic Body Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #28a745;
+        }
+
+        .lesson-header h1 {
+            color: #28a745;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .lesson-header .breadcrumb {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .lesson-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .lesson-content h2 {
+            color: #28a745;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
+        }
+
+        .lesson-content h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        .lesson-content p {
+            margin-bottom: 20px;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .lesson-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .example-box {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .technical-box {
+            background-color: #e2f3ff;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #218838;
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-to-index {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-index a {
+            color: #28a745;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-to-index a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 20px 15px;
+            }
+            
+            .lesson-header h1 {
+                font-size: 2em;
+            }
+            
+            .lesson-content {
+                font-size: 1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <header class="lesson-header">
+            <h1>會「咔咔」響的開關—繼電器時代</h1>
+            <div class="breadcrumb">第二章 第一節 (W4)</div>
+        </header>
+
+        <main class="lesson-content">
+            <h2>學習目標</h2>
+            <ul>
+                <li>了解繼電器的基本原理和構造</li>
+                <li>認識早期繼電器計算機的發展</li>
+                <li>理解電磁開關在計算機發展中的重要性</li>
+                <li>探索從機械到電子的轉變過程</li>
+            </ul>
+
+            <h2>什麼是繼電器？</h2>
+            <p>
+                想像一下，如果你能用一個小開關來控制另一個大開關，這樣是不是很方便？
+                繼電器就是這樣的神奇裝置！它是一種用電磁原理控制的開關，
+                在20世紀初期的電話系統和早期計算機中扮演了重要角色。
+            </p>
+
+            <div class="technical-box">
+                <h4>⚡ 繼電器的工作原理：</h4>
+                <ol>
+                    <li><strong>電磁鐵：</strong>當電流通過線圈時，產生磁場</li>
+                    <li><strong>吸引作用：</strong>磁場吸引金屬片（電樞）</li>
+                    <li><strong>開關動作：</strong>電樞移動，接通或斷開另一個電路</li>
+                    <li><strong>咔咔聲：</strong>電樞移動時發出的機械聲響</li>
+                </ol>
+            </div>
+
+            <h3>繼電器的優點</h3>
+            <ul>
+                <li><strong>放大作用：</strong>小電流可以控制大電流</li>
+                <li><strong>隔離保護：</strong>控制電路和被控制電路分離</li>
+                <li><strong>可靠性：</strong>比當時的真空管更可靠</li>
+                <li><strong>雙態特性：</strong>只有開或關兩種狀態，適合數位計算</li>
+            </ul>
+
+            <h2>第一台繼電器計算機：Z3</h2>
+            <p>
+                1941年，德國工程師康拉德·楚澤（Konrad Zuse）完成了世界上第一台完全可程式化的繼電器計算機—Z3。
+                這台機器使用了大約2600個繼電器，標誌著電子計算時代的開始。
+            </p>
+
+            <div class="highlight-box">
+                <h4>🖥️ Z3計算機的特點：</h4>
+                <ul>
+                    <li><strong>使用繼電器：</strong>約2600個繼電器作為開關</li>
+                    <li><strong>二進位系統：</strong>使用0和1的二進位數字系統</li>
+                    <li><strong>可程式化：</strong>能夠執行不同的程式指令</li>
+                    <li><strong>浮點運算：</strong>能進行小數點運算</li>
+                    <li><strong>運算速度：</strong>每秒約20次運算</li>
+                </ul>
+            </div>
+
+            <h2>IBM的繼電器計算機</h2>
+            <p>
+                在美國，IBM也在1940年代開發了多台繼電器計算機，
+                其中最著名的是Harvard Mark I（正式名稱：IBM ASCC）。
+            </p>
+
+            <h3>Harvard Mark I的規格</h3>
+            <div class="example-box">
+                <h4>Harvard Mark I (1944)：</h4>
+                <ul>
+                    <li><strong>繼電器數量：</strong>約3300個</li>
+                    <li><strong>尺寸：</strong>長15公尺，高2.4公尺</li>
+                    <li><strong>重量：</strong>約5噸</li>
+                    <li><strong>運算速度：</strong>加法需要0.3秒，乘法需要6秒</li>
+                    <li><strong>程式輸入：</strong>使用打孔紙帶</li>
+                </ul>
+            </div>
+
+            <h2>繼電器的限制</h2>
+            <p>
+                雖然繼電器為早期計算機的發展做出了重要貢獻，但它們也有明顯的限制：
+            </p>
+
+            <h3>速度限制</h3>
+            <ul>
+                <li><strong>機械動作：</strong>繼電器需要物理移動，速度有限</li>
+                <li><strong>切換時間：</strong>每次開關大約需要1-10毫秒</li>
+                <li><strong>頻率限制：</strong>無法進行高頻率的快速切換</li>
+            </ul>
+
+            <h3>可靠性問題</h3>
+            <ul>
+                <li><strong>機械磨損：</strong>長期使用會導致接點磨損</li>
+                <li><strong>接觸不良：</strong>灰塵和氧化可能造成接觸問題</li>
+                <li><strong>噪音干擾：</strong>「咔咔」聲在大型系統中會很吵</li>
+            </ul>
+
+            <div class="technical-box">
+                <h4>🐛 第一個「電腦bug」</h4>
+                <p>1947年，格蕾絲·霍普（Grace Hopper）在Harvard Mark II繼電器計算機中發現了一隻卡在繼電器裡的飛蛾，
+                導致計算機故障。她把這隻蟲子貼在日誌上，並寫道「第一個真正的bug」。
+                從此，「bug」就成了電腦故障的代名詞！</p>
+            </div>
+
+            <h2>繼電器邏輯運算</h2>
+            <p>
+                繼電器的重要性不只在於它是一個開關，更在於它能夠實現邏輯運算：
+            </p>
+
+            <h3>基本邏輯閘</h3>
+            <div class="example-box">
+                <h4>用繼電器實現邏輯運算：</h4>
+                <ul>
+                    <li><strong>AND閘：</strong>兩個繼電器串聯，都通電才輸出</li>
+                    <li><strong>OR閘：</strong>兩個繼電器並聯，任一通電就輸出</li>
+                    <li><strong>NOT閘：</strong>常閉接點，通電時反而斷開</li>
+                </ul>
+            </div>
+
+            <h2>繼電器的歷史意義</h2>
+            <p>
+                繼電器計算機雖然很快就被真空管和電晶體取代，但它們的歷史意義重大：
+            </p>
+
+            <ul>
+                <li><strong>概念驗證：</strong>證明了電子開關可以用於計算</li>
+                <li><strong>二進位系統：</strong>確立了二進位數字系統的重要性</li>
+                <li><strong>邏輯運算：</strong>展示了如何用物理器件實現邏輯運算</li>
+                <li><strong>程式化控制：</strong>發展了程式控制的概念</li>
+                <li><strong>系統架構：</strong>為後來的電腦架構設計奠定基礎</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>思考問題：</strong>如果繼電器技術持續發展，沒有被真空管取代，
+                你覺得現在的電腦會是什麼樣子？</p>
+            </div>
+
+            <h2>小結</h2>
+            <p>
+                繼電器時代雖然短暫，但卻是電腦發展史上的重要階段。
+                它們帶著「咔咔」的聲響，開啟了電子計算的新紀元。
+                雖然速度慢、體積大，但繼電器計算機證明了用電子開關進行計算的可行性，
+                為後來的真空管和電晶體計算機鋪平了道路。
+            </p>
+            <p>
+                在下一節課中，我們將看到真空管如何取代繼電器，
+                讓計算機變得更快、更可靠，也更安靜！
+            </p>
+        </main>
+
+        <nav class="navigation">
+            <a href="../index.html" class="nav-button">← 回到課程總覽</a>
+            <a href="#" class="nav-button">下一節：真空管時代 →</a>
+        </nav>
+
+        <div class="back-to-index">
+            <a href="../index.html">← 返回課程首頁</a>
+        </div>
+    </div>
+</body>
+</html> 
