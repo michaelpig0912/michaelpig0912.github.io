@@ -1,8 +1,8 @@
 ---
-title: 台北 team Lab 與科教館半日遊 | 一個人的旅行
+title: 台北 team Lab 與科教館半日遊｜展覽心得
 katex: true
 date: 2024-07-30 00:49:56
-categories: travel
+categories: exhibition
 tags:
 - exhibition
 - teamlab

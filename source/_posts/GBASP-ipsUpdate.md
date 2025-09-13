@@ -8,6 +8,7 @@ tags:
   - IPS 螢幕
   - diy
   - nintendo
+  - game console
 cover: ips_3.webp
 ---
 

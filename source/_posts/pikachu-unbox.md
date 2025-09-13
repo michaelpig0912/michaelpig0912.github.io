@@ -7,6 +7,7 @@ categories:
 tags:
 - pikachu
 - unbox
+- game console
 cover: cover.webp
 ---
 

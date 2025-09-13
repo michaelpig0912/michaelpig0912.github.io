@@ -607,7 +607,7 @@ display_mode: light
 beautify:
   enable: true
   field: post # site/post
-  title-prefix-icon: '\f04b'
+  title-prefix-icon: '#'
   title-prefix-icon-color: '#7272ff'
 
 # Global font settings
