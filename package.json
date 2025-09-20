@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@neilsustc/markdown-it-katex": "^1.0.0",
-    "hexo": "^8.0.0",
+    "hexo": "^6.3.0",
     "hexo-admin": "^2.3.0",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^4.0.0",
@@ -33,6 +33,7 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^0.0.3",
-    "hexo-wordcount": "^6.0.1"
+    "hexo-wordcount": "^6.0.1",
+    "strip-ansi": "^6.0.1"
   }
 }
