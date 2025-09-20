@@ -10,11 +10,11 @@
     "local": "hexo s --config _config.yml,_config_local.yml"
   },
   "hexo": {
-    "version": "6.3.0"
+    "version": "8.0.0"
   },
   "dependencies": {
     "@neilsustc/markdown-it-katex": "^1.0.0",
-    "hexo": "^6.3.0",
+    "hexo": "^8.0.0",
     "hexo-admin": "^2.3.0",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^4.0.0",
@@ -26,7 +26,7 @@
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-jade": "^0.5.0",
+    "hexo-renderer-jade": "^0.4.0",
     "hexo-renderer-markdown-it": "^6.1.0",
     "hexo-renderer-markdown-it-katex": "^3.4.4",
     "hexo-renderer-pug": "^3.0.0",
