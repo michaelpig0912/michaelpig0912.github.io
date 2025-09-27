@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <title>排行榜</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #dbd9d9;
+    }
+
+    h2 {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f7f7f7;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #333;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+        transition: background-color 0.3s ease;
+    }
+
+    .scores-section {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .scores-table {
+        flex: 1;
+        margin: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgb(197, 197, 197);
+    }
+
+    .scores-table table {
+        width: 100%;
+    }
+
+    .scores-table th, .scores-table td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .scores-table th {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .scores-table tr:nth-child(even) {
+        background-color: #f7f7f7;
+    }
+
+    .scores-table tr:hover {
+        background-color: #eee;
+        transition: background-color 0.3s ease;
+    }
+
+    @keyframes highlight {
+        from {
+            background-color: #ffc107;
+        }
+        to {
+            background-color: #f7f7f7;
+        }
+    }
+
+    .highlighted {
+        animation: highlight 2s infinite alternate;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 1200px) {
+        .scores-section {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scores-table {
+            width: 90%;
+            margin: 10px 0;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+
+        .scores-section .scores-table:nth-child(even) {
+            margin-top: 20px;
+        }
+    }
+</style>
+
+</head>
+<body>
+<div class="scores-section">
+    <div style="background-color:#00963e" class="scores-table">
+        <h2 style="color: #f3f3f3;">答對</h2>
+        <table id="correct-scores-table">
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Elapsed Time (seconds)</th>
+                <th>Score</th>
+            </tr>
+        </table>
+    </div>
+
+    <div style="background-color:#960014" class="scores-table">
+        <h2 style="color: #f3f3f3;"> 答錯</h2>
+        <table id="incorrect-scores-table">
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Elapsed Time (seconds)</th>
+                <th>Score</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="scores-section">
+    <div style="background-color:#0f0096" class="scores-table">
+        <h2 style="color: #fff;">總分</h2>
+        <table id="total-scores-table">
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Total Score</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    </body>
+    </html>
+
+<script>
+// 初始化Firebase
+var config = {
+    apiKey: "AIzaSyDUOqDMSq9zYmjRT9B-f-LWPdK5fJkwXWk",
+        authDomain: "quiz-video-7b0ee.firebaseapp.com",
+        databaseURL: "https://quiz-video-7b0ee-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "quiz-video-7b0ee",
+        storageBucket: "quiz-video-7b0ee.appspot.com",
+        messagingSenderId: "297463289408",
+        appId: "1:297463289408:web:a2fc08a131e2e5b1e1f1a5",
+        measurementId: "G-RMD53Y42ND"
+};
+
+firebase.initializeApp(config);
+
+
+let scoresRef = firebase.database().ref('scores');
+
+// Function to update scores on the page
+function updateScores() {
+    // Clear the previous data
+    document.getElementById('correct-scores-table').innerHTML = '';
+    document.getElementById('incorrect-scores-table').innerHTML = '';
+    document.getElementById('total-scores-table').innerHTML = '';
+
+    // Fetch the scores
+    scoresRef.once('value').then(snapshot => {
+        let scoresData = snapshot.val();
+
+        // Separate users based on their answers
+        let correctUsers = [];
+        let incorrectUsers = [];
+        for (let userID in scoresData) {
+            if (scoresData[userID].correct) {
+                correctUsers.push({ id: userID, ...scoresData[userID] });
+            } else {
+                incorrectUsers.push({ id: userID, ...scoresData[userID] });
+            }
+        }
+
+        // Sort by elapsedTime
+        correctUsers.sort((a, b) => a.elapsedTime - b.elapsedTime);
+        incorrectUsers.sort((a, b) => a.elapsedTime - b.elapsedTime);
+
+        // Populate correct answers table
+        let correctTable = document.getElementById('correct-scores-table');
+        correctUsers.forEach((user, index) => {
+            let row = correctTable.insertRow();
+            row.insertCell().textContent = "第"+ (index+1) + "名";
+            row.insertCell().textContent = ""+user.id;
+            row.insertCell().textContent = ""+user.elapsedTime.toFixed(2)+"秒";
+            row.insertCell().textContent = `+${user.score.toFixed(2)}`+"分";
+        });
+
+        // Populate incorrect answers table
+        let incorrectTable = document.getElementById('incorrect-scores-table');
+        incorrectUsers.forEach((user, index) => {
+            let row = incorrectTable.insertRow();
+            row.insertCell().textContent = "第"+ (index+1) + "名";
+            row.insertCell().textContent = user.id;
+            row.insertCell().textContent = user.elapsedTime.toFixed(2)+"秒";
+            row.insertCell().textContent = `-${user.score.toFixed(2)}`+"分";
+        });
+
+        // Combine all users for total scores
+        let allUsers = [...correctUsers, ...incorrectUsers];
+        allUsers.sort((a, b) => b.totalScore - a.totalScore);
+
+        // Populate total scores table
+        let totalTable = document.getElementById('total-scores-table');
+        allUsers.forEach((user, index) => {
+            let row = totalTable.insertRow();
+            row.insertCell().textContent = "第"+ (index+1) + "名";
+            row.insertCell().textContent = user.id;
+            row.insertCell().textContent = user.totalScore.toFixed(2)+"分";
+        });
+    });
+}
+
+// Call the function when the page loads and set it to run every 15 seconds
+updateScores();
+setInterval(updateScores, 10000);
+</script>
+
