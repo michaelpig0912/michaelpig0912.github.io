@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手機感測器互動測試</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>手機感測器互動測試平台</h1>
+        <p>本平台用於展示如何透過瀏覽器 Web API 存取手機內建的各種感測器和功能，並實現互動效果。</p>
+    </header>
+
+    <main>
+        <section id="intro">
+            <h2>專案說明</h2>
+            <p>純手機或平板，以網站形式來做到感測器互動是完全可行的，並且是現代網頁技術的趨勢。關鍵在於利用手機和平板內建的各種感測器和功能，這些都可以透過瀏覽器的 Web API (Application Programming Interface) 來存取。</p>
+            <h3>純手機/平板網站的優勢：</h3>
+            <ul>
+                <li><strong>無需額外硬體：</strong> 不用教具包，只要有手機或平板就能玩。</li>
+                <li><strong>普惠性：</strong> 大大降低了參與門檻，更多小朋友能體驗。</li>
+                <li><strong>即時互動：</strong> 直接透過手機的感測器來觸發網頁內容，反應迅速。</li>
+                <li><strong>真實世界應用：</strong> 強調手機/平板本身就是一個充滿感測器和科技的裝置。</li>
+            </ul>
+        </section>
+
+        <section id="sensor-links">
+            <h2>可測試的感測器與功能：</h2>
+            <nav>
+                <ul>
+                    <li><a href="microphone-test/">麥克風 (Microphone) 測試</a></li>
+                    <li><a href="accelerometer-test/">加速度計/陀螺儀 (Accelerometer/Gyroscope) 測試</a></li>
+                    <li><a href="camera-test/">相機與環境光 (Camera & Ambient Light) 測試</a></li>
+                    <li><a href="touch-test/">觸控螢幕 (Touch Screen) 測試</a></li>
+                    <li><a href="geolocation-test/">地理位置 (Geolocation) 測試</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section id="considerations">
+            <h2>重要考量與限制：</h2>
+            <ul>
+                <li><strong>權限請求：</strong> 這些敏感權限都需要使用者明確同意。網站設計時需要提供清晰的說明。</li>
+                <li><strong>瀏覽器兼容性：</strong> 不同瀏覽器對某些 Web API 的支援程度可能不同。</li>
+                <li><strong>安全性：</strong> 確保網站的程式碼安全，不濫用取得的權限。</li>
+                <li><strong>背景運行：</strong> 某些感測器在背景運行會消耗電量。</li>
+                <li><strong>精確度：</strong> 手機內建感測器的精確度可能不如專業的獨立感測器。</li>
+                <li><strong>無法直接控制 GPIO：</strong> 手機網站無法像 Micro:bit 或 Arduino 那樣直接控制電路板上的引腳。</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 手機感測器測試平台</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

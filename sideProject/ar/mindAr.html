@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "mindar-image-three":"https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-three.prod.js"
+      }
+    }
+    </script>
+    <script type="module">
+      import * as THREE from 'three';
+      import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
+      import { MindARThree } from 'mindar-image-three';
+
+      const mindarThree = new MindARThree({
+        container: document.querySelector("#container"),
+        imageTargetSrc: "assets/targets.mind"
+      });
+
+      const {renderer, scene, camera} = mindarThree;
+
+      // Enable shadow map in the renderer
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const anchor = mindarThree.addAnchor(0);
+      const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+
+      // Create a RectAreaLight and enable shadow
+      const rectLight1 = new THREE.RectAreaLight(0xffffff, 10, 10, 10);
+      rectLight1.position.set(5, 5, 5);
+      rectLight1.lookAt(0, 0, 0);
+      rectLight1.castShadow = true;
+      scene.add(rectLight1);
+
+      // Add helper for RectAreaLight
+      const rectLightHelper1 = new RectAreaLightHelper(rectLight1);
+      rectLight1.add(rectLightHelper1);
+
+      // Create a second RectAreaLight on the right
+      const rectLight2 = new THREE.RectAreaLight(0xffffff, 10, 10, 10);
+      rectLight2.position.set(-5, 5, 5); // Positioned on the right side
+      rectLight2.lookAt(0, 0, 0);
+      rectLight2.castShadow = true;
+      scene.add(rectLight2);
+
+      // Add helper for the second RectAreaLight
+      const rectLightHelper2 = new RectAreaLightHelper(rectLight2);
+      rectLight2.add(rectLightHelper2);
+
+      const material = new THREE.MeshStandardMaterial({ color: 0x0077ff });
+      material.roughness = 0.4;
+
+      const sphere = new THREE.Mesh(geometry, material);
+      sphere.position.y = 0.5;
+      sphere.castShadow = true; // Enable shadow casting for the sphere
+      sphere.receiveShadow = true; // Enable shadow receiving for the sphere
+
+      const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        material
+      );
+      cube.position.set(1, 0.5, 0);
+      cube.castShadow = true; // Enable shadow casting for the cube
+      cube.receiveShadow = true; // Enable shadow receiving for the cube
+
+      anchor.group.add(sphere, cube);
+
+      // Add a ground plane to receive shadows
+      const groundGeometry = new THREE.PlaneGeometry(10, 10);
+      const groundMaterial = new THREE.ShadowMaterial({ opacity: 0.5 });
+      const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = -0.5;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      const start = async() => {
+        await mindarThree.start();
+        renderer.setAnimationLoop(() => {
+          renderer.render(scene, camera);
+        });
+      }
+
+      const startButton = document.querySelector("#startButton");
+      startButton.addEventListener("click", () => {
+        start();
+      });
+
+      const stopButton = document.querySelector("#stopButton");
+      stopButton.addEventListener("click", () => {
+        mindarThree.stop();
+        mindarThree.renderer.setAnimationLoop(null);
+      });
+    </script>
+    <style>
+      body {
+        margin: 0;
+      }
+      #container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+      #control {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="control">
+      <button id="startButton">Start</button>
+      <button id="stopButton">Stop</button>
+    </div>
+    <div id="container">
+    </div>
+  </body>
+</html>

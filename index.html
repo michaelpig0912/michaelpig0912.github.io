@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Michaelpig's blog - Michaelpig的實驗區</title><meta name="author" content="Michael"><meta name="copyright" content="Michael"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="歡迎來到michaelpig的部落格！這裡會分享各種有趣的物理實驗、程式測試以及一些工作上的雜談。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Michaelpig&#39;s blog">
+<meta property="og:url" content="https://michaelpig0912.github.io/index.html">
+<meta property="og:site_name" content="Michaelpig&#39;s blog">
+<meta property="og:description" content="歡迎來到michaelpig的部落格！這裡會分享各種有趣的物理實驗、程式測試以及一些工作上的雜談。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://michaelpig0912.github.io/img/avatar.webp">
+<meta property="article:author" content="Michael">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://michaelpig0912.github.io/img/avatar.webp">
+<meta property="fb:app_id" content="1605937756773237"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://michaelpig0912.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-Z1HFD1G7WJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Z1HFD1G7WJ');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查詢的內容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Michaelpig\'s blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-11-09 09:38:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Michaelpig's blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><link rel="stylesheet" href="/css/loading.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.webp" onerror="onerror=null;src='/img/404image.webp'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">103</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目錄</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 歷程</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-bookmark"></i><span> 小小測試</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sideProject/ar/"><i class="fa-fw fas fa-camera"></i><span> AR測試</span></a></li><li><a class="site-page child" href="/sideProject/clock/clock.html"><i class="fa-fw fas fa-clock"></i><span> 時鐘</span></a></li><li><a class="site-page child" href="/sideProject/image2WebP/image2WebP.html"><i class="fa-fw fa-sharp fa-solid fa-images"></i><span> 圖片轉WebP</span></a></li><li><a class="site-page child" href="/sideProject/MPsci/MPsci.html"><i class="fa-fw fas fa-solid fa-atom"></i><span> MPsci</span></a></li><li><a class="site-page child" href="/sideProject/threejs/index.html"><i class="fa-fw fas fa-solid fa-cube"></i><span> Three.js學習</span></a></li><li><a class="site-page child" href="/sideProject/InteractiQuiz/index.html"><i class="fa-fw fas fa-solid fa-question"></i><span> 互動影片問答</span></a></li><li><a class="site-page child" href="/sideProject/NCUE107Physics/"><i class="fa-fw fas fa-solid fa-book"></i><span> NCUE107Physics</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/banner.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Michaelpig's blog"><span class="site-name">Michaelpig's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜尋</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目錄</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 歷程</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-bookmark"></i><span> 小小測試</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sideProject/ar/"><i class="fa-fw fas fa-camera"></i><span> AR測試</span></a></li><li><a class="site-page child" href="/sideProject/clock/clock.html"><i class="fa-fw fas fa-clock"></i><span> 時鐘</span></a></li><li><a class="site-page child" href="/sideProject/image2WebP/image2WebP.html"><i class="fa-fw fa-sharp fa-solid fa-images"></i><span> 圖片轉WebP</span></a></li><li><a class="site-page child" href="/sideProject/MPsci/MPsci.html"><i class="fa-fw fas fa-solid fa-atom"></i><span> MPsci</span></a></li><li><a class="site-page child" href="/sideProject/threejs/index.html"><i class="fa-fw fas fa-solid fa-cube"></i><span> Three.js學習</span></a></li><li><a class="site-page child" href="/sideProject/InteractiQuiz/index.html"><i class="fa-fw fas fa-solid fa-question"></i><span> 互動影片問答</span></a></li><li><a class="site-page child" href="/sideProject/NCUE107Physics/"><i class="fa-fw fas fa-solid fa-book"></i><span> NCUE107Physics</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Michaelpig's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt"><img class="post-bg" src="/2025/10/04/tryNomadSculpt/cover.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="第一次玩 Nomad Sculpt"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt">第一次玩 Nomad Sculpt</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-10-04T18:25:50.000Z" title="發表於 2025-10-04 18:25:50">2025-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/3d/">3d</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/3d/software/">software</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/software/">software</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Nomad-Sculpt/">Nomad Sculpt</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/3d/">3d</a></span></div><div class="content">簡介
+使用心得
+
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/10/04/teslaRelived-stageShow/" title="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄"><img class="post-bg" src="/2025/10/04/teslaRelived-stageShow/%E6%B5%B7%E5%A0%B1.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/10/04/teslaRelived-stageShow/" title="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄">來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-10-04T18:24:19.000Z" title="發表於 2025-10-04 18:24:19">2025-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/drama/">drama</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/drama/local/">local</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/show/">show</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/drama/">drama</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Reader-s-Theater/">Reader's Theater</a></span></div><div class="content">
+注意：這是一個非專業的戲劇紀錄，僅記錄我個人的觀影經驗，並不是專業的戲劇評論。且以下的內容可能會有劇透，如果你還沒看過的話，可以先去看完再回來看這篇文章。
+
+場域資訊
+
+位置：文大推廣部大夏館表演廳
+價位：440 元(早鳥價)
+時間：10/04(六) 14:30~16:00(大約 85 分鐘)
+主觀評價：7.4/10
+
+簡介
+他曾以一道電流連結世界，卻無法拉近與人群的距離。
+他曾讓十六萬盞燈同時亮起，卻沒有人記得是誰點起了燈。
+他預見無線的未來、太陽的能量與會思考的機器，但最後只與鴿子為伴。
+從紐約客飯店3327號房開始，年邁的特斯拉回望一生：從童年撫摸橘貓時感受到電的刺痛，到與父親決裂、離家出走，只為追尋電的奧祕。他曾與愛迪生爭鋒、與西屋並肩，在讓交流電點亮美國的過程中，他固執、敏感，對世界懷抱熱情，也時常與它格格不入。他親手撕毀價值千萬的合約，只為守住信念；他構想全球無線電力的藍圖，卻眼睜睜看著設計被竊、名字被抹除。
+這封信夾帶著電流、記憶與時間，穿越尼加拉瀑布的轟鳴與荒廢的沃登克里弗塔，最終停在一間無人敲門的房間窗前——那裡，一隻白鴿正靜靜等待著他。而已經老去的特斯拉說：「我希 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/09/03/whoIsOedipus-stageShow/" title="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄"><img class="post-bg" src="/2025/09/03/whoIsOedipus-stageShow/%E8%AC%9D%E5%B9%95.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/09/03/whoIsOedipus-stageShow/" title="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄">誰是伊底帕斯-舞台劇｜非專業戲劇紀錄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-09-03T23:03:20.000Z" title="發表於 2025-09-03 23:03:20">2025-09-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/drama/">drama</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/drama/local/">local</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/show/">show</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/drama/">drama</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/stage/">stage</a></span></div><div class="content">
+注意：這是一個非專業的戲劇紀錄，僅記錄我個人的觀影經驗，並不是專業的戲劇評論。且以下的內容會有劇透，如果你還沒看過的話，可以先去看完再回來看這篇文章。
+場域資訊
+
+
+位置：國立臺灣科學教育館 溫暖小池塘(五樓物理世界)
+
+
+價位：600 元
+
+
+時間：9/3(三) 19:30~21:00
+
+
+主觀評價：6.9 / 10
+
+
+劇團：SOKKA。夢遊場
+
+
+
+簡介
+（你有眼睛，卻看不見你的災禍…）
+眼罩從不遮住真相
+只是延遲殘酷的斲傷
+他們說 他看不見
+但他的步伐從未停下
+（你知道你生命的根源是什麼嗎？）
+他曾是孩子 被遺棄在山間
+曾是旅人 在三岔路口殺了＿＿
+曾是丈夫 親吻＿＿的額頭
+卻也成了 罪人 於是繼續前行
+(你確定你真的拯救過這個城邦？ )
+神諭盤旋如煙
+廢墟中蹣跚的身影
+浮腫的腳踝引他走出塵土
+穿過神的沈默與人民的呼喊
+他向眾人提問
+：我是誰…？
+以上簡介內容擷取自誰是伊底帕斯
+
+個人觀感
+
+
+觀眾一開始的時候會分流成兩派，一派是反抗神權(人派)，一派是順從神權(神派)。(有點忘記具體的說法)。因為先前已經有看過伊底帕斯的劇情，感覺反抗在這個劇情中好像沒有什麼意義，所以選擇了 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/08/31/meetingYouHalfway-exhibition/" title="在光中遇見你｜展覽心得【撰寫中】"><img class="post-bg" src="/2025/08/31/meetingYouHalfway-exhibition/poster.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="在光中遇見你｜展覽心得【撰寫中】"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/08/31/meetingYouHalfway-exhibition/" title="在光中遇見你｜展覽心得【撰寫中】">在光中遇見你｜展覽心得【撰寫中】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-08-31T21:15:49.000Z" title="發表於 2025-08-31 21:15:49">2025-08-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/exhibition/">exhibition</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/exhibition/">exhibition</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/art/">art</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/travel/">travel</a></span></div><div class="content">展覽主視覺
+
+面對面 I
+
+
+
+
+
+
+
+
+描述一個圓錐之線
+
+
+
+
+
+
+
+
+
+
+
+
+在光中遇見你 II
+
+
+離去（靜默兩分鐘）
+
+
+
+
+
+
+
+
+
+
+
+
+
+天光
+
+
+
+
+
+
+
+
+
+相關手稿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/08/24/theCityWithHappiness-Musical/" title="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄"><img class="post-bg" src="/2025/08/24/theCityWithHappiness-Musical/%E6%B5%B7%E5%A0%B1.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/08/24/theCityWithHappiness-Musical/" title="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄">幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-08-24T22:46:33.000Z" title="發表於 2025-08-24 22:46:33">2025-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/drama/">drama</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/drama/local/">local</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/show/">show</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/drama/">drama</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/musical/">musical</a></span></div><div class="content">
+注意：這是一個非專業的戲劇紀錄，僅記錄我個人的觀影經驗，並不是專業的戲劇評論。且以下的內容會有劇透，如果你還沒看過的話，可以先去看完再回來看這篇文章。
+場域資訊
+
+位置：二條通劇匯
+價位：1200 元(藝文贊助票)/第三排側邊位置
+時間：8/24(日) 19:30~21:00(全長1小時)
+主觀評價：8.0 / 10
+劇團：惦劇團(閉嘴劇團)
+
+
+簡介
+海佃市這幾個月來的集體跳樓事件，迫使政府將強行介入。
+年輕人們，別再跳了…再跳下去，幸福城市都要給跳沒了，想想自己，也想想別人吧。
+所謂的幸福會有代價嗎？
+所謂的幸福難道只會有少數人擁有嗎？
+如果幸福是相對的，那不幸福在哪裡？
+有誰願意去承擔剩下的不幸福呢？
+掉下去還上得來嗎？
+這次的讀劇我們會先問一半。讓他們先暫時懸在空中，等待墜落。
+至於為什麼要等呢？可能是要等看看有什麼人能接住他們吧。
+以上簡介內容擷取自幸福城市的 OPENTIX 頁面
+
+個人觀感
+
+
+這次採用讀劇形式演出，雖然僅呈現前半段劇情，但整體演出已相當完整，演員表現令人印象深刻。音樂部分格外出色，唱法風格讓我聯想到三點水的《台北大空襲》音樂劇，同樣具有強烈的震撼力。特 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/08/23/PSP-2007-leftButton-fix/" title="PSP_2007 左邊肩鍵壞掉|維修紀錄"><img class="post-bg" src="/2025/08/23/PSP-2007-leftButton-fix/psp_01.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="PSP_2007 左邊肩鍵壞掉|維修紀錄"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/08/23/PSP-2007-leftButton-fix/" title="PSP_2007 左邊肩鍵壞掉|維修紀錄">PSP_2007 左邊肩鍵壞掉|維修紀錄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-08-23T21:14:54.000Z" title="發表於 2025-08-23 21:14:54">2025-08-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/maker/">maker</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/maker/">maker</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/game-console/">game console</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/PSP/">PSP</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/fix/">fix</a></span></div><div class="content">前言
+最近在福和橋下的二手市集買到一台二手的 PSP，只要 600 元，但是不確定是否好壞，而且賣這麼便宜感覺有鬼，不過還是買回來了，想說如果是簡單的壞掉，就自己修修看。
+
+買到機器以後，就馬上到附近的跳蚤市場商店買二手的遊戲片來測試，每片只需要 50 元左右，就隨便挑了幾片。
+
+在插上電源後，發現這台的電池無法充電，而且電池的背蓋也壞掉，不過可以正常開機，畫面也很漂亮，很難相信這是一台將近 15 年的機器。
+
+不過放入遊戲片以後，就發現左(L)邊肩鍵壞掉，無法操作，所以就決定拆機看看。
+拆機
+上網要找 PSP 的拆機教學，不過好像找不到專門換 L 肩鍵的教學，連找 ifixit 都找不到。
+後來發現要參考 ifixit 拆 PSP 記憶卡槽 的教學。拆得過程中，發現 PSP 的記憶卡槽是跟左邊的按鈕的零件在一起的，所以可以直接參考記憶卡槽的拆解教學。
+一開始就是把電池拔掉，並且要把一個保固貼紙撕掉，接著拆螺絲，就可以把機殼拆開。
+
+在拆的過程中遇到第二個問題，就是螺絲崩牙生鏽，所以拆到一半就拆不下去了。
+
+無奈只好直接凹塑膠殼，強迫把機殼打開，不過幸好機殼沒有任何電線，不會用壞機器。 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/08/04/happyCamera/" title="來做章魚嗶的原罪裡的快樂相機吧！【撰寫中】"><img class="post-bg" src="/2025/08/04/happyCamera/cover.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="來做章魚嗶的原罪裡的快樂相機吧！【撰寫中】"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/08/04/happyCamera/" title="來做章魚嗶的原罪裡的快樂相機吧！【撰寫中】">來做章魚嗶的原罪裡的快樂相機吧！【撰寫中】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-08-04T22:54:21.000Z" title="發表於 2025-08-04 22:54:21">2025-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/maker/">maker</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/diy/">diy</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/camera/">camera</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/toy/">toy</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/design/">design</a></span></div><div class="content">最近看完章魚嗶的原罪，突然想到可以用買玩具相機來改裝成快樂相機，所以就到了二手商店買了一台玩具相機。
+玩具相機
+這台玩具相機市面上好像滿常見的，一台全新的也帶約在兩百元以內。
+
+
+
+相機正面
+相機背面
+
+
+
+
+
+
+
+
+
+這台玩具相機拍起照來莫名有一種復古的感覺，有一種夢迴 2000 年的感覺。而且竟然還內建濾鏡跟遊戲 XD。
+
+
+
+拍照感覺
+內建濾鏡
+內建遊戲??
+
+
+
+
+
+
+
+
+
+
+這邊也拍了幾張樣張可以參考看看。
+
+
+
+樣張一
+樣張二
+樣張三
+
+
+
+
+
+
+
+
+
+
+接著把相機拆開，看一下內部結構。
+
+設計快樂相機
+拆完相機以後，接著就開始設計快樂相機的本體了，開啟 ipad 上的 shapr3d 的軟體，開始建模型與列印 3D 測試。這次畫 3D 圖總共花了 4 小時左右，這台相機的結構還算簡單。
+在設計模型發現，這台相機的拍攝按鈕竟然是在左邊，這個這台相機原先設計的位置不太一樣，只好另外自己在牽一條開關作為相機的快門。
+
+另外以動畫中的快樂相機，應該是類似拍立得的感覺，原本有想要設計可以插入底片的設計，但是後來發現相機內部的空間太小，所以就沒有實裝這個功能。
+
+成品
+
+
+
+快樂相機 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/08/04/gameboy-fix/" title="Gameboy 反光膜+背光|維修紀錄"><img class="post-bg" src="/2025/08/04/gameboy-fix/backlight_7.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="Gameboy 反光膜+背光|維修紀錄"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/08/04/gameboy-fix/" title="Gameboy 反光膜+背光|維修紀錄">Gameboy 反光膜+背光|維修紀錄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-08-04T22:54:00.000Z" title="發表於 2025-08-04 22:54:00">2025-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/maker/">maker</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/maker/">maker</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/game-console/">game console</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/fix/">fix</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Gameboy/">Gameboy</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%81%8F%E5%85%89%E8%86%9C/">偏光膜</a></span></div><div class="content">前言
+最近心血來潮，把家裡放了許久的 Gameboy 拿出來來玩玩，沒想到竟然可以順利開機，只是反光膜已經老化，畫面都看不清楚了，所以買了偏光片與反光膜來維修看看。
+
+更換反光膜
+拆解 Gameboy 的過程需要用到 Y 型和十字型的螺絲起子。診體的拆解過程還算簡單，沒有太多的卡扣。拆開之後可以從電路板上看到這個型號的 Gameboy 是 1989 年推出的，所以已經是 36 年前的產品了。
+
+
+這邊小心翼翼的將螢幕上的反光膜拆掉後，放上了新的反光膜。不過邊緣還有一些殘留痕跡，之後有時間再慢慢處理。
+
+接著就開機嘗試，不過發現不知道是前面的偏光膜不行，還是反光膜買錯，感覺螢幕看起來的非常黯淡。
+
+
+更換背光
+因為發現只要透過強光照射，就可以清楚的看到螢幕畫面，因此在想如果市面上有模組在背後加裝背光，是不是就可以解決這個問題。於是找了淘寶，果真有賣背光的模組，而且價格還不貴，只要 40 元台幣就可以買到，於是就買來嘗試看看。
+
+背光模組的安裝過程還算簡單，只要將背光模組焊接上電容，和串一顆隨附的電阻，就完成了。(電容的正負極要記得接對)
+
+開機測試發現背光模組的亮度還不錯，整個畫面比一開 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/07/28/HumanCamouflageComedyTheBestAwards-IAmGettingOld-stageShow/" title="《人類擬態喜劇大賞》&amp;《 I am getting old 》-舞台劇｜非專業戲劇紀錄【撰寫中】"><img class="post-bg" src="/2025/07/28/HumanCamouflageComedyTheBestAwards-IAmGettingOld-stageShow/poster.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="《人類擬態喜劇大賞》&amp;《 I am getting old 》-舞台劇｜非專業戲劇紀錄【撰寫中】"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/28/HumanCamouflageComedyTheBestAwards-IAmGettingOld-stageShow/" title="《人類擬態喜劇大賞》&amp;《 I am getting old 》-舞台劇｜非專業戲劇紀錄【撰寫中】">《人類擬態喜劇大賞》&amp;《 I am getting old 》-舞台劇｜非專業戲劇紀錄【撰寫中】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-07-28T22:57:45.000Z" title="發表於 2025-07-28 22:57:45">2025-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/drama/">drama</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/drama/local/">local</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/show/">show</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/drama/">drama</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/stage/">stage</a></span></div><div class="content">
+注意：這是一個非專業的戲劇紀錄，僅記錄我個人的觀影經驗，並不是專業的戲劇評論。且以下的內容會有劇透，如果你還沒看過的話，可以先去看完再回來看這篇文章。
+場域資訊
+
+位置：牯嶺街小劇場一樓實驗劇場
+價位：1062 元 (信用卡會員)
+時間：2025/07/26 19:30~21:30
+主觀評價： 8.4/ 10
+
+
+簡介
+蔡茵茵《人類擬態喜劇大賞》
+一場單口喜劇、也是一趟橫跨救贖與真相的旅程，還附帶一點點的療癒功能。
+蔡茵茵說：「成為一個合格、體面的人類真的好難！」打翻水杯、體育課分組總落單、吵完架卻不知怎麼和好……。社會化過程中那些看似微不足道的小事，通通變成人生難題。但幸好，尷尬與不幸都能變成笑話，成為填補空白與止痛的幽默資源。笨蛋，是一種愛意嗎？還好，是一種痛苦嗎？
+或許搞笑這件事，終究是溫柔的。獻給曾經說不出話、笑不出來的人——你不是孤單一人。
+
+杜逸帆《I am getting old》
+失婚、失業與失能，生活如同風暴。
+一位陷入中年危機的都市原住民，杜逸帆，在日照中心遇見「未來的自己」，與記憶中重要的人物一一重逢。在狹小的房間與混亂的腦海裡，夢與現實、過去與未來交錯交疊，一 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/07/27/YourCuriousJourney-exhibition/" title="你的好奇之旅｜展覽心得【撰寫中】"><img class="post-bg" src="/2025/07/27/YourCuriousJourney-exhibition/%E9%9B%BB%E9%A2%A8%E6%89%87.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="你的好奇之旅｜展覽心得【撰寫中】"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/27/YourCuriousJourney-exhibition/" title="你的好奇之旅｜展覽心得【撰寫中】">你的好奇之旅｜展覽心得【撰寫中】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">發表於</span><time datetime="2025-07-27T22:55:16.000Z" title="發表於 2025-07-27 22:55:16">2025-07-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/exhibition/">exhibition</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/exhibition/">exhibition</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/art/">art</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/travel/">travel</a></span></div><div class="content">為什麼去看
+跟同事去看你的好奇之旅，收集一些工作上的靈感，跟一些互動裝置是怎麼設計的。第一件感到意外的事情是北美館的門票費用只需要 30 元，也太便宜了吧。
+一句話總結
+裡面的展品很多數都是要運用感官去感受，而且展品鼓勵互動。
+我最喜歡的三個亮點
+《立方結構的演化計畫》
+
+
+
+
+
+
+這個展品透過簡單的積木拼裝，連結了參觀者彼此間對於這個作品的創造，而且在這個作品中，很意外的是鼓勵只要有需要，就可以拆除別人的積木。這個想法跟我以往的習慣有衝突到。積木隨著時間的變化不斷各種演化。這個過程滿有趣的，不知道現場有沒有縮時攝影機可以記錄這個變化的過程。
+這個展品讓我想到之前很熱門的 wplace ，這是一款可以在地圖上自由的畫畫，不過在這個網站中，也會看到許多惡意破壞的現象。不過這些破壞的過程也是一種演化的過程吧？
+此外，我覺得最神奇的是為什麼方形的積木卻可以蓋出螺旋形的建築物，超扯的。
+《循環扇》
+
+在看這個作品的時候，看到一堆小朋友追著電風扇跑，就覺得很有趣，就拍了下來。
+看到這個作品第一個會想到混沌擺，混沌擺是透過受到微小的效應，而這些效應可能都會影響到物體擺動的方式，而這個展品也是，不管 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.webp" onerror="this.onerror=null;this.src='/img/404image.webp'" alt="avatar"/></div><div class="author-info__name">Michael</div><div class="author-info__description">歡迎來到michaelpig的部落格！這裡會分享各種有趣的物理實驗、程式測試以及一些工作上的雜談。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">103</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">18</div></a></div><a id="card-info-btn" href="mailto:michaelink24@gmail.com"><i class="fas fa-envelope"></i><span>與我聯絡</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">這邊會放一些物理實驗、程式碼及心情雜談的東西。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt"><img src="/2025/10/04/tryNomadSculpt/cover.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="第一次玩 Nomad Sculpt"/></a><div class="content"><a class="title" href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt">第一次玩 Nomad Sculpt</a><time datetime="2025-10-04T18:25:50.000Z" title="發表於 2025-10-04 18:25:50">2025-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/04/teslaRelived-stageShow/" title="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄"><img src="/2025/10/04/teslaRelived-stageShow/%E6%B5%B7%E5%A0%B1.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2025/10/04/teslaRelived-stageShow/" title="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄">來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄</a><time datetime="2025-10-04T18:24:19.000Z" title="發表於 2025-10-04 18:24:19">2025-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/03/whoIsOedipus-stageShow/" title="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄"><img src="/2025/09/03/whoIsOedipus-stageShow/%E8%AC%9D%E5%B9%95.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2025/09/03/whoIsOedipus-stageShow/" title="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄">誰是伊底帕斯-舞台劇｜非專業戲劇紀錄</a><time datetime="2025-09-03T23:03:20.000Z" title="發表於 2025-09-03 23:03:20">2025-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/31/meetingYouHalfway-exhibition/" title="在光中遇見你｜展覽心得【撰寫中】"><img src="/2025/08/31/meetingYouHalfway-exhibition/poster.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="在光中遇見你｜展覽心得【撰寫中】"/></a><div class="content"><a class="title" href="/2025/08/31/meetingYouHalfway-exhibition/" title="在光中遇見你｜展覽心得【撰寫中】">在光中遇見你｜展覽心得【撰寫中】</a><time datetime="2025-08-31T21:15:49.000Z" title="發表於 2025-08-31 21:15:49">2025-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/24/theCityWithHappiness-Musical/" title="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄"><img src="/2025/08/24/theCityWithHappiness-Musical/%E6%B5%B7%E5%A0%B1.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2025/08/24/theCityWithHappiness-Musical/" title="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄">幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄</a><time datetime="2025-08-24T22:46:33.000Z" title="發表於 2025-08-24 22:46:33">2025-08-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分類</span>
+            <a class="card-more-btn" href="/categories/" title="檢視更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/3d/"><span class="card-category-list-name">3d</span><span class="card-category-list-count">1</span><i class="fas fa-caret-left expand"></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/3d/software/"><span class="card-category-list-name">software</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/animation/"><span class="card-category-list-name">animation</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/code/"><span class="card-category-list-name">code</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item parent"><a class="card-category-list-link" href="/categories/drama/"><span class="card-category-list-name">drama</span><span class="card-category-list-count">29</span><i class="fas fa-caret-left expand"></i></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/drama/foreign/"><span class="card-category-list-name">foreign</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/drama/local/"><span class="card-category-list-name">local</span><span class="card-category-list-count">17</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/exhibition/"><span class="card-category-list-name">exhibition</span><span class="card-category-list-count">3</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>標籤</span></div><div class="card-tag-cloud"><a href="/tags/3C/" style="font-size: 1.5em; color: #99a9bf">3C</a> <a href="/tags/3D/" style="font-size: 1.23em; color: #999ea6">3D</a> <a href="/tags/3D-printer/" style="font-size: 1.23em; color: #999ea6">3D printer</a> <a href="/tags/3Dprinter/" style="font-size: 1.1em; color: #999">3Dprinter</a> <a href="/tags/3d/" style="font-size: 1.1em; color: #999">3d</a> <a href="/tags/8-bit-music/" style="font-size: 1.1em; color: #999">8-bit music</a> <a href="/tags/A1-mini/" style="font-size: 1.1em; color: #999">A1 mini</a> <a href="/tags/AR/" style="font-size: 1.1em; color: #999">AR</a> <a href="/tags/AR-js/" style="font-size: 1.1em; color: #999">AR.js</a> <a href="/tags/Adobe-Sign/" style="font-size: 1.1em; color: #999">Adobe Sign</a> <a href="/tags/Adobe-Sign-tags/" style="font-size: 1.1em; color: #999">Adobe Sign tags</a> <a href="/tags/Bocchi-the-rock/" style="font-size: 1.1em; color: #999">Bocchi the rock</a> <a href="/tags/CRT/" style="font-size: 1.1em; color: #999">CRT</a> <a href="/tags/DIY/" style="font-size: 1.1em; color: #999">DIY</a> <a href="/tags/GBA-SP/" style="font-size: 1.1em; color: #999">GBA SP</a> <a href="/tags/GSC/" style="font-size: 1.37em; color: #99a4b2">GSC</a> <a href="/tags/Gameboy/" style="font-size: 1.1em; color: #999">Gameboy</a> <a href="/tags/Google-Apps-Script/" style="font-size: 1.5em; color: #99a9bf">Google Apps Script</a> <a href="/tags/IPS-%E8%9E%A2%E5%B9%95/" style="font-size: 1.1em; color: #999">IPS 螢幕</a> <a href="/tags/ISS/" style="font-size: 1.1em; color: #999">ISS</a> <a href="/tags/Japan/" style="font-size: 1.23em; color: #999ea6">Japan</a> <a href="/tags/Lomo-Instant/" style="font-size: 1.1em; color: #999">Lomo'Instant</a> <a href="/tags/MR/" style="font-size: 1.1em; color: #999">MR</a> <a href="/tags/MoCapForALL/" style="font-size: 1.1em; color: #999">MoCapForALL</a> <a href="/tags/MobiScribe/" style="font-size: 1.1em; color: #999">MobiScribe</a> <a href="/tags/Nomad-Sculpt/" style="font-size: 1.1em; color: #999">Nomad Sculpt</a> <a href="/tags/Osaka/" style="font-size: 1.23em; color: #999ea6">Osaka</a> <a href="/tags/P1S/" style="font-size: 1.1em; color: #999">P1S</a> <a href="/tags/PSP/" style="font-size: 1.1em; color: #999">PSP</a> <a href="/tags/Power-Automate/" style="font-size: 1.1em; color: #999">Power Automate</a> <a href="/tags/Quest-3/" style="font-size: 1.1em; color: #999">Quest 3</a> <a href="/tags/Reader-s-Theater/" style="font-size: 1.1em; color: #999">Reader's Theater</a> <a href="/tags/SEO/" style="font-size: 1.23em; color: #999ea6">SEO</a> <a href="/tags/SSTV/" style="font-size: 1.1em; color: #999">SSTV</a> <a href="/tags/Slack/" style="font-size: 1.1em; color: #999">Slack</a> <a href="/tags/Taiwan/" style="font-size: 1.1em; color: #999">Taiwan</a> <a href="/tags/Tokyo/" style="font-size: 1.1em; color: #999">Tokyo</a> <a href="/tags/Trello/" style="font-size: 1.1em; color: #999">Trello</a> <a href="/tags/Ulay/" style="font-size: 1.1em; color: #999">Ulay</a> <a href="/tags/VR/" style="font-size: 1.1em; color: #999">VR</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>歸檔</span><a class="card-more-btn" href="/archives/" title="檢視更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">八月 2025</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">四月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/03/"><span class="card-archive-list-date">三月 2025</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>網站資訊</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章數目 :</div><div class="item-count">103</div></div><div class="webinfo-item"><div class="item-name">本站總字數 :</div><div class="item-count">122.2k</div></div><div class="webinfo-item"><div class="item-name">本站訪客數 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站總訪問量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最後更新時間 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-11-09T09:38:30.640Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Michael</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="單欄和雙欄切換"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到頂部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜尋</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  資料庫載入中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜尋文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["Michaelpig的實驗區","Never gonna give you up"])
+  } else {
+    document.getElementById("subtitle").innerHTML = 'Michaelpig的實驗區'
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

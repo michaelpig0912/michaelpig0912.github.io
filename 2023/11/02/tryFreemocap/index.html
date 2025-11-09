@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>免費動態捕捉軟體，嘗試使用 freemocap 來做動作捕捉 | Michaelpig's blog</title><meta name="author" content="Michael"><meta name="copyright" content="Michael"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="簡介 先前有使用過 wonderStudio 的動態捕捉，但是會卡在一些問題，像是運算速度比較慢，且需要付滿貴的費用，因此後來持續研究是否有免費的動態補捉軟體。  軟體介紹 FreeMoCap 一個開源且免費的動態追蹤軟體，這套軟體可以運用到要做動態捕捉的遊戲，並且透過普通的網路攝影機就可以做到動態追蹤的效果，而不用買高昂的追蹤設備。 效果 測試動態追蹤的效果如下：  優點  免費開源的動態捕捉方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免費動態捕捉軟體，嘗試使用 freemocap 來做動作捕捉">
+<meta property="og:url" content="https://michaelpig0912.github.io/2023/11/02/tryFreemocap/index.html">
+<meta property="og:site_name" content="Michaelpig&#39;s blog">
+<meta property="og:description" content="簡介 先前有使用過 wonderStudio 的動態捕捉，但是會卡在一些問題，像是運算速度比較慢，且需要付滿貴的費用，因此後來持續研究是否有免費的動態補捉軟體。  軟體介紹 FreeMoCap 一個開源且免費的動態追蹤軟體，這套軟體可以運用到要做動態捕捉的遊戲，並且透過普通的網路攝影機就可以做到動態追蹤的效果，而不用買高昂的追蹤設備。 效果 測試動態追蹤的效果如下：  優點  免費開源的動態捕捉方">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://michaelpig0912.github.io/2023/11/02/tryFreemocap/cover.webp">
+<meta property="article:published_time" content="2023-11-02T15:30:27.000Z">
+<meta property="article:modified_time" content="2025-11-09T09:37:57.779Z">
+<meta property="article:author" content="Michael">
+<meta property="article:tag" content="blender">
+<meta property="article:tag" content="animation">
+<meta property="article:tag" content="freemocap">
+<meta property="article:tag" content="motion Capture">
+<meta property="article:tag" content="software">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://michaelpig0912.github.io/2023/11/02/tryFreemocap/cover.webp">
+<meta property="fb:app_id" content="1605937756773237"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://michaelpig0912.github.io/2023/11/02/tryFreemocap/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-Z1HFD1G7WJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Z1HFD1G7WJ');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查詢的內容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '免費動態捕捉軟體，嘗試使用 freemocap 來做動作捕捉',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-09 09:37:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Michaelpig's blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><link rel="stylesheet" href="/css/loading.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.webp" onerror="onerror=null;src='/img/404image.webp'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">103</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目錄</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 歷程</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-bookmark"></i><span> 小小測試</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sideProject/ar/"><i class="fa-fw fas fa-camera"></i><span> AR測試</span></a></li><li><a class="site-page child" href="/sideProject/clock/clock.html"><i class="fa-fw fas fa-clock"></i><span> 時鐘</span></a></li><li><a class="site-page child" href="/sideProject/image2WebP/image2WebP.html"><i class="fa-fw fa-sharp fa-solid fa-images"></i><span> 圖片轉WebP</span></a></li><li><a class="site-page child" href="/sideProject/MPsci/MPsci.html"><i class="fa-fw fas fa-solid fa-atom"></i><span> MPsci</span></a></li><li><a class="site-page child" href="/sideProject/threejs/index.html"><i class="fa-fw fas fa-solid fa-cube"></i><span> Three.js學習</span></a></li><li><a class="site-page child" href="/sideProject/InteractiQuiz/index.html"><i class="fa-fw fas fa-solid fa-question"></i><span> 互動影片問答</span></a></li><li><a class="site-page child" href="/sideProject/NCUE107Physics/"><i class="fa-fw fas fa-solid fa-book"></i><span> NCUE107Physics</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2023/11/02/tryFreemocap/cover.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Michaelpig's blog"><span class="site-name">Michaelpig's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜尋</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目錄</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 歷程</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-bookmark"></i><span> 小小測試</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sideProject/ar/"><i class="fa-fw fas fa-camera"></i><span> AR測試</span></a></li><li><a class="site-page child" href="/sideProject/clock/clock.html"><i class="fa-fw fas fa-clock"></i><span> 時鐘</span></a></li><li><a class="site-page child" href="/sideProject/image2WebP/image2WebP.html"><i class="fa-fw fa-sharp fa-solid fa-images"></i><span> 圖片轉WebP</span></a></li><li><a class="site-page child" href="/sideProject/MPsci/MPsci.html"><i class="fa-fw fas fa-solid fa-atom"></i><span> MPsci</span></a></li><li><a class="site-page child" href="/sideProject/threejs/index.html"><i class="fa-fw fas fa-solid fa-cube"></i><span> Three.js學習</span></a></li><li><a class="site-page child" href="/sideProject/InteractiQuiz/index.html"><i class="fa-fw fas fa-solid fa-question"></i><span> 互動影片問答</span></a></li><li><a class="site-page child" href="/sideProject/NCUE107Physics/"><i class="fa-fw fas fa-solid fa-book"></i><span> NCUE107Physics</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">免費動態捕捉軟體，嘗試使用 freemocap 來做動作捕捉</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">發表於</span><time class="post-meta-date-created" datetime="2023-11-02T15:30:27.000Z" title="發表於 2023-11-02 15:30:27">2023-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新於</span><time class="post-meta-date-updated" datetime="2025-11-09T09:37:57.779Z" title="更新於 2025-11-09 09:37:57">2025-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/animation/">animation</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字數總計:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀時長:</span><span>5分鐘</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="免費動態捕捉軟體，嘗試使用 freemocap 來做動作捕捉"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="簡介">簡介</h2>
+<p>先前有使用過 wonderStudio 的動態捕捉，但是會卡在一些問題，像是運算速度比較慢，且需要付滿貴的費用，因此後來持續研究是否有免費的動態補捉軟體。</p>
+<hr>
+<h2 id="軟體介紹">軟體介紹</h2>
+<p><a target="_blank" rel="noopener" href="https://freemocap.org/">FreeMoCap</a> 一個開源且免費的動態追蹤軟體，這套軟體可以運用到要做動態捕捉的遊戲，並且透過普通的網路攝影機就可以做到動態追蹤的效果，而不用買高昂的追蹤設備。</p>
+<h3 id="效果">效果</h3>
+<p>測試動態追蹤的效果如下：</p>
+<p><video width="100%" height="100%"  src="./blenderMocap.mp4" controls></video></p>
+<h3 id="優點">優點</h3>
+<ol>
+<li>免費開源的動態捕捉方案。</li>
+<li>不用穿裝備就可以做動態捕捉，可以透過 ChArUco 紙板校正。</li>
+<li>可以單個或多個的視訊鏡頭同時捕捉，讓位置訊息更準確。</li>
+<li>對於電腦的效能要求不會很高。</li>
+<li>活躍的 discord 社群，有問題可以去那邊問。</li>
+<li>身體、手部、臉部可以同時記錄。</li>
+<li>可以傳遞資料到 blender。</li>
+</ol>
+<h3 id="缺點">缺點</h3>
+<ol>
+<li>分析需要一段時間，並非及時演算。</li>
+<li>只能分析單人動作。</li>
+<li>似乎只能支援 CPU 分析， GPU 不知道要怎麼啟動。</li>
+<li>blender 要轉出來需要另外一個外掛。</li>
+</ol>
+<hr>
+<h2 id="如何使用">如何使用</h2>
+<h3 id="相機設置">相機設置</h3>
+<p>我在我的房間裝了三台視訊鏡頭，型號是：KTNET 的 C990，實際拍攝時會保持房間的燈光充足，避免造成動態捕捉的效果不好。</p>
+<img src="/2023/11/02/tryFreemocap/roomset.webp" class="" title="我在房間裝了三台視訊鏡頭">
+<p>不過不推薦用這一個品牌的視訊鏡頭，開高畫質的情況下，跑下來會 LAG，而且有一些小問題，建議可以找多支手機連接到電腦做視訊鏡頭效果會比較好。</p>
+<hr>
+<h3 id="軟體設置">軟體設置</h3>
+<p>可以參考官方的教學手冊，裡面說明的滿清楚的。<br><br>
+<a target="_blank" rel="noopener" href="https://freemocap.github.io/documentation/getting_started/">官方的操作手冊</a></p>
+<h4 id="安裝會使用到的軟體">安裝會使用到的軟體</h4>
+<ol>
+<li>
+<p>安裝 Anaconda 環境，避免以前 python 安裝的東西造成程式衝突。</p>
+</li>
+<li>
+<p>會使用到 <code>git clone</code> ，因此也要先安裝git (但好像也可以直接用 pip install freemocap 安裝)</p>
+</li>
+<li>
+<p>因為動態追蹤完以後可以導入 blender，因此需要安裝 blender。</p>
+</li>
+<li>
+<p>如果要導入 blender 可以使用 ajc27 所寫的 blender addon。在使用軟體前記得先將外掛安裝好。<br>
+<a target="_blank" rel="noopener" href="https://github.com/freemocap/ajc27_freemocap_blender_addon">點我進入外掛的 github</a></p>
+</li>
+</ol>
+<h4 id="建立電腦環境">建立電腦環境</h4>
+<p>官方建議使用3.9 ~ 3.11 之間的 python，所以建立的環境是 3.11 版的。這邊安裝可能要跑一下下。</p>
+<img src="/2023/11/02/tryFreemocap/conda.webp" class="" title="環境安裝">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n freemocap python=<span class="number">3.11</span></span><br></pre></td></tr></table></figure>
+<p>接著進入到剛剛設定好的環境。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate freemocap</span><br></pre></td></tr></table></figure>
+<p style="font-size:0.8rem;color:#F55">(不過先前使用的時候，會沒辦法直接輸入指令就可以進入到環境，需要重新開 terminal 才能使用)</p>
+<hr>
+<h3 id="軟體安裝">軟體安裝</h3>
+<h4 id="第一種安裝方式">第一種安裝方式</h4>
+<p>進入到環境以後，用 git 複製 freemocap 的程式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/freemocap/freemocap</span><br></pre></td></tr></table></figure>
+<img src="/2023/11/02/tryFreemocap/clone.webp" class="" title="git 複製">
+<p>進入 freemocap 的資料夾。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd freemocap</span><br></pre></td></tr></table></figure>
+<p>進入 freemocap 安裝 freemocap 所需的程式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -e .   </span><br></pre></td></tr></table></figure>
+<img src="/2023/11/02/tryFreemocap/install.webp" class="" title="安裝相關的依賴包">
+<p>輸入<code>python -m freemocap</code> 執行 GUI 程式，<br>
+這時候應該會看到圖形介面會跑出來。</p>
+<img src="/2023/11/02/tryFreemocap/cover.webp" class="" title="執行完應該會看到 GUI 的介面">
+<h4 id="第二種安裝方式">第二種安裝方式</h4>
+<p>同樣進入到環境以後，直接執行 <code>pip install freemocap</code> 安裝全部的內容。(不過我沒嘗試過這種方式安裝，所以不知道會發生什麼問題。)</p>
+<p>輸入<code>freemocap</code> 執行 GUI 程式。<br>
+這時候應該會看到圖形介面會跑出來。</p>
+<hr>
+<h3 id="使用freemocap">使用freemocap</h3>
+<p>這邊示範將示範多個攝影機的情況，下面說明硬體跟軟體要怎麼準備。</p>
+<h4 id="硬體方面">硬體方面</h4>
+<p>接著準備好 ChArUco 紙板，紙板圖檔可以在他們的 <a target="_blank" rel="noopener" href="https://github.com/freemocap/freemocap/tree/main/freemocap/assets/charuco">github</a> 上面找到。</p>
+
+<p>我是印出來 A3 大小的紙板，後面黏上珍珠板，這樣會比較平整且好拿。</p>
+<h4 id="軟體方面">軟體方面</h4>
+<p>首先先點選這個首頁上方的 cameras 書籤</p>
+<img src="/2023/11/02/tryFreemocap/cover.webp" class="" title="點選這頁中的cameras">
+<h4 id="設定相機">設定相機</h4>
+<p>按下 Detect Available Cameras 的按鈕，</p>
+<img src="/2023/11/02/tryFreemocap/detect.webp" class="" title="按下本頁中最大的按鈕">
+<p>這時候會看到你有的相機都會到中間的窗格上，可以透過右邊的窗格調整解析度、曝光度及方向。</p>
+<img src="/2023/11/02/tryFreemocap/setCam.webp" class="" title="按下本頁中最大的按鈕">
+<p style="font-size:0.8rem;color:#F55">(不過先前測試的時候，發現我的攝影機沒辦法開到 1080p，所以都開 960*540 左右而已。 )</p>
+<h4 id="校正">校正</h4>
+<p>接著將 Record Motion capture 的選項改為 Record Calibration Video 的選項，並且輸入 ChArUco 板中的一個格子的大小為幾 mm。</p>
+
+<p>接著就直接按下 Start Calibration Recording</p>
+<p>接著拿起準備好的 ChArUco 板，在鏡頭前面左右晃動，<br>
+必須要同時讓兩個攝影機都可以看到紙板的正面。</p>
+<p>可以參考官方的校正教學。</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GxKmyKdnTy0&amp;t=1786s">官方校正示範</a></p>
+<p>按暫停以後，後續會跳出電腦分析後的結果。</p>
+<img src="/2023/11/02/tryFreemocap/CalibrationCam.webp" class="" title="校正的數據">
+<h4 id="正式開始的動態追蹤">正式開始的動態追蹤</h4>
+<p>將選項改為 Record Motion Capture ，並且按下 Start Motion Capture Recording，</p>
+<img src="/2023/11/02/tryFreemocap/recMotionCapture.webp" class="" title="開始做動態追蹤">
+<p>接著，就可以做動態追蹤，接著按下 Stop Recording 就會暫停追蹤。接著程式就會自動進行分析動作，這邊需要一段時間來分析。(會因為因片的長短，分析所需的時間也會不一樣)</p>
+<img src="/2023/11/02/tryFreemocap/runMocap.webp" class="" title="電腦正在跑分析">
+<ul>
+<li>如果追蹤效果不如預期可以在 Control &gt; process Data 的地方改變追蹤的效果及穩定度。</li>
+</ul>
+<img src="/2023/11/02/tryFreemocap/recSetting.webp" class="" title="修改追蹤的效果">
+<p>如果先前電腦有安裝好 blender 及外掛，應該會自動跳出來。如果沒有可以在 Export Data 的地方做 blender 的路徑設定。</p>
+<img src="/2023/11/02/tryFreemocap/blenderSetting.webp" class="" title="blender設定">
+<p style="font-size:0.8rem;color:#F55"> 另外，設定的時候有遇到一個小問題，就是 blender 一直抓不到路徑，後來調整為舊版的就可以了。</p>
+<h4 id="blender-設定">blender 設定</h4>
+<p>前面跑完以後，應該會自動開啟 blender，這時你會看到你拍的影片及預設的骨架位置。</p>
+<ol>
+<li>
+<p>安裝 freemocap 的外掛，另外還要安裝 rigify，並且在 blender 中啟用外掛。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/freemocap/ajc27_freemocap_blender_addon">freemocap 的 blender 外掛</a></p>
+<img src="/2023/11/02/tryFreemocap/blenderAddon.webp" class="" title="blender 外掛">
+</li>
+<li>
+<p>找到旁邊的工具欄 (快捷鍵 n)，找到剛剛安裝的外掛，依序上面的編號按下來，</p>
+<ol>
+<li>先按 1.Adjust Empties。</li>
+<li>再調整骨頭長度，再按 2. Reduce Bone Length Dispersion</li>
+<li>再按 3. Add Finger Rotation Limits (不過實測好像會出 bug，我是直接跳過這一步)</li>
+<li>接著 4. Add Rig 就會看到骨架了。</li>
+</ol>
+<img src="/2023/11/02/tryFreemocap/blenderAddonSetting.webp" class="" title="外掛設定">
+<ol start="5">
+<li>選擇要使用的身體骨架，這邊採用預設的 Skelly，並且按下 Add Body Mesh</li>
+<li>現在會出現一個骷髏頭的 Mesh ，展示剛剛你做的動作了。</li>
+</ol>
+ <img src="/2023/11/02/tryFreemocap/blenderAddRig.webp" class="" title="動態追蹤的效果">
+</li>
+</ol>
+<h3 id="效果影片">效果影片</h3>
+<p><video width="100%" height="100%"  src="./blenderMocap.mp4" controls></video></p>
+<hr>
+<h2 id="結語">結語</h2>
+<p>Freemocap 是一款強大的動態追蹤軟體，不過目前使用起來可能還是需要花一些時間來研究，才能使用的起來，而且我目前還在研究要怎麼換模型。不過這款軟體的 discord 滿活躍的，很多問題都可以問到，而且外掛方面有持續更新，期待未來這個軟體的表現。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://michaelpig0912.github.io">Michael</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章連結: </span><span class="post-copyright-info"><a href="https://michaelpig0912.github.io/2023/11/02/tryFreemocap/">https://michaelpig0912.github.io/2023/11/02/tryFreemocap/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://michaelpig0912.github.io" target="_blank">Michaelpig's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/blender/">blender</a><a class="post-meta__tags" href="/tags/animation/">animation</a><a class="post-meta__tags" href="/tags/freemocap/">freemocap</a><a class="post-meta__tags" href="/tags/motion-Capture/">motion Capture</a><a class="post-meta__tags" href="/tags/software/">software</a></div><div class="post_share"><div class="social-share" data-image="/2023/11/02/tryFreemocap/cover.webp" data-sites="facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/17/GASwithGoogleSheet/" title="如何透過 Google Apps Script 來計算 google 文件中特定格子內的字數與秒數呢？"><img class="cover" src="/2023/11/17/GASwithGoogleSheet/code.webp" onerror="onerror=null;src='/img/404page.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">如何透過 Google Apps Script 來計算 google 文件中特定格子內的字數與秒數呢？</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/29/ipadUVCsupport/" title="IPad 能透過擷取卡也可以當作外接螢幕！"><img class="cover" src="/2023/10/29/ipadUVCsupport/set.webp" onerror="onerror=null;src='/img/404page.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">IPad 能透過擷取卡也可以當作外接螢幕！</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相關推薦</span></div><div class="relatedPosts-list"><div><a href="/2023/08/31/wonderStudioTutorial/" title="Wonder Studio 簡單說明與自定義角色注意事項"><img class="cover" src="/2023/08/31/wonderStudioTutorial/output.webp" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2025-11-09</div><div class="title">Wonder Studio 簡單說明與自定義角色注意事項</div></div></a></div><div><a href="/2023/12/29/tryMocapForAll/" title="MocapForAll 動態追蹤軟體測試！"><img class="cover" src="/2023/12/29/tryMocapForAll/startCapture.webp" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2025-11-09</div><div class="title">MocapForAll 動態追蹤軟體測試！</div></div></a></div><div><a href="/2023/10/10/blenderChladniPatterns/" title="透過 blender 做克拉尼圖形 (Chladni patterns)"><img class="cover" src="/2023/10/10/blenderChladniPatterns/ChladniPatterns02.webp" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2025-11-09</div><div class="title">透過 blender 做克拉尼圖形 (Chladni patterns)</div></div></a></div><div><a href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt"><img class="cover" src="/2025/10/04/tryNomadSculpt/cover.webp" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2025-11-09</div><div class="title">第一次玩 Nomad Sculpt</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.webp" onerror="this.onerror=null;this.src='/img/404image.webp'" alt="avatar"/></div><div class="author-info__name">Michael</div><div class="author-info__description">歡迎來到michaelpig的部落格！這裡會分享各種有趣的物理實驗、程式測試以及一些工作上的雜談。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">103</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">161</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">18</div></a></div><a id="card-info-btn" href="mailto:michaelink24@gmail.com"><i class="fas fa-envelope"></i><span>與我聯絡</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">這邊會放一些物理實驗、程式碼及心情雜談的東西。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目錄</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E4%BB%8B%E7%B4%B9"><span class="toc-number">2.</span> <span class="toc-text">軟體介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">2.1.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%84%AA%E9%BB%9E"><span class="toc-number">2.2.</span> <span class="toc-text">優點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E9%BB%9E"><span class="toc-number">2.3.</span> <span class="toc-text">缺點</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E6%A9%9F%E8%A8%AD%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">相機設置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E8%A8%AD%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">軟體設置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E6%9C%83%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84%E8%BB%9F%E9%AB%94"><span class="toc-number">3.2.1.</span> <span class="toc-text">安裝會使用到的軟體</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E9%9B%BB%E8%85%A6%E7%92%B0%E5%A2%83"><span class="toc-number">3.2.2.</span> <span class="toc-text">建立電腦環境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E5%AE%89%E8%A3%9D"><span class="toc-number">3.3.</span> <span class="toc-text">軟體安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A8%AE%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F"><span class="toc-number">3.3.1.</span> <span class="toc-text">第一種安裝方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A8%AE%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F"><span class="toc-number">3.3.2.</span> <span class="toc-text">第二種安裝方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8freemocap"><span class="toc-number">3.4.</span> <span class="toc-text">使用freemocap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E9%AB%94%E6%96%B9%E9%9D%A2"><span class="toc-number">3.4.1.</span> <span class="toc-text">硬體方面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E6%96%B9%E9%9D%A2"><span class="toc-number">3.4.2.</span> <span class="toc-text">軟體方面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A%E7%9B%B8%E6%A9%9F"><span class="toc-number">3.4.3.</span> <span class="toc-text">設定相機</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%A1%E6%AD%A3"><span class="toc-number">3.4.4.</span> <span class="toc-text">校正</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E9%96%8B%E5%A7%8B%E7%9A%84%E5%8B%95%E6%85%8B%E8%BF%BD%E8%B9%A4"><span class="toc-number">3.4.5.</span> <span class="toc-text">正式開始的動態追蹤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#blender-%E8%A8%AD%E5%AE%9A"><span class="toc-number">3.4.6.</span> <span class="toc-text">blender 設定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%BD%B1%E7%89%87"><span class="toc-number">3.5.</span> <span class="toc-text">效果影片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AA%9E"><span class="toc-number">4.</span> <span class="toc-text">結語</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt"><img src="/2025/10/04/tryNomadSculpt/cover.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="第一次玩 Nomad Sculpt"/></a><div class="content"><a class="title" href="/2025/10/04/tryNomadSculpt/" title="第一次玩 Nomad Sculpt">第一次玩 Nomad Sculpt</a><time datetime="2025-10-04T18:25:50.000Z" title="發表於 2025-10-04 18:25:50">2025-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/04/teslaRelived-stageShow/" title="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄"><img src="/2025/10/04/teslaRelived-stageShow/%E6%B5%B7%E5%A0%B1.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2025/10/04/teslaRelived-stageShow/" title="來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄">來自特斯拉-舞台劇(讀劇)｜非專業戲劇紀錄</a><time datetime="2025-10-04T18:24:19.000Z" title="發表於 2025-10-04 18:24:19">2025-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/03/whoIsOedipus-stageShow/" title="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄"><img src="/2025/09/03/whoIsOedipus-stageShow/%E8%AC%9D%E5%B9%95.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2025/09/03/whoIsOedipus-stageShow/" title="誰是伊底帕斯-舞台劇｜非專業戲劇紀錄">誰是伊底帕斯-舞台劇｜非專業戲劇紀錄</a><time datetime="2025-09-03T23:03:20.000Z" title="發表於 2025-09-03 23:03:20">2025-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/31/meetingYouHalfway-exhibition/" title="在光中遇見你｜展覽心得【撰寫中】"><img src="/2025/08/31/meetingYouHalfway-exhibition/poster.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="在光中遇見你｜展覽心得【撰寫中】"/></a><div class="content"><a class="title" href="/2025/08/31/meetingYouHalfway-exhibition/" title="在光中遇見你｜展覽心得【撰寫中】">在光中遇見你｜展覽心得【撰寫中】</a><time datetime="2025-08-31T21:15:49.000Z" title="發表於 2025-08-31 21:15:49">2025-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/24/theCityWithHappiness-Musical/" title="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄"><img src="/2025/08/24/theCityWithHappiness-Musical/%E6%B5%B7%E5%A0%B1.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2025/08/24/theCityWithHappiness-Musical/" title="幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄">幸福城市(前半段讀劇)-音樂劇｜非專業戲劇紀錄</a><time datetime="2025-08-24T22:46:33.000Z" title="發表於 2025-08-24 22:46:33">2025-08-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Michael</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="單欄和雙欄切換"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到頂部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜尋</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  資料庫載入中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜尋文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
