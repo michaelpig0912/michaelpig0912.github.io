@@ -10,14 +10,13 @@
     "local": "hexo s --config _config.yml,_config_local.yml"
   },
   "hexo": {
-    "version": "8.0.0"
+    "version": "6.3.0"
   },
   "dependencies": {
     "@neilsustc/markdown-it-katex": "^1.0.0",
     "hexo": "^6.3.0",
     "hexo-admin": "^2.3.0",
     "hexo-browsersync": "^0.3.0",
-    "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",
@@ -35,5 +34,8 @@
     "hexo-theme-landscape": "^0.0.3",
     "hexo-wordcount": "^6.0.1",
     "strip-ansi": "^6.0.1"
+  },
+  "devDependencies": {
+    "hexo-deployer-git": "^4.0.0"
   }
 }

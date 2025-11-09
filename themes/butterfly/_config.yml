@@ -20,7 +20,7 @@ menu:
      MPsci: /sideProject/MPsci/MPsci.html || fas fa-solid fa-atom
      Three.js學習: /sideProject/threejs/index.html || fas fa-solid fa-cube
      互動影片問答: /sideProject/InteractiQuiz/index.html || fas fa-solid fa-question
-     半導體計畫: /sideProject/semiProject/index.html || fas fa-microchip
+     # 半導體計畫: /sideProject/semiProject/index.html || fas fa-microchip
      NCUE107Physics: /sideProject/NCUE107Physics/ || fas fa-solid fa-book
 
 nav:
@@ -280,7 +280,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: Facebook Comments # Valine,Disqus
+  use: false # Valine,Disqus
   text: false # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
