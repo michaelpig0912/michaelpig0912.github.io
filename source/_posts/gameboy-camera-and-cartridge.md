@@ -1,5 +1,5 @@
 ---
-title: 用 Arduino Nano 匯出 Game Boy Camera 與《織夢島》照片【撰寫中】
+title: 用 Arduino Nano 匯出 Game Boy Camera 與《織夢島》照片
 date: 2026-07-23 23:19:10
 categories: maker
 tags:
