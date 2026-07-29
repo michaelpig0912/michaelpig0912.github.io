@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麥克風測試</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #visualizer {
+            width: 100%;
+            height: 150px;
+            background-color: #2c3e50;
+            margin-top: 20px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #waveformCanvas {
+            width: 100%;
+            height: 100%;
+            background-color: #34495e;
+            border-radius: 5px;
+        }
+        
+        .audio-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+        
+        .info-item h4 {
+            margin: 0 0 8px 0;
+            color: #495057;
+            font-size: 0.9em;
+        }
+        
+        .info-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .decibel-meter {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .decibel-bar {
+            height: 100%;
+            background: linear-gradient(to right, #28a745, #ffc107, #fd7e14, #dc3545);
+            width: 0%;
+            transition: width 0.1s ease;
+            border-radius: 10px;
+        }
+        
+        .decibel-scale {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        #instructions {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>麥克風 (Microphone) 測試</h1>
+    </header>
+
+    <main>
+        <p><a href="../index.html">&larr; 返回主頁</a></p>
+        <section>
+            <h2>功能說明</h2>
+            <p>此頁面將測試您的瀏覽器是否可以存取麥克風，並即時顯示音頻波形、音量大小和分貝數。還可以偵測拍手等聲音事件。</p>
+            <p><strong>IPO 範例：</strong></p>
+            <ul>
+                <li><strong>I (Input):</strong> 手機麥克風接收聲音。</li>
+                <li><strong>P (Process):</strong> 網頁 JavaScript 處理聲音數據，分析音量、頻率和分貝數。</li>
+                <li><strong>O (Output):</strong> 顯示即時波形圖、分貝數值、音量條和拍手偵測。</li>
+            </ul>
+            <div id="instructions">
+                <p><strong>操作提示：</strong> 點擊「開始麥克風測試」按鈕，瀏覽器會要求麥克風權限。授權後即可看到即時的音頻分析結果。</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>測試區域</h2>
+            <button id="startMicButton">開始/停止麥克風測試</button>
+            <div id="status">狀態：未啟動</div>
+            
+            <div class="audio-info">
+                <div class="info-item">
+                    <h4>音量等級</h4>
+                    <div class="info-value" id="volumeValue">-</div>
+                </div>
+                <div class="info-item">
+                    <h4>分貝數 (dB)</h4>
+                    <div class="info-value" id="decibelValue">-</div>
+                </div>
+                <div class="info-item">
+                    <h4>拍手偵測</h4>
+                    <div class="info-value" id="clapStatus">-</div>
+                </div>
+            </div>
+            
+            <div id="visualizer">
+                <canvas id="waveformCanvas"></canvas>
+            </div>
+            
+            <div class="decibel-meter">
+                <div class="decibel-bar" id="decibelBar"></div>
+            </div>
+            <div class="decibel-scale">
+                <span>安靜</span>
+                <span>正常</span>
+                <span>大聲</span>
+                <span>很大聲</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 手機感測器測試平台</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

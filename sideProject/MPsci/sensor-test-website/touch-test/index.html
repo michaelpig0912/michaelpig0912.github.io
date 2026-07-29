@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>觸控螢幕測試</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #touchArea {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            border: 2px solid #3498db;
+            background-color: #ecf0f1;
+            margin-top: 15px;
+            cursor: crosshair;
+            touch-action: none; /* Important for preventing scrolling/zooming on touch area */
+            border-radius: 5px;
+        }
+        #touchInfo p {
+            margin: 5px 0;
+            font-family: monospace;
+        }
+         #instructions {
+            margin-top:15px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>觸控螢幕 (Touch Screen) 測試</h1>
+    </header>
+
+    <main>
+        <p><a href="../index.html">&larr; 返回主頁</a></p>
+        <section>
+            <h2>功能說明</h2>
+            <p>此頁面將測試裝置的觸控螢幕功能。您可以在下方的指定區域內用手指（或滑鼠，如果是在桌面瀏覽器上）進行繪圖。同時會顯示觸控點的相關資訊。</p>
+            <p><strong>IPO 範例：</strong></p>
+            <ul>
+                <li><strong>I (Input):</strong> 手指觸控螢幕。</li>
+                <li><strong>P (Process):</strong> 網頁 JavaScript 判斷觸摸位置、手勢。</li>
+                <li><strong>O (Output):</strong> 網頁上繪製線條、觸發動畫。</li>
+            </ul>
+            <div id="instructions">
+                <p><strong>操作提示：</strong> 直接在下方的淺灰色區域內滑動手指或拖曳滑鼠即可繪圖。多點觸控也可能被偵測到（部分效果取決於瀏覽器實作）。</p>
+            </div>
+        </section>
+        <section>
+            <h2>測試區域</h2>
+            <canvas id="touchArea"></canvas>
+            <button id="clearCanvasButton" style="margin-top:10px;">清除畫布</button>
+            <div id="touchInfo" style="margin-top:15px;">
+                <p>事件類型: <span id="eventType">-</span></p>
+                <p>觸控點數量: <span id="touchCount">0</span></p>
+                <p>X座標: <span id="coordX">-</span>, Y座標: <span id="coordY">-</span></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 手機感測器測試平台</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

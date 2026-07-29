@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR 模型展示</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        AFRAME.registerComponent('play-all-animations', {
+            init: function () {
+                this.model = null;
+                this.mixer = null;
+                this.animationActions = [];
+
+                this.el.addEventListener('model-loaded', this.playAnimations.bind(this));
+            },
+            playAnimations: function (evt) {
+                this.model = evt.detail.model;
+                console.log('模型已加載，動畫數量:', this.model.animations.length);
+
+                if (this.model.animations.length) {
+                    this.mixer = new THREE.AnimationMixer(this.model);
+                    this.model.animations.forEach((clip) => {
+                        console.log('播放動畫:', clip.name);
+                        const action = this.mixer.clipAction(clip);
+                        action.play();
+                        this.animationActions.push(action);
+                    });
+                } else {
+                    console.warn('模型不包含任何動畫');
+                }
+            },
+            tick: function (t, dt) {
+                if (this.mixer) {
+                    this.mixer.update(dt / 1000);
+                }
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded vr-mode-ui="enabled: false" arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-assets>
+            <a-asset-item id="windyDay" src="assets/model/solar_system_animation/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-marker type="pattern" url="assets/pattern-marker.patt">
+            <a-entity
+                gltf-model="#windyDay"
+                play-all-animations
+                position="0 0 0"
+                rotation="0 0 0"
+                scale="0.1 0.1 0.1"
+                shadow="cast: true; receive: true">
+            </a-entity>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <div id="info" style="position: fixed; bottom: 10px; left: 10px; width: 100%; text-align: center; z-index: 1; color: white; font-family: Arial, sans-serif;">
+        <p>請將相機對準 AR 標記以查看模型</p>
+    </div>
+</body>
+</html>

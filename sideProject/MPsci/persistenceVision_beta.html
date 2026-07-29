@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>物體軌跡記錄器</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f0f4f8;
+            --text-color: #2c3e50;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+            padding: 30px;
+            box-sizing: border-box;
+            color: var(--text-color);
+            font-size: 16px;
+            line-height: 1.6;
+            padding-bottom: 120px;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        #videoContainer {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            height: 0;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        #video, #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+        }
+
+        #controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #controls select{
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            background-color: white;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        } 
+        
+        
+        #controls input {
+            width: 90%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            background-color: white;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        #controls select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        #controls select:focus,
+        #controls input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        #controls label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 18px;
+            display: block;
+            color: var(--text-color);
+        }
+
+        #captureBtn {
+            padding: 16px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+        }
+
+        #captureBtn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        #photoStrip {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            overflow-x: auto;
+            border-top: 1px solid #e0e0e0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        #photoStrip img {
+            height: 100px;
+            margin-right: 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #photoStrip img:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #modalImage {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modalNav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modalNav:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #modalPrev {
+            left: 20px;
+        }
+
+        #modalNext {
+            right: 20px;
+        }
+
+        #countdownDisplay {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            padding: 40px;
+            border-radius: 20px;
+            z-index: 1001;
+        }
+
+        @media (min-width: 1024px) {
+            #container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            #controls {
+                width: 30%;
+            }
+
+            #videoContainer {
+                width: 70%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                
+            }
+
+            #container {
+                padding: 20px;
+                padding-bottom: 150px; /* 增加底部填充以避免遮挡 */
+            }
+
+            #controls select,
+            #controls input,
+            #captureBtn {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            #controls label {
+                font-size: 16px;
+            }
+
+            #photoStrip {
+                padding: 10px;
+                height: 100px;
+                
+            }
+
+            #photoStrip img {
+                height: 70px;
+                margin-right: 10px;
+            }
+
+            .modalNav {
+                font-size: 30px;
+                padding: 15px;
+            }
+
+            #countdownDisplay {
+                font-size: 80px;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #container {
+                padding: 15px;
+                padding-bottom: 100px;
+            }
+
+            #controls select,
+            #controls input,
+            #captureBtn {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            #controls label {
+                font-size: 14px;
+            }
+
+            #photoStrip img {
+                height: 60px;
+                margin-right: 8px;
+            }
+
+            #photoStrip {
+                height: 80px;
+            }
+
+            .modalNav {
+                font-size: 24px;
+                padding: 12px;
+            }
+
+            #countdownDisplay {
+                font-size: 60px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+        }
+
+        #startBtnContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        #startBtn {
+            padding: 20px 40px;
+            font-size: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #startBtn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 添加媒体查询以适应不同屏幕大小 */
+        @media (max-width: 768px) {
+            #startBtn {
+                padding: 15px 30px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #startBtn {
+                padding: 12px 24px;
+                font-size: 18px;
+            }
+        }
+
+        .modal-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1002;
+        }
+
+        .modal-button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @media screen and (max-width: 768px) {
+            .modal-buttons {
+                top: auto;
+                bottom: 10px;
+                right: 10px;
+                flex-direction: row;
+            }
+
+            .modal-button {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .modal-buttons {
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .modal-button {
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 1003;
+            transition: background-color 0.3s ease, left 0.3s ease, right 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @media screen and (max-width: 768px) {
+            .close-button {
+                left: auto;
+                right: 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .close-button {
+                top: 5px;
+                right: 5px;
+                width: 50px;
+                height: 50px;
+                font-size: 30px;
+            }
+        }
+    </style>
+    
+    <link rel="manifest" href="persistenceVisionPWA_beta/manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <link rel="apple-touch-icon" href="persistenceVisionPWA_beta/192x192.png">
+    
+    <!-- 添加以下脚本来注册 Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('persistenceVisionPWA_beta/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- 在 body 的開始處添加這個 div -->
+
+    <div id="container">
+        <div id="videoContainer">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <button id="takePhotoBtn" style="display: none;">拍照</button>
+        </div>
+        <div id="controls">
+            <button id="captureBtn">開始拍照</button>
+            <div>
+                <label for="cameraSelect">選擇相機：</label>
+                <select id="cameraSelect"></select>
+            </div>
+            
+            <div>
+                <label for="numShots">連拍張數：</label>
+                <input type="number" id="numShots" value="5" min="1">
+            </div>
+            
+            <div>
+                <label for="interval">間隔時間（毫秒）：</label>
+                <input type="number" id="interval" value="500" min="100">
+            </div>
+            
+            <div>
+                <label for="countdownTime">倒數時間（秒）</label>
+                <input type="number" id="countdownTime" value="3" min="0">
+            </div>
+            
+            <div>
+                <label for="rotationSelect">畫面旋轉：</label>
+                <select id="rotationSelect">
+                    <option value="0">0°</option>
+                    <option value="90">90°</option>
+                    <option value="180">180°</option>
+                    <option value="270">270°</option>
+                </select>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div id="photoStrip">
+        <!-- 照片將顯示在這裡 -->
+    </div>
+
+    <div id="modal">
+        <button id="closeModal" class="close-button">&times;</button>
+        <img id="modalImage">
+        <canvas id="measureCanvas" style="position: absolute; top: 0; left: 0;"></canvas>
+        <div id="modalPrev" class="modalNav">&#10094;</div>
+        <div id="modalNext" class="modalNav">&#10095;</div>
+        <div class="modal-buttons">
+            <button id="clearMeasurements" class="modal-button">清除測量</button>
+            <button id="downloadImage" class="modal-button">下載圖片</button>
+        </div>
+    </div>
+
+    <!-- 添加倒數計時器顯示 -->
+    <div id="countdownDisplay" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; color: white; background-color: rgba(0,0,0,0.5); padding: 10px 50px; border-radius: 10px;"></div>
+
+    <!-- 在 <body> 中修改开始按钮的HTML结构 -->
+    <div id="startBtnContainer">
+        <button id="startBtn">開始使用</button>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const ctx = canvas.getContext('2d');
+        const photoStrip = document.getElementById('photoStrip');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+        const cameraSelect = document.getElementById('cameraSelect');
+        const rotationSelect = document.getElementById('rotationSelect');
+        const takePhotoBtn = document.getElementById('takePhotoBtn');
+        const startBtnContainer = document.getElementById('startBtnContainer');
+        const startBtn = document.getElementById('startBtn');
+        let currentStream = null;
+
+        let isCapturing = false;
+        let capturedImages = [];
+        let multiExposureCanvas;
+        let previousFrame;
+
+        const numShotsInput = document.getElementById('numShots');
+        const intervalInput = document.getElementById('interval');
+        const countdownTimeInput = document.getElementById('countdownTime');
+        const countdownDisplay = document.getElementById('countdownDisplay');
+
+        let currentImageIndex = 0;
+        let currentRotation = 0;
+
+        rotationSelect.addEventListener('change', function() {
+            currentRotation = parseInt(this.value);
+            resizeCanvas(); // 重新調整畫布大小以適應旋轉
+        });
+
+        // 獲取可用的相機列表
+        async function getCameraList() {
+            try {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                cameraSelect.innerHTML = ''; // 清空現有選項
+
+                if (isPC()) {
+                    // PC設備：列出所有可用相機
+                    videoDevices.forEach((device, index) => {
+                        const option = document.createElement('option');
+                        option.value = device.deviceId;
+                        option.text = device.label || `相機 ${index + 1}`;
+                        cameraSelect.appendChild(option);
+                    });
+                } else {
+                    // 移動設備：添加前置和後置相機選項
+                    const frontOption = document.createElement('option');
+                    frontOption.value = 'user';
+                    frontOption.text = '前置相機';
+                    cameraSelect.appendChild(frontOption);
+
+                    const backOption = document.createElement('option');
+                    backOption.value = 'environment';
+                    backOption.text = '後置相機';
+                    cameraSelect.appendChild(backOption);
+                }
+
+                // 如果只有一個相機選項，隱藏選擇器
+                /*
+                if (cameraSelect.options.length <= 1) {
+                    cameraSelect.style.display = 'none';
+                    document.querySelector('label[for="cameraSelect"]').style.display = 'none';
+                } else {
+                    cameraSelect.style.display = '';
+                    document.querySelector('label[for="cameraSelect"]').style.display = '';
+                }
+                */
+            } catch (err) {
+                console.error("無法獲取相機列表：", err);
+            }
+        }
+
+        // 添加 isPC 函數來檢測設備類型
+        function isPC() {
+            return !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+        }
+
+        // 修改 cameraSelect 的事件监听器
+        cameraSelect.addEventListener('change', async function() {
+            await switchCamera();
+        });
+
+        // 修改 switchCamera 函数
+        async function switchCamera() {
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+            }
+            const selectedOption = cameraSelect.value;
+            const constraints = {
+                video: {
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 },
+                    facingMode: isPC() ? undefined : selectedOption,
+                    deviceId: isPC() ? { exact: selectedOption } : undefined
+                }
+            };
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                currentStream = stream;
+                video.srcObject = stream;
+                await video.play();
+                
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                if (isIOS) {
+                    video.style.display = 'none';
+                    takePhotoBtn.style.display = 'block';
+                } else {
+                    video.style.display = 'block';
+                    takePhotoBtn.style.display = 'none';
+                }
+
+                const videoTrack = stream.getVideoTracks()[0];
+                const settings = videoTrack.getSettings();
+                console.log('相机分辨率：', settings.width + 'x' + settings.height);
+                
+                resizeCanvas();
+                updateCanvas();
+            } catch (err) {
+                console.error("無法使用相機：", err);
+                showError("無法使用相機，請確保給予相機權限");
+            }
+        }
+
+        // 初始化
+        async function init() {
+            try {
+                await getCameraList();
+                startBtnContainer.style.display = 'flex';
+                captureBtn.style.display = 'none';
+                video.style.display = 'none';
+                canvas.style.display = 'none';
+            } catch (err) {
+                console.error("初始化失败：", err);
+                showError("无法初始化相机。请确保您已授予相机使用权限，并重新加载页面。");
+            }
+        }
+
+        // 添加开始按钮事件监听器
+        startBtn.addEventListener('click', async () => {
+            startBtnContainer.style.display = 'none';
+            captureBtn.style.display = 'block';
+            video.style.display = 'block';
+            canvas.style.display = 'block';
+            await switchCamera();
+        });
+
+        init();
+
+        // 修改 resizeCanvas 函数
+        function resizeCanvas() {
+            const videoAspectRatio = video.videoWidth / video.videoHeight;
+            let canvasWidth, canvasHeight;
+
+            if (currentRotation === 90 || currentRotation === 270) {
+                // 对于90度和270度旋转，交换宽度和高度
+                canvasHeight = Math.min(video.videoWidth, window.innerWidth);
+                canvasWidth = canvasHeight / videoAspectRatio;
+            } else {
+                canvasWidth = Math.min(video.videoWidth, window.innerWidth);
+                canvasHeight = canvasWidth / videoAspectRatio;
+            }
+
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            console.log('Canvas size set to:', canvas.width, 'x', canvas.height);
+        }
+
+        // 在視頻加載後調整畫布大小
+        video.addEventListener('loadedmetadata', () => {
+            resizeCanvas();
+            console.log('Video dimensions:', video.videoWidth, 'x', video.videoHeight);
+        });
+        window.addEventListener('resize', resizeCanvas);
+
+        // 拍照按鈕事件
+        captureBtn.addEventListener('click', startCapture);
+
+        async function startCapture() {
+            await switchCamera(); // 每次开始拍照前重新初始化相机
+            const countdownTime = parseInt(countdownTimeInput.value);
+            if (countdownTime > 0) {
+                startCountdown(countdownTime);
+            } else {
+                beginCapture();
+            }
+        }
+
+        function startCountdown(seconds) {
+            captureBtn.disabled = true;
+            countdownDisplay.style.display = 'block';
+            countdownDisplay.textContent = seconds;
+
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownDisplay.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownDisplay.style.display = 'none';
+                    captureBtn.disabled = false;
+                    beginCapture();
+                }
+            }, 1000);
+        }
+
+        function beginCapture() {
+            isCapturing = true;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            photoStrip.innerHTML = '';
+            capturedImages = [];
+            
+            multiExposureCanvas = document.createElement('canvas');
+            multiExposureCanvas.width = canvas.width;
+            multiExposureCanvas.height = canvas.height;
+            
+            previousFrame = null;
+            
+            let numShots = parseInt(numShotsInput.value);
+            let interval = parseInt(intervalInput.value);
+            captureFrames(numShots, interval);
+        }
+
+        function captureFrames(numShots, interval) {
+            if (isCapturing && numShots > 0) {
+                const frameCanvas = document.createElement('canvas');
+                frameCanvas.width = canvas.width;
+                frameCanvas.height = canvas.height;
+                const frameCtx = frameCanvas.getContext('2d');
+                
+                // 應用相同的旋轉邏輯
+                frameCtx.save();
+                frameCtx.translate(frameCanvas.width / 2, frameCanvas.height / 2);
+                frameCtx.rotate(currentRotation * Math.PI / 180);
+                
+                if (currentRotation === 90 || currentRotation === 270) {
+                    frameCtx.drawImage(video, -frameCanvas.height / 2, -frameCanvas.width / 2, frameCanvas.height, frameCanvas.width);
+                } else {
+                    frameCtx.drawImage(video, -frameCanvas.width / 2, -frameCanvas.height / 2, frameCanvas.width, frameCanvas.height);
+                }
+                
+                frameCtx.restore();
+                
+                const multiExposureCtx = multiExposureCanvas.getContext('2d');
+                
+                // 方法1：調整透明度計算方式
+                let alpha = Math.min(0.3, 1 / (parseInt(numShotsInput.value) - numShots + 1));
+                multiExposureCtx.globalAlpha = alpha;
+                
+                // 方法3：使用差分圖像
+                if (previousFrame) {
+                    const diffCanvas = createDiffImage(frameCanvas, previousFrame);
+                    multiExposureCtx.drawImage(diffCanvas, 0, 0);
+                } else {
+                    multiExposureCtx.drawImage(frameCanvas, 0, 0);
+                }
+                
+                multiExposureCtx.filter = 'none'; // 重置濾鏡
+                
+                const imgData = frameCanvas.toDataURL('image/png');
+                addPhotoToStrip(imgData);
+                
+                previousFrame = frameCanvas;
+                
+                setTimeout(() => captureFrames(numShots - 1, interval), interval);
+            } else {
+                isCapturing = false;
+                // 添加最後的疊加圖片，設置為不透明
+                addFinalCompositeImage();
+            }
+        }
+
+        function addFinalCompositeImage() {
+            // 創建一新的畫布來繪製最終的不透明圖像
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = canvas.width;
+            finalCanvas.height = canvas.height;
+            const finalCtx = finalCanvas.getContext('2d');
+
+            // 首先繪製白色背景
+            finalCtx.fillStyle = 'white';
+            finalCtx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 然後繪製多重曝光圖像
+            finalCtx.drawImage(multiExposureCanvas, 0, 0);
+
+            // 將最終的不透明圖像添加到照片條
+            const finalImageData = finalCanvas.toDataURL('image/png');
+            addPhotoToStrip(finalImageData);
+        }
+
+        function addPhotoToStrip(imgData) {
+            const img = document.createElement('img');
+            img.src = imgData;
+            img.style.height = '80px';
+            img.style.marginRight = '15px';
+            img.addEventListener('click', () => {
+                openModal(imgData);
+            });
+            photoStrip.appendChild(img);
+            capturedImages.push(imgData);
+
+            // 如果這是最後一張（疊加）圖片，添加特殊標記
+            if (capturedImages.length === parseInt(numShotsInput.value) + 1) {
+                img.style.border = '2px solid #3498db';
+                img.title = '最終疊加圖像';
+            }
+        }
+
+        let measureCanvas, measureCtx;
+        let isFirstPoint = true;
+        let startX, startY, endX, endY;
+        let pixelRatio = 1;
+        let measurements = [];
+        let imageOffsetX = 0;
+        let imageOffsetY = 0;
+
+        function openModal(imgData) {
+            modalImage.src = imgData;
+            modal.style.display = 'flex';
+            currentImageIndex = capturedImages.indexOf(imgData);
+            
+            measureCanvas = document.getElementById('measureCanvas');
+            measureCtx = measureCanvas.getContext('2d');
+            
+            modalImage.onload = function() {
+                // 計算圖片在模態框中的實際位置
+                const modalRect = modal.getBoundingClientRect();
+                const imageRect = modalImage.getBoundingClientRect();
+                imageOffsetX = imageRect.left - modalRect.left;
+                imageOffsetY = imageRect.top - modalRect.top;
+
+                measureCanvas.width = modalImage.width;
+                measureCanvas.height = modalImage.height;
+                pixelRatio = window.devicePixelRatio || 1;
+                measureCanvas.style.width = modalImage.width + 'px';
+                measureCanvas.style.height = modalImage.height + 'px';
+                measureCanvas.width = modalImage.width * pixelRatio;
+                measureCanvas.height = modalImage.height * pixelRatio;
+                measureCtx.scale(pixelRatio, pixelRatio);
+
+                // 調整 canvas 位置以匹配圖片位置
+                measureCanvas.style.left = imageOffsetX + 'px';
+                measureCanvas.style.top = imageOffsetY + 'px';
+
+                redrawMeasurements();
+            };
+            
+            measureCanvas.addEventListener('click', handleClick);
+            measureCanvas.addEventListener('mousemove', handleMouseMove);
+            
+            measureCanvas.addEventListener('touchstart', handleTouchStart);
+            measureCanvas.addEventListener('touchmove', handleTouchMove);
+            measureCanvas.addEventListener('touchend', handleTouchEnd);
+
+            document.getElementById('clearMeasurements').addEventListener('click', clearMeasurements);
+            document.getElementById('downloadImage').addEventListener('click', downloadMergedImage);
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+
+            // 確保關閉按鈕可見
+            document.getElementById('closeModal').style.display = 'flex';
+        }
+
+        function getMousePosition(canvas, e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / pixelRatio / rect.width;
+            const scaleY = canvas.height / pixelRatio / rect.height;
+            return [
+                (e.clientX - rect.left) * scaleX,
+                (e.clientY - rect.top) * scaleY
+            ];
+        }
+
+        function handleClick(e) {
+            const [x, y] = getMousePosition(measureCanvas, e);
+            if (isFirstPoint) {
+                startX = x;
+                startY = y;
+                isFirstPoint = false;
+            } else {
+                endX = x;
+                endY = y;
+                const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                measurements.push({startX, startY, endX, endY, distance});
+                isFirstPoint = true;
+            }
+            redrawMeasurements();
+        }
+
+        function handleMouseMove(e) {
+            if (!isFirstPoint) {
+                const [x, y] = getMousePosition(measureCanvas, e);
+                redrawMeasurements();
+                drawTemporaryLine(x, y);
+            }
+        }
+
+        function drawTemporaryLine(x, y) {
+            measureCtx.beginPath();
+            measureCtx.moveTo(startX, startY);
+            measureCtx.lineTo(x, y);
+            measureCtx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+            measureCtx.lineWidth = 2;
+            measureCtx.stroke();
+        }
+
+        function redrawMeasurements() {
+            measureCtx.clearRect(0, 0, measureCanvas.width, measureCanvas.height);
+            measurements.forEach((m, index) => {
+                measureCtx.beginPath();
+                measureCtx.moveTo(m.startX, m.startY);
+                measureCtx.lineTo(m.endX, m.endY);
+                measureCtx.strokeStyle = 'red';
+                measureCtx.lineWidth = 2;
+                measureCtx.stroke();
+
+                // 繪製距離標籤
+                const midX = (m.startX + m.endX) / 2;
+                const midY = (m.startY + m.endY) / 2;
+                measureCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                measureCtx.fillRect(midX - 30, midY - 10, 60, 20);
+                measureCtx.fillStyle = 'white';
+                measureCtx.font = '12px Arial';
+                measureCtx.textAlign = 'center';
+                measureCtx.textBaseline = 'middle';
+                measureCtx.fillText(`${m.distance.toFixed(2)}px`, midX, midY);
+            });
+        }
+
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            handleClick(touch);
+        }
+
+        function handleTouchMove(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            handleMouseMove(touch);
+        }
+
+        function handleTouchEnd(e) {
+            e.preventDefault();
+        }
+
+        function clearMeasurements() {
+            measurements = [];
+            isFirstPoint = true;
+            redrawMeasurements();
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % capturedImages.length;
+            modalImage.src = capturedImages[currentImageIndex];
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + capturedImages.length) % capturedImages.length;
+            modalImage.src = capturedImages[currentImageIndex];
+        }
+
+        document.getElementById('modalNext').addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNextImage();
+        });
+
+        document.getElementById('modalPrev').addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPrevImage();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    showNextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevImage();
+                }
+            }
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        function createDiffImage(currentFrame, previousFrame) {
+            const diffCanvas = document.createElement('canvas');
+            diffCanvas.width = canvas.width;
+            diffCanvas.height = canvas.height;
+            const diffCtx = diffCanvas.getContext('2d');
+            
+            const currentImageData = currentFrame.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+            const previousImageData = previousFrame.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+            const diffImageData = diffCtx.createImageData(canvas.width, canvas.height);
+            
+            for (let i = 0; i < diffImageData.data.length; i += 4) {
+                const diff = Math.abs(currentImageData.data[i] - previousImageData.data[i]);
+                diffImageData.data[i] = diff;     // R
+                diffImageData.data[i+1] = diff;   // G
+                diffImageData.data[i+2] = diff;   // B
+                diffImageData.data[i+3] = diff > 25 ? 255 : 0;  // A
+            }
+            
+            diffCtx.putImageData(diffImageData, 0, 0);
+            return diffCanvas;
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(255, 0, 0, 0.8);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                z-index: 1000;
+            `;
+            errorDiv.textContent = message;
+            document.body.appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+
+        // 修改 updateCanvas 函数
+        function updateCanvas() {
+            if (!isCapturing) {
+                ctx.save();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 根据旋转角度调整绘制方式
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(currentRotation * Math.PI / 180);
+                
+                const videoAspectRatio = video.videoWidth / video.videoHeight;
+                let drawWidth, drawHeight;
+
+                if (currentRotation === 90 || currentRotation === 270) {
+                    drawHeight = canvas.width;
+                    drawWidth = drawHeight * videoAspectRatio;
+                } else {
+                    drawWidth = canvas.width;
+                    drawHeight = drawWidth / videoAspectRatio;
+                }
+
+                ctx.drawImage(video, -drawWidth / 2, -drawHeight / 2, drawWidth, drawHeight);
+                
+                ctx.restore();
+            }
+            requestAnimationFrame(updateCanvas);
+        }
+
+        // 添加拍照按钮的事件监听器
+        takePhotoBtn.addEventListener('click', () => {
+            captureFrame();
+        });
+
+        function captureFrame() {
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = video.videoWidth;
+            tempCanvas.height = video.videoHeight;
+            tempCanvas.getContext('2d').drawImage(video, 0, 0);
+            const imgData = tempCanvas.toDataURL('image/png');
+            addPhotoToStrip(imgData);
+        }
+
+        function downloadMergedImage() {
+            // 創建一個新的 canvas 元素
+            const mergeCanvas = document.createElement('canvas');
+            const mergeCtx = mergeCanvas.getContext('2d');
+
+            // 設置 canvas 大小與原圖相同
+            mergeCanvas.width = modalImage.naturalWidth;
+            mergeCanvas.height = modalImage.naturalHeight;
+
+            // 繪製原始圖片
+            mergeCtx.drawImage(modalImage, 0, 0, mergeCanvas.width, mergeCanvas.height);
+
+            // 繪製測量線
+            const scaleX = mergeCanvas.width / measureCanvas.width * pixelRatio;
+            const scaleY = mergeCanvas.height / measureCanvas.height * pixelRatio;
+
+            mergeCtx.scale(scaleX, scaleY);
+            measurements.forEach(m => {
+                mergeCtx.beginPath();
+                mergeCtx.moveTo(m.startX, m.startY);
+                mergeCtx.lineTo(m.endX, m.endY);
+                mergeCtx.strokeStyle = 'red';
+                mergeCtx.lineWidth = 2 / scaleX;  // 調整線寬以適應縮放
+                mergeCtx.stroke();
+
+                // 繪製距離標籤
+                const midX = (m.startX + m.endX) / 2;
+                const midY = (m.startY + m.endY) / 2;
+                mergeCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                mergeCtx.fillRect(midX - 30 / scaleX, midY - 10 / scaleY, 60 / scaleX, 20 / scaleY);
+                mergeCtx.fillStyle = 'white';
+                mergeCtx.font = `${12 / scaleX}px Arial`;
+                mergeCtx.textAlign = 'center';
+                mergeCtx.textBaseline = 'middle';
+                mergeCtx.fillText(`${m.distance.toFixed(2)}px`, midX, midY);
+            });
+
+            // 將合併後的圖片轉換為數據 URL
+            const mergedImageData = mergeCanvas.toDataURL('image/png');
+
+            // 創建下載鏈接
+            const downloadLink = document.createElement('a');
+            downloadLink.href = mergedImageData;
+            downloadLink.download = 'merged_image.png';
+            
+            // 觸發下載
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            clearMeasurements();
+        }
+    </script>
+</body>
+</html>
