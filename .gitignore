@@ -8,3 +8,5 @@ public/
 _multiconfig.yml
 .env
 _config_local.yml.continue/
+source/_posts/暫時存放/
+.local-private/
