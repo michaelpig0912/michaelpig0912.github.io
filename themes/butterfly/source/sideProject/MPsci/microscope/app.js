@@ -21,51 +21,64 @@ function resetMotion(){clearTimeout(motionTimer);$('#slide-pad').classList.remov
 
 const feedback = (message,success=false) => {$('#feedback').textContent=message;$('#feedback').classList.toggle('success',success);};
 function positionText(x,y){return isCentered(x,y)?'中央':`${y < -3?'上':y > 3?'下':''}${x < -3?'左':x > 3?'右':''}方`;}
+// Draw the specimen once. Blur its combined image only when focus/aperture changes,
+// rather than blurring hundreds of individual paths on every pointer event.
+const specimen=document.createElement('canvas');specimen.width=specimen.height=1200;
+const specimenCtx=specimen.getContext('2d');
+specimenCtx.translate(600,600);specimenCtx.strokeStyle='#73955299';specimenCtx.lineWidth=2;
+for(let i=-5;i<=5;i++)for(let j=-7;j<=7;j++){
+ specimenCtx.beginPath();specimenCtx.ellipse(i*120+20,j*85+10,56,38,(i+j)*.12,0,Math.PI*2);specimenCtx.stroke();
+ specimenCtx.beginPath();specimenCtx.ellipse(i*120+35,j*85+12,9,6,0,0,Math.PI*2);specimenCtx.stroke();
+ for(let k=0;k<4;k++){specimenCtx.beginPath();specimenCtx.moveTo(i*120-8+k*5,j*85-7);specimenCtx.lineTo(i*120-8+k*5,j*85+11);specimenCtx.stroke();}
+}
+specimenCtx.fillStyle='#304f42';specimenCtx.font='bold 170px Georgia,serif';specimenCtx.fillText('e',-107,84);
+specimenCtx.fillStyle='#c34f3d';specimenCtx.beginPath();specimenCtx.arc(0,0,10,0,Math.PI*2);specimenCtx.fill();specimenCtx.strokeStyle='#fff9';specimenCtx.lineWidth=3;specimenCtx.stroke();
+const prepared=document.createElement('canvas');prepared.width=prepared.height=1200;
+const preparedCtx=prepared.getContext('2d');let preparedKey='';
+const viewContexts=Object.fromEntries(Object.keys(names).map(scope=>[scope,$(`#${scope}-view`).getContext('2d')]));
+const backgrounds=Object.fromEntries(Object.entries(viewContexts).map(([scope,ctx])=>{const bg=ctx.createRadialGradient(275,260,20,300,300,320);bg.addColorStop(0,'#f5f5d9');bg.addColorStop(1,'#cbd9af');return [scope,bg];}));
 function drawView(scope){
- const canvas=$(`#${scope}-view`), ctx=canvas.getContext('2d');
- const p=imagePosition(scope,state.x,state.y), error=Math.abs(state.focus[scope]-idealFocus[scope]);
- const optical=optics(scope);
- ctx.clearRect(0,0,600,600);
- const bg=ctx.createRadialGradient(275,260,20,300,300,320);bg.addColorStop(0,'#f5f5d9');bg.addColorStop(1,'#cbd9af');ctx.fillStyle=bg;ctx.fillRect(0,0,600,600);
- ctx.save();ctx.globalAlpha=optical.contrast;ctx.filter=`blur(${Math.max(0,error-3)*.32+optical.diffraction}px)`;
- ctx.translate(300+p.x*3.5,300+p.y*3.5); if(scope==='compound')ctx.rotate(Math.PI);
- // All specimen details, including the asymmetric letter, share the optical transform.
- ctx.strokeStyle='#73955299';ctx.lineWidth=2;
- for(let i=-3;i<=3;i++)for(let j=-3;j<=3;j++){ctx.beginPath();ctx.ellipse(i*120+20,j*85+10,56,38,(i+j)*.12,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.ellipse(i*120+35,j*85+12,9,6,0,0,Math.PI*2);ctx.stroke();for(let k=0;k<4;k++){ctx.beginPath();ctx.moveTo(i*120-8+k*5,j*85-7);ctx.lineTo(i*120-8+k*5,j*85+11);ctx.stroke();}}
- ctx.fillStyle='#304f42';ctx.font='bold 170px Georgia,serif';ctx.fillText('e',-107,84);
- ctx.fillStyle='#c34f3d';ctx.beginPath();ctx.arc(0,0,10,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#fff9';ctx.lineWidth=3;ctx.stroke();ctx.restore();
+ const ctx=viewContexts[scope],canvas=ctx.canvas,p=imagePosition(scope,state.x,state.y),optical=optics(scope);
+ const blur=Math.max(0,Math.abs(state.focus[scope]-idealFocus[scope])-3)*.32+optical.diffraction;
+ const key=`${blur}:${optical.contrast}`;
+ if(preparedKey!==key){
+  preparedCtx.clearRect(0,0,1200,1200);preparedCtx.save();preparedCtx.globalAlpha=clamp(optical.contrast,0,1);preparedCtx.filter=`blur(${blur}px)`;preparedCtx.drawImage(specimen,0,0);preparedCtx.restore();preparedKey=key;
+ }
+ ctx.fillStyle=backgrounds[scope];ctx.fillRect(0,0,600,600);
+ ctx.save();ctx.translate(300+p.x*3.5,300+p.y*3.5);if(scope==='compound')ctx.rotate(Math.PI);ctx.drawImage(prepared,-600,-600);ctx.restore();
  ctx.fillStyle=`rgba(0,0,0,${1-Math.min(1,optical.brightness)})`;ctx.fillRect(0,0,600,600);
  if(optical.brightness>1){ctx.fillStyle=`rgba(255,255,235,${Math.min(.65,(optical.brightness-1)*.25)})`;ctx.fillRect(0,0,600,600);}
- const text=`紅點在${positionText(p.x,p.y)} · ${lighting[scope].light===0?'光源關閉':optical.brightness<.3?'太暗':optical.brightness>1.7?'太亮':optical.diffraction>0?'光圈過小':isClear(scope,state.focus[scope])?'清楚':'尚未對焦'}`;
- $(`#${scope}-position`).textContent=text;canvas.setAttribute('aria-label',`${names[scope]}視野：${text}，e 字${scope==='compound'?'旋轉 180 度':'正立'}`);
+ const text=`紅點在${positionText(p.x,p.y)} · ${optical.brightness<.3?'太暗':optical.brightness>1.7?'太亮':optical.diffraction>0?'光圈過小':isClear(scope,state.focus[scope])?'清楚':'尚未對焦'}`;
+ const label=$(`#${scope}-position`);if(label.textContent!==text){label.textContent=text;canvas.setAttribute('aria-label',`${names[scope]}視野：${text}，e 字${scope==='compound'?'旋轉 180 度':'正立'}`);}
 }
+let renderFrame=0;
+function scheduleRender(){if(!renderFrame)renderFrame=requestAnimationFrame(()=>{renderFrame=0;render();});}
 function render(){
+ if(renderFrame){cancelAnimationFrame(renderFrame);renderFrame=0;}
  drawView(state.scope);
- const scale=slideScale();$('#physical-slide').style.transform=`translate(calc(-50% + ${state.x*scale.x}px),${state.y*scale.y}px)`;
+ const scale=drag?drag.scale:slideScale();$('#physical-slide').style.transform=`translate(calc(-50% + ${state.x*scale.x}px),${state.y*scale.y}px)`;
  $$('[data-dial]').forEach(el=>{el.setAttribute('aria-valuenow',state.focus[state.scope]);el.setAttribute('aria-valuetext',`${state.focus[state.scope]}，${viewClear(state.scope)?'影像清楚':'尚未清楚'}`);el.style.setProperty('--dial-angle',`${state.focus[state.scope]*7.2/Number(el.dataset.dial)}deg`);});
  $('#focus-value').textContent=state.focus[state.scope];
  $('#map-name').textContent=names[state.scope];$('#map-compound').toggleAttribute('hidden',state.scope!=='compound');$('#map-stereo').toggleAttribute('hidden',state.scope!=='stereo');
  $('#map-stage').setAttribute('transform',`translate(0,${-(state.focus[state.scope]-idealFocus[state.scope])*.12})`);$('#map-slide').setAttribute('transform',`translate(${state.x*.08},0)`);
- $('#focus-scope').textContent=names[state.scope];$('#clarity').textContent=viewClear(state.scope)?'✓ 影像清楚':!optics(state.scope).usable?'請調整照明':'尚未對焦';
+ $('#focus-scope').textContent=names[state.scope];$('#clarity').textContent=viewClear(state.scope)?'✓ 影像清楚':!optics(state.scope).usable?'請調整光圈':'尚未對焦';
  $$('[data-scope]').forEach(b=>{const active=b.dataset.scope===state.scope;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);b.disabled=state.mode==='challenge';});
  $$('[data-view]').forEach(el=>{const active=el.dataset.view===state.scope;el.hidden=!active;el.classList.toggle('selected',active);});
  const blocked=state.mode==='challenge'&&(!state.predicted||state.solved);
  $$('[data-dial]').forEach(el=>el.setAttribute('aria-disabled',blocked));
  const light=lighting[state.scope],optical=optics(state.scope);
- for(const id of ['lamp','aperture','light-reset'])$('#'+id).disabled=state.mode==='challenge'&&state.solved;
- $('#lamp').value=light.light;$('#lamp-value').textContent=`${light.light}%`;
+ for(const id of ['aperture','light-reset'])$('#'+id).disabled=state.mode==='challenge'&&state.solved;
  $('#aperture').value=light.aperture;$('#aperture-value').textContent=`${light.aperture}%`;
- $('#aperture-setting').hidden=state.scope!=='compound';
+ $('#aperture-panel').hidden=state.scope!=='compound';
  $('#aperture-setting').style.setProperty('--opening',`${light.aperture}%`);
  $('#map-light').setAttribute('opacity',Math.min(1,light.light/100));
  $('#map-beam').setAttribute('d',state.scope==='compound'?`M108 110L${112-light.aperture*.2} 87H${112+light.aperture*.2}L116 110Z`:'M142 52L100 78H131Z');
- $('#lighting-note').textContent=light.light===0?'光源關閉了：沒有照明，就看不到標本。':optical.brightness<.3?'視野太暗，先提高光源亮度。':optical.brightness>1.7?'視野太亮，先降低光源亮度。':state.scope==='stereo'?'調整照在標本上的光，讓表面看得清楚。':light.aperture<35?'光圈太小：對比提高，但細節開始模糊。':light.aperture>85?'光圈較大：細節解析力較高，但對比變淡。':'照明適中。試著縮小光圈，觀察細紋與輪廓。';
+ $('#lighting-note').textContent=light.aperture<35?'光圈太小：視野變暗，細節也會模糊。':light.aperture>85?'光圈較大：視野較亮，但對比變淡。':'光圈適中。試著縮小，觀察細紋與輪廓。';
  $('#scene').setAttribute('aria-label',`${names[state.scope]}三維模型，玻片與調焦同步`);
  updateModel();
 }
 function selectScope(scope){if(state.mode==='challenge')return;state.scope=scope;resetMotion();feedback(`已切換為${names[scope]}。試著移動玻片，觀察紅點的方向。`);render();}
 $$('[data-scope]').forEach(b=>b.onclick=()=>selectScope(b.dataset.scope));
-$('#lamp').oninput=e=>{lighting[state.scope].light=Number(e.target.value);checkMission();render();};
 $('#aperture').oninput=e=>{lighting[state.scope].aperture=Number(e.target.value);checkMission();render();};
 $('#light-reset').onclick=()=>{lighting[state.scope]={light:70,aperture:65};checkMission();render();};
 function checkMission(){
@@ -74,9 +87,9 @@ function checkMission(){
  if(isCentered(state.x,state.y)&&optics(state.scope).usable&&(!task.focus||viewClear(state.scope))){
   state.solved=true;$('#next').hidden=false;$('#next').textContent=state.mission===missions.length-1?'再挑戰一次 ↺':'下一關 →';
   feedback(state.mission===missions.length-1?'六關完成！你已練習兩種顯微鏡的移片方向與調焦。試著用自己的話解釋：為什麼複式鏡的紅點在右，玻片卻要往右移？':`成功！${names[state.scope]}的影像與玻片${state.scope==='compound'?'反方向':'同方向'}移動。${task.focus?'紅點已置中，影像也清楚了。':'紅點已回到中央。'}`,true);
- }else if(isCentered(state.x,state.y)&&!optics(state.scope).usable){feedback('紅點已在中央，請調整光源與光圈，讓標本細節看得清楚。');}else if(isCentered(state.x,state.y)&&task.focus){feedback('紅點已在中央！接著調焦：轉動旋鈕，直到 e 字與紅點清楚。');}
+ }else if(isCentered(state.x,state.y)&&!optics(state.scope).usable){feedback('紅點已在中央，請調整光圈，讓標本細節看得清楚。');}else if(isCentered(state.x,state.y)&&task.focus){feedback('紅點已在中央！接著調焦：轉動旋鈕，直到 e 字與紅點清楚。');}
 }
-function moveTo(x,y){const old={x:state.x,y:state.y};state.x=clamp(x,-65,65);state.y=clamp(y,-65,65);showMotion(state.x-old.x,state.y-old.y);state.moves++;checkMission();render();}
+function moveTo(x,y){const old={x:state.x,y:state.y};state.x=clamp(x,-65,65);state.y=clamp(y,-65,65);showMotion(state.x-old.x,state.y-old.y);state.moves++;checkMission();scheduleRender();}
 function recordFirstMove(dx,dy){
  if(state.mode!=='challenge'||state.predicted||Math.hypot(dx,dy)<2)return false;
  const dir=Math.abs(dx)>=Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up');
@@ -89,7 +102,7 @@ function move(dir){
  if(state.mode==='challenge'&&state.solved)return;
  const [dx,dy]=vectors[dir];recordFirstMove(dx*5,dy*5);moveTo(state.x+dx*5,state.y+dy*5);
 }
-function focusTo(value){if(state.mode==='challenge'&&(!state.predicted||state.solved))return;state.focus[state.scope]=clamp(value,0,100);checkMission();render();}
+function focusTo(value){if(state.mode==='challenge'&&(!state.predicted||state.solved))return;state.focus[state.scope]=clamp(value,0,100);checkMission();scheduleRender();}
 let wheelRemainder=0,lastWheelTime=0;
 function wheelFocus(e){
  if(e.ctrlKey||e.metaKey||!e.deltaY||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
@@ -141,9 +154,9 @@ $('#slide-pad').onpointerdown=e=>{
 };
 $('#slide-pad').onpointermove=e=>{
  if(!drag||e.pointerId!==drag.id||state.solved)return;
- const x=drag.sx+(e.clientX-drag.x)/drag.scale.x,y=drag.sy+(e.clientY-drag.y)/drag.scale.y;
+ const x=state.x+(e.clientX-drag.x)/drag.scale.x,y=state.y+(e.clientY-drag.y)/drag.scale.y;
  if(state.mode==='challenge'&&!state.predicted&&Math.hypot(x-state.x,y-state.y)<2)return;
- recordFirstMove(x-state.x,y-state.y);moveTo(x,y);
+ recordFirstMove(x-state.x,y-state.y);drag.x=e.clientX;drag.y=e.clientY;moveTo(x,y);
 };
 $('#slide-pad').onpointerup=$('#slide-pad').onpointercancel=$('#slide-pad').onlostpointercapture=()=>{drag=null;$('#slide-pad').classList.remove('moving');};
 new ResizeObserver(()=>{drag=null;render();}).observe($('#slide-pad'));
@@ -200,6 +213,7 @@ async function init3D(){
   const knob=cyl(.24,.2,metal,[.42,1.85,-.65]);knob.rotation.z=Math.PI/2;
   const knobMark=box(.015,.18,.025,white,[.53,1.92,-.65]);
   updateModel=()=>{
+   if(!host.closest('details').open)return;
    compound.visible=state.scope==='compound';stereo.visible=!compound.visible;
    // Physical slide movement uses the same top-view axes as the controls.
    slide.position.x=state.x*.007;slide.position.z=state.y*.007;
@@ -209,6 +223,7 @@ async function init3D(){
    knobMark.position.z=-.65+Math.sin(state.focus[state.scope]*.15)*.14;
    renderer.render(scene,camera);
   };
+  host.closest('details').addEventListener('toggle',()=>{if(host.closest('details').open)resize();});
   const resize=()=>{const {width,height}=host.getBoundingClientRect();if(!width||!height)return;renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();updateModel();};
   new ResizeObserver(resize).observe(host);resize();$('#scene-status').hidden=true;
   renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#scene-status').hidden=false;$('#scene-status').textContent='3D 顯示已暫停；仍可使用俯視圖與視野練習。';});
