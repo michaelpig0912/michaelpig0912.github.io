@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#191b18">
+  <meta name="description" content="數位場記板，支援配色、打板音效、拍攝紀錄與離線使用。">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SLATE 場記板">
+  <title>SLATE — 數位場記板</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-slate" viewBox="0 0 24 24"><path d="M3 9h18v11H3zM3 9 2 4l18-3 1 5-18 3ZM7 3l3 5m4-6 3 5M7 14h5m-5 3h10"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5V4Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="SLATE 數位場記板首頁"><span class="brand-icon"><svg><use href="#i-slate"/></svg></span><span>SLATE<span class="brand-caption">數位場記板</span></span></a>
+      <div class="header-actions">
+        <span class="connection"><span class="status-dot"></span><span id="offline-status">準備離線使用中</span></span>
+        <button id="update-app" class="subtle" hidden>更新版本</button>
+        <button id="install-app" class="subtle"><svg><use href="#i-download"/></svg><span>安裝 App</span></button>
+        <button id="open-help" class="icon-button" aria-label="使用說明">?</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-heading"><h1>數位場記板</h1><span id="today-label" class="date-label"></span></div>
+      <p id="storage-warning" class="warning" role="alert" hidden></p>
+      <div class="workspace">
+        <section class="slate-section" aria-label="場記板">
+          <div class="section-heading"><h2><span class="tiny-dot"></span>場記板 </h2><button id="focus-toggle" class="subtle" aria-pressed="false"><svg><use href="#i-expand"/></svg><span>專注模式</span></button></div>
+          <div class="slate-frame" id="slate-frame">
+            <button class="clapper" id="clapper" aria-label="打板並儲存紀錄"><span class="clapper-hinge"><i></i><i></i></span><span class="clapper-caption">點此打板</span></button>
+            <div class="slate-board">
+              <div class="board-production"><span class="board-label">PRODUCTION / 片名</span><div id="board-production" class="production-name">未命名製作</div></div>
+              <div class="board-numbers"><div><span class="board-label">SCENE / 場次</span><strong id="board-scene">01</strong></div><div><span class="board-label">SHOT / 鏡號</span><strong id="board-shot">A</strong></div><div class="take-cell"><span class="board-label">TAKE / 次數</span><strong id="board-take">01</strong></div></div>
+              <div class="board-crew"><div><span class="board-label">DIRECTOR / 導演</span><span id="board-director">—</span></div><div><span class="board-label">CAMERA / 攝影</span><span id="board-camera">—</span></div></div>
+              <div class="board-bottom"><div class="timecode-wrap"><span class="board-label">TIME OF DAY / 裝置時間</span><span class="timecode" id="timecode">00:00:00<span>:00</span></span></div><div class="board-specs"><span id="board-fps">25 FPS</span><span id="board-date"></span></div></div>
+              <div id="clap-overlay" class="clap-overlay" aria-hidden="true" hidden><span id="clap-overlay-text"></span></div>
+            </div>
+          </div>
+          <div class="clap-controls"><button id="clap-button" class="primary clap-button"><svg><use href="#i-slate"/></svg><span id="clap-label">打板</span><kbd>SPACE</kbd></button><button id="cancel-countdown" class="cancel-button" hidden>取消倒數</button></div>
+          <div class="slate-footnote"><span id="clap-hint">打板後自動儲存紀錄。</span><span id="wake-status">螢幕恆亮未開啟</span></div>
+        </section>
+
+        <aside class="details-panel" aria-labelledby="details-heading">
+          <div class="section-heading"><h2 id="details-heading">拍攝資訊</h2><span id="save-status" class="save-status" role="status">已存於此裝置</span></div>
+          <form id="slate-form" autocomplete="off">
+            <fieldset id="slate-fields">
+              <label class="field">片名 / 製作名稱<input name="production" id="production" maxlength="80" placeholder="輸入片名" aria-label="片名 / 製作名稱"></label>
+              <div class="form-row three"><label class="field">場次<input name="scene" id="scene" maxlength="12" value="01"></label><label class="field">鏡號<input name="shot" id="shot" maxlength="12" value="A"></label><label class="field">Take<input name="take" id="take" type="number" min="1" max="9999" step="1" value="1" inputmode="numeric" required></label></div>
+              <div class="form-row"><label class="field">導演<input name="director" id="director" maxlength="60" placeholder="導演姓名"></label><label class="field">攝影<input name="camera" id="camera" maxlength="60" placeholder="攝影 / 機位"></label></div>
+              <div class="form-row"><label class="field">影格率<select name="fps" id="fps"><option value="24">24 fps</option><option value="25" selected>25 fps</option><option value="30">30 fps</option><option value="50">50 fps</option><option value="60">60 fps</option></select></label><label class="field">打板倒數<select id="countdown"><option value="0">立即打板</option><option value="3">3 秒</option><option value="5">5 秒</option></select></label></div>
+              <label class="field notes-field">備註<textarea name="notes" id="notes" maxlength="2000" rows="2" placeholder="台詞、動作或收音備註"></textarea></label>
+              <div class="appearance-settings">
+                <fieldset class="color-picker"><legend>場記板顏色</legend><div class="color-options">
+                  <label class="color-option"><input type="radio" name="boardTheme" value="black" checked><span class="color-chip" style="--swatch:#22251f"></span><span>黑</span></label>
+                  <label class="color-option"><input type="radio" name="boardTheme" value="white"><span class="color-chip" style="--swatch:#f5f3eb"></span><span>白</span></label>
+                  <label class="color-option"><input type="radio" name="boardTheme" value="navy"><span class="color-chip" style="--swatch:#172d44"></span><span>藍</span></label>
+                  <label class="color-option"><input type="radio" name="boardTheme" value="green"><span class="color-chip" style="--swatch:#203d33"></span><span>綠</span></label>
+                  <label class="color-option"><input type="radio" name="boardTheme" value="burgundy"><span class="color-chip" style="--swatch:#492830"></span><span>紅</span></label>
+                </div></fieldset>
+                <div class="field sound-field"><label for="sound-type">打板聲音</label><span class="sound-select"><select id="sound-type"><option value="clack">經典喀聲</option><option value="wood">低沉木板聲</option><option value="beep">電子嗶聲</option></select><button type="button" id="test-sound" class="secondary"><svg><use href="#i-sound"/></svg>試聽</button></span></div>
+              </div>
+              <div class="switches"><div class="switch-row"><span><label for="sound"><svg><use href="#i-sound"/></svg>打板音效</label></span><input id="sound" type="checkbox" role="switch" checked><span class="switch-track" aria-hidden="true"></span></div><label class="switch-row"><span>打板後 Take 自動 +1</span><input id="auto-next" type="checkbox" role="switch" checked><span class="switch-track" aria-hidden="true"></span></label><label class="switch-row"><span>保持螢幕恆亮</span><input id="keep-awake" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span></label></div>
+            </fieldset>
+          </form>
+        </aside>
+      </div>
+
+      <section class="records-section" aria-labelledby="records-heading">
+        <div class="records-heading"><div><h2 id="records-heading">拍攝紀錄 <span class="record-count" id="record-count">0</span></h2></div><div class="record-actions"><button id="import-json" class="subtle">匯入備份</button><input id="import-file" type="file" accept="application/json,.json" hidden><button id="export-json" class="subtle">備份 JSON</button><button id="export-csv" class="secondary"><svg><use href="#i-download"/></svg>匯出 CSV</button></div></div>
+        <div id="empty-state" class="empty-state"><span class="empty-icon"><svg><use href="#i-slate"/></svg></span><div><h3>尚無紀錄</h3><p>打板後會顯示在這裡。</p></div></div>
+        <div id="records-table-wrap" class="records-table-wrap" hidden><table><thead><tr><th>時間</th><th>製作 / 場次 / 鏡號</th><th>TAKE</th><th>評記</th><th>備註</th><th><span class="sr-only">編輯</span></th></tr></thead><tbody id="records-list"></tbody></table></div>
+      </section>
+    </main>
+    <footer><span>SLATE <span class="footer-slash">/</span> 數位場記板</span><span>紀錄保存在此瀏覽器，拍攝後記得匯出備份。<a href="/">Michaelpig's side projects ↗</a></span></footer>
+  </div>
+
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><span class="eyebrow">使用說明</span><button class="icon-button" data-close aria-label="關閉使用說明"><svg><use href="#i-close"/></svg></button></div><h2 id="help-title">在 iPad 上安裝</h2><ol class="help-steps"><li><strong>用 Safari 開啟此頁面</strong><span>第一次請保持連線，等上方顯示「可離線使用」。</span></li><li><strong>分享 → 加入主畫面</strong><span>若看到「作為網頁 App 打開」，請保持開啟，再點「加入」。</span></li><li><strong>從主畫面開啟</strong><span>先連線開啟一次，確認離線就緒並試聽音效，再開始拍攝。</span></li></ol><div class="help-note"><strong>使用注意事項</strong><p>打板會播放短音、閃白一次並保存當下資訊；自動 +1 時會清空下一 Take 的備註。可在下方紀錄補寫備註、標記 OK／NG。</p><p>若沒聽到聲音，請確認 iPad 的音量與靜音設定，並按「試聽」。螢幕恆亮依裝置支援及省電設定而定。</p><p>時間碼使用裝置時鐘，影格率為整數、非丟格；不是外部同步的專業時間碼。藍牙音訊與螢幕可能有延遲，精確對點請先實測。</p><p>紀錄僅存在目前的瀏覽器或主畫面 App，不會跨裝置同步，也不會錄音錄影。清除網站資料可能刪除紀錄，請定期備份 JSON 或匯出 CSV。</p></div><button class="primary dialog-done" data-close>關閉 <svg><use href="#i-arrow"/></svg></button></dialog>
+
+  <dialog id="record-dialog" aria-labelledby="record-title"><div class="dialog-heading"><span class="eyebrow">拍攝紀錄</span><button class="icon-button" data-close aria-label="關閉紀錄"><svg><use href="#i-close"/></svg></button></div><h2 id="record-title">編輯拍攝紀錄</h2><p id="record-meta" class="muted"></p><form id="record-form"><label class="field">評記<select id="record-rating"><option value="unrated">未評記</option><option value="ok">OK</option><option value="ng">NG</option></select></label><label class="field">備註<textarea id="record-notes" rows="5" maxlength="2000"></textarea></label><div class="dialog-actions"><button type="button" id="delete-record" class="danger-text">刪除此筆</button><button type="submit" class="primary">儲存紀錄</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><div class="warning">請開啟 JavaScript，才能使用場記板、音效與拍攝紀錄。</div></noscript>
+</body>
+</html>
