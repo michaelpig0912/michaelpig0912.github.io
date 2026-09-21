@@ -40,13 +40,14 @@
       <p id="storage-warning" class="warning" role="alert" hidden></p>
       <div class="workspace">
         <section class="slate-section" aria-label="場記板">
-          <div class="section-heading"><h2><span class="tiny-dot"></span>場記板 </h2><button id="focus-toggle" class="subtle" aria-pressed="false"><svg><use href="#i-expand"/></svg><span>專注模式</span></button></div>
+          <div class="section-heading"><h2><span class="tiny-dot"></span>場記板 </h2><div class="board-toolbar"><button id="tail-toggle" class="subtle" aria-pressed="false">尾板</button><button id="focus-toggle" class="subtle" aria-pressed="false"><svg><use href="#i-expand"/></svg><span>專注模式</span></button></div></div>
           <div class="slate-frame" id="slate-frame">
             <button class="clapper" id="clapper" aria-label="打板並儲存紀錄"><span class="clapper-hinge"><i></i><i></i></span><span class="clapper-caption">點此打板</span></button>
             <div class="slate-board">
               <div class="board-production"><span class="board-label">PRODUCTION / 片名</span><div id="board-production" class="production-name">未命名製作</div></div>
               <div class="board-numbers"><div><span class="board-label">SCENE / 場次</span><strong id="board-scene">01</strong></div><div><span class="board-label">SHOT / 鏡號</span><strong id="board-shot">A</strong></div><div class="take-cell"><span class="board-label">TAKE / 次數</span><strong id="board-take">01</strong></div></div>
               <div class="board-crew"><div><span class="board-label">DIRECTOR / 導演</span><span id="board-director">—</span></div><div><span class="board-label">CAMERA / 攝影</span><span id="board-camera">—</span></div></div>
+              <div class="board-media"><div><span class="board-label">CAM / 機器號碼</span><span id="board-cameraId">—</span></div><div><span class="board-label">FILE / 檔案名稱</span><span id="board-fileName">—</span></div><span id="board-tail-badge" class="tail-badge" hidden>尾板 / TAIL</span></div>
               <div class="board-bottom"><div class="timecode-wrap"><span class="board-label">TIME OF DAY / 裝置時間</span><span class="timecode" id="timecode">00:00:00<span>:00</span></span></div><div class="board-specs"><span id="board-fps">25 FPS</span><span id="board-date"></span></div></div>
               <div id="clap-overlay" class="clap-overlay" aria-hidden="true" hidden><span id="clap-overlay-text"></span></div>
             </div>
@@ -63,6 +64,9 @@
               <div class="form-row three"><label class="field">場次<input name="scene" id="scene" maxlength="12" value="01"></label><label class="field">鏡號<input name="shot" id="shot" maxlength="12" value="A"></label><label class="field">Take<input name="take" id="take" type="number" min="1" max="9999" step="1" value="1" inputmode="numeric" required></label></div>
               <div class="form-row"><label class="field">導演<input name="director" id="director" maxlength="60" placeholder="導演姓名"></label><label class="field">攝影<input name="camera" id="camera" maxlength="60" placeholder="攝影 / 機位"></label></div>
               <div class="form-row"><label class="field">影格率<select name="fps" id="fps"><option value="24">24 fps</option><option value="25" selected>25 fps</option><option value="30">30 fps</option><option value="50">50 fps</option><option value="60">60 fps</option></select></label><label class="field">打板倒數<select id="countdown"><option value="0">立即打板</option><option value="3">3 秒</option><option value="5">5 秒</option></select></label></div>
+              <div class="form-row media-fields"><label class="field">機器號碼<input name="cameraId" id="cameraId" list="camera-id-options" maxlength="30" placeholder="選擇或輸入"></label><label class="field">檔案名稱<input name="fileName" id="fileName" list="file-name-options" maxlength="180" placeholder="例如 C0001.MP4"></label></div>
+              <label class="switch-row tail-field"><span>尾板（旋轉 180°）</span><input id="isTail" name="isTail" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span></label>
+              <details class="camera-details"><summary>相機與拍攝參數</summary><div id="camera-settings" class="camera-parameter-grid"></div></details>
               <label class="field notes-field">備註<textarea name="notes" id="notes" maxlength="2000" rows="2" placeholder="台詞、動作或收音備註"></textarea></label>
               <div class="appearance-settings">
                 <fieldset class="color-picker"><legend>場記板顏色</legend><div class="color-options">
@@ -81,17 +85,31 @@
       </div>
 
       <section class="records-section" aria-labelledby="records-heading">
-        <div class="records-heading"><div><h2 id="records-heading">拍攝紀錄 <span class="record-count" id="record-count">0</span></h2></div><div class="record-actions"><button id="import-json" class="subtle">匯入備份</button><input id="import-file" type="file" accept="application/json,.json" hidden><button id="export-json" class="subtle">備份 JSON</button><button id="export-csv" class="secondary"><svg><use href="#i-download"/></svg>匯出 CSV</button></div></div>
+        <div class="records-heading"><div><h2 id="records-heading">拍攝紀錄 <span class="record-count" id="record-count">0</span></h2></div><div class="record-actions"><button id="clear-records" class="subtle danger-text">清除全部</button><button id="import-json" class="subtle">匯入備份</button><input id="import-file" type="file" accept="application/json,.json" hidden><button id="export-json" class="subtle">備份 JSON</button><button id="export-csv" class="secondary"><svg><use href="#i-download"/></svg>匯出 CSV</button></div></div>
+        <div class="record-filters" id="record-filters" hidden>
+          <label>機器號碼<select id="filter-camera"><option value="">全部機器</option></select></label>
+          <label>檔案名稱<input id="filter-file" type="search" placeholder="搜尋檔案名稱"></label>
+          <label>板別<select id="filter-slate"><option value="all">全部</option><option value="head">頭板</option><option value="tail">尾板</option></select></label>
+          <span id="filtered-count" class="muted"></span>
+        </div>
+        <p id="no-matching-records" class="muted" hidden>沒有符合條件的紀錄。</p>
         <div id="empty-state" class="empty-state"><span class="empty-icon"><svg><use href="#i-slate"/></svg></span><div><h3>尚無紀錄</h3><p>打板後會顯示在這裡。</p></div></div>
-        <div id="records-table-wrap" class="records-table-wrap" hidden><table><thead><tr><th>時間</th><th>製作 / 場次 / 鏡號</th><th>TAKE</th><th>評記</th><th>備註</th><th><span class="sr-only">編輯</span></th></tr></thead><tbody id="records-list"></tbody></table></div>
+        <div id="records-table-wrap" class="records-table-wrap" hidden><table><thead><tr><th>時間</th><th>製作 / 場次 / 鏡號</th><th>TAKE</th><th>機器號碼 / 檔案名稱</th><th>頭板 / 尾板</th><th>評記</th><th>備註</th><th><span class="sr-only">編輯</span></th></tr></thead><tbody id="records-list"></tbody></table></div>
       </section>
     </main>
     <footer><span>SLATE <span class="footer-slash">/</span> 數位場記板</span><span>紀錄保存在此瀏覽器，拍攝後記得匯出備份。<a href="/">Michaelpig's side projects ↗</a></span></footer>
   </div>
 
-  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><span class="eyebrow">使用說明</span><button class="icon-button" data-close aria-label="關閉使用說明"><svg><use href="#i-close"/></svg></button></div><h2 id="help-title">在 iPad 上安裝</h2><ol class="help-steps"><li><strong>用 Safari 開啟此頁面</strong><span>第一次請保持連線，等上方顯示「可離線使用」。</span></li><li><strong>分享 → 加入主畫面</strong><span>若看到「作為網頁 App 打開」，請保持開啟，再點「加入」。</span></li><li><strong>從主畫面開啟</strong><span>先連線開啟一次，確認離線就緒並試聽音效，再開始拍攝。</span></li></ol><div class="help-note"><strong>使用注意事項</strong><p>打板會播放短音、閃白一次並保存當下資訊；自動 +1 時會清空下一 Take 的備註。可在下方紀錄補寫備註、標記 OK／NG。</p><p>若沒聽到聲音，請確認 iPad 的音量與靜音設定，並按「試聽」。螢幕恆亮依裝置支援及省電設定而定。</p><p>時間碼使用裝置時鐘，影格率為整數、非丟格；不是外部同步的專業時間碼。藍牙音訊與螢幕可能有延遲，精確對點請先實測。</p><p>紀錄僅存在目前的瀏覽器或主畫面 App，不會跨裝置同步，也不會錄音錄影。清除網站資料可能刪除紀錄，請定期備份 JSON 或匯出 CSV。</p></div><button class="primary dialog-done" data-close>關閉 <svg><use href="#i-arrow"/></svg></button></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><span class="eyebrow">使用說明</span><button class="icon-button" data-close aria-label="關閉使用說明"><svg><use href="#i-close"/></svg></button></div><h2 id="help-title">在 iPad 上安裝</h2><ol class="help-steps"><li><strong>用 Safari 開啟此頁面</strong><span>第一次請保持連線，等上方顯示「可離線使用」。</span></li><li><strong>分享 → 加入主畫面</strong><span>若看到「作為網頁 App 打開」，請保持開啟，再點「加入」。</span></li><li><strong>從主畫面開啟</strong><span>先連線開啟一次，確認離線就緒並試聽音效，再開始拍攝。</span></li></ol><div class="help-note"><strong>使用注意事項</strong><p>打板會播放短音、閃白一次並保存當下資訊；自動 +1 時會清空下一 Take 的備註。可在下方紀錄補寫機器號碼、檔案名稱、相機參數與備註，或標記 OK／NG。</p><p>全螢幕只需點黑白打板條；尾板會將整塊場記板旋轉 180°，打板條也會轉到下方。清除全部紀錄需要再次確認。</p><p>若沒聽到聲音，請確認 iPad 的音量與靜音設定，並按「試聽」。螢幕恆亮依裝置支援及省電設定而定。</p><p>時間碼使用裝置時鐘，影格率為整數、非丟格；不是外部同步的專業時間碼。藍牙音訊與螢幕可能有延遲，精確對點請先實測。</p><p>紀錄僅存在目前的瀏覽器或主畫面 App，不會跨裝置同步，也不會錄音錄影。清除網站資料可能刪除紀錄，請定期備份 JSON 或匯出 CSV。</p></div><a class="help-article" href="/2026/09/21/digital-slate-guide/" target="_blank" rel="noopener">完整使用教學 ↗</a><button class="primary dialog-done" data-close>關閉 <svg><use href="#i-arrow"/></svg></button></dialog>
 
-  <dialog id="record-dialog" aria-labelledby="record-title"><div class="dialog-heading"><span class="eyebrow">拍攝紀錄</span><button class="icon-button" data-close aria-label="關閉紀錄"><svg><use href="#i-close"/></svg></button></div><h2 id="record-title">編輯拍攝紀錄</h2><p id="record-meta" class="muted"></p><form id="record-form"><label class="field">評記<select id="record-rating"><option value="unrated">未評記</option><option value="ok">OK</option><option value="ng">NG</option></select></label><label class="field">備註<textarea id="record-notes" rows="5" maxlength="2000"></textarea></label><div class="dialog-actions"><button type="button" id="delete-record" class="danger-text">刪除此筆</button><button type="submit" class="primary">儲存紀錄</button></div></form></dialog>
+  <dialog id="record-dialog" aria-labelledby="record-title"><div class="dialog-heading"><span class="eyebrow">拍攝紀錄</span><button class="icon-button" data-close aria-label="關閉紀錄"><svg><use href="#i-close"/></svg></button></div><h2 id="record-title">編輯拍攝紀錄</h2><p id="record-meta" class="muted"></p><form id="record-form">
+      <div class="form-row"><label class="field">機器號碼<input id="record-cameraId" list="camera-id-options" maxlength="30"></label><label class="field">檔案名稱<input id="record-fileName" list="file-name-options" maxlength="180"></label></div>
+      <label class="field">板別<select id="record-isTail"><option value="head">頭板</option><option value="tail">尾板（180°）</option></select></label>
+      <details class="camera-details"><summary>相機與拍攝參數</summary><div id="record-camera-settings" class="camera-parameter-grid"></div></details>
+      <label class="field">評記<select id="record-rating"><option value="unrated">未評記</option><option value="ok">OK</option><option value="ng">NG</option></select></label><label class="field">備註<textarea id="record-notes" rows="5" maxlength="2000"></textarea></label><div class="dialog-actions"><button type="button" id="delete-record" class="danger-text">刪除此筆</button><button type="submit" class="primary">儲存紀錄</button></div></form></dialog>
+  <dialog id="clear-dialog" aria-labelledby="clear-title"><h2 id="clear-title">清除全部拍攝紀錄？</h2><p>將刪除全部 <strong id="clear-count">0</strong> 筆紀錄，包含目前篩選隱藏的紀錄。此操作無法復原，請先匯出備份。</p><p class="muted">目前填寫的拍攝資訊與設定會保留。</p><div class="dialog-actions"><button class="secondary" data-close autofocus>取消</button><button id="confirm-clear" class="danger-button">確定清除全部</button></div></dialog>
+  <datalist id="camera-id-options"><option value="A"></option><option value="B"></option><option value="C"></option></datalist>
+  <datalist id="file-name-options"></datalist>
   <div id="toast" class="toast" role="status" hidden></div>
   <noscript><div class="warning">請開啟 JavaScript，才能使用場記板、音效與拍攝紀錄。</div></noscript>
 </body>
