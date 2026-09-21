@@ -35,16 +35,6 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     await page.locator('#shot').fill('B');
     await page.locator('#director').fill('Michael');
     await page.locator('#camera').fill('A CAM');
-    await page.locator('#cameraId').fill('A');
-    await page.locator('#fileName').fill('C0001.MP4');
-    await page.locator('.camera-details summary').first().click();
-    await page.locator('#cameraType').selectOption('無反相機');
-    await page.locator('#cameraModel').fill('Sony FX3');
-    await page.locator('#resolution').fill('3840 × 2160');
-    await page.locator('#lens').fill('24–70 mm');
-    await page.locator('#iso').fill('800');
-    await page.locator('#shutter').fill('1/50');
-    await page.locator('.camera-details summary').first().click();
     await page.locator('#notes').fill('窗邊對話\n注意背景的腳步聲');
     await page.locator('#test-sound').click();
     await page.waitForFunction(() => window.audioStarts === 1);
@@ -59,11 +49,6 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     assert.equal(saved.form.notes, '');
     assert.equal(saved.records[0].notes, '窗邊對話\n注意背景的腳步聲');
     assert.equal(saved.records[0].soundPlayed, true);
-    assert.equal(saved.records[0].cameraModel, 'Sony FX3');
-    assert.equal(saved.records[0].cameraId, 'A');
-    assert.equal(saved.records[0].fileName, 'C0001.MP4');
-    assert.equal(saved.form.fileName, '');
-    assert.equal(saved.form.cameraModel, 'Sony FX3');
     assert.equal(await page.evaluate(() => window.audioStarts), 2);
     const lengths = [];
     for (const type of ['clack', 'wood', 'beep']) {
@@ -85,14 +70,8 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     assert.equal((await state(page)).records[0].rating, 'ok');
     assert.equal(await page.locator('#sound-type').inputValue(), 'beep');
     assert.equal(await page.locator('body').getAttribute('data-board-theme'), 'white');
-    await page.locator('#records-list [data-field=cameraId]').fill('B');
-    await page.locator('#records-list [data-field=cameraId]').press('Tab');
-    await page.locator('#records-list [data-field=fileName]').fill('B001.MP4');
-    await page.locator('#records-list [data-field=fileName]').press('Tab');
     await page.locator('#records-list select').selectOption('tail');
     assert.equal((await state(page)).records[0].isTail, true);
-    assert.equal((await state(page)).records[0].cameraId, 'B');
-    assert.equal((await state(page)).records[0].fileName, 'B001.MP4');
     assert.equal((await state(page)).form.isTail, false, 'editing history does not flip the current slate');
     await page.screenshot({ path: path.join(output, 'desktop-record.png'), fullPage: true });
 
@@ -150,11 +129,7 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     await context.setOffline(false);
     assert.equal(await page.evaluate(() => new URL(navigator.serviceWorker.controller.scriptURL).pathname), '/sideProject/digitalSlate/sw.js');
     console.log('PASS: audio scheduling, clap snapshots, repeat guard, edit, persistence, export/import, countdown cancellation, background cancellation, offline navigation and clap');
-    await page.locator('#filter-camera').selectOption('B');
-    assert.equal(await page.locator('#records-list tr').count(), 1);
-    await page.locator('#filter-file').fill('missing-file');
-    assert.equal(await page.locator('#no-matching-records').isVisible(), true);
-    await page.locator('#filter-file').fill('B001');
+    assert.equal(await page.locator('#records-list tr').count(), 3);
     await page.locator('#filter-slate').selectOption('tail');
     assert.equal(await page.locator('#records-list tr').count(), 1);
     await page.locator('#clear-records').click();
@@ -164,12 +139,11 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     await page.locator('#clear-records').click();
     await page.locator('#confirm-clear').click();
     await count(page, 0);
-    assert.equal((await state(page)).form.cameraModel, 'Sony FX3');
     assert.equal((await state(page)).settings.boardTheme, 'white');
     await page.reload(); await count(page, 0);
     await page.locator('#import-file').setInputFiles(backupPath);
     await count(page, 1);
-    console.log('PASS: camera snapshots, inline metadata edits, filtering, confirmed clear-all, and backup restore');
+    console.log('PASS: normal/tail editing and filtering, confirmed clear-all, and backup restore');
 
     const ipad = await browser.newContext({ ...devices['iPad Pro 11'], viewport: { width: 1194, height: 834 } });
     const tablet = await ipad.newPage();
@@ -178,8 +152,6 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     await tablet.locator('#production').fill('九月的午後');
     await tablet.locator('#director').fill('Michael');
     await tablet.locator('#camera').fill('A CAM');
-    await tablet.locator('#cameraId').fill('A');
-    await tablet.locator('#fileName').fill('C0001.MP4');
     for (const theme of ['black', 'white', 'navy', 'green', 'burgundy']) {
       await tablet.locator(`[name=boardTheme][value=${theme}]`).check();
       assert.equal(await tablet.locator('body').getAttribute('data-board-theme'), theme);
@@ -215,7 +187,6 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     assert.equal((await state(tablet)).records[0].isTail, false);
     await tablet.locator('#focus-toggle').tap();
     assert.equal(await tablet.locator('body').evaluate(el => el.classList.contains('focus-mode')), false);
-    await tablet.locator('#fileName').fill('C0002.MP4');
     await tablet.screenshot({ path: path.join(output, 'guide-main.png'), fullPage: true });
     await tablet.locator('.records-section').screenshot({ path: path.join(output, 'guide-records.png') });
     await tablet.setViewportSize({ width: 834, height: 1194 });

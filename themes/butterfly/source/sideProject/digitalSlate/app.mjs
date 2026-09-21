@@ -1,4 +1,4 @@
-import { STORAGE_KEY, SOUND_TYPES, CAMERA_FIELDS, defaultForm, defaultSettings, normalizeForm, pad, timecode, localDate, makeRecord, parseBackup, mergeRecords, recordsToCSV } from './model.mjs';
+import { STORAGE_KEY, SOUND_TYPES, defaultForm, defaultSettings, normalizeForm, pad, timecode, localDate, makeRecord, parseBackup, mergeRecords, recordsToCSV } from './model.mjs';
 import { createSoundSamples } from './sounds.mjs';
 
 const $ = (id) => document.getElementById(id);
@@ -54,7 +54,7 @@ function persist() {
 }
 function fillForm() {
   for (const [key, value] of Object.entries(state.form)) {
-    if (key === 'isTail') $(key).checked = value;
+    if (key === 'isTail') $(key).value = value ? 'tail' : 'normal';
     else $(key).value = value;
   }
   $('sound').checked = state.settings.sound;
@@ -74,11 +74,9 @@ function renderBoard() {
     $(`board-${field}`).textContent = form[field].trim() || (field === 'production' ? '未命名製作' : '—');
   }
   $('board-take').textContent = pad(form.take);
-  $('board-cameraId').textContent = form.cameraId || '—';
-  $('board-fileName').textContent = form.fileName || '—';
-  $('board-tail-badge').hidden = !form.isTail;
   document.body.classList.toggle('tail-slate', form.isTail);
   $('tail-toggle').setAttribute('aria-pressed', String(form.isTail));
+  $('tail-toggle').textContent = form.isTail ? '板別：尾板' : '板別：正常';
   for (const field of ['scene', 'shot', 'take']) {
     const display = $(`board-${field}`);
     display.classList.toggle('long-value', display.textContent.length > 3);
@@ -98,45 +96,14 @@ function renderClock() {
   $('board-date').textContent = localDate(timestamp);
   $('today-label').textContent = `${localDate(Date.now())} / ${['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'][new Date().getDay()]}`;
 }
-function createCameraFields(container, prefix = '') {
-  for (const field of CAMERA_FIELDS) {
-    const label = Object.assign(document.createElement('label'), { className: 'field', textContent: field.label });
-    const input = document.createElement(field.options ? 'select' : 'input');
-    input.id = prefix + field.key;
-    if (!prefix) input.name = field.key;
-    if (field.options) {
-      input.append(new Option('未填寫', ''), ...field.options.map(value => new Option(value, value)));
-    } else {
-      input.maxLength = field.max;
-      input.placeholder = field.placeholder;
-    }
-    label.append(input);
-    container.append(label);
-  }
-}
-function refreshRecordChoices() {
-  const cameraIds = [...new Set(['A', 'B', 'C', ...state.records.map(record => record.cameraId), state.form.cameraId])].filter(Boolean).sort();
-  $('camera-id-options').replaceChildren(...cameraIds.map(value => new Option(value, value)));
-  const fileNames = [...new Set(state.records.map(record => record.fileName).filter(Boolean))].sort();
-  $('file-name-options').replaceChildren(...fileNames.map(value => new Option(value, value)));
-  const selected = $('filter-camera').value;
-  const usedIds = [...new Set(state.records.map(record => record.cameraId).filter(Boolean))].sort();
-  $('filter-camera').replaceChildren(new Option('全部機器', ''), ...usedIds.map(value => new Option(value, value)));
-  if (usedIds.includes(selected)) $('filter-camera').value = selected;
-}
 function updateRecordField(record, key, value) {
   record[key] = value;
   persist(); renderRecords();
 }
 function renderRecords() {
-  refreshRecordChoices();
   const total = state.records.length;
-  const cameraFilter = $('filter-camera').value;
-  const fileFilter = $('filter-file').value.trim().toLocaleLowerCase();
   const slateFilter = $('filter-slate').value;
-  const records = state.records.filter(record => (!cameraFilter || record.cameraId === cameraFilter)
-    && (!fileFilter || record.fileName.toLocaleLowerCase().includes(fileFilter))
-    && (slateFilter === 'all' || record.isTail === (slateFilter === 'tail')));
+  const records = state.records.filter(record => slateFilter === 'all' || record.isTail === (slateFilter === 'tail'));
   $('record-count').textContent = total;
   $('clear-count').textContent = total;
   $('clear-records').disabled = !total || busy;
@@ -157,18 +124,9 @@ function renderRecords() {
     const scene = cell(`${record.scene || '—'} / ${record.shot || '—'}`);
     scene.append(Object.assign(document.createElement('span'), { className: 'record-production', textContent: record.production || '未命名製作' }));
     cell(pad(record.take));
-    const media = cell(); media.className = 'record-media';
-    for (const [key, title, list, max] of [['cameraId', '機器號碼', 'camera-id-options', 30], ['fileName', '檔案名稱', 'file-name-options', 180]]) {
-      const input = Object.assign(document.createElement('input'), { value: record[key], maxLength: max, placeholder: title });
-      input.setAttribute('list', list);
-      input.setAttribute('aria-label', `Take ${record.take} ${title}`);
-      input.dataset.field = key;
-      input.addEventListener('change', () => updateRecordField(record, key, input.value));
-      media.append(input);
-    }
     const slate = document.createElement('select');
-    slate.append(new Option('頭板', 'head'), new Option('尾板', 'tail'));
-    slate.value = record.isTail ? 'tail' : 'head';
+    slate.append(new Option('正常', 'normal'), new Option('尾板', 'tail'));
+    slate.value = record.isTail ? 'tail' : 'normal';
     slate.setAttribute('aria-label', `Take ${record.take} 板別`);
     slate.addEventListener('change', () => updateRecordField(record, 'isTail', slate.value === 'tail'));
     cell().append(slate);
@@ -259,7 +217,6 @@ function commitClap(snapshot, token) {
   if (state.settings.autoNext && record.take < 9999) {
     state.form.take = record.take + 1;
     state.form.notes = '';
-    state.form.fileName = '';
     fillForm();
   }
   const saved = persist();
@@ -356,10 +313,7 @@ function editRecord(id) {
   $('record-title').textContent = `場次 ${record.scene || '—'} / ${record.shot || '—'} · Take ${pad(record.take)}`;
   $('record-meta').textContent = `${record.production || '未命名製作'} · ${localDate(record.timestamp)} ${record.timecode} · ${record.fps} FPS${record.soundPlayed ? '' : ' · 無音效'}`;
   $('record-notes').value = record.notes;
-  $('record-cameraId').value = record.cameraId;
-  $('record-fileName').value = record.fileName;
-  $('record-isTail').value = record.isTail ? 'tail' : 'head';
-  for (const field of CAMERA_FIELDS) $(`record-${field.key}`).value = record[field.key];
+  $('record-isTail').value = record.isTail ? 'tail' : 'normal';
   $('record-rating').value = record.rating;
   $('record-dialog').showModal();
 }
@@ -409,7 +363,7 @@ $('focus-toggle').addEventListener('click', toggleFocus);
 $('tail-toggle').addEventListener('click', () => {
   if (busy) return;
   state.form.isTail = !state.form.isTail;
-  $('isTail').checked = state.form.isTail;
+  $('isTail').value = state.form.isTail ? 'tail' : 'normal';
   persist(); renderBoard();
 });
 $('test-sound').addEventListener('click', async () => {
@@ -425,10 +379,7 @@ $('record-form').addEventListener('submit', event => {
   if (record) {
     record.notes = $('record-notes').value;
     record.rating = $('record-rating').value;
-    record.cameraId = $('record-cameraId').value;
-    record.fileName = $('record-fileName').value;
     record.isTail = $('record-isTail').value === 'tail';
-    for (const field of CAMERA_FIELDS) record[field.key] = $(`record-${field.key}`).value;
     persist(); renderRecords();
   }
   $('record-dialog').close();
@@ -438,7 +389,7 @@ $('delete-record').addEventListener('click', () => {
   state.records = state.records.filter(item => item.id !== activeRecordId);
   persist(); renderRecords(); $('record-dialog').close(); toast('已刪除此筆紀錄。');
 });
-for (const id of ['filter-camera', 'filter-file', 'filter-slate']) $(id).addEventListener('input', renderRecords);
+$('filter-slate').addEventListener('input', renderRecords);
 $('clear-records').addEventListener('click', () => {
   if (busy || !state.records.length) return;
   $('clear-count').textContent = state.records.length;
@@ -446,8 +397,6 @@ $('clear-records').addEventListener('click', () => {
 });
 $('confirm-clear').addEventListener('click', () => {
   state.records = [];
-  $('filter-camera').value = '';
-  $('filter-file').value = '';
   $('filter-slate').value = 'all';
   const saved = persist();
   renderRecords(); $('clear-dialog').close();
@@ -538,7 +487,5 @@ if ('serviceWorker' in navigator && window.isSecureContext) {
   });
 } else updateOfflineStatus(true);
 
-createCameraFields($('camera-settings'));
-createCameraFields($('record-camera-settings'), 'record-');
 fillForm(); renderBoard(); renderRecords(); resetClapHint(); requestWakeLock();
 setInterval(renderClock, 40);

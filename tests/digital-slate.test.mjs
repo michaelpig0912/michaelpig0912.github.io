@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CAMERA_FIELDS, defaultForm, defaultSettings, normalizeForm, normalizeSettings, timecode, makeRecord, parseBackup, mergeRecords, recordsToCSV } from '../themes/butterfly/source/sideProject/digitalSlate/model.mjs';
+import { defaultForm, defaultSettings, normalizeForm, normalizeSettings, timecode, makeRecord, parseBackup, mergeRecords, recordsToCSV } from '../themes/butterfly/source/sideProject/digitalSlate/model.mjs';
 import { createSoundSamples } from '../themes/butterfly/source/sideProject/digitalSlate/sounds.mjs';
 
 const timestamp = new Date(2026, 8, 20, 14, 3, 9, 999).getTime();
@@ -34,7 +34,7 @@ test('all sound choices have distinct, bounded waveforms and a quiet end at devi
 });
 
 test('a clap snapshots notes and slate settings without changing earlier takes', () => {
-  const form = { ...defaultForm, scene: '12B', take: 7, notes: '雨聲，保留', cameraId: 'B', fileName: 'C0007.MP4', cameraModel: 'FX3', iso: '800', isTail: true };
+  const form = { ...defaultForm, scene: '12B', take: 7, notes: '雨聲，保留', isTail: true };
   const record = makeRecord(form, timestamp, true, 'snapshot');
   form.notes = ''; form.take++;
   assert.equal(record.notes, '雨聲，保留');
@@ -42,21 +42,18 @@ test('a clap snapshots notes and slate settings without changing earlier takes',
   assert.equal(record.scene, '12B');
   assert.equal(record.timecode, '14:03:09:24');
   assert.equal(record.soundPlayed, true);
-  form.cameraModel = 'Other'; form.isTail = false;
-  assert.equal(record.cameraModel, 'FX3');
-  assert.equal(record.fileName, 'C0007.MP4');
+  form.isTail = false;
   assert.equal(record.isTail, true);
 });
 
-test('camera fields and tail flag roundtrip, while old records upgrade without inventing metadata', () => {
-  const record = make({ cameraId: 'C', fileName: 'take.mov', aperture: 'f/2.8', shutter: '180°', whiteBalance: '5600 K', isTail: true });
-  assert.deepEqual(parseBackup(backup([record])).records[0], record);
-  for (const key of ['cameraId', 'fileName', 'isTail', ...CAMERA_FIELDS.map(field => field.key)]) delete record[key];
-  const restored = parseBackup(backup([record])).records[0];
-  assert.equal(restored.cameraId, ''); assert.equal(restored.fileName, ''); assert.equal(restored.isTail, false);
-  for (const patch of [{ isTail: 'true' }, { iso: {} }, { fileName: 'x'.repeat(181) }]) assert.throws(() => parseBackup(backup([{ ...record, ...patch }])));
-  const csv = recordsToCSV([make({ cameraId: 'B', fileName: '=file.mov', cameraModel: 'FX3', isTail: true })]);
-  assert.ok(csv.includes('"機器號碼"')); assert.ok(csv.includes('"FX3"')); assert.ok(csv.includes('"尾板"')); assert.ok(csv.includes('"\'=file.mov"'));
+test('normal and tail slate roundtrip, while old records default to normal', () => {
+  const tail = make({ isTail: true });
+  assert.equal(parseBackup(backup([tail])).records[0].isTail, true);
+  delete tail.isTail;
+  assert.equal(parseBackup(backup([tail])).records[0].isTail, false);
+  assert.throws(() => parseBackup(backup([{ ...tail, isTail: 'true' }])));
+  const csv = recordsToCSV([make(), make({ isTail: true }, 'tail')]);
+  assert.ok(csv.includes('"正常"')); assert.ok(csv.includes('"尾板"'));
 });
 test('frame digits stay in the selected integer frame rate, including second rollover', () => {
   for (const fps of [24, 25, 30, 50, 60]) {

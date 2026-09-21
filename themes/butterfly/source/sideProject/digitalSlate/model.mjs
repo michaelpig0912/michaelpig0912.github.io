@@ -2,24 +2,9 @@ export const STORAGE_KEY = 'michaelpig.digital-slate.v1';
 export const FPS_OPTIONS = [24, 25, 30, 50, 60];
 export const BOARD_THEMES = ['black', 'white', 'navy', 'green', 'burgundy'];
 export const SOUND_TYPES = { clack: '經典喀聲', wood: '低沉木板聲', beep: '電子嗶聲' };
-export const CAMERA_FIELDS = [
-  { key: 'cameraType', label: '相機類型', max: 30, options: ['無反相機', '單眼相機', '電影攝影機', '攝影機', '手機', '運動相機', '其他'] },
-  { key: 'cameraModel', label: '相機型號', max: 80, placeholder: '例如 Sony FX3' },
-  { key: 'resolution', label: '解析度', max: 40, placeholder: '例如 3840 × 2160' },
-  { key: 'codec', label: '錄影格式 / 色彩模式', max: 80, placeholder: '例如 XAVC S / S-Log3' },
-  { key: 'lens', label: '鏡頭', max: 80, placeholder: '例如 24–70 mm' },
-  { key: 'focalLength', label: '焦距', max: 30, placeholder: '例如 35 mm' },
-  { key: 'aperture', label: '光圈', max: 30, placeholder: '例如 f/2.8' },
-  { key: 'shutter', label: '快門', max: 30, placeholder: '例如 1/50 或 180°' },
-  { key: 'iso', label: 'ISO', max: 30, placeholder: '例如 800' },
-  { key: 'whiteBalance', label: '白平衡', max: 40, placeholder: '例如 5600 K' },
-];
-const cameraDefaults = Object.fromEntries(CAMERA_FIELDS.map(field => [field.key, '']));
-export const defaultForm = { production: '', scene: '01', shot: 'A', take: 1, director: '', camera: '', fps: 25, notes: '', cameraId: '', fileName: '', isTail: false, ...cameraDefaults };
+export const defaultForm = { production: '', scene: '01', shot: 'A', take: 1, director: '', camera: '', fps: 25, notes: '', isTail: false };
 export const defaultSettings = { sound: true, soundType: 'clack', boardTheme: 'black', autoNext: true, keepAwake: false, countdown: 0 };
-const originalLimits = { production: 80, scene: 12, shot: 12, director: 60, camera: 60, notes: 2000 };
-const cameraLimits = { cameraId: 30, fileName: 180, ...Object.fromEntries(CAMERA_FIELDS.map(field => [field.key, field.max])) };
-const limits = { ...originalLimits, ...cameraLimits };
+const limits = { production: 80, scene: 12, shot: 12, director: 60, camera: 60, notes: 2000 };
 export const pad = (value) => String(value).padStart(2, '0');
 export function normalizeForm(value = {}) {
   const form = { ...defaultForm };
@@ -29,7 +14,7 @@ export function normalizeForm(value = {}) {
   const take = Number(value.take);
   form.take = Number.isInteger(take) && take >= 1 && take <= 9999 ? take : 1;
   form.fps = FPS_OPTIONS.includes(Number(value.fps)) ? Number(value.fps) : 25;
-  form.isTail = value.isTail === true || value.isTail === 'on';
+  form.isTail = value.isTail === true || value.isTail === 'tail';
   return form;
 }
 export function normalizeSettings(value = {}) {
@@ -63,14 +48,10 @@ export function parseBackup(text) {
       !['unrated', 'ok', 'ng'].includes(record.rating) || typeof record.soundPlayed !== 'boolean' ||
       !Number.isInteger(record.take) || record.take < 1 || record.take > 9999 || !FPS_OPTIONS.includes(record.fps) ||
       !/^\d{2}:\d{2}:\d{2}:\d{2}$/.test(record.timecode)) throw new Error('備份中的拍攝紀錄格式不完整，未匯入任何資料。');
-    for (const [key, max] of Object.entries(originalLimits)) {
+    for (const [key, max] of Object.entries(limits)) {
       if (typeof record[key] !== 'string' || record[key].length > max) throw new Error('備份中的文字欄位格式不正確。');
     }
-    // Earlier v1 backups have no camera metadata or tail-slate flag.
-    for (const [key, max] of Object.entries(cameraLimits)) {
-      if (record[key] !== undefined && (typeof record[key] !== 'string' || record[key].length > max)) throw new Error('備份中的相機欄位格式不正確。');
-    }
-    if (record.isTail !== undefined && typeof record.isTail !== 'boolean') throw new Error('備份中的頭板 / 尾板格式不正確。');
+    if (record.isTail !== undefined && typeof record.isTail !== 'boolean') throw new Error('備份中的正常 / 尾板格式不正確。');
     ids.add(record.id);
     return { ...normalizeForm(record), id: record.id, timestamp: record.timestamp, timecode: record.timecode, rating: record.rating, soundPlayed: record.soundPlayed };
   });
@@ -87,8 +68,8 @@ function csvCell(value) {
   return `"${text.replaceAll('"', '""')}"`;
 }
 export function recordsToCSV(records) {
-  const headers = ['拍攝時間（ISO 8601 / UTC）', '片名', '場次', '鏡號', 'Take', '導演', '攝影', '機器號碼', '檔案名稱', '板別', ...CAMERA_FIELDS.map(field => field.label), 'FPS', '打板時間碼（當地時間）', '評記', '音效已播放', '備註'];
+  const headers = ['拍攝時間（ISO 8601 / UTC）', '片名', '場次', '鏡號', 'Take', '導演', '攝影', '板別', 'FPS', '打板時間碼（當地時間）', '評記', '音效已播放', '備註'];
   const ratings = { unrated: '未評記', ok: 'OK', ng: 'NG' };
-  const rows = records.map(record => [new Date(record.timestamp).toISOString(), record.production, record.scene, record.shot, record.take, record.director, record.camera, record.cameraId, record.fileName, record.isTail ? '尾板' : '頭板', ...CAMERA_FIELDS.map(field => record[field.key]), record.fps, record.timecode, ratings[record.rating], record.soundPlayed ? '是' : '否', record.notes]);
+  const rows = records.map(record => [new Date(record.timestamp).toISOString(), record.production, record.scene, record.shot, record.take, record.director, record.camera, record.isTail ? '尾板' : '正常', record.fps, record.timecode, ratings[record.rating], record.soundPlayed ? '是' : '否', record.notes]);
   return '\uFEFF' + [headers, ...rows].map(row => row.map(csvCell).join(',')).join('\r\n');
 }

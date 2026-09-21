@@ -1825,24 +1825,13 @@ body.focus-mode .warning {
 
 .board-toolbar { display:flex; align-items:center; gap:6px; }
 #tail-toggle[aria-pressed="true"] { background:#dde5c7; color:#425b21; }
-.board-media { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr) auto; gap:18px; align-items:center; padding:12px 0; border-bottom:1px solid var(--board-line); }
-.board-media>div { min-width:0; }
-.board-media>div>span:last-child { display:block; margin-top:7px; font:14px var(--mono); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.tail-badge { font:10px var(--mono); border:1px solid var(--board-line); padding:6px; border-radius:3px; }
 body.tail-slate .slate-frame { transform:rotate(180deg); }
 .tail-field { margin:0 0 15px; }
-.camera-details { grid-column:1/-1; margin-bottom:18px; border:1px solid var(--line); border-radius:7px; background:#fafaf5; }
-.camera-details summary { font-size:12px; font-weight:550; color:#5e6751; cursor:pointer; min-height:44px; padding:14px 12px; }
-.camera-parameter-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:0 12px; padding:6px 12px 0; }
 .record-filters { display:flex; align-items:flex-end; flex-wrap:wrap; gap:12px; padding-bottom:16px; }
 .record-filters label { display:grid; gap:7px; font-size:12px; color:#676c5d; min-width:135px; }
-.record-filters #filter-file { min-width:200px; }
 .record-filters .muted { margin:0 0 13px auto; }
 .record-actions { flex-wrap:wrap; }
-.record-media { min-width:205px; }
-.record-media input+input { margin-top:6px; }
 #records-list input,#records-list select { font-size:12px; padding:8px; min-width:80px; }
-#records-list .record-media input { min-width:175px; }
 .danger-button { background:#a84736; color:white; padding:12px 16px; border-radius:7px; min-height:44px; font-size:14px; }
 .danger-button:hover { background:#903a2d; }
 #clear-dialog p { font-size:14px; line-height:1.8; margin:14px 0; }
@@ -1851,26 +1840,17 @@ body.focus-mode .slate-section { grid-template-rows:minmax(0,1fr); }
 body.focus-mode #clap-button { display:none; }
 body.focus-mode .clap-controls { position:absolute; z-index:5; right:16px; bottom:16px; }
 body.focus-mode .cancel-button { min-height:48px; border:1px solid #848c79; border-radius:7px; }
-body.focus-mode .slate-board { grid-template-rows:minmax(0,1fr) minmax(0,2.7fr) minmax(0,1fr) minmax(0,.75fr) minmax(0,1.25fr); }
-body.focus-mode .board-media { padding:.8dvh 0; gap:2vw; }
-body.focus-mode .board-media>div>span:last-child { margin-top:.6dvh; font-size:clamp(12px,min(2.9dvh,2.4vw),30px); }
-body.focus-mode .tail-badge { font-size:clamp(8px,1.4vw,15px); }
+body.focus-mode .slate-board { grid-template-rows:minmax(0,1fr) minmax(0,2.7fr) minmax(0,1fr) minmax(0,1.25fr); }
 body.focus-mode #tail-toggle { color:#f8f8f3; background:#242721; padding:8px 14px; border:1px solid #73786c; }
 body.focus-mode #tail-toggle[aria-pressed="true"] { color:#22251f; background:#d5ed77; }
 /* Keep the exit/tail controls beside the clapper after the whole board turns. */
 body.focus-mode.tail-slate .section-heading { top:auto; bottom:max(5px,env(safe-area-inset-bottom)); }
 body.focus-mode.tail-slate .clap-controls { bottom:auto; top:16px; }
 @media(max-width:820px) {
-  .media-fields,.tail-field { grid-column:1/-1; }
 }
 @media(max-width:480px) {
-  .board-media { gap:8px; }
-  .board-media>div>span:last-child { font-size:11px; }
-  .tail-badge { font-size:8px; padding:4px; }
   .record-filters { gap:10px; }
   .record-filters label { min-width:0; flex:1; }
-  .record-filters #filter-file { min-width:0; }
   .record-filters .muted { width:100%; margin:0; }
   #records-list input,#records-list select { font-size:16px; }
-  .camera-parameter-grid { grid-template-columns:minmax(0,1fr); }
 }
