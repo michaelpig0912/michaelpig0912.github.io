@@ -1856,6 +1856,22 @@ body.focus-mode #tail-toggle[aria-pressed="true"] { color:#22251f; background:#d
 /* Keep the exit/tail controls beside the clapper after the whole board turns. */
 body.focus-mode.tail-slate .section-heading { top:auto; bottom:max(5px,env(safe-area-inset-bottom)); }
 body.focus-mode.tail-slate .clap-controls { bottom:auto; top:16px; }
+
+/* iPad keeps system time and status icons visible in some fullscreen modes.
+   Give them an opaque strip so their material effect never blurs the slate. */
+html.is-ipad body.focus-mode::before {
+  content:"";
+  position:fixed;
+  z-index:20;
+  inset:0 0 auto;
+  height:max(env(safe-area-inset-top),26px);
+  background:#000;
+}
+html.is-ipad body.focus-mode .slate-section {
+  inset:max(env(safe-area-inset-top),26px) 0 0;
+  height:auto;
+  padding-top:0;
+}
 @media(max-width:820px) {
 }
 @media(max-width:480px) {

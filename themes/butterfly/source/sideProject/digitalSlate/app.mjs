@@ -2,6 +2,8 @@ import { STORAGE_KEY, SOUND_TYPES, defaultForm, defaultSettings, normalizeForm, 
 import { createSoundSamples } from './sounds.mjs';
 
 const $ = (id) => document.getElementById(id);
+const isIPad = /iPad/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+document.documentElement.classList.toggle('is-ipad', isIPad);
 let state = { version: 1, form: { ...defaultForm }, settings: { ...defaultSettings }, records: [] };
 let storageBlocked = false;
 let busy = false;

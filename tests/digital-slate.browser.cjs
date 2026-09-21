@@ -169,8 +169,9 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     for (const viewport of [{ width: 1194, height: 834 }, { width: 1024, height: 768 }, { width: 834, height: 1194 }, { width: 1366, height: 1024 }]) {
       await tablet.setViewportSize(viewport);
       const frame = await tablet.locator('.slate-section').boundingBox();
-      assert.equal(frame.x, 0); assert.equal(frame.y, 0);
-      assert.equal(frame.width, viewport.width); assert.equal(frame.height, viewport.height);
+      assert.equal(frame.x, 0); assert.equal(frame.y, 26);
+      assert.equal(frame.width, viewport.width); assert.equal(frame.height, viewport.height - 26);
+      assert.equal(await tablet.locator('html').evaluate(el => el.classList.contains('is-ipad')), true);
       assert.equal(await tablet.locator('#clap-button').isVisible(), false, 'fullscreen hides the bottom clap button');
       const board = await tablet.locator('.slate-frame').boundingBox();
       assert.equal(board.x, 0); assert.equal(board.width, viewport.width);
