@@ -12,6 +12,8 @@ cover: cover.webp
 description: SLATE 數位場記板的操作說明，包含 iPad 安裝、打板音效、尾板、拍攝紀錄與備份。
 ---
 
+> 本文由 AI 自動生成。
+
 想用 iPad 當場記板，也順便記下每一 Take 的基本資訊和備註，所以做了這個網頁工具。可以直接在瀏覽器使用，也能加入主畫面，離線操作。
 
 [開啟 SLATE 數位場記板](/sideProject/digitalSlate/)
