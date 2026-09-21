@@ -27,6 +27,7 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     const page = await context.newPage();
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(url);
+    assert.equal(await page.locator('meta[name="apple-mobile-web-app-status-bar-style"]').getAttribute('content'), 'black', 'iPad status bar must stay opaque instead of blurring over the slate');
     await page.waitForFunction(() => document.getElementById('offline-status').textContent === '可離線使用');
     await noOverflow(page);
     await page.screenshot({ path: path.join(output, 'desktop-empty.png'), fullPage: true });
