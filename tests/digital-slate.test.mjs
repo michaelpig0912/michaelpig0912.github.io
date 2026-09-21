@@ -68,8 +68,9 @@ test('invalid take / fps values cannot corrupt state', () => {
   assert.equal(normalizeForm({ scene: 'x'.repeat(100) }).scene.length, 12);
 });
 test('JSON backup roundtrip preserves Unicode, newlines, ratings and clap timecode', () => {
-  const record = { ...make({ production: '九月的午後', notes: '第一行\n第二行 🎬' }), rating: 'ok' };
+  const record = { ...make({ production: '九月的午後', notes: '第一行\n第二行 🎬' }), rating: 'keep' };
   assert.deepEqual(parseBackup(backup([record])).records, [record]);
+  assert.ok(recordsToCSV([record]).includes('"KEEP"'));
 });
 test('bad imports are rejected as a whole, including duplicate IDs and malformed records', () => {
   assert.throws(() => parseBackup('{}'));

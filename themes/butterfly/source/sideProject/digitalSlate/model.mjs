@@ -45,7 +45,7 @@ export function parseBackup(text) {
   const records = data.records.map((record) => {
     if (!record || typeof record.id !== 'string' || record.id.length > 100 || !record.id || ids.has(record.id) ||
       !Number.isSafeInteger(record.timestamp) || record.timestamp < 0 || record.timestamp > 8640000000000000 ||
-      !['unrated', 'ok', 'ng'].includes(record.rating) || typeof record.soundPlayed !== 'boolean' ||
+      !['unrated', 'ok', 'keep', 'ng'].includes(record.rating) || typeof record.soundPlayed !== 'boolean' ||
       !Number.isInteger(record.take) || record.take < 1 || record.take > 9999 || !FPS_OPTIONS.includes(record.fps) ||
       !/^\d{2}:\d{2}:\d{2}:\d{2}$/.test(record.timecode)) throw new Error('備份中的拍攝紀錄格式不完整，未匯入任何資料。');
     for (const [key, max] of Object.entries(limits)) {
@@ -69,7 +69,7 @@ function csvCell(value) {
 }
 export function recordsToCSV(records) {
   const headers = ['拍攝時間（ISO 8601 / UTC）', '片名', '場次', '鏡號', 'Take', '導演', '攝影', '板別', 'FPS', '打板時間碼（當地時間）', '評記', '音效已播放', '備註'];
-  const ratings = { unrated: '未評記', ok: 'OK', ng: 'NG' };
+  const ratings = { unrated: '未評記', ok: 'OK', keep: 'KEEP', ng: 'NG' };
   const rows = records.map(record => [new Date(record.timestamp).toISOString(), record.production, record.scene, record.shot, record.take, record.director, record.camera, record.isTail ? '尾板' : '正常', record.fps, record.timecode, ratings[record.rating], record.soundPlayed ? '是' : '否', record.notes]);
   return '\uFEFF' + [headers, ...rows].map(row => row.map(csvCell).join(',')).join('\r\n');
 }

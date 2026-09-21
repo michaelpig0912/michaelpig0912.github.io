@@ -891,6 +891,11 @@ td:nth-child(3) {
   color:#586b2b;
 }
 
+.rating.keep {
+  background:#e2e9f2;
+  color:#48627f;
+}
+
 .rating.ng {
   background:#f3e4dc;
   color:#9f6040;

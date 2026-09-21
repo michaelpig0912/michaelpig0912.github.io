@@ -61,13 +61,14 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     assert.equal((await state(page)).records.length, 1, 'sound previews do not create records');
     await page.locator('[name=boardTheme][value=white]').check();
     await page.locator('#records-list .edit-record').first().click();
-    await page.locator('#record-rating').selectOption('ok');
+    await page.locator('#record-rating').selectOption('keep');
     await page.locator('#record-notes').fill('情緒很好，保留這一鏡。');
     await page.locator('#record-form button[type=submit]').click();
     await page.reload();
     assert.equal(await page.locator('#production').inputValue(), '九月的午後');
     await count(page, 1);
-    assert.equal((await state(page)).records[0].rating, 'ok');
+    assert.equal((await state(page)).records[0].rating, 'keep');
+    assert.equal(await page.locator('#records-list .rating').first().textContent(), 'KEEP');
     assert.equal(await page.locator('#sound-type').inputValue(), 'beep');
     assert.equal(await page.locator('body').getAttribute('data-board-theme'), 'white');
     await page.locator('#records-list select').selectOption('tail');

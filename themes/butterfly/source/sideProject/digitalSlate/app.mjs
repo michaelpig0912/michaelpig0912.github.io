@@ -130,7 +130,7 @@ function renderRecords() {
     slate.setAttribute('aria-label', `Take ${record.take} 板別`);
     slate.addEventListener('change', () => updateRecordField(record, 'isTail', slate.value === 'tail'));
     cell().append(slate);
-    const rating = Object.assign(document.createElement('button'), { type: 'button', className: `rating ${record.rating}`, textContent: { unrated: '未評記', ok: 'OK', ng: 'NG' }[record.rating] });
+    const rating = Object.assign(document.createElement('button'), { type: 'button', className: `rating ${record.rating}`, textContent: { unrated: '未評記', ok: 'OK', keep: 'KEEP', ng: 'NG' }[record.rating] });
     rating.setAttribute('aria-label', `Take ${record.take} 評記：${rating.textContent}，點擊編輯`);
     rating.addEventListener('click', () => editRecord(record.id));
     cell().append(rating);
