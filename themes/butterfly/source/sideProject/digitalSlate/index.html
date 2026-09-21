@@ -45,7 +45,7 @@
             <button class="clapper" id="clapper" aria-label="打板並儲存紀錄"><span class="clapper-hinge"><i></i><i></i></span><span class="clapper-caption">點此打板</span></button>
             <div class="slate-board">
               <div class="board-production"><span class="board-label">PRODUCTION / 片名</span><div id="board-production" class="production-name">未命名製作</div></div>
-              <div class="board-numbers"><div><span class="board-label">SCENE / 場次</span><strong id="board-scene">01</strong></div><div><span class="board-label">SHOT / 鏡號</span><strong id="board-shot">A</strong></div><div class="take-cell"><span class="board-label">TAKE / 次數</span><strong id="board-take">01</strong></div></div>
+              <div class="board-numbers"><div><span class="board-label">ROLL / 捲號</span><strong id="board-roll">001</strong></div><div><span class="board-label">SCENE / 場次</span><strong id="board-scene">01</strong></div><div><span class="board-label">SHOT / 鏡號</span><strong id="board-shot">A</strong></div><div class="take-cell"><span class="board-label">TAKE / 次數</span><strong id="board-take">01</strong></div></div>
               <div class="board-crew"><div><span class="board-label">DIRECTOR / 導演</span><span id="board-director">—</span></div><div><span class="board-label">CAMERA / 攝影</span><span id="board-camera">—</span></div></div>
               <div class="board-bottom"><div class="timecode-wrap"><span class="board-label">TIME OF DAY / 裝置時間</span><span class="timecode" id="timecode">00:00:00<span>:00</span></span></div><div class="board-specs"><span id="board-fps">25 FPS</span><span id="board-date"></span></div></div>
               <div id="clap-overlay" class="clap-overlay" aria-hidden="true" hidden><span id="clap-overlay-text"></span></div>
@@ -60,7 +60,7 @@
           <form id="slate-form" autocomplete="off">
             <fieldset id="slate-fields">
               <label class="field">片名 / 製作名稱<input name="production" id="production" maxlength="80" placeholder="輸入片名" aria-label="片名 / 製作名稱"></label>
-              <div class="form-row three"><label class="field">場次<input name="scene" id="scene" maxlength="12" value="01"></label><label class="field">鏡號<input name="shot" id="shot" maxlength="12" value="A"></label><label class="field">Take<input name="take" id="take" type="number" min="1" max="9999" step="1" value="1" inputmode="numeric" required></label></div>
+              <div class="form-row four"><label class="field">捲號<input name="roll" id="roll" maxlength="12" value="001"></label><label class="field">場次<input name="scene" id="scene" maxlength="12" value="01"></label><label class="field">鏡號<input name="shot" id="shot" maxlength="12" value="A"></label><label class="field">Take<input name="take" id="take" type="number" min="1" max="9999" step="1" value="1" inputmode="numeric" required></label></div>
               <div class="form-row"><label class="field">導演<input name="director" id="director" maxlength="60" placeholder="導演姓名"></label><label class="field">攝影<input name="camera" id="camera" maxlength="60" placeholder="攝影 / 機位"></label></div>
               <div class="form-row"><label class="field">影格率<select name="fps" id="fps"><option value="24">24 fps</option><option value="25" selected>25 fps</option><option value="30">30 fps</option><option value="50">50 fps</option><option value="60">60 fps</option></select></label><label class="field">打板倒數<select id="countdown"><option value="0">立即打板</option><option value="3">3 秒</option><option value="5">5 秒</option></select></label></div>
               <label class="field slate-type-field">板別<select id="isTail" name="isTail"><option value="normal">正常</option><option value="tail">尾板（旋轉 180°）</option></select></label>
@@ -86,7 +86,7 @@
         <div class="record-filters" id="record-filters" hidden><label>板別<select id="filter-slate"><option value="all">全部</option><option value="normal">正常</option><option value="tail">尾板</option></select></label><span id="filtered-count" class="muted"></span></div>
         <p id="no-matching-records" class="muted" hidden>沒有符合條件的紀錄。</p>
         <div id="empty-state" class="empty-state"><span class="empty-icon"><svg><use href="#i-slate"/></svg></span><div><h3>尚無紀錄</h3><p>打板後會顯示在這裡。</p></div></div>
-        <div id="records-table-wrap" class="records-table-wrap" hidden><table><thead><tr><th>時間</th><th>製作 / 場次 / 鏡號</th><th>TAKE</th><th>板別</th><th>評記</th><th>備註</th><th><span class="sr-only">編輯</span></th></tr></thead><tbody id="records-list"></tbody></table></div>
+        <div id="records-table-wrap" class="records-table-wrap" hidden><table><thead><tr><th>時間</th><th>製作 / 捲號 / 場次 / 鏡號</th><th>TAKE</th><th>板別</th><th>評記</th><th>備註</th><th><span class="sr-only">編輯</span></th></tr></thead><tbody id="records-list"></tbody></table></div>
       </section>
     </main>
     <footer><span>SLATE <span class="footer-slash">/</span> 數位場記板</span><span>紀錄保存在此瀏覽器，拍攝後記得匯出備份。<a href="/">Michaelpig's side projects ↗</a></span></footer>

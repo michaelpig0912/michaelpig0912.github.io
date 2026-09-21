@@ -70,14 +70,14 @@ function readForm() {
 }
 function renderBoard() {
   const form = frozenRecord || state.form;
-  for (const field of ['production', 'scene', 'shot', 'director', 'camera']) {
+  for (const field of ['production', 'roll', 'scene', 'shot', 'director', 'camera']) {
     $(`board-${field}`).textContent = form[field].trim() || (field === 'production' ? '未命名製作' : '—');
   }
   $('board-take').textContent = pad(form.take);
   document.body.classList.toggle('tail-slate', form.isTail);
   $('tail-toggle').setAttribute('aria-pressed', String(form.isTail));
   $('tail-toggle').textContent = form.isTail ? '板別：尾板' : '板別：正常';
-  for (const field of ['scene', 'shot', 'take']) {
+  for (const field of ['roll', 'scene', 'shot', 'take']) {
     const display = $(`board-${field}`);
     display.classList.toggle('long-value', display.textContent.length > 3);
     display.style.setProperty('--value-length', Math.max(2, display.textContent.length));
@@ -121,7 +121,7 @@ function renderRecords() {
     const time = cell(record.timecode);
     time.append(Object.assign(document.createElement('span'), { className: 'record-date', textContent: localDate(record.timestamp) }));
     if (!record.soundPlayed) time.append(Object.assign(document.createElement('span'), { className: 'record-silent', textContent: '無音效' }));
-    const scene = cell(`${record.scene || '—'} / ${record.shot || '—'}`);
+    const scene = cell(`${record.roll || '—'} / ${record.scene || '—'} / ${record.shot || '—'}`);
     scene.append(Object.assign(document.createElement('span'), { className: 'record-production', textContent: record.production || '未命名製作' }));
     cell(pad(record.take));
     const slate = document.createElement('select');

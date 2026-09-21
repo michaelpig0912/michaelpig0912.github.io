@@ -32,6 +32,7 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     await noOverflow(page);
     await page.screenshot({ path: path.join(output, 'desktop-empty.png'), fullPage: true });
     await page.locator('#production').fill('九月的午後');
+    await page.locator('#roll').fill('R003');
     await page.locator('#scene').fill('03');
     await page.locator('#shot').fill('B');
     await page.locator('#director').fill('Michael');
@@ -49,6 +50,7 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     assert.equal(saved.form.take, 2);
     assert.equal(saved.form.notes, '');
     assert.equal(saved.records[0].notes, '窗邊對話\n注意背景的腳步聲');
+    assert.equal(saved.records[0].roll, 'R003');
     assert.equal(saved.records[0].soundPlayed, true);
     assert.equal(await page.evaluate(() => window.audioStarts), 2);
     const lengths = [];
@@ -67,6 +69,7 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     await page.locator('#record-form button[type=submit]').click();
     await page.reload();
     assert.equal(await page.locator('#production').inputValue(), '九月的午後');
+    assert.equal(await page.locator('#roll').inputValue(), 'R003');
     await count(page, 1);
     assert.equal((await state(page)).records[0].rating, 'keep');
     assert.equal(await page.locator('#records-list .rating').first().textContent(), 'KEEP');
@@ -82,6 +85,7 @@ const noOverflow = async page => assert.ok(await page.evaluate(() => document.do
     const csv = await csvEvent;
     const csvText = await fs.readFile(await csv.path(), 'utf8');
     assert.ok(csvText.includes('情緒很好，保留這一鏡。'));
+    assert.ok(csvText.includes('R003'));
     const jsonEvent = page.waitForEvent('download');
     await page.locator('#export-json').click();
     const json = await jsonEvent;

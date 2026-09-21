@@ -378,7 +378,7 @@ button[hidden],[hidden] {
 
 .board-numbers {
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
+  grid-template-columns:repeat(4,minmax(0,1fr));
   border-bottom:1px solid var(--board-line);
 }
 
@@ -621,6 +621,11 @@ input[type=number] {
 .form-row.three {
   grid-template-columns:1fr 1fr 1fr;
   gap:10px;
+}
+
+.form-row.four {
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
 }
 
 .notes-field {
@@ -1771,7 +1776,7 @@ body.focus-mode .board-numbers>div+div {
 }
 body.focus-mode .board-numbers strong,
 body.focus-mode .board-numbers strong.long-value {
-  font-size:min(22dvh,calc(43vw / var(--value-length,2)));
+  font-size:min(22dvh,calc(32vw / var(--value-length,2)));
   line-height:1.1;
   letter-spacing:-.035em;
   margin-top:1dvh;

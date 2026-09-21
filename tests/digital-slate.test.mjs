@@ -15,6 +15,8 @@ test('old settings retain data and receive default sound and board color', () =>
   const oldBackup = JSON.stringify({ version: 1, records: [make()], settings: { sound: false } });
   assert.equal(parseBackup(oldBackup).settings.boardTheme, 'black');
   assert.equal(parseBackup(oldBackup).records.length, 1);
+  const oldRecord = make(); delete oldRecord.roll;
+  assert.equal(parseBackup(backup([oldRecord])).records[0].roll, '');
 });
 
 test('all sound choices have distinct, bounded waveforms and a quiet end at device sample rates', () => {
@@ -34,12 +36,13 @@ test('all sound choices have distinct, bounded waveforms and a quiet end at devi
 });
 
 test('a clap snapshots notes and slate settings without changing earlier takes', () => {
-  const form = { ...defaultForm, scene: '12B', take: 7, notes: '雨聲，保留', isTail: true };
+  const form = { ...defaultForm, roll: 'A003', scene: '12B', take: 7, notes: '雨聲，保留', isTail: true };
   const record = makeRecord(form, timestamp, true, 'snapshot');
   form.notes = ''; form.take++;
   assert.equal(record.notes, '雨聲，保留');
   assert.equal(record.take, 7);
   assert.equal(record.scene, '12B');
+  assert.equal(record.roll, 'A003');
   assert.equal(record.timecode, '14:03:09:24');
   assert.equal(record.soundPlayed, true);
   form.isTail = false;
@@ -88,10 +91,12 @@ test('reimport is idempotent and preserves locally edited ratings and notes', ()
   assert.deepEqual(mergeRecords(merged, [original, second]), merged);
 });
 test('CSV keeps Chinese text / quotes / multiline notes and neutralizes spreadsheet formulas', () => {
-  const csv = recordsToCSV([make({ production: '=HYPERLINK("bad")', director: '  +SUM(1,2)', notes: '收音正常\n他說「OK」,"再一鏡"' })]);
+  const csv = recordsToCSV([make({ production: '=HYPERLINK("bad")', roll: 'R003', director: '  +SUM(1,2)', notes: '收音正常\n他說「OK」,"再一鏡"' })]);
   assert.ok(csv.startsWith('\uFEFF'));
   assert.ok(csv.includes('"\'=HYPERLINK(""bad"")"'));
   assert.ok(csv.includes('"\'  +SUM(1,2)"'));
   assert.ok(csv.includes('"收音正常\n他說「OK」,""再一鏡"""'));
   assert.ok(csv.includes(new Date(timestamp).toISOString()));
+  assert.ok(csv.includes('"捲號"'));
+  assert.ok(csv.includes('"R003"'));
 });
