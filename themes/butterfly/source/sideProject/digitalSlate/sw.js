@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'michaelpig-digital-slate-';
-const CACHE_NAME = `${CACHE_PREFIX}v8`;
+const CACHE_NAME = `${CACHE_PREFIX}v9`;
 const ASSETS = ['./', './index.html', './styles.css', './app.mjs', './model.mjs', './sounds.mjs', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 const assetURLs = new Set(ASSETS.map(path => new URL(path, self.registration.scope).href));
 self.addEventListener('install', event => {

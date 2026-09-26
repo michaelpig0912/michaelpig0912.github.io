@@ -1845,7 +1845,6 @@ body.tail-slate .slate-frame { transform:rotate(180deg); }
 .danger-button { background:#a84736; color:white; padding:12px 16px; border-radius:7px; min-height:44px; font-size:14px; }
 .danger-button:hover { background:#903a2d; }
 #clear-dialog p { font-size:14px; line-height:1.8; margin:14px 0; }
-.help-article { display:block; margin-top:20px; font-size:13px; color:#526c29; }
 body.focus-mode .slate-section { grid-template-rows:minmax(0,1fr); }
 body.focus-mode #clap-button { display:none; }
 body.focus-mode .clap-controls { position:absolute; z-index:5; right:16px; bottom:16px; }
