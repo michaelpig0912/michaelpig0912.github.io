@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>運動追蹤分析系統</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .video-container, .analysis-container {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            margin-bottom: 20px;
+        }
+
+        #videoElement, #trackingCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .settings {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .settings > div {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        select, input[type="color"], input[type="range"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .recorded-videos {
+            margin-top: 20px;
+        }
+
+        .recorded-video-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .recorded-video-item video {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .graph-container {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #xtGraph, #ytGraph {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .video-container, .analysis-container {
+                width: 100%;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .video-controls {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .progress-container {
+            margin-bottom: 10px;
+        }
+
+        #videoProgress {
+            width: 100%;
+            height: 5px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2.5px;
+            cursor: pointer;
+        }
+
+        #videoProgress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #videoProgress::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 14px;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .control-buttons button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 3px;
+            transition: background-color 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-buttons button::before {
+            content: none !important; /* 移除任何内容 */
+        }
+
+        .control-buttons button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .control-buttons button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-container">
+            <div class="video-wrapper">
+                <video id="videoElement"></video>
+                <canvas id="trackingCanvas"></canvas>
+            </div>
+            
+            <div class="video-controls">
+                <!-- 進度條 -->
+                <div class="progress-container">
+                    <input type="range" id="videoProgress" min="0" max="100" value="0" step="0.1">
+                    <div class="time-display">
+                        <span id="currentTime">00:00</span> / <span id="duration">00:00</span>
+                    </div>
+                </div>
+                
+                <!-- 播放控制按鈕 -->
+                <div class="control-buttons">
+                    <button id="stepBackward" title="上一幀"><i class="fas fa-step-backward"></i></button>
+                    <button id="playPause" title="播放/暫停"><i class="fas fa-play"></i></button>
+                    <button id="stepForward" title="下一幀"><i class="fas fa-step-forward"></i></button>
+                </div>
+            </div>
+
+            <div class="settings">
+                <div>
+                    <label for="cameraSelect">選擇相機：</label>
+                    <select id="cameraSelect"></select>
+                </div>
+                <div>
+                    <label for="colorPicker">追蹤顏色：</label>
+                    <input type="color" id="colorPicker" value="#ff0000">
+                </div>
+                <div>
+                    <label for="tolerance">容差：</label>
+                    <input type="range" id="tolerance" min="0" max="255" value="50">
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="startRecord">開始錄影</button>
+                <button id="stopRecord" disabled>停止錄影</button>
+                <button id="playVideo">播放</button>
+                <button id="pauseVideo">暫停</button>
+                <input type="file" id="videoUpload" accept="video/*">
+                <button id="exportVideo">匯出影片</button>
+                <button id="exportData">匯出數據</button>
+                <button id="toggleTrackingMode">切手動/自動追蹤</button>
+                <button id="clearAll">清除所有內容</button> <!-- 新增清除按钮 -->
+            </div>
+
+            <div class="recorded-video" id="recordedVideoContainer" style="display: none;">
+                <h3>已錄製的影片</h3>
+                <div class="recorded-video-item">
+                    <video id="recordedVideo" controls></video>
+                    <button id="analyzeVideo">分析此影片</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-container">
+            <div class="graph-container">
+                <h3>X-T 圖</h3>
+                <canvas id="xtGraph"></canvas>
+                <h3>Y-T 圖</h3>
+                <canvas id="ytGraph"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class VideoController {
+            constructor() {
+                this.video = document.getElementById('videoElement');
+                this.recordedVideo = document.getElementById('recordedVideo');
+                this.trackingCanvas = document.getElementById('trackingCanvas');
+                this.ctx = this.trackingCanvas.getContext('2d');
+                this.mediaRecorder = null;
+                this.recordedChunks = [];
+                this.isRecording = false; // 確保初始狀態為未錄影
+                this.trackingData = [];
+                this.currentTime = 0;
+                this.currentStream = null; // 添加當前串流的引用
+                this.progressBar = document.getElementById('videoProgress');
+                this.currentTimeDisplay = document.getElementById('currentTime');
+                this.durationDisplay = document.getElementById('duration');
+                this.playPauseButton = document.getElementById('playPause');
+                this.stepForwardButton = document.getElementById('stepForward');
+                this.stepBackwardButton = document.getElementById('stepBackward');
+                
+                this.isPlaying = false;
+                this.frameTime = 1/30; // 假設 30fps
+                this.dataChunks = []; // 用於存儲錄影期間的數據
+                
+                this.setupEventListeners();
+                this.initializeCameraSelect();
+                this.setupVideoControls();
+                this.video.addEventListener('loadedmetadata', () => this.adjustCanvasSize());
+            }
+
+            async initializeCameraSelect() {
+                try {
+                    const devices = await navigator.mediaDevices.enumerateDevices();
+                    const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                    const cameraSelect = document.getElementById('cameraSelect');
+                    
+                    cameraSelect.innerHTML = '';
+                    videoDevices.forEach(device => {
+                        const option = document.createElement('option');
+                        option.value = device.deviceId;
+                        option.text = device.label || `相機 ${cameraSelect.length + 1}`;
+                        cameraSelect.appendChild(option);
+                    });
+
+                    // 如果有可用的相機，自動開啟第一個
+                    if (videoDevices.length > 0) {
+                        this.switchCamera(videoDevices[0].deviceId);
+                    }
+
+                    cameraSelect.addEventListener('change', (e) => this.switchCamera(e.target.value));
+                } catch (error) {
+                    console.error('無法獲取相機列表:', error);
+                }
+            }
+
+            async switchCamera(deviceId) {
+                // 如果有正在運行的串流先停止它
+                if (this.currentStream) {
+                    this.currentStream.getTracks().forEach(track => track.stop());
+                }
+                
+                if (this.isRecording) {
+                    await this.stopRecording();
+                }
+                
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        video: { deviceId: deviceId ? { exact: deviceId } : undefined }
+                    });
+                    this.currentStream = stream;
+                    this.video.srcObject = stream;
+                    await this.video.play();
+                    
+                    // 移除自動開始追蹤的部分
+                    // objectTracker.startTracking(); // 這行被移除
+                    
+                    // 重置追蹤相關的狀態
+                    this.trackingData = [];
+                    objectTracker.detectedPoints = [];
+                    objectTracker.lastPosition = null;
+                    
+                } catch (error) {
+                    console.error('切換相機失敗:', error);
+                }
+            }
+
+            setupEventListeners() {
+                const startRecordBtn = document.getElementById('startRecord');
+                const stopRecordBtn = document.getElementById('stopRecord');
+                const analyzeBtn = document.getElementById('analyzeVideo');
+                const videoUpload = document.getElementById('videoUpload');
+                
+                startRecordBtn.addEventListener('click', () => {
+                    this.startRecording();
+                    startRecordBtn.disabled = true;
+                    stopRecordBtn.disabled = false;
+                });
+                
+                stopRecordBtn.addEventListener('click', () => {
+                    this.stopRecording();
+                    startRecordBtn.disabled = false;
+                    stopRecordBtn.disabled = true;
+                });
+                
+                videoUpload.addEventListener('change', (e) => this.handleVideoUpload(e));
+                document.getElementById('exportVideo').addEventListener('click', () => this.exportVideo());
+                document.getElementById('exportData').addEventListener('click', () => this.exportData());
+                analyzeBtn.addEventListener('click', () => this.analyzeRecordedVideo());
+                
+                this.video.addEventListener('play', () => objectTracker.startTracking());
+                this.video.addEventListener('pause', () => objectTracker.stopTracking());
+                
+                document.getElementById('toggleTrackingMode').addEventListener('click', () => {
+                    objectTracker.isManualMode = !objectTracker.isManualMode;
+                    document.getElementById('toggleTrackingMode').textContent = 
+                        objectTracker.isManualMode ? '切換到自動追蹤' : '切換到手動追蹤';
+                });
+
+                document.getElementById('clearAll').addEventListener('click', () => this.clearAll());
+            }
+
+            handleVideoUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    // 如果有正在運行的串流，先停止它
+                    if (this.currentStream) {
+                        this.currentStream.getTracks().forEach(track => track.stop());
+                    }
+                    
+                    // 創建檔案的 URL
+                    const url = URL.createObjectURL(file);
+                    
+                    // 設置影片來源
+                    this.video.srcObject = null; // 清除串流
+                    this.video.src = url;
+                    
+                    // 顯示上傳的影片
+                    this.video.load();
+                    this.video.play();
+                    
+                    // 重置追蹤數據
+                    this.trackingData = [];
+                    
+                    // 重新設定畫布的大小
+                    this.video.onloadedmetadata = () => {
+                        this.adjustCanvasSize();
+                        this.trackingCanvas.width = this.video.videoWidth;
+                        this.trackingCanvas.height = this.video.videoHeight;
+                    };
+                    
+                    // 啟用播放和暫停按鈕
+                    const playVideoBtn = document.getElementById('playVideo');
+                    const pauseVideoBtn = document.getElementById('pauseVideo');
+                    
+                    playVideoBtn.addEventListener('click', () => this.video.play());
+                    pauseVideoBtn.addEventListener('click', () => this.video.pause());
+                }
+            }
+
+            adjustCanvasSize() {
+                const videoAspect = this.video.videoWidth / this.video.videoHeight;
+                const container = this.video.parentElement;
+                const containerWidth = container.clientWidth;
+                const containerHeight = container.clientHeight;
+                const containerAspect = containerWidth / containerHeight;
+
+                if (videoAspect > containerAspect) {
+                    // 视频较宽，调整高度
+                    this.trackingCanvas.style.width = '100%';
+                    this.trackingCanvas.style.height = 'auto';
+                } else {
+                    // 视频较高，调整宽度
+                    this.trackingCanvas.style.width = 'auto';
+                    this.trackingCanvas.style.height = '100%';
+                }
+            }
+
+            // 確保只有在按下按鈕時才調用此方法
+            startRecording() {
+                if (!this.currentStream || this.isRecording) return; // 確保不重複開始錄影
+                
+                // 清除預覽窗口
+                this.recordedVideo.src = '';
+                document.getElementById('recordedVideoContainer').style.display = 'none';
+
+                this.mediaRecorder = new MediaRecorder(this.currentStream);
+                this.recordedChunks = [];
+                this.dataChunks = []; // 初始化數據記錄
+
+                this.mediaRecorder.ondataavailable = (e) => {
+                    if (e.data.size > 0) {
+                        this.recordedChunks.push(e.data);
+                        this.recordData(e.data); // 開始記錄數據
+                    }
+                };
+                
+                this.mediaRecorder.start();
+                this.isRecording = true;
+            }
+
+            recordData(data) {
+                // 在這裡添加數據記錄邏輯
+                this.dataChunks.push(data);
+                // 可以在這裡進行其他數據處理
+            }
+
+            stopRecording() {
+                if (this.mediaRecorder && this.isRecording) {
+                    this.mediaRecorder.stop();
+                    this.isRecording = false;
+                    
+                    this.mediaRecorder.onstop = () => {
+                        const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
+                        const url = URL.createObjectURL(blob);
+                        
+                        this.recordedVideo.src = url;
+                        this.recordedVideo.controls = true; // 允許控制播放
+                        this.recordedVideo.loop = true; // 允許重複播放
+                        document.getElementById('recordedVideoContainer').style.display = 'block';
+
+                        // 在這裡可以處理錄製的數據
+                        this.processRecordedData();
+                    };
+                }
+            }
+
+            processRecordedData() {
+                // 處理錄製的數據
+                console.log('Recorded data:', this.dataChunks);
+                // 可以在這裡進行數據分析或存儲
+            }
+
+            analyzeRecordedVideo() {
+                this.trackingData = [];
+                this.recordedVideo.play();
+                objectTracker.startTracking(this.recordedVideo);
+            }
+
+            exportVideo() {
+                if (this.recordedChunks.length === 0) {
+                    alert('沒有可匯出的影片');
+                    return;
+                }
+                
+                const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'recorded-video.webm';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+
+            exportData() {
+                if (this.trackingData.length === 0) {
+                    alert('沒有可匯出的追蹤數據');
+                    return;
+                }
+                
+                const dataStr = JSON.stringify(this.trackingData);
+                const blob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tracking-data.json';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+
+            setupVideoControls() {
+                // 當影片載入完成時
+                this.video.addEventListener('loadedmetadata', () => {
+                    this.progressBar.max = this.video.duration;
+                    this.updateTimeDisplay();
+                    this.updateDurationDisplay();
+                });
+
+                // 影片時間更新時
+                this.video.addEventListener('timeupdate', () => {
+                    if (!this.progressBar.dragging) {
+                        this.progressBar.value = this.video.currentTime;
+                        this.updateTimeDisplay();
+                    }
+                });
+
+                // 播放狀態改變時
+                this.video.addEventListener('play', () => {
+                    this.isPlaying = true;
+                    this.playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // 使用 Font Awesome 的暂停图标
+                });
+
+                this.video.addEventListener('pause', () => {
+                    this.isPlaying = false;
+                    this.playPauseButton.innerHTML = '<i class="fas fa-play"></i>'; // 使用 Font Awesome 的播放图标
+                });
+
+                // 進度條控制
+                this.progressBar.addEventListener('mousedown', () => {
+                    this.progressBar.dragging = true;
+                });
+
+                this.progressBar.addEventListener('mouseup', () => {
+                    this.progressBar.dragging = false;
+                });
+
+                this.progressBar.addEventListener('input', () => {
+                    this.video.currentTime = this.progressBar.value;
+                    this.updateTimeDisplay();
+                });
+
+                // 播放/暫停按鈕
+                this.playPauseButton.addEventListener('click', () => {
+                    if (this.isPlaying) {
+                        this.video.pause();
+                        this.playPauseButton.innerHTML = '<i class="fas fa-play"></i>'; // 使用 Font Awesome 的播放图标
+                    } else {
+                        this.video.play();
+                        this.playPauseButton.innerHTML = '<i class="fas fa-pause"></i>'; // 使用 Font Awesome 的暂停图标
+                    }
+                });
+
+                // 逐幀控制
+                this.stepForwardButton.addEventListener('click', () => {
+                    this.video.pause();
+                    this.video.currentTime = Math.min(
+                        this.video.duration, 
+                        this.video.currentTime + this.frameTime
+                    );
+                });
+
+                this.stepBackwardButton.addEventListener('click', () => {
+                    this.video.pause();
+                    this.video.currentTime = Math.max(
+                        0, 
+                        this.video.currentTime - this.frameTime
+                    );
+                });
+
+                // 鍵盤控制
+                document.addEventListener('keydown', (e) => {
+                    switch(e.key) {
+                        case ' ': // 空格鍵
+                            e.preventDefault();
+                            if (this.isPlaying) {
+                                this.video.pause();
+                            } else {
+                                this.video.play();
+                            }
+                            break;
+                        case 'ArrowLeft': // 左箭頭
+                            e.preventDefault();
+                            this.video.currentTime = Math.max(0, this.video.currentTime - this.frameTime);
+                            break;
+                        case 'ArrowRight': // 右箭頭
+                            e.preventDefault();
+                            this.video.currentTime = Math.min(
+                                this.video.duration, 
+                                this.video.currentTime + this.frameTime
+                            );
+                            break;
+                    }
+                });
+            }
+
+            updateTimeDisplay() {
+                this.currentTimeDisplay.textContent = this.formatTime(this.video.currentTime);
+            }
+
+            updateDurationDisplay() {
+                this.durationDisplay.textContent = this.formatTime(this.video.duration);
+            }
+
+            formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                seconds = Math.floor(seconds % 60);
+                return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            clearAll() {
+                // 清除追蹤數據
+                this.trackingData = [];
+                objectTracker.manualPoints = []; // 清除手動追蹤點
+                objectTracker.detectedPoints = []; // 清除自動追蹤點
+                objectTracker.lastPosition = null; // 重置最後位置
+
+                // 清除畫布
+                this.ctx.clearRect(0, 0, this.trackingCanvas.width, this.trackingCanvas.height);
+
+                // 清除圖表
+                graphRenderer.clearGraphs();
+            }
+        }
+
+        class ObjectTracker {
+            constructor(videoController) {
+                this.videoController = videoController;
+                this.tracking = false;
+                this.colorPicker = document.getElementById('colorPicker');
+                this.tolerance = document.getElementById('tolerance');
+                this.selectedPoint = null;
+                this.detectedPoints = [];
+                this.setupCanvas();
+                this.setupEventListeners();
+                this.lastProcessTime = 0; // 用於控制處理頻率
+                this.isManualMode = false; // 添加手動模式標記
+                this.manualPoints = []; // 存儲手動加的點
+                this.lastPosition = null; // 儲存前一幀的位置
+                this.searchRadius = 50;   // 搜索半徑（像素）
+                this.setupManualTracking();
+            }
+
+            setupCanvas() {
+                this.videoController.trackingCanvas.width = this.videoController.video.videoWidth || 640;
+                this.videoController.trackingCanvas.height = this.videoController.video.videoHeight || 480;
+            }
+
+            setupEventListeners() {
+                this.videoController.trackingCanvas.addEventListener('click', (e) => {
+                    const rect = this.videoController.trackingCanvas.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) * (this.videoController.trackingCanvas.width / rect.width);
+                    const y = (e.clientY - rect.top) * (this.videoController.trackingCanvas.height / rect.height);
+                    
+                    if (this.isManualMode) {
+                        // 手動模式下添加點
+                        this.manualPoints.push({
+                            time: this.videoController.video.currentTime,
+                            x: x,
+                            y: y
+                        });
+                        this.videoController.trackingData = [...this.manualPoints];
+                        graphRenderer.updateGraphs(this.videoController.trackingData);
+                    } else {
+                        // 原有的自動追蹤邏輯
+                        const ctx = this.videoController.ctx;
+                        const pixel = ctx.getImageData(x, y, 1, 1).data;
+                        const color = `#${pixel[0].toString(16).padStart(2, '0')}${pixel[1].toString(16).padStart(2, '0')}${pixel[2].toString(16).padStart(2, '0')}`;
+                        this.colorPicker.value = color;
+                    }
+                });
+            }
+
+            findClosestPoint(x, y) {
+                if (this.detectedPoints.length === 0) return null;
+
+                return this.detectedPoints.reduce((closest, point) => {
+                    const distance = Math.hypot(x - point.x, y - point.y);
+                    if (!closest || distance < closest.distance) {
+                        return { ...point, distance };
+                    }
+                    return closest;
+                }, null);
+            }
+
+            startTracking() {
+                this.tracking = true;
+                this.track();
+            }
+
+            stopTracking() {
+                this.tracking = false;
+                this.detectedPoints = []; // 停止追蹤時清除檢測到的點
+            }
+
+            track() {
+                if (!this.tracking) return;
+
+                const now = performance.now();
+                if (now - this.lastProcessTime < 33) {
+                    requestAnimationFrame(() => this.track());
+                    return;
+                }
+                this.lastProcessTime = now;
+
+                const ctx = this.videoController.ctx;
+                const video = this.videoController.video;
+                
+                // 更新畫布尺寸
+                if (this.videoController.trackingCanvas.width !== video.videoWidth) {
+                    this.videoController.trackingCanvas.width = video.videoWidth || 640;
+                    this.videoController.trackingCanvas.height = video.videoHeight || 480;
+                }
+
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(video, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+                if (!this.isManualMode) {
+                    const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    const targetColor = this.hexToRgb(this.colorPicker.value);
+                    const tolerance = parseInt(this.tolerance.value);
+
+                    // 在上一個位置附近搜索目標
+                    const searchRegion = this.lastPosition ? {
+                        x: Math.max(0, this.lastPosition.x - this.searchRadius),
+                        y: Math.max(0, this.lastPosition.y - this.searchRadius),
+                        width: Math.min(ctx.canvas.width, this.searchRadius * 2),
+                        height: Math.min(ctx.canvas.height, this.searchRadius * 2)
+                    } : {
+                        x: 0,
+                        y: 0,
+                        width: ctx.canvas.width,
+                        height: ctx.canvas.height
+                    };
+
+                    const targetRegion = this.findTargetInRegion(
+                        imageData, 
+                        targetColor, 
+                        tolerance, 
+                        searchRegion
+                    );
+
+                    if (targetRegion) {
+                        this.lastPosition = {
+                            x: targetRegion.centerX,
+                            y: targetRegion.centerY
+                        };
+
+                        this.detectedPoints = [{
+                            x: targetRegion.centerX,
+                            y: targetRegion.centerY,
+                            size: targetRegion.size
+                        }];
+
+                        this.videoController.trackingData.push({
+                            time: video.currentTime,
+                            x: targetRegion.centerX,
+                            y: targetRegion.centerY
+                        });
+
+                        graphRenderer.updateGraphs(this.videoController.trackingData);
+                        this.drawDetectedPoints();
+                    }
+                }
+
+                requestAnimationFrame(() => this.track());
+            }
+
+            findTargetInRegion(imageData, targetColor, tolerance, searchRegion) {
+                const width = imageData.width;
+                let sumX = 0;
+                let sumY = 0;
+                let count = 0;
+                const sampleScale = 2; // 採樣間隔，提高效能
+
+                // 確保搜索區域在有效範圍內
+                const startX = Math.max(0, Math.floor(searchRegion.x));
+                const startY = Math.max(0, Math.floor(searchRegion.y));
+                const endX = Math.min(imageData.width, Math.ceil(searchRegion.x + searchRegion.width));
+                const endY = Math.min(imageData.height, Math.ceil(searchRegion.y + searchRegion.height));
+
+                // 在搜索區域內尋找匹配的像素
+                for (let y = startY; y < endY; y += sampleScale) {
+                    for (let x = startX; x < endX; x += sampleScale) {
+                        const index = (y * width + x) * 4;
+                        const r = imageData.data[index];
+                        const g = imageData.data[index + 1];
+                        const b = imageData.data[index + 2];
+
+                        if (this.isColorMatch(r, g, b, targetColor, tolerance)) {
+                            sumX += x;
+                            sumY += y;
+                            count++;
+                        }
+                    }
+                }
+
+                // 如果找到匹配的像素
+                if (count > 0) {
+                    return {
+                        centerX: sumX / count,
+                        centerY: sumY / count,
+                        size: count
+                    };
+                }
+
+                // 如果在搜索區域內沒找到，擴大搜索範圍
+                if (this.lastPosition) {
+                    const expandedRegion = {
+                        x: Math.max(0, this.lastPosition.x - this.searchRadius * 2),
+                        y: Math.max(0, this.lastPosition.y - this.searchRadius * 2),
+                        width: Math.min(imageData.width, this.searchRadius * 4),
+                        height: Math.min(imageData.height, this.searchRadius * 4)
+                    };
+                    return this.findTargetInRegion(imageData, targetColor, tolerance, expandedRegion);
+                }
+
+                return null;
+            }
+
+            isColorMatch(r, g, b, targetColor, tolerance) {
+                const colorDiff = Math.sqrt(
+                    Math.pow(r - targetColor.r, 2) +
+                    Math.pow(g - targetColor.g, 2) +
+                    Math.pow(b - targetColor.b, 2)
+                );
+                return colorDiff <= tolerance;
+            }
+
+            drawDetectedPoints() {
+                const ctx = this.videoController.ctx;
+                const video = this.videoController.video;
+                const canvas = this.videoController.trackingCanvas;
+
+                // 清除畫布
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // 繪製影片幀
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // 繪製追蹤點
+                this.detectedPoints.forEach(point => {
+                    const displayX = (point.x / video.videoWidth) * canvas.width;
+                    const displayY = (point.y / video.videoHeight) * canvas.height;
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 2;
+                    ctx.arc(displayX, displayY, 5, 0, 2 * Math.PI);
+                    ctx.stroke();
+                });
+            }
+
+            hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            setupManualTracking() {
+                this.videoController.trackingCanvas.addEventListener('click', (e) => {
+                    if (!this.isManualMode) return;
+
+                    const canvas = this.videoController.trackingCanvas;
+                    const video = this.videoController.video;
+                    const rect = canvas.getBoundingClientRect();
+
+                    // 計算影片的實際顯示尺寸和位置
+                    const videoAspect = video.videoWidth / video.videoHeight;
+                    const canvasAspect = canvas.width / canvas.height;
+                    
+                    let videoDisplayWidth = canvas.width;
+                    let videoDisplayHeight = canvas.height;
+                    let offsetX = 0;
+                    let offsetY = 0;
+
+                    if (videoAspect > canvasAspect) {
+                        // 影片較寬，會有上下黑邊
+                        videoDisplayHeight = canvas.width / videoAspect;
+                        offsetY = (canvas.height - videoDisplayHeight) / 2;
+                    } else {
+                        // 影片較高，會有左右黑邊
+                        videoDisplayWidth = canvas.height * videoAspect;
+                        offsetX = (canvas.width - videoDisplayWidth) / 2;
+                    }
+
+                    // 計算點擊位置相對於畫布的座標
+                    const clickX = (e.clientX - rect.left) * (canvas.width / rect.width);
+                    const clickY = (e.clientY - rect.top) * (canvas.height / rect.height);
+
+                    // 檢查點擊是否在影片區域內
+                    if (clickX >= offsetX && 
+                        clickX <= offsetX + videoDisplayWidth && 
+                        clickY >= offsetY && 
+                        clickY <= offsetY + videoDisplayHeight) {
+                        
+                        // 將點擊座標轉換為影片座標
+                        const x = ((clickX - offsetX) / videoDisplayWidth) * video.videoWidth;
+                        const y = ((clickY - offsetY) / videoDisplayHeight) * video.videoHeight;
+
+                        // 添加新的追蹤點
+                        this.manualPoints.push({
+                            time: this.videoController.video.currentTime,
+                            x: x,
+                            y: y
+                        });
+
+                        // 按時間排序
+                        this.manualPoints.sort((a, b) => a.time - b.time);
+                        
+                        // 更新追蹤數據
+                        this.videoController.trackingData = [...this.manualPoints];
+                        
+                        // 更新圖表
+                        graphRenderer.updateGraphs(this.videoController.trackingData);
+                        
+                        // 重新繪製所有點
+                        this.drawManualPoints();
+                    }
+                });
+
+                // 在影片時間更新時重新繪製追蹤點
+                this.videoController.video.addEventListener('timeupdate', () => {
+                    if (this.isManualMode) {
+                        this.drawManualPoints();
+                    }
+                });
+            }
+
+            drawManualPoints() {
+                const ctx = this.videoController.ctx;
+                const video = this.videoController.video;
+                const canvas = this.videoController.trackingCanvas;
+                const currentTime = video.currentTime;
+
+                // 清除畫布
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // 繪製影片幀
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // 繪製追蹤點
+                this.manualPoints.forEach((point, index) => {
+                    // 將影片座標轉換為畫布座標
+                    const displayX = (point.x / video.videoWidth) * canvas.width;
+                    const displayY = (point.y / video.videoHeight) * canvas.height;
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = 'yellow';
+                    ctx.fillStyle = point.time <= currentTime ? 'red' : 'rgba(255, 0, 0, 0.3)';
+                    ctx.lineWidth = 2;
+                    
+                    // 繪製點
+                    ctx.arc(displayX, displayY, 5, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // 繪製序號
+                    ctx.fillStyle = 'white';
+                    ctx.strokeStyle = 'black';
+                    ctx.font = '12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.strokeText(index + 1, displayX, displayY - 15);
+                    ctx.fillText(index + 1, displayX, displayY - 15);
+
+                    // 連接相鄰點
+                    if (index > 0) {
+                        const prevPoint = this.manualPoints[index - 1];
+                        const prevX = (prevPoint.x / video.videoWidth) * canvas.width;
+                        const prevY = (prevPoint.y / video.videoHeight) * canvas.height;
+                        
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'yellow';
+                        ctx.moveTo(prevX, prevY);
+                        ctx.lineTo(displayX, displayY);
+                        ctx.stroke();
+                    }
+                });
+            }
+        }
+
+        class GraphRenderer {
+            constructor() {
+                this.xtCanvas = document.getElementById('xtGraph');
+                this.ytCanvas = document.getElementById('ytGraph');
+                this.xtCtx = this.xtCanvas.getContext('2d');
+                this.ytCtx = this.ytCanvas.getContext('2d');
+                
+                // 置畫布大小
+                this.xtCanvas.width = 400;
+                this.xtCanvas.height = 200;
+                this.ytCanvas.width = 400;
+                this.ytCanvas.height = 200;
+                
+                // 設置邊距
+                this.margin = {
+                    left: 40,
+                    right: 20,
+                    top: 20,
+                    bottom: 30
+                };
+            }
+
+            updateGraphs(trackingData) {
+                if (trackingData.length < 2) return;
+                
+                this.clearGraphs();
+                this.drawXTGraph(trackingData);
+                this.drawYTGraph(trackingData);
+            }
+
+            clearGraphs() {
+                this.xtCtx.clearRect(0, 0, this.xtCanvas.width, this.xtCanvas.height);
+                this.ytCtx.clearRect(0, 0, this.ytCanvas.width, this.ytCanvas.height);
+            }
+
+            drawAxes(ctx, maxTime, maxValue, label) {
+                const graphWidth = this.xtCanvas.width - this.margin.left - this.margin.right;
+                const graphHeight = this.xtCanvas.height - this.margin.top - this.margin.bottom;
+
+                // 繪製座標軸
+                ctx.beginPath();
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 1;
+                
+                // X軸
+                ctx.moveTo(this.margin.left, this.xtCanvas.height - this.margin.bottom);
+                ctx.lineTo(this.xtCanvas.width - this.margin.right, this.xtCanvas.height - this.margin.bottom);
+                
+                // Y軸
+                ctx.moveTo(this.margin.left, this.margin.top);
+                ctx.lineTo(this.margin.left, this.xtCanvas.height - this.margin.bottom);
+                ctx.stroke();
+
+                // 繪製刻度
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                
+                // Y軸刻度
+                const yStep = maxValue / 5;
+                for (let i = 0; i <= 5; i++) {
+                    const y = this.margin.top + (graphHeight * (5 - i) / 5);
+                    const value = Math.round(yStep * i);
+                    ctx.fillText(value.toString(), this.margin.left - 5, y);
+                    
+                    // 網格線
+                    ctx.beginPath();
+                    ctx.strokeStyle = '#eee';
+                    ctx.moveTo(this.margin.left, y);
+                    ctx.lineTo(this.xtCanvas.width - this.margin.right, y);
+                    ctx.stroke();
+                }
+
+                // X軸刻度
+                const xStep = maxTime / 5;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                for (let i = 0; i <= 5; i++) {
+                    const x = this.margin.left + (graphWidth * i / 5);
+                    const value = (xStep * i).toFixed(1);
+                    ctx.fillText(value + 's', x, this.xtCanvas.height - this.margin.bottom + 5);
+                    
+                    // 網格線
+                    ctx.beginPath();
+                    ctx.strokeStyle = '#eee';
+                    ctx.moveTo(x, this.margin.top);
+                    ctx.lineTo(x, this.xtCanvas.height - this.margin.bottom);
+                    ctx.stroke();
+                }
+
+                // 添加標籤
+                ctx.save();
+                ctx.translate(10, this.xtCanvas.height / 2);
+                ctx.rotate(-Math.PI / 2);
+                ctx.textAlign = 'center';
+                ctx.fillText(label, 0, 0);
+                ctx.restore();
+            }
+
+            drawXTGraph(data) {
+                const maxTime = Math.max(...data.map(d => d.time));
+                const maxX = Math.max(...data.map(d => d.x));
+                
+                const graphWidth = this.xtCanvas.width - this.margin.left - this.margin.right;
+                const graphHeight = this.xtCanvas.height - this.margin.top - this.margin.bottom;
+                
+                // 繪製座標軸和網格
+                this.drawAxes(this.xtCtx, maxTime, maxX, 'X位置 (px)');
+                
+                // 繪製數據線
+                this.xtCtx.beginPath();
+                this.xtCtx.strokeStyle = 'blue';
+                this.xtCtx.lineWidth = 2;
+                
+                data.forEach((point, i) => {
+                    const x = this.margin.left + (point.time / maxTime * graphWidth);
+                    const y = this.xtCanvas.height - this.margin.bottom - (point.x / maxX * graphHeight);
+                    
+                    if (i === 0) {
+                        this.xtCtx.moveTo(x, y);
+                    } else {
+                        this.xtCtx.lineTo(x, y);
+                    }
+                });
+                
+                this.xtCtx.stroke();
+            }
+
+            drawYTGraph(data) {
+                const maxTime = Math.max(...data.map(d => d.time));
+                const maxY = Math.max(...data.map(d => d.y));
+                
+                const graphWidth = this.ytCanvas.width - this.margin.left - this.margin.right;
+                const graphHeight = this.ytCanvas.height - this.margin.top - this.margin.bottom;
+                
+                // 繪製座標軸和網格
+                this.drawAxes(this.ytCtx, maxTime, maxY, 'Y位置 (px)');
+                
+                // 繪製數據線
+                this.ytCtx.beginPath();
+                this.ytCtx.strokeStyle = 'red';
+                this.ytCtx.lineWidth = 2;
+                
+                data.forEach((point, i) => {
+                    const x = this.margin.left + (point.time / maxTime * graphWidth);
+                    const y = this.ytCanvas.height - this.margin.bottom - (point.y / maxY * graphHeight);
+                    
+                    if (i === 0) {
+                        this.ytCtx.moveTo(x, y);
+                    } else {
+                        this.ytCtx.lineTo(x, y);
+                    }
+                });
+                
+                this.ytCtx.stroke();
+            }
+        }
+
+        // 初始化
+        const videoController = new VideoController();
+        const objectTracker = new ObjectTracker(videoController);
+        const graphRenderer = new GraphRenderer();
+    </script>
+</body>
+</html>

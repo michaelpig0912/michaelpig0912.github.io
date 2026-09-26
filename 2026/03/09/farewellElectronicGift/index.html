@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>離職前做一個電子小禮物《science boy》 | Michaelpig's blog</title><meta name="author" content="Michael"><meta name="copyright" content="Michael"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="離職前想說可以做一個小禮物送給同事。  一開始有想過番茄鐘、小機器人之類的東西，不過考慮到續航、成本，還有一次要做很多組，感覺都不太適合。後來想到我本來就很喜歡復古遊戲機，就決定做一台外型有點像 Game Boy 的迷你抽籤機。這個專案也算是把我這幾年學到的東西全部塞進去，包含 3D 列印、印刷、畫電路板、焊接跟寫程式。裡面也放了一些公司的角色和只有同事才看得懂的小彩蛋。  實際使用影片：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="離職前做一個電子小禮物《science boy》">
+<meta property="og:url" content="https://michaelpig0912.github.io/2026/03/09/farewellElectronicGift/index.html">
+<meta property="og:site_name" content="Michaelpig&#39;s blog">
+<meta property="og:description" content="離職前想說可以做一個小禮物送給同事。  一開始有想過番茄鐘、小機器人之類的東西，不過考慮到續航、成本，還有一次要做很多組，感覺都不太適合。後來想到我本來就很喜歡復古遊戲機，就決定做一台外型有點像 Game Boy 的迷你抽籤機。這個專案也算是把我這幾年學到的東西全部塞進去，包含 3D 列印、印刷、畫電路板、焊接跟寫程式。裡面也放了一些公司的角色和只有同事才看得懂的小彩蛋。  實際使用影片：">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://michaelpig0912.github.io/2026/03/09/farewellElectronicGift/cover.webp">
+<meta property="article:published_time" content="2026-03-09T18:00:00.000Z">
+<meta property="article:author" content="Michael">
+<meta property="article:tag" content="PCB">
+<meta property="article:tag" content="Arduino">
+<meta property="article:tag" content="gift">
+<meta property="article:tag" content="OLED">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://michaelpig0912.github.io/2026/03/09/farewellElectronicGift/cover.webp">
+<meta property="fb:app_id" content="1605937756773237"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://michaelpig0912.github.io/2026/03/09/farewellElectronicGift/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-Z1HFD1G7WJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Z1HFD1G7WJ');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查詢的內容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '離職前做一個電子小禮物《science boy》',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-09-26 14:11:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Michaelpig's blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><link rel="stylesheet" href="/css/loading.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.webp" onerror="onerror=null;src='/img/404image.webp'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">115</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">192</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目錄</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 歷程</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-bookmark"></i><span> 小小測試</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sideProject/ar/"><i class="fa-fw fas fa-camera"></i><span> AR測試</span></a></li><li><a class="site-page child" href="/sideProject/clock/clock.html"><i class="fa-fw fas fa-clock"></i><span> 時鐘</span></a></li><li><a class="site-page child" href="/sideProject/image2WebP/image2WebP.html"><i class="fa-fw fa-sharp fa-solid fa-images"></i><span> 圖片轉WebP</span></a></li><li><a class="site-page child" href="/sideProject/MPsci/MPsci.html"><i class="fa-fw fas fa-solid fa-atom"></i><span> MPsci</span></a></li><li><a class="site-page child" href="/sideProject/threejs/index.html"><i class="fa-fw fas fa-solid fa-cube"></i><span> Three.js學習</span></a></li><li><a class="site-page child" href="/sideProject/InteractiQuiz/index.html"><i class="fa-fw fas fa-solid fa-question"></i><span> 互動影片問答</span></a></li><li><a class="site-page child" href="/sideProject/oledPixelTool/"><i class="fa-fw fas fa-th"></i><span> OLED點陣圖工具</span></a></li><li><a class="site-page child" href="/sideProject/digitalSlate/"><i class="fa-fw fas fa-film"></i><span> 數位場記板</span></a></li><li><a class="site-page child" href="/sideProject/NCUE107Physics/"><i class="fa-fw fas fa-solid fa-book"></i><span> NCUE107Physics</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2026/03/09/farewellElectronicGift/cover.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Michaelpig's blog"><span class="site-name">Michaelpig's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜尋</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 目錄</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 歷程</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book-bookmark"></i><span> 小小測試</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sideProject/ar/"><i class="fa-fw fas fa-camera"></i><span> AR測試</span></a></li><li><a class="site-page child" href="/sideProject/clock/clock.html"><i class="fa-fw fas fa-clock"></i><span> 時鐘</span></a></li><li><a class="site-page child" href="/sideProject/image2WebP/image2WebP.html"><i class="fa-fw fa-sharp fa-solid fa-images"></i><span> 圖片轉WebP</span></a></li><li><a class="site-page child" href="/sideProject/MPsci/MPsci.html"><i class="fa-fw fas fa-solid fa-atom"></i><span> MPsci</span></a></li><li><a class="site-page child" href="/sideProject/threejs/index.html"><i class="fa-fw fas fa-solid fa-cube"></i><span> Three.js學習</span></a></li><li><a class="site-page child" href="/sideProject/InteractiQuiz/index.html"><i class="fa-fw fas fa-solid fa-question"></i><span> 互動影片問答</span></a></li><li><a class="site-page child" href="/sideProject/oledPixelTool/"><i class="fa-fw fas fa-th"></i><span> OLED點陣圖工具</span></a></li><li><a class="site-page child" href="/sideProject/digitalSlate/"><i class="fa-fw fas fa-film"></i><span> 數位場記板</span></a></li><li><a class="site-page child" href="/sideProject/NCUE107Physics/"><i class="fa-fw fas fa-solid fa-book"></i><span> NCUE107Physics</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">離職前做一個電子小禮物《science boy》</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">發表於</span><time class="post-meta-date-created" datetime="2026-03-09T18:00:00.000Z" title="發表於 2026-03-09 18:00:00">2026-03-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新於</span><time class="post-meta-date-updated" datetime="2026-09-26T14:11:59.199Z" title="更新於 2026-09-26 14:11:59">2026-09-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/maker/">maker</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字數總計:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀時長:</span><span>7分鐘</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="離職前做一個電子小禮物《science boy》"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>離職前想說可以做一個小禮物送給同事。  一開始有想過番茄鐘、小機器人之類的東西，不過考慮到續航、成本，還有一次要做很多組，感覺都不太適合。後來想到我本來就很喜歡復古遊戲機，就決定做一台外型有點像 Game Boy 的迷你抽籤機。這個專案也算是把我這幾年學到的東西全部塞進去，包含 3D 列印、印刷、畫電路板、焊接跟寫程式。裡面也放了一些公司的角色和只有同事才看得懂的小彩蛋。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-07.webp" class="" title="science boy與外盒">
+<p>實際使用影片：</p>
+<div class="farewell-video">
+  <video controls playsinline preload="metadata" poster="farewell-electronic-gift-demo-poster.webp">
+    <source src="farewell-electronic-gift-demo.m4v" type="video/mp4">
+    你的瀏覽器不支援 HTML5 影片播放。
+  </video>
+</div>
+<h2 id="成本">成本</h2>
+<p>最後一共做了大約 30 組，整體開銷是 6,000 多元，平均一組大約 200 元左右。</p>
+<h2 id="參考資料">參考資料</h2>
+<p>此次專案主要參考 <a target="_blank" rel="noopener" href="https://www.instructables.com/Tiny-Arcade-Game-Attiny85/">lonesoulsurfer 的專案內容</a></p>
+<p>這個是很多國外玩家滿喜歡做的 attiny85 的迷你遊戲機專案，不過我在電路板的 layout 跟軟體都有改過跟重寫。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-03.webp" class="" title="抽籤測試"></th>
+<th style="text-align:center"><img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-04.webp" class="" title="搭配 3D 列印的小底座"></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<h2 id="包裝">包裝</h2>
+<p>外盒是用 AI 生成的復古的掌機風格，不過要自己剪裁跟黏貼花了不少時間。也有想過直接請廠商製作，不過我要製作的量都太小，做下去不太划算。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-22.webp" class="" title="紙盒展開圖與復古掌機風格的包裝設計">
+<h2 id="3d-列印底座">3D 列印底座</h2>
+<p>為了這個裝置，我也做了一個 3d 列印的底座，其中這個底座有設計一些小巧思在裡面，裡面故意做中空的，這樣只要別人在照光的時候，就可以發現裡面的隱藏訊息（我塞了一些工作常用的迷因在裡面），實際測試的時候，建議列印使用 0.2mm 的噴頭，這樣文字內容才會比較清楚，字體是使用開源的點陣圖字體。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-11.webp" class="" width="400" title="this is fine 的小彩蛋">
+<h2 id="電路圖">電路圖</h2>
+<p>這次的專案也是透過 Kicad 來製作完成的，然後再由 JLCPC 制作 PCB。核心使用 ATtiny85，搭配 128×64 的 SSD1306 OLED、三顆按鍵、蜂鳴器和 CR2032 鈕扣電池。ATtiny85 的腳位不多，所以 OLED、按鍵和蜂鳴器幾乎把能使用的腳位都用完了，電路圖可以參考下圖。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-16.webp" class="" title="ATtiny85、OLED、按鍵與蜂鳴器的電路圖">
+<p>在正式做成 pcb 之前，有先用麵包版搭建一組測試，測試後成功可以運行，才將電路圖送給廠商製作。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-19.webp" class="" title="在 KiCad 裡安排電路板走線">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-18.webp" class="" width="400" title="電路板正面"></th>
+<th style="text-align:center"><img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-17.webp" class="" width="500" title="電路板背面"></th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<h2 id="attiny85-燒入方式">ATtiny85 燒入方式</h2>
+<p>因為 ATtiny85 本身沒有像 Arduino Uno 一樣的 USB 接頭，所以需要另外準備燒錄器。這次我直接使用手邊的 Arduino Uno，先把它變成一台 ISP 燒錄器，再透過麵包板和杜邦線把程式寫進 ATtiny85。</p>
+<p>首先把 Arduino Uno 接上電腦，在 Arduino IDE 選擇 <code>File → Examples → 11.ArduinoISP → ArduinoISP</code>，確認開發板和連接埠都是 Uno 後，先把這個 <a target="_blank" rel="noopener" href="https://docs.arduino.cc/built-in-examples/">Arduino 內建範例</a> 上傳到 Uno。完成後，Uno 就可以拿來替其他 AVR 晶片燒錄。</p>
+<p>接著需要讓 Arduino IDE 認得 ATtiny85。我使用的是 <a target="_blank" rel="noopener" href="https://github.com/damellis/attiny">David A. Mellis 的 attiny 核心</a>，先在 Arduino IDE 的偏好設定裡，把下面的網址加入「Additional Boards Manager URLs」：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json</span><br></pre></td></tr></table></figure>
+<p>再到 Boards Manager 搜尋並安裝 <code>attiny by David A. Mellis</code>。</p>
+<p>Arduino Uno 和 ATtiny85 的接線如下。以下是把 ATtiny85 單獨放在麵包板上，並由 Uno 供電的接法：</p>
+<table>
+<thead>
+<tr>
+<th>Arduino Uno</th>
+<th>ATtiny85</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5V</td>
+<td>Pin 8（VCC）</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>Pin 4（GND）</td>
+</tr>
+<tr>
+<td>D10</td>
+<td>Pin 1（RESET／PB5）</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>Pin 5（MOSI／PB0）</td>
+</tr>
+<tr>
+<td>D12</td>
+<td>Pin 6（MISO／PB1）</td>
+</tr>
+<tr>
+<td>D13</td>
+<td>Pin 7（SCK／PB2）</td>
+</tr>
+</tbody>
+</table>
+<p>ATtiny85 上方的半圓缺口朝上時，左上角是 Pin 1，腳位會沿著晶片外圍逆時針編號。接線前最好再對照一次，因為晶片轉錯方向時，所有腳位都會跟著顛倒。</p>
+<p>接好之後，在 Arduino IDE 選擇：</p>
+<ul>
+<li>Board：<code>ATtiny25/45/85</code></li>
+<li>Processor：<code>ATtiny85</code></li>
+<li>Clock：<code>Internal 1 MHz</code>（這次專案使用的設定）</li>
+<li>Programmer：<code>Arduino as ISP</code></li>
+</ul>
+<p>第一次使用或更改時脈設定時，要先按一次 <code>Burn Bootloader</code>。這裡不是真的替 ATtiny85 安裝一般 Arduino 那種開機程式，主要是在寫入 Fuse，讓晶片使用選定的時脈設定。</p>
+<p>最後使用 <code>Sketch → Upload Using Programmer</code> 上傳，不能直接按平常的 Upload 按鈕。看到完成訊息後，就可以先斷開電源，再拔下 ATtiny85 放進電路板測試。</p>
+<p>如果出現 <code>invalid device signature</code> 或一直找不到晶片，通常是晶片方向、D10～D13 接線、共地或 Programmer 選項有問題。如果程式可以運作，但動畫和聲音速度明顯不對，則多半是 Clock 選項和 Fuse 不一致，可以重新確認時脈後再執行一次 <code>Burn Bootloader</code>。（這步驟很重要，因為我前幾個晶片不知道為什麼運行速度都超慢，但是重新刷過一次以後，顯示速度會恢復正常了）</p>
+<p>這個裝置使用 CR2032 供電，因此燒錄時不要同時裝著電池又接 Uno 的電源。如果要直接在完成的電路板上燒錄，也要先確認板上的其他元件能不能承受 Uno 的 5V；不確定時，先燒錄單獨的 ATtiny85 會比較安全。另外 PB0、PB1、PB2 同時也是 ISP 訊號腳，如果外接的按鍵或蜂鳴器影響通訊，也可以先暫時斷開，燒錄完成後再接回去。</p>
+<h2 id="程式與功能">程式與功能</h2>
+<p>這次的程式也是由 AI 輔助完成的，總共花費大概 4 小時左右。<br>
+不過起初不知道為什麼一直會破版，後來發現應該解析度調錯了，所以才會一直破版。後來修正後就正常了。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-09.webp" class="" width="400" title="錯位的訊息">
+<p>三顆按鍵分別用來抽籤、切換聲音，以及我想要給同事的訊息。抽籤共有大吉、中吉、小吉和凶（老闆頭像 XD ）四種結果，每種結果都有不同的貓咪圖案與音效。聲音設定會寫入 EEPROM，所以重新開機之後還會保留上一次的設定。給同事的訊息則是每個同事都會拿到我離職想要給他的話之類的。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-02.webp" class="" width="400" title="science boy">
+<h2 id="難題：只有-8-kb-的空間">難題：只有 8 KB 的空間</h2>
+<p>原本以為圖片轉成黑白點陣圖以後，應該不會占太多空間，結果實際放進去才發現完全不是這回事 XD</p>
+<p>ATtiny85 只有 8 KB，光是一張 128×64 的黑白圖片就要 1 KB，放個幾張程式就塞不下了。但我又不太想把圖片、音效或抽籤功能拿掉，只好開始想辦法省空間。</p>
+<p>後來把一些圖片縮小，顯示時再放大；重複出現的文字跟圖案也拆開來用。雖然處理起來比較麻煩，但最後有成功把原本想要的功能塞進去。</p>
+<p>為了處理這些圖，我另外寫了一個瀏覽器版的 <a href="/sideProject/oledPixelTool/">OLED 點陣圖工具</a>。裡面有 16×16、64×64 和自訂尺寸三種模式，可以直接畫圖，也能匯入圖片後調整黑白門檻。</p>
+<p>如果只需要畫面中的一小部分，也可以先選取範圍，再用 2% 為單位縮放和拼貼。工具同時支援復原、重做、反相，以及載入字型來產生文字。完成後會自動整理成 Arduino 可以使用的 <code>PROGMEM</code> 位元陣列，也能把原本的 Hex 資料貼回去繼續修改。</p>
+<p><a href="/sideProject/oledPixelTool/">開啟 OLED 點陣圖工具</a></p>
+<h2 id="畫圖">畫圖</h2>
+<p>最後這個是我做的其中幾個給同事的訊息～畫圖部分總共有 20 位同事，大概花了兩三個小時完成這個部分。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-15.webp" class="" title="訊息＿1">
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-20.webp" class="" title="訊息＿2">
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-21.webp" class="" title="訊息＿3">
+<h2 id="電路板焊接">電路板焊接</h2>
+<p>為了讓後續製作比較容易，這次的元件幾乎都選擇 THT 插件式封裝。這樣除了比較好焊，也能讓收到的人直接看到每個零件和中間那顆八隻腳的 ATtiny85。</p>
+<p>一次製作大約 30 組，實際焊接花了八小時左右。因為前面已經先在麵包板確認過電路，PCB 送出前也有完整檢查，所以組裝時沒有遇到太多需要修改的地方。不過完成後還是有殘留一些助焊劑，讓部分電路板表面看起來有一點髒。</p>
+<div class="farewell-video">
+  <video controls playsinline preload="metadata">
+    <source src="farewell-electronic-gift-soldering.m4v" type="video/mp4">
+    你的瀏覽器不支援 HTML5 影片播放。
+  </video>
+</div>
+<style>
+.farewell-video {
+  width: min(100%, 520px);
+  margin: 20px auto 28px;
+}
+.farewell-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+</style>
+<h2 id="小彩蛋">小彩蛋</h2>
+<p>除了先前說的那個 3D 列印底座有藏小彩蛋外，也在裡面塞了許多小彩蛋。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-01.webp" class="" title="電子小禮物與外盒">
+<p>像是前面有 <code>while(true)&#123;keep curious();&#125;</code> 就是希望收到的同事可以以直保持好奇心～<br>
+或是如果把 oled 拆掉後，下面就會露「出你為什麼要拆掉螢幕 ＱＱ」的字樣。</p>
+<p>另外，為什麼這個裝置是把電路板直接顯露在外面，主要原因是因為之前在開發有關於晶片有關的課程，因此想說把 IC 露在外面，可以讓大家比較了解內部的結構。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-12.webp" class="" width="400" title="電路板正面的元件">
+<p>背面也有放一些內容，像是有經典的邏輯閘笑話（?），2B or not 2B 是呼應到以前開發的跟半導體相關的課程有關的內容，所以也一並放進去了。另外我覺得也滿符合我離職的心態，也是處於一個 to be or not to be 的抉擇中。在左上角也畫了一隻我們公司的吉祥物。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-13.webp" class="" width="400" title="電路板背面的線路與電池">
+<p>此外，在程式裡面，也偷偷加入了摩斯密碼跟小片段的音樂與摩斯密碼，只要在特定頁面開啟聲音，再按特定的按鈕就可以聽到。</p>
+<img src="/2026/03/09/farewellElectronicGift/farewell-electronic-gift-08.webp" class="" width="400" title="3d列印打樣測試">
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://michaelpig0912.github.io">Michael</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章連結: </span><span class="post-copyright-info"><a href="https://michaelpig0912.github.io/2026/03/09/farewellElectronicGift/">https://michaelpig0912.github.io/2026/03/09/farewellElectronicGift/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://michaelpig0912.github.io" target="_blank">Michaelpig's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PCB/">PCB</a><a class="post-meta__tags" href="/tags/Arduino/">Arduino</a><a class="post-meta__tags" href="/tags/gift/">gift</a><a class="post-meta__tags" href="/tags/OLED/">OLED</a></div><div class="post_share"><div class="social-share" data-image="/2026/03/09/farewellElectronicGift/cover.webp" data-sites="facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/04/06/newTaipeiCityArtMuseum/" title="新北市美術館：托馬斯・薩拉切諾《共織宇宙》"><img class="cover" src="/2026/04/06/newTaipeiCityArtMuseum/cover.webp" onerror="onerror=null;src='/img/404page.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">新北市美術館：托馬斯・薩拉切諾《共織宇宙》</div></div></a></div><div class="next-post pull-right"><a href="/2025/11/27/Japan-251127-Trip/" title="大阪、神戶、京都、琵琶湖與東京十二日旅行|2025 旅行"><img class="cover" src="/2025/11/27/Japan-251127-Trip/cover.webp" onerror="onerror=null;src='/img/404page.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">大阪、神戶、京都、琵琶湖與東京十二日旅行|2025 旅行</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.webp" onerror="this.onerror=null;this.src='/img/404image.webp'" alt="avatar"/></div><div class="author-info__name">Michael</div><div class="author-info__description">歡迎來到michaelpig的部落格！這裡會分享各種有趣的物理實驗、程式測試以及一些工作上的雜談。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">115</div></a><a href="/tags/"><div class="headline">標籤</div><div class="length-num">192</div></a><a href="/categories/"><div class="headline">分類</div><div class="length-num">19</div></a></div><a id="card-info-btn" href="mailto:michaelink24@gmail.com"><i class="fas fa-envelope"></i><span>與我聯絡</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">這邊會放一些物理實驗、程式碼及心情雜談的東西。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目錄</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E6%9C%AC"><span class="toc-number">1.</span> <span class="toc-text">成本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85%E8%A3%9D"><span class="toc-number">3.</span> <span class="toc-text">包裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3d-%E5%88%97%E5%8D%B0%E5%BA%95%E5%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">3D 列印底座</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%BB%E8%B7%AF%E5%9C%96"><span class="toc-number">5.</span> <span class="toc-text">電路圖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#attiny85-%E7%87%92%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">ATtiny85 燒入方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BC%8F%E8%88%87%E5%8A%9F%E8%83%BD"><span class="toc-number">7.</span> <span class="toc-text">程式與功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%A3%E9%A1%8C%EF%BC%9A%E5%8F%AA%E6%9C%89-8-kb-%E7%9A%84%E7%A9%BA%E9%96%93"><span class="toc-number">8.</span> <span class="toc-text">難題：只有 8 KB 的空間</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%AB%E5%9C%96"><span class="toc-number">9.</span> <span class="toc-text">畫圖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%BB%E8%B7%AF%E6%9D%BF%E7%84%8A%E6%8E%A5"><span class="toc-number">10.</span> <span class="toc-text">電路板焊接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E5%BD%A9%E8%9B%8B"><span class="toc-number">11.</span> <span class="toc-text">小彩蛋</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/18/gba-sp-spotify-multiboot-ai-technical-notes/" title="AI 協作筆記：ESP32 如何透過 Multiboot 讓 GBA SP 播放手機音訊">AI 協作筆記：ESP32 如何透過 Multiboot 讓 GBA SP 播放手機音訊</a><time datetime="2026-08-18T00:00:00.000Z" title="發表於 2026-08-18 00:00:00">2026-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/11/gba-sp-spotify-multiboot/" title="讓 GBA SP 播放 Spotify：用 ESP32 與 Multiboot 打造點陣音樂播放器"><img src="/2026/08/11/gba-sp-spotify-multiboot/gba-spotify-photo-4559.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="讓 GBA SP 播放 Spotify：用 ESP32 與 Multiboot 打造點陣音樂播放器"/></a><div class="content"><a class="title" href="/2026/08/11/gba-sp-spotify-multiboot/" title="讓 GBA SP 播放 Spotify：用 ESP32 與 Multiboot 打造點陣音樂播放器">讓 GBA SP 播放 Spotify：用 ESP32 與 Multiboot 打造點陣音樂播放器</a><time datetime="2026-08-11T00:00:00.000Z" title="發表於 2026-08-11 00:00:00">2026-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/30/grell-OAE1-headphone/" title="Drop + Grell OAE1 開放式耳機開箱"><img src="/2026/07/30/grell-OAE1-headphone/cover.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="Drop + Grell OAE1 開放式耳機開箱"/></a><div class="content"><a class="title" href="/2026/07/30/grell-OAE1-headphone/" title="Drop + Grell OAE1 開放式耳機開箱">Drop + Grell OAE1 開放式耳機開箱</a><time datetime="2026-07-30T18:30:00.000Z" title="發表於 2026-07-30 18:30:00">2026-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/25/deadMansCellPhone-stageShow/" title="死人大哥大-舞台劇｜非專業戲劇紀錄"><img src="/2026/07/25/deadMansCellPhone-stageShow/dead-mans-cell-phone-poster.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="死人大哥大-舞台劇｜非專業戲劇紀錄"/></a><div class="content"><a class="title" href="/2026/07/25/deadMansCellPhone-stageShow/" title="死人大哥大-舞台劇｜非專業戲劇紀錄">死人大哥大-舞台劇｜非專業戲劇紀錄</a><time datetime="2026-07-25T14:30:00.000Z" title="發表於 2026-07-25 14:30:00">2026-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/23/gameboy-camera-and-cartridge/" title="用 Arduino Nano 匯出 Game Boy Camera 與《織夢島》照片"><img src="/2026/07/23/gameboy-camera-and-cartridge/IMG_3219.webp" onerror="this.onerror=null;this.src='/img/404page.webp'" alt="用 Arduino Nano 匯出 Game Boy Camera 與《織夢島》照片"/></a><div class="content"><a class="title" href="/2026/07/23/gameboy-camera-and-cartridge/" title="用 Arduino Nano 匯出 Game Boy Camera 與《織夢島》照片">用 Arduino Nano 匯出 Game Boy Camera 與《織夢島》照片</a><time datetime="2026-07-23T23:19:10.000Z" title="發表於 2026-07-23 23:19:10">2026-07-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By Michael</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="單欄和雙欄切換"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到頂部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜尋</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  資料庫載入中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜尋文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

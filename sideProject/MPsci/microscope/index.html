@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>顯微鏡方向實驗室｜移動玻片與調焦挑戰</title>
+<meta name="description" content="給國一生的顯微鏡互動實驗：比較解剖與複式顯微鏡的成像方向，練習移動玻片與調焦。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><a href="/" class="brand">MP<span>SCI</span> / 生物實驗室</a><a href="/sideProject/MPsci/MPsci.html">返回 MP.sci ↗</a></header>
+<main>
+<div class="intro"><div><p class="eyebrow">LAB 01 · 國一生物</p><h1>玻片往哪移？</h1><p>拖玻片看方向，轉旋鈕看清楚。</p></div><div class="mode" aria-label="學習模式"><button id="explore" class="active" aria-pressed="true">自由探索</button><button id="challenge" aria-pressed="false">任務挑戰 <span>6 關</span></button></div></div>
+<div class="scope-switch" aria-label="選擇顯微鏡"><button data-scope="stereo" aria-pressed="false">解剖顯微鏡</button><button data-scope="compound" class="active" aria-pressed="true">複式顯微鏡</button></div>
+<section id="mission" class="mission" hidden aria-labelledby="mission-title"><div><p id="progress" class="eyebrow"></p><h2 id="mission-title"></h2><p id="mission-instruction"></p></div><button id="next" hidden>下一關 →</button></section>
+<section class="observation panel" aria-labelledby="view-title"><div class="section-head"><h2 id="view-title">拖動玻片，把紅點移到中央</h2><button id="reset" class="quiet">重設 ↺</button></div>
+<div class="scope-map"><svg xmlns="http://www.w3.org/2000/svg" width="360" height="140" viewBox="0 0 360 140" preserveAspectRatio="xMidYMid meet" role="img" aria-label="顯微鏡側面位置示意：上方目鏡，中間玻片，側邊調節輪">
+<path d="M78 119H187Q191 119 191 125H72Q72 119 78 119Z" fill="#718c7c"/>
+<path d="M155 119V36Q155 23 140 23H114" fill="none" stroke="#718c7c" stroke-width="14" stroke-linejoin="round"/>
+<g id="map-compound"><path d="M112 18L102 48" stroke="#304e40" stroke-width="17"/><path d="M102 43V63" stroke="#8ba18f" stroke-width="13"/><rect x="95" y="60" width="14" height="9" rx="2" fill="#304e40"/></g>
+<g id="map-stereo" hidden><rect x="100" y="28" width="38" height="21" rx="5" fill="#8ba18f"/><path d="M109 12L103 32M126 12L120 32" stroke="#304e40" stroke-width="11"/><rect x="108" y="47" width="20" height="16" rx="3" fill="#304e40"/></g>
+<g id="map-light" fill="#e0b455" opacity=".6"><path id="map-beam" d="M108 110L94 87H130L116 110Z"/><ellipse cx="112" cy="113" rx="13" ry="3"/></g><g id="map-stage"><path d="M79 84H166" stroke="#385747" stroke-width="7"/><path id="map-slide" d="M94 78H130" stroke="#cc9852" stroke-width="4"/></g>
+<circle cx="160" cy="66" r="14" fill="#3b5d4c"/><circle cx="160" cy="66" r="6" fill="#e4b877"/>
+<g fill="none" stroke="#9baea1" stroke-width="1"><path d="M130 14H218"/><path d="M131 78H218"/><path d="M176 66H198V108H218"/></g><g fill="#4c6857" font-size="12" font-family="system-ui"><text x="225" y="18">目鏡 → 看影像</text><text x="225" y="82">玻片 → 拖動</text><text x="225" y="112">調節輪 → 調焦</text></g></svg><p><strong id="map-name">複式顯微鏡</strong><small>側面位置示意</small></p></div>
+<div class="hands-eyes">
+<div class="hands-on"><div class="view-title"><h3>① 拖玻片</h3><span>俯視</span></div>
+<div id="slide-pad" role="group" aria-label="載物臺，抓住長方形玻片直接拖動"><span class="pad-top">遠離你 ↑</span><span class="stage-aperture" aria-hidden="true"></span><span class="stage-clip clip-left" aria-hidden="true"></span><span class="stage-clip clip-right" aria-hidden="true"></span>
+<div id="physical-slide" tabindex="0" role="group" aria-label="可拖曳玻片；鍵盤可用方向鍵移動"><span class="glass-label">玻片</span><span class="coverslip"><span class="specimen-letter">e</span><span class="specimen-dot"></span></span></div><span class="pad-bottom">↓ 靠近你</span></div>
+<p id="hand-motion" class="motion-readout">按住玻片邊緣，直接推動</p>
+<div class="focus-control"><div class="section-head"><h3>② 轉調節輪</h3><output id="clarity">尚未清楚</output></div><div class="dual-dials">
+<div class="dial-item"><div id="focus-coarse" data-dial="4" class="focus-wheel" role="spinbutton" tabindex="0" aria-label="粗調節輪，每步調整四刻度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-describedby="wheel-help"><span class="focus-dial" aria-hidden="true"><i></i></span></div><span>粗調節輪</span><small>快速找焦</small></div>
+<div class="dial-item"><div id="focus" data-dial="1" class="focus-wheel fine-wheel" role="spinbutton" tabindex="0" aria-label="細調節輪，每步調整一刻度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-describedby="wheel-help"><span class="focus-dial" aria-hidden="true"><i></i></span></div><span>細調節輪</span><small>微調清晰</small></div>
+</div><span id="focus-value" class="sr-only">20</span><span id="focus-scope" class="sr-only">複式顯微鏡</span><p id="wheel-help" class="microcopy">先粗調，再細調 · 手指轉動或滾輪操作</p></div></div>
+<div class="optical-link" aria-hidden="true">→<small>透過<br>顯微鏡</small></div>
+<div class="eye-side"><p class="eye-heading">看影像</p><div class="view-grid"><article class="view-card" data-view="stereo" hidden><div class="view-title"><h3>解剖顯微鏡</h3><span>正像</span></div><div class="eyepiece"><canvas id="stereo-view" width="600" height="600" role="img" aria-label="解剖顯微鏡視野"></canvas><div class="crosshair"></div></div><p class="image-position" id="stereo-position"></p></article>
+<article class="view-card selected" data-view="compound"><div class="view-title"><h3>複式顯微鏡</h3><span>倒像</span></div><div class="eyepiece"><canvas id="compound-view" width="600" height="600" role="img" aria-label="複式顯微鏡視野"></canvas><div class="crosshair"></div></div><p class="image-position" id="compound-position"></p></article></div>
+<p id="eye-motion" class="motion-readout">觀察紅點的移動方向</p>
+<div class="lighting" id="aperture-panel"><h3>③ 調整光圈</h3><div id="aperture-setting" class="light-setting"><label for="aperture"><span class="iris-icon" aria-hidden="true"></span> 光圈 <output id="aperture-value">65%</output></label><input id="aperture" type="range" min="10" max="100" value="65" aria-describedby="lighting-note"></div><p id="lighting-note">調整光圈，觀察亮度、輪廓與細紋。</p><button id="light-reset" class="text-button">恢復適中光圈</button></div>
+</div></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite">先把玻片向右移，看看視野裡的紅點往哪裡走。</div>
+<div class="hint-row"><button id="hint" class="text-button" aria-expanded="false">需要提示？</button><p id="hint-text" hidden>解剖顯微鏡的影像與玻片同方向移動；複式顯微鏡則相反。先想紅點要往哪裡，再試著拖動玻片。</p></div>
+</section>
+<details class="model-details"><summary>看看顯微鏡構造</summary><div id="scene" role="img" aria-label="複式顯微鏡的三維模型，玻片位置與調焦操作同步"><span id="scene-status">正在準備 3D 顯微鏡…</span><span class="scene-label">3D 操作示意</span></div>
+</details>
+<details class="teacher"><summary>教學筆記與模擬範圍</summary><p>建議順序：自由探索 → 說出兩台的規則 → 任務挑戰。每關先想好方向，再直接拖曳驗證；第一段拖曳會記錄方向；後兩關結合雙軸移動與調焦，不計時、不扣分。</p><p>本頁模擬一般教學用的解剖（實體）顯微鏡與複式光學顯微鏡。切換前後的視野使用相同示意縮放，專注比較方向，不代表實際放大倍率。紅點是標本上的定位記號，e 字可用來辨認像的方向。</p><p>本頁的粗、細調操作為教學示意，實際旋鈕配置依顯微鏡機型不同。調焦改變鏡頭與標本的距離，不是改變透鏡焦距；模糊效果與刻度為教學示意。真實操作應先用低倍鏡，側看確認鏡頭不碰玻片；高倍鏡以細調節輪調焦。</p><p>照明效果為定性示意：關小聚光器孔徑光圈通常提高對比、降低亮度，但太小會降低解析度；不會把目鏡視野裁成小圈。本頁固定照明強度，只保留光圈調整。解剖鏡以入射光照明示意，不套用複式鏡的聚光器光圈。<br>原理參考：<a href="https://www.microscopyu.com/microscopy-basics/conjugate-planes-in-optical-microscopy" target="_blank" rel="noopener">Nikon：光圈、解析度與對比</a> · <a href="https://www.microscopyu.com/techniques/stereomicroscopy/introduction-to-stereomicroscopy" target="_blank" rel="noopener">Nikon：實體顯微鏡</a> · <a href="https://evidentscientific.com/en/learn/microscope/terms/feature10" target="_blank" rel="noopener">Evident：複式顯微鏡成像</a></p></details>
+<footer>用眼睛觀察，用操作驗證。<span>MPsci · Microscope Lab</span></footer>
+</main><script type="module" src="app.js"></script>
+</body></html>

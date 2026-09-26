@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLED 像素繪圖工具 (2% 精細縮放版)</title>
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --container-bg: #ffffff;
+            --text-color: #333;
+            --accent-color: #3498db;
+            --border-color: #e1e4e8;
+            --purple-color: #9b59b6;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg-color); color: var(--text-color); padding: 20px; margin: 0; user-select: none; }
+        .container { max-width: 1250px; margin: auto; background: var(--container-bg); padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        h2 { text-align: center; margin-bottom: 20px; font-weight: 300; }
+
+        /* --- Buttons & Tools --- */
+        .mode-bar { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap;}
+        .mode-btn { padding: 8px 20px; border: 2px solid var(--border-color); background: white; color: #666; cursor: pointer; border-radius: 30px; font-weight: 600; font-size: 14px; }
+        .mode-btn.active { background: var(--accent-color); color: white; border-color: transparent; }
+        
+        .tool-group { display: flex; gap: 5px; background: #eee; padding: 5px; border-radius: 30px; margin-left: 20px;}
+        .tool-btn { width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer; font-size: 18px; background: white; transition: 0.2s; }
+        .tool-btn.active { background: var(--danger-color); color: white; }
+
+        /* --- Layout --- */
+        .layout { display: flex; gap: 30px; align-items: flex-start; }
+        .canvas-section { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 0; } 
+        .control-panel { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 15px; }
+
+        /* --- Canvas --- */
+        .canvas-wrapper {
+            position: relative; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border: 3px solid #333; background: #000; margin: auto; cursor: crosshair; overflow: hidden; touch-action: none;
+        }
+        .layer-cvs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+        #cvs { z-index: 1; } #overlayCvs { z-index: 2; pointer-events: none; } #gridCvs { z-index: 3; pointer-events: none; } 
+        #scaleBadge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; display: none; z-index: 10; pointer-events: none;}
+
+        /* --- Panels --- */
+        .panel-box { background: #fafafa; padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .input-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+        label { font-weight: 600; font-size: 13px; color: #555; }
+        input, textarea, select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; background: white; }
+        .action-btn { padding: 8px; background: var(--accent-color); color: white; border: none; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 500;}
+        .action-btn:hover { opacity: 0.9; }
+        .btn-purple { background: var(--purple-color); }
+        .btn-green { background: var(--success-color); }
+        .btn-danger { background: var(--danger-color); }
+        
+        .gallery-container { display: flex; flex-wrap: wrap; gap: 5px; max-height: 100px; overflow-y: auto; padding: 5px; border: 1px solid #eee; border-radius: 4px; margin-top:5px;}
+        .gallery-item { width: 50px; height: 50px; object-fit: cover; cursor: pointer; border: 2px solid transparent; background: #ddd; }
+        .gallery-item.active { border-color: var(--accent-color); }
+
+        .status-badge { display: block; padding: 6px; background: #e9ecef; color: #495057; font-size: 11px; border-radius: 4px; text-align: center; margin-top: 5px;}
+        .status-ok { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
+        .tool-description { max-width: 820px; margin: -8px auto 22px; color: #666; line-height: 1.7; text-align: center; }
+
+        @media (max-width: 900px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .layout { flex-direction: column; align-items: stretch; }
+            .control-panel { width: 100%; }
+            .tool-group { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>OLED 像素繪圖工具 <small style="font-size:0.6em; color:#888;">(2% 微調版)</small></h2>
+    <p class="tool-description">可以直接繪製點陣圖，或匯入圖片、文字與 Hex 資料進行修改。完成後會輸出適合 Arduino 與 SSD1306 OLED 使用的 C 語言位元陣列。</p>
+    
+    <div class="mode-bar">
+        <button id="m16" class="mode-btn active" onclick="setMode('16')">16x16</button>
+        <button id="m64" class="mode-btn" onclick="setMode('64')">64x64</button>
+        <button id="mDraw" class="mode-btn" onclick="setMode('draw')">🛠 自訂</button>
+        <div class="tool-group">
+            <button id="toolPen" class="tool-btn active" onclick="setTool('pen')" title="畫筆 (P)">✏️</button>
+            <button id="toolSelect" class="tool-btn" onclick="setTool('select')" title="選取 (S)">⛝</button>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="canvas-section">
+            <div style="display:flex; gap:10px; margin-bottom:10px;">
+                <button class="action-btn" style="width:auto; padding:5px 15px;" onclick="undo()">⟲ 撤銷</button>
+                <button class="action-btn" style="width:auto; padding:5px 15px;" onclick="redo()">⟳ 重做</button>
+                <button class="action-btn" style="width:auto; padding:5px 15px; background:#34495e;" onclick="invertCanvas()">◑ 反向</button>
+                <button class="action-btn btn-danger" style="width:auto; padding:5px 15px;" onclick="clearCanvas(true)">🗑 清空</button>
+            </div>
+            
+            <div class="canvas-wrapper" id="canvasWrapper">
+                <canvas id="cvs" class="layer-cvs"></canvas>
+                <canvas id="overlayCvs" class="layer-cvs"></canvas>
+                <canvas id="gridCvs" class="layer-cvs"></canvas>
+                <div id="scaleBadge">縮放: 100%</div>
+            </div>
+            <div id="canvasInfo" style="margin-top:5px; color:#888; font-size:12px;"></div>
+        </div>
+
+        <div class="control-panel">
+            <div class="panel-box" style="border-left: 4px solid var(--purple-color);">
+                <label style="color:var(--purple-color)">🔤 字體直讀工具</label>
+                <div style="background:#fff; padding:8px; border:1px dashed #ccc; border-radius:6px; margin:5px 0;">
+                    <label style="cursor:pointer; display:block; text-align:center; font-size:12px;">
+                        📂 載入 .ttf 字體檔
+                        <input type="file" accept=".ttf,.woff,.otf" style="display:none" onchange="loadFontFile(this)">
+                    </label>
+                    <div id="fontStatus" class="status-badge">未載入 (使用系統字體)</div>
+                </div>
+                <input type="text" id="txtInput" placeholder="輸入文字..." onkeyup="if(event.key==='Enter') generateTextToClipboard()">
+                <div style="display:flex; gap:5px; margin-top:5px;">
+                    <input type="number" id="txtSize" value="9" title="字體大小" style="width:60px">
+                    <button class="action-btn btn-purple" onclick="generateTextToClipboard()">轉像素貼上 ➔</button>
+                </div>
+                <div style="font-size:11px; color:#999; margin-top:3px;">* 強制二值化：生成後僅有黑白兩色</div>
+            </div>
+
+            <div class="panel-box">
+                <div class="input-group">
+                    <label>匯入圖片</label>
+                    <input type="file" id="upload" accept="image/*" multiple>
+                    <div class="gallery-container" id="gallery"></div>
+                </div>
+                <div class="input-group">
+                    <label>黑白門檻: <span style="color:#2980b9" id="thVal">128</span></label>
+                    <input type="range" id="thresh" min="0" max="255" value="128" oninput="processImage()">
+                </div>
+            </div>
+
+            <div class="panel-box">
+                <div id="customArea" style="display:none; margin-bottom:10px;">
+                    <label>尺寸 (WxH)</label>
+                    <div style="display:flex; gap:5px;">
+                        <input type="number" id="customW" value="32" onchange="resizeCustom()">
+                        <input type="number" id="customH" value="32" onchange="resizeCustom()">
+                        <button id="fitImgBtn" class="action-btn" style="width:40px; background:#f39c12; display:none;" onclick="fitToImage()" title="符合圖片">📏</button>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom:10px;">
+                    <textarea id="inCode" style="height:50px; font-size:10px;" placeholder="貼上 Hex (0xFE, 0x00...)"></textarea>
+                    <button class="action-btn" style="background:#95a5a6; padding:5px;" onclick="loadFromCode()">📥 讀取代碼</button>
+                </div>
+
+                <label>C 語言輸出</label>
+                <textarea id="out" readonly style="height:80px; font-size:10px;"></textarea>
+                <button class="action-btn btn-green" onclick="generateCode(); copyCode()">複製程式碼</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- 核心變數 ---
+    let W = 16, H = 16, tool = 'pen', isDrawing = false;
+    let history = [], historyStep = -1;
+    let clipboard = null, pastePos = {x:0, y:0}, pasteScale = 1.0;
+    let selectionRect = null;
+    let sourceImg = new Image(), loadedFontFamily = "sans-serif";
+
+    // --- DOM 元素 ---
+    const cvs = document.getElementById('cvs');
+    const ctx = cvs.getContext('2d', { willReadFrequently: true });
+    const overlayCvs = document.getElementById('overlayCvs');
+    const overlayCtx = overlayCvs.getContext('2d');
+    const gridCvs = document.getElementById('gridCvs');
+    const gridCtx = gridCvs.getContext('2d');
+    const canvasWrapper = document.getElementById('canvasWrapper');
+
+    // --- 初始化 ---
+    setMode('16');
+    saveState(); // 初始狀態
+
+    // --- 互動事件監聽 ---
+    canvasWrapper.addEventListener('pointerdown', handleMouseDown);
+    window.addEventListener('pointermove', handleMouseMove);
+    window.addEventListener('pointerup', handleMouseUp);
+    window.addEventListener('resize', updateLayout);
+    
+    // 滾輪縮放 (修改為 2% 步進)
+    window.addEventListener('wheel', (e) => {
+        if (tool === 'paste' && clipboard) {
+            e.preventDefault();
+            // 修改處：每次滾動增減 0.02 (2%)
+            const delta = e.deltaY > 0 ? -0.02 : 0.02;
+            pasteScale = Math.max(0.02, pasteScale + delta);
+            // 修正浮點數誤差，取小數點後兩位
+            pasteScale = Math.round(pasteScale * 100) / 100;
+            
+            const badge = document.getElementById('scaleBadge');
+            badge.style.display = 'block'; 
+            badge.innerText = `縮放: ${Math.round(pasteScale*100)}%`;
+            clearTimeout(window.badgeTimer); window.badgeTimer = setTimeout(()=>badge.style.display='none', 1000);
+            drawOverlay();
+        }
+    }, { passive: false });
+
+    // 快捷鍵
+    window.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key === 'Escape') { 
+            if(tool==='paste') { tool='pen'; } 
+            selectionRect = null; drawOverlay(); 
+        }
+        if (e.ctrlKey && e.key.toLowerCase() === 'z') { e.preventDefault(); undo(); }
+        if (e.ctrlKey && e.key.toLowerCase() === 'y') { e.preventDefault(); redo(); }
+        if (e.ctrlKey && e.key.toLowerCase() === 'c') { e.preventDefault(); copySelection(); }
+        if (e.ctrlKey && e.key.toLowerCase() === 'v') { e.preventDefault(); enterPasteMode(); }
+        if (e.key.toLowerCase() === 'p') setTool('pen');
+        if (e.key.toLowerCase() === 's') setTool('select');
+    });
+
+    // --- 1. 字體讀取與生成 (嚴格二值化) ---
+    async function loadFontFile(input) {
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const fontFace = new FontFace('UserFont', e.target.result);
+                    await fontFace.load();
+                    document.fonts.add(fontFace);
+                    loadedFontFamily = 'UserFont';
+                    const s = document.getElementById('fontStatus');
+                    s.className = 'status-badge status-ok';
+                    s.innerText = `✅ 已載入: ${file.name}`;
+                } catch (err) { alert("字體載入失敗"); }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    }
+
+    async function generateTextToClipboard() {
+        const text = document.getElementById('txtInput').value;
+        if(!text) return;
+        const size = parseInt(document.getElementById('txtSize').value) || 9;
+        
+        try { await document.fonts.load(`${size}px "${loadedFontFamily}"`); } catch(e){}
+
+        const tCvs = document.createElement('canvas');
+        const tCtx = tCvs.getContext('2d');
+        const safeW = size * text.length + 100; 
+        const safeH = size * 5; 
+        tCvs.width = safeW; tCvs.height = safeH;
+
+        tCtx.fillStyle = "#000000"; tCtx.fillRect(0, 0, safeW, safeH);
+        tCtx.font = `${size}px "${loadedFontFamily}"`;
+        tCtx.fillStyle = "#FFFFFF";
+        tCtx.textBaseline = "middle"; tCtx.textAlign = "center";
+        tCtx.imageSmoothingEnabled = false; 
+        tCtx.fillText(text, safeW / 2, safeH / 2);
+
+        // 嚴格二值化 (Strict B/W) & Auto Crop
+        const idat = tCtx.getImageData(0, 0, safeW, safeH);
+        const d = idat.data;
+        let minX=safeW, minY=safeH, maxX=0, maxY=0;
+        let hasContent = false;
+
+        for(let i=0; i<d.length; i+=4) {
+            const avg = (d[i] + d[i+1] + d[i+2]) / 3;
+            const val = avg > 100 ? 255 : 0;
+            d[i] = val; d[i+1] = val; d[i+2] = val; d[i+3] = 255; 
+
+            if(val === 255) {
+                const idx = i/4;
+                const x = idx % safeW;
+                const y = Math.floor(idx / safeW);
+                if(x < minX) minX = x; if(x > maxX) maxX = x;
+                if(y < minY) minY = y; if(y > maxY) maxY = y;
+                hasContent = true;
+            }
+        }
+
+        if(!hasContent) { alert("生成的文字是全黑的"); return; }
+        
+        tCtx.putImageData(idat, 0, 0); 
+        clipboard = tCtx.getImageData(minX, minY, maxX - minX + 1, maxY - minY + 1);
+        enterPasteMode();
+    }
+
+    // --- 2. 反向功能 ---
+    function invertCanvas() {
+        const idat = ctx.getImageData(0, 0, W, H);
+        const d = idat.data;
+        for(let i=0; i<d.length; i+=4) {
+            const isWhite = (d[i] + d[i+1] + d[i+2]) / 3 > 128;
+            const newVal = isWhite ? 0 : 255;
+            d[i] = newVal; d[i+1] = newVal; d[i+2] = newVal;
+        }
+        ctx.putImageData(idat, 0, 0);
+        saveState(); generateCode();
+    }
+
+    // --- 3. 圖片匯入與處理 ---
+    document.getElementById('upload').onchange = (e) => {
+        const files = e.target.files;
+        if (!files.length) return;
+        const gal = document.getElementById('gallery');
+        Array.from(files).forEach(f => {
+            const r = new FileReader();
+            r.onload = (ev) => {
+                const img = document.createElement('img');
+                img.src = ev.target.result;
+                img.className = 'gallery-item';
+                img.onclick = () => loadImg(img.src, img);
+                gal.appendChild(img);
+                if(!sourceImg.src) loadImg(img.src, img);
+            };
+            r.readAsDataURL(f);
+        });
+    };
+
+    function loadImg(src, el) {
+        document.querySelectorAll('.gallery-item').forEach(i=>i.classList.remove('active'));
+        if(el) el.classList.add('active');
+        sourceImg.src = src;
+        sourceImg.onload = () => {
+             document.getElementById('fitImgBtn').style.display = (document.getElementById('mDraw').classList.contains('active')) ? 'block' : 'none';
+             processImage();
+             saveState();
+        };
+    }
+
+    function processImage() {
+        if(!sourceImg.src) return;
+        document.getElementById('thVal').innerText = document.getElementById('thresh').value;
+        ctx.fillStyle = "black"; ctx.fillRect(0,0,W,H);
+        const r = Math.min(W/sourceImg.width, H/sourceImg.height);
+        const dw = sourceImg.width * r; const dh = sourceImg.height * r;
+        ctx.imageSmoothingEnabled = false; 
+        ctx.drawImage(sourceImg, (W-dw)/2, (H-dh)/2, dw, dh);
+        
+        // 二值化
+        const idat = ctx.getImageData(0,0,W,H);
+        const d = idat.data;
+        const th = document.getElementById('thresh').value;
+        for(let i=0; i<d.length; i+=4) {
+            const avg = (d[i]+d[i+1]+d[i+2])/3;
+            const val = avg > th ? 255 : 0;
+            d[i]=d[i+1]=d[i+2]=val; d[i+3]=255;
+        }
+        ctx.putImageData(idat, 0, 0);
+        generateCode();
+    }
+
+    function fitToImage() {
+        if(!sourceImg.src) return;
+        let nw = sourceImg.width, nh = sourceImg.height;
+        if(nw > 256) { const r = 256/nw; nw=256; nh=Math.floor(nh*r); }
+        document.getElementById('customW').value = nw;
+        document.getElementById('customH').value = nh;
+        resizeCustom();
+    }
+
+    // --- 4. 繪圖與剪貼簿邏輯 ---
+    function handleMouseDown(e) {
+        if(tool === 'paste') { pasteImageToCanvas(); return; }
+        const pos = getPos(e);
+        if(tool === 'select') {
+            isDrawing = true; selectionRect = {x:pos.x, y:pos.y, w:0, h:0, sx:pos.x, sy:pos.y};
+        } else {
+            isDrawing = true; paint(pos.x, pos.y, e.buttons);
+        }
+        drawOverlay();
+    }
+    
+    function handleMouseMove(e) {
+        const pos = getPos(e);
+        if(tool === 'paste') { pastePos = pos; drawOverlay(); return; }
+        if(!isDrawing) return;
+        if(tool === 'select') {
+            const w = pos.x - selectionRect.sx; const h = pos.y - selectionRect.sy;
+            selectionRect.x = w<0?pos.x:selectionRect.sx; selectionRect.y = h<0?pos.y:selectionRect.sy;
+            selectionRect.w = Math.abs(w)+1; selectionRect.h = Math.abs(h)+1;
+        } else { paint(pos.x, pos.y, e.buttons); }
+        drawOverlay();
+    }
+
+    function handleMouseUp() { 
+        if(isDrawing && tool==='pen') saveState(); 
+        isDrawing = false; 
+    }
+
+    function paint(x, y, btn) {
+        if(x>=0 && x<W && y>=0 && y<H) {
+            ctx.fillStyle = (btn===2) ? "black" : "white";
+            ctx.fillRect(x, y, 1, 1);
+            generateCode();
+        }
+    }
+    
+    canvasWrapper.oncontextmenu = (e) => e.preventDefault();
+
+    function copySelection() {
+        if (!selectionRect) { alert("請先選取區域 (S)"); return; }
+        clipboard = ctx.getImageData(selectionRect.x, selectionRect.y, selectionRect.w, selectionRect.h);
+        document.getElementById('toolSelect').style.background = "#2ecc71";
+        setTimeout(()=>document.getElementById('toolSelect').style.background="", 200);
+    }
+
+    function enterPasteMode() {
+        if(!clipboard) return;
+        tool = 'paste'; pastePos = {x:0, y:0}; pasteScale = 1.0; 
+        document.getElementById('canvasInfo').innerText = "貼上模式: 滾輪縮放 (2%) / 點擊確認";
+        drawOverlay();
+    }
+
+    function pasteImageToCanvas() {
+        if (!clipboard) return;
+        const temp = document.createElement('canvas');
+        temp.width = clipboard.width; temp.height = clipboard.height;
+        temp.getContext('2d').putImageData(clipboard, 0, 0);
+        
+        ctx.imageSmoothingEnabled = false;
+        const tw = clipboard.width*pasteScale;
+        const th = clipboard.height*pasteScale;
+        ctx.drawImage(temp, pastePos.x, pastePos.y, tw, th);
+        
+        // 貼上後再次二值化
+        const finalDat = ctx.getImageData(0,0,W,H);
+        const fd = finalDat.data;
+        for(let i=0; i<fd.length; i+=4) {
+             const val = (fd[i]>128) ? 255 : 0;
+             fd[i]=fd[i+1]=fd[i+2]=val; fd[i+3]=255;
+        }
+        ctx.putImageData(finalDat, 0, 0);
+
+        saveState(); generateCode(); 
+        tool = 'pen'; drawOverlay();
+        document.getElementById('canvasInfo').innerText = "";
+    }
+
+    function drawOverlay() {
+        overlayCtx.clearRect(0, 0, overlayCvs.width, overlayCvs.height);
+        const s = overlayCvs.width / W;
+        
+        if(tool === 'select' && selectionRect) {
+            overlayCtx.strokeStyle = "rgba(231, 76, 60, 0.8)"; overlayCtx.lineWidth = 1;
+            overlayCtx.setLineDash([4, 2]);
+            overlayCtx.strokeRect(selectionRect.x*s, selectionRect.y*s, selectionRect.w*s, selectionRect.h*s);
+            overlayCtx.setLineDash([]);
+        }
+        
+        if(tool === 'paste' && clipboard) {
+            const temp = document.createElement('canvas');
+            temp.width = clipboard.width; temp.height = clipboard.height;
+            temp.getContext('2d').putImageData(clipboard, 0, 0);
+            
+            overlayCtx.imageSmoothingEnabled = false;
+            overlayCtx.globalAlpha = 0.6;
+            overlayCtx.drawImage(temp, pastePos.x*s, pastePos.y*s, clipboard.width*pasteScale*s, clipboard.height*pasteScale*s);
+            
+            overlayCtx.globalAlpha = 1.0;
+            overlayCtx.strokeStyle = "#2ecc71";
+            overlayCtx.strokeRect(pastePos.x*s, pastePos.y*s, clipboard.width*pasteScale*s, clipboard.height*pasteScale*s);
+        }
+    }
+
+    // --- 5. 程式碼生成 ---
+    function generateCode() {
+        const d = ctx.getImageData(0,0,W,H).data;
+        let hex = [];
+        
+        if(document.getElementById('m16').classList.contains('active') && W===16) {
+             for(let y=0; y<16; y++) {
+                let b1=0, b2=0;
+                for(let x=0; x<8; x++) if(d[(y*16+x)*4]>100) b1|=(1<<(7-x));
+                for(let x=8; x<16; x++) if(d[(y*16+x)*4]>100) b2|=(1<<(15-x));
+                hex.push(b1); hex.push(b2);
+            }
+            var prefix = `const uint8_t font16x16[] PROGMEM = {\n  `;
+        } else {
+            const pages = Math.ceil(H/8);
+            for(let p=0; p<pages; p++) {
+                for(let x=0; x<W; x++) {
+                    let b=0;
+                    for(let bit=0; bit<8; bit++) {
+                         if((p*8+bit)<H && d[((p*8+bit)*W+x)*4]>100) b|=(1<<bit);
+                    }
+                    hex.push(b);
+                }
+            }
+            var prefix = `// Size: ${W}x${H}\nconst uint8_t img[] PROGMEM = {\n  `;
+        }
+        document.getElementById('out').value = prefix + hex.map(b=>'0x'+b.toString(16).padStart(2,'0').toUpperCase()).join(', ') + "\n};";
+    }
+
+    function loadFromCode() {
+        const txt = document.getElementById('inCode').value;
+        const m = txt.match(/0x[0-9A-Fa-f]{1,2}/g);
+        if(!m) { alert("無效代碼"); return; }
+        const bytes = m.map(s => parseInt(s, 16));
+        
+        ctx.fillStyle="black"; ctx.fillRect(0,0,W,H); ctx.fillStyle="white";
+        
+        if(W===16 && H===16 && bytes.length===32) {
+             for(let y=0; y<16; y++) {
+                let b1 = bytes[y*2]; let b2 = bytes[y*2+1];
+                for(let x=0; x<8; x++) if((b1>>(7-x))&1) ctx.fillRect(x,y,1,1);
+                for(let x=8; x<16; x++) if((b2>>(15-x))&1) ctx.fillRect(x,y,1,1);
+             }
+        } else {
+            const pages = Math.ceil(H/8);
+            for(let p=0; p<pages; p++) {
+                for(let x=0; x<W; x++) {
+                    const idx = p*W + x;
+                    if(idx>=bytes.length) break;
+                    const b = bytes[idx];
+                    for(let bit=0; bit<8; bit++) {
+                        if((p*8+bit)<H && ((b>>bit)&1)) ctx.fillRect(x, p*8+bit, 1, 1);
+                    }
+                }
+            }
+        }
+        saveState(); generateCode();
+    }
+
+    function copyCode() { document.getElementById('out').select(); document.execCommand('copy'); alert("複製成功"); }
+
+    // --- 輔助函式 ---
+    function getPos(e) {
+        const r = cvs.getBoundingClientRect();
+        return { x: Math.floor((e.clientX - r.left)/(r.width/W)), y: Math.floor((e.clientY - r.top)/(r.height/H)) };
+    }
+    function setMode(m) {
+        document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+        if(m==='16') {W=16; H=16; document.getElementById('m16').classList.add('active');}
+        else if(m==='64') {W=64; H=64; document.getElementById('m64').classList.add('active');}
+        else { document.getElementById('mDraw').classList.add('active'); document.getElementById('customArea').style.display='block';}
+        if(m!=='draw') document.getElementById('customArea').style.display='none';
+        updateLayout(); clearCanvas(true);
+    }
+    function setTool(t) { tool = t; document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active')); 
+        if(t==='pen') document.getElementById('toolPen').classList.add('active');
+        if(t==='select') document.getElementById('toolSelect').classList.add('active');
+        selectionRect = null; drawOverlay(); 
+    }
+    function resizeCustom() { W=parseInt(document.getElementById('customW').value)||32; H=parseInt(document.getElementById('customH').value)||32; updateLayout(); clearCanvas(true);}
+    function updateLayout() {
+        cvs.width = W; cvs.height = H;
+        const availableW = window.innerWidth <= 900 ? Math.max(240, window.innerWidth - 56) : 800;
+        const dispS = Math.min(availableW/W, 400/H);
+        const dw = W*dispS, dh = H*dispS;
+        canvasWrapper.style.width = dw+"px"; canvasWrapper.style.height = dh+"px";
+        overlayCvs.width = dw; overlayCvs.height = dh; gridCvs.width = dw; gridCvs.height = dh;
+        gridCtx.clearRect(0,0,dw,dh); gridCtx.strokeStyle = "rgba(255,255,255,0.1)"; gridCtx.beginPath();
+        if(dispS > 2) {
+            for(let i=1; i<W; i++) { gridCtx.moveTo(i*dispS,0); gridCtx.lineTo(i*dispS,dh); }
+            for(let i=1; i<H; i++) { gridCtx.moveTo(0,i*dispS); gridCtx.lineTo(dw,i*dispS); }
+            gridCtx.stroke();
+        }
+        document.getElementById('canvasInfo').innerText = `尺寸: ${W}x${H}`;
+    }
+    function clearCanvas(record) { ctx.fillStyle="black"; ctx.fillRect(0,0,W,H); generateCode(); if(record) saveState(); }
+    function saveState() { historyStep++; history.length=historyStep; history.push(cvs.toDataURL()); }
+    function undo() { if(historyStep>0) { historyStep--; loadState(); } }
+    function redo() { if(historyStep<history.length-1) { historyStep++; loadState(); } }
+    function loadState() { let i=new Image(); i.src=history[historyStep]; i.onload=()=>{ctx.clearRect(0,0,W,H); ctx.drawImage(i,0,0); generateCode();}}
+
+</script>
+</body>
+</html>

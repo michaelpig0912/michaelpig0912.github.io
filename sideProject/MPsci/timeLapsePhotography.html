@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>縮時攝影</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4a90e2;
+        }
+        video {
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #357ab8;
+        }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        #photoPreview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #photoPreview img {
+            width: 100px;
+            height: auto;
+            margin: 5px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        #countdown {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+        #shootingIndicator {
+            display: none;
+            font-size: 18px;
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+
+        /* 基礎樣式 */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .camera-container {
+            width: 100%;
+            position: relative;
+        }
+
+        #video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .controls {
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #cameraOptions {
+            margin: 15px 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* 計時器和設置樣式 */
+        .timer-settings {
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .timer-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        /* 響應式設計 */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+                width: calc(50% - 10px); /* 在小屏幕上按鈕占半寬 */
+            }
+            
+            select {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .timer-settings {
+                flex-direction: column;
+            }
+            
+            .timer-settings input,
+            .timer-settings select {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            button {
+                width: 100%; /* 在更小的屏幕上按鈕占滿寬度 */
+            }
+            
+            .timer-display {
+                font-size: 20px;
+            }
+        }
+
+        /* 深色模式支持 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+            
+            select {
+                background-color: #333;
+                color: #fff;
+                border-color: #444;
+            }
+            
+            button {
+                background-color: #1c2c8a;
+            }
+            
+            button:hover {
+                background-color: #0f165a;
+            }
+        }
+
+        #loadingMessage {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        /* 修改按鈕和輸入框的基礎樣式 */
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 8px;
+            min-width: 120px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        input, select {
+            padding: 12px;
+            margin: 8px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            min-width: 150px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 修改響應式設計 */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            button {
+                padding: 15px 30px;
+                font-size: 18px;
+                width: calc(100% - 20px); /* 減去margin空間 */
+                max-width: 400px;
+                margin: 10px auto;
+            }
+            
+            input, select {
+                padding: 15px;
+                font-size: 16px;
+                width: calc(100% - 20px);
+                max-width: 400px;
+                margin: 10px auto;
+            }
+            
+            #video {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 12px;
+            }
+            
+            .timer-settings {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            #interval {
+                width: calc(100% - 20px);
+                max-width: 400px;
+            }
+            
+            #timeUnit {
+                width: calc(100% - 20px);
+                max-width: 400px;
+            }
+            
+            #resolution {
+                width: calc(100% - 20px);
+                max-width: 400px;
+            }
+            
+            #filename {
+                width: calc(100% - 20px);
+                max-width: 400px;
+            }
+            
+            h1 {
+                font-size: 24px;
+                margin: 15px 0;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            #photoPreview img {
+                width: calc(33.33% - 20px);
+                margin: 10px;
+                min-width: 100px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            button {
+                padding: 16px 32px;
+                font-size: 18px;
+            }
+            
+            .timer-display {
+                font-size: 22px;
+            }
+            
+            #photoPreview img {
+                width: calc(50% - 20px);
+            }
+            
+            #countdown {
+                font-size: 20px;
+                margin: 15px 0;
+            }
+        }
+
+        /* 優化深色模式 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+            
+            input, select {
+                background-color: #333;
+                color: #fff;
+                border-color: #444;
+            }
+            
+            button {
+                background-color: #2196F3;
+            }
+            
+            button:hover {
+                background-color: #1976D2;
+            }
+            
+            #photoPreview img {
+                border-color: #444;
+            }
+        }
+
+        /* 添加模態框樣式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding: 20px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close {
+            position: fixed;
+            right: 25px;
+            top: 15px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+
+        #photoPreview img {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #photoPreview img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 添加動畫效果 */
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        /* 移動端適配 */
+        @media screen and (max-width: 768px) {
+            .modal {
+                padding: 10px;
+            }
+            
+            .close {
+                right: 15px;
+                top: 10px;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>縮時攝影</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <div id="loadingMessage">正在切換解析度...</div>
+    <br>
+    <div class="controls">
+        <select id="captureMode">
+            <option value="instant">即時下載模式</option>
+            <option value="preview">預覽模式</option>
+        </select>
+        <button id="startButton">開始拍照</button>
+        <button id="stopButton">停止拍照</button>
+        <button id="downloadAllButton" style="display: none;">下載所有照片</button>
+    </div>
+    <input type="number" id="interval" value="1" placeholder="拍照間隔時間" min="1">
+    <select id="timeUnit">
+        <option value="1000">秒</option>
+        <option value="60000">分鐘</option>
+    </select>
+    <br>
+    <label for="resolution">選擇解析度：</label>
+    <select id="resolution">
+        <option value="640x480">640x480</option>
+        <option value="1280x720">1280x720</option>
+        <option value="1920x1080">1920x1080</option>
+    </select>
+    <br>
+    <div id="cameraOptions">
+        <!-- 個區域會根據設備類型動態填充不同的選項 -->
+    </div>
+    <br>
+    <input type="text" id="filename" placeholder="輸入文件名">
+    <br>
+    <h2>已拍攝數量：<span id="photoCount">0</span></h2>
+    <div id="countdown"></div>
+    <div id="shootingIndicator">拍攝中...</div>
+    <div id="photoPreview"></div>
+
+    <!-- 添加模態框 HTML -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const intervalInput = document.getElementById('interval');
+        const timeUnitSelect = document.getElementById('timeUnit');
+        const resolutionSelect = document.getElementById('resolution');
+        const cameraOptions = document.getElementById('cameraOptions');
+        const filenameInput = document.getElementById('filename');
+        const photoCountElement = document.getElementById('photoCount');
+        const photoPreview = document.getElementById('photoPreview');
+        const countdownElement = document.getElementById('countdown');
+        const shootingIndicator = document.getElementById('shootingIndicator');
+        const loadingMessage = document.getElementById('loadingMessage');
+        let intervalId;
+        let countdownId;
+        let photoCount = 0;
+
+        // 添加存儲預覽照片的數組
+        let previewPhotos = [];
+
+        // 修改檢測設備類型和系統的函數
+        function detectDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isIOS = /iphone|ipad|ipod/i.test(userAgent);
+            // 修改移動設備檢測邏輯，使更精確的判斷
+            const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+            const isTablet = /(ipad|tablet|playbook|silk)|(android(?!.*mobile))/i.test(userAgent);
+            
+            // 如果既不是移動設備也不是平板，就定是桌面設備
+            const isDesktop = !isMobile && !isTablet;
+            
+            return {
+                type: isDesktop ? 'desktop' : 'mobile',
+                isIOS: isIOS
+            };
+        }
+
+        // 修改創建相機選項界面的函數
+        async function createCameraInterface(deviceType) {
+            cameraOptions.innerHTML = ''; // 清空現有內容
+            
+            if (deviceType === 'desktop') {
+                try {
+                    // 獲取所有媒體設備
+                    const devices = await navigator.mediaDevices.enumerateDevices();
+                    const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                    
+                    if (videoDevices.length === 0) {
+                        cameraOptions.innerHTML = '<p>未檢測到相機設備</p>';
+                        return null;
+                    }
+
+                    // PC版本：顯示所有可用相機列表
+                    const label = document.createElement('label');
+                    label.htmlFor = 'cameraSelect';
+                    label.textContent = '選擇相機：';
+                    
+                    const select = document.createElement('select');
+                    select.id = 'cameraSelect';
+                    
+                    videoDevices.forEach(device => {
+                        const option = document.createElement('option');
+                        option.value = device.deviceId;
+                        option.text = device.label || `相機 ${select.length + 1}`;
+                        select.appendChild(option);
+                    });
+                    
+                    cameraOptions.appendChild(label);
+                    cameraOptions.appendChild(select);
+                    
+                    select.addEventListener('change', getCamera);
+                    return select;
+                } catch (error) {
+                    console.error('獲取相機列表失敗：', error);
+                    cameraOptions.innerHTML = '<p>獲取相機列表失敗</p>';
+                    return null;
+                }
+            } else {
+                // 移動設備：顯示前後鏡頭選項
+                const label = document.createElement('label');
+                label.htmlFor = 'facingMode';
+                label.textContent = '選擇鏡頭：';
+                
+                const select = document.createElement('select');
+                select.id = 'facingMode';
+                
+                const options = [
+                    { value: 'user', text: '前置鏡頭' },
+                    { value: 'environment', text: '後置鏡頭' }
+                ];
+                
+                options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.text = opt.text;
+                    select.appendChild(option);
+                });
+                
+                cameraOptions.appendChild(label);
+                cameraOptions.appendChild(select);
+                
+                select.addEventListener('change', getCamera);
+                return select;
+            }
+        }
+
+        // 修改獲取設備函數
+        async function getDevices() {
+            try {
+                const deviceType = detectDevice().type;
+                // 請求相機權限
+                await navigator.mediaDevices.getUserMedia({ video: true });
+                const cameraSelector = await createCameraInterface(deviceType);
+                
+                // 自動啟動相機
+                getCamera();
+                
+            } catch (error) {
+                console.error('無法獲取設備列表：', error);
+                alert('無法獲取相機設備：' + error.message);
+            }
+        }
+
+        // 修改獲取相機函數
+        async function getCamera() {
+            showLoading(); // 顯示加載提示
+            const resolution = resolutionSelect.value.split('x');
+            const width = parseInt(resolution[0], 10);
+            const height = parseInt(resolution[1], 10);
+            const deviceInfo = detectDevice();
+            
+            try {
+                // 如果已有視頻流，先停止它
+                if (video.srcObject) {
+                    video.srcObject.getTracks().forEach(track => track.stop());
+                }
+                
+                let constraints = {
+                    video: {
+                        width: { ideal: width },
+                        height: { ideal: height }
+                    }
+                };
+
+                if (deviceInfo.type === 'desktop') {
+                    const cameraSelect = document.getElementById('cameraSelect');
+                    if (cameraSelect && cameraSelect.value) {
+                        constraints.video.deviceId = { exact: cameraSelect.value };
+                    }
+                } else {
+                    const facingMode = document.getElementById('facingMode');
+                    if (facingMode) {
+                        if (deviceInfo.isIOS) {
+                            constraints = {
+                                video: {
+                                    facingMode: { exact: facingMode.value },
+                                    width: { ideal: width },
+                                    height: { ideal: height }
+                                },
+                                audio: false
+                            };
+                        } else {
+                            constraints.video.facingMode = facingMode.value;
+                        }
+                    }
+                }
+
+                console.log('切換解析度：', width, 'x', height);
+                console.log('使用的約束：', constraints);
+
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+                
+                // 更新視頻元素的尺寸
+                video.width = width;
+                video.height = height;
+                
+                // 等待視頻準備就緒
+                await new Promise((resolve) => {
+                    video.onloadedmetadata = () => {
+                        console.log('視頻元數據已加載');
+                        console.log('實際視頻尺寸：', video.videoWidth, 'x', video.videoHeight);
+                        resolve();
+                    };
+                });
+
+                await video.play();
+                console.log('視頻播放已開始');
+                hideLoading(); // 成功後隱藏加載提示
+                
+            } catch (error) {
+                console.error('相機啟動錯誤：', error);
+                hideLoading(); // 錯誤時也要隱藏加載提示
+                let errorMessage = '無法啟動相機：';
+                
+                if (deviceInfo.isIOS) {
+                    errorMessage = 'iOS設備請確保：\n1. 使用Safari瀏覽器\n2. 已允許相機權限\n3. 使用HTTPS協議訪問';
+                } else {
+                    if (error.name === 'NotAllowedError') {
+                        errorMessage += '請允許使用相機權限';
+                    } else if (error.name === 'NotFoundError') {
+                        errorMessage += '找不到指定的相機設備';
+                    } else if (error.name === 'OverconstrainedError') {
+                        errorMessage += '設備不支持請求的解析度，請嘗試較低的解析度';
+                        // 自動切換到較低的解析度
+                        if (resolutionSelect.selectedIndex < resolutionSelect.options.length - 1) {
+                            resolutionSelect.selectedIndex++;
+                            getCamera();
+                            return;
+                        }
+                    } else {
+                        errorMessage += error.message;
+                    }
+                }
+                
+                alert(errorMessage);
+            }
+        }
+
+        function downloadImage(dataUrl, filename) {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = filename;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        async function capturePhoto() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // 轉換為 Blob
+            canvas.toBlob((blob) => {
+                // 創建一個臨時的 URL
+                const url = URL.createObjectURL(blob);
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const filename = `photo_${timestamp}.jpg`;
+                
+                // 創建一個隱藏的下載連結
+                const link = document.createElement('a');
+                link.style.display = 'none';
+                link.href = url;
+                link.download = filename; // 設定檔案名
+                document.body.appendChild(link);
+                link.click();
+                
+                // 清理
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }, 'image/jpeg', 0.8);
+
+            // 添加到預覽
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            addPhotoToPreview(dataUrl);
+            photoCount++;
+            updatePhotoCount();
+        }
+
+        // 修改 takePhoto 函數
+        function takePhoto() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataUrl = canvas.toDataURL('image/png');
+            
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const filename = filenameInput.value.trim() || 'photo';
+            const fullFilename = `${filename}_${timestamp}.png`;
+
+            const captureMode = document.getElementById('captureMode').value;
+            
+            if (captureMode === 'instant') {
+                // 即時下載模式
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = fullFilename;
+                link.click();
+            } else {
+                // 預覽模式
+                previewPhotos.push({
+                    dataUrl: dataUrl,
+                    filename: fullFilename
+                });
+            }
+
+            // 更新已拍攝數量
+            photoCount++;
+            photoCountElement.textContent = photoCount;
+
+            // 顯示照片預覽
+            const img = document.createElement('img');
+            img.src = dataUrl;
+            photoPreview.appendChild(img);
+            
+            // 如果是預覽模式，顯示下載全部按鈕
+            if (captureMode === 'preview') {
+                document.getElementById('downloadAllButton').style.display = 'block';
+            }
+        }
+
+        // 添加下載所有照片的函數
+        function downloadAllPhotos() {
+            // 創建一個 ZIP 文件
+            const zip = new JSZip();
+            
+            // 添加所有照片到 ZIP
+            previewPhotos.forEach((photo, index) => {
+                // 將 base64 轉換為二進制
+                const imageData = photo.dataUrl.split(',')[1];
+                zip.file(photo.filename, imageData, {base64: true});
+            });
+            
+            // 生成並下載 ZIP 文件
+            zip.generateAsync({type: "blob"})
+            .then(function(content) {
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const zipFilename = `photos_${timestamp}.zip`;
+                saveAs(content, zipFilename);
+            });
+        }
+
+        // 添加模式切換的事件監聽器
+        document.getElementById('captureMode').addEventListener('change', function(e) {
+            const downloadAllButton = document.getElementById('downloadAllButton');
+            if (e.target.value === 'preview') {
+                if (previewPhotos.length > 0) {
+                    downloadAllButton.style.display = 'block';
+                }
+            } else {
+                downloadAllButton.style.display = 'none';
+            }
+        });
+
+        // 添加下載全部按鈕的事件監聽器
+        document.getElementById('downloadAllButton').addEventListener('click', downloadAllPhotos);
+
+        // 開始拍照
+        startButton.addEventListener('click', () => {
+            const interval = parseInt(intervalInput.value, 10);
+            const timeUnit = parseInt(timeUnitSelect.value, 10);
+            if (isNaN(interval) || interval < 1) {
+                alert('請設置有效的拍照間隔時間（至少1秒）');
+                return;
+            }
+            shootingIndicator.style.display = 'block';
+            startCountdown(interval * timeUnit / 1000);
+            intervalId = setInterval(() => {
+                takePhoto();
+                startCountdown(interval * timeUnit / 1000);
+            }, interval * timeUnit);
+        });
+
+        // 停止拍照
+        stopButton.addEventListener('click', () => {
+            clearInterval(intervalId);
+            clearInterval(countdownId);
+            countdownElement.textContent = '';
+            shootingIndicator.style.display = 'none';
+            
+            // 如果是預覽模式且有照片，顯示下載按鈕
+            if (document.getElementById('captureMode').value === 'preview' && previewPhotos.length > 0) {
+                document.getElementById('downloadAllButton').style.display = 'block';
+            }
+        });
+
+        // 倒數計時器
+        function startCountdown(seconds) {
+            let remainingTime = seconds;
+            countdownElement.textContent = `下一拍攝倒數：${remainingTime} 秒`;
+            clearInterval(countdownId); // 確保之前的計時器被清除
+            countdownId = setInterval(() => {
+                remainingTime--;
+                countdownElement.textContent = `下一次拍攝倒數：${remainingTime} 秒`;
+                if (remainingTime <= 0) {
+                    clearInterval(countdownId);
+                }
+            }, 1000);
+        }
+
+        // 添加顯示/隱藏加載提示的函數
+        function showLoading() {
+            loadingMessage.style.display = 'block';
+        }
+        
+        function hideLoading() {
+            loadingMessage.style.display = 'none';
+        }
+
+        // 修改解析度選擇事件監聽器
+        resolutionSelect.addEventListener('change', async () => {
+            try {
+                await getCamera();
+            } catch (error) {
+                console.error('切換解析度失敗：', error);
+                alert('切換解析度失敗：' + error.message);
+                hideLoading(); // 確保失敗時也隱藏加載提示
+            }
+        });
+
+        // 初始化
+        resolutionSelect.addEventListener('change', getCamera);
+        getDevices();
+
+        // 修改圖片查看功能的實現
+        function setupImageViewer() {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            
+            // 為預覽圖片添加點擊事件
+            function addClickToPreviewImages() {
+                const previewImages = document.querySelectorAll('#photoPreview img');
+                previewImages.forEach(img => {
+                    if (!img.hasClickListener) {
+                        img.addEventListener('click', function() {
+                            modal.style.display = 'flex';
+                            modalImg.src = this.src;
+                        });
+                        img.hasClickListener = true;
+                    }
+                });
+            }
+            
+            // 關閉模態框
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            // 點擊模態框背景關閉
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+            
+            // 添加鍵盤事件支持
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // 監聽圖片添加事件
+            const photoPreview = document.getElementById('photoPreview');
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        addClickToPreviewImages();
+                    }
+                });
+            });
+            
+            observer.observe(photoPreview, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        // 在頁面加載完成後初始化圖片查看器
+        document.addEventListener('DOMContentLoaded', setupImageViewer);
+    </script>
+
+    <!-- 添加需要的外部庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</body>
+</html>
