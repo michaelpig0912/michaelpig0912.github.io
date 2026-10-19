@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加速度計/陀螺儀測試</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        #sensorData p {
+            margin: 5px 0;
+            font-family: monospace;
+        }
+        #orientationData p {
+            margin: 5px 0;
+            font-family: monospace;
+        }
+        #motionBallCanvas {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #333;
+            background-color: #f0f0f0;
+            margin-top: 20px;
+            border-radius: 5px;
+            position: relative; /* For positioning the ball */
+        }
+        #ball {
+            width: 30px;
+            height: 30px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            position: absolute;
+            /* top and left will be set by JS */
+        }
+        #instructions {
+            margin-top:15px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>加速度計 (Accelerometer) / 陀螺儀 (Gyroscope) 測試</h1>
+    </header>
+
+    <main>
+        <p><a href="../index.html">&larr; 返回主頁</a></p>
+        <section>
+            <h2>功能說明</h2>
+            <p>此頁面將測試您的瀏覽器是否可以存取裝置的運動和方向感測器。您將看到即時的加速度計、陀螺儀數據，並可以透過傾斜手機/平板來控制下方畫布中的小球移動。</p>
+            <p><strong>IPO 範例：</strong></p>
+            <ul>
+                <li><strong>I (Input):</strong> 手機感測器偵測到運動數據。</li>
+                <li><strong>P (Process):</strong> 網頁 JavaScript 處理數據，計算傾斜角度或搖晃強度。</li>
+                <li><strong>O (Output):</strong> 網頁上物體移動、旋轉、背景變化。</li>
+            </ul>
+            <div id="instructions">
+                <p><strong>操作提示：</strong> 請先點擊「開始感測器」按鈕。部分瀏覽器（尤其是桌面瀏覽器）可能不支援這些感測器，或者需要您在瀏覽器設定中明確啟用感測器存取。</p>
+                 <p>在手機上，您可能需要在彈出視窗中<strong>允許</strong>網站存取運動和方向感測器。</p>
+            </div>
+        </section>
+        <section>
+            <h2>測試區域</h2>
+            <button id="startSensorButton">開始/停止感測器</button>
+            <div id="sensorStatus" style="margin-top:10px; font-weight:bold;">狀態：未啟動</div>
+            
+            <h3>加速度計 (Accelerometer)</h3>
+            <div id="accelerometerData">
+                <p>X: <span id="accelX">-</span></p>
+                <p>Y: <span id="accelY">-</span></p>
+                <p>Z: <span id="accelZ">-</span></p>
+            </div>
+
+            <h3>陀螺儀 (Gyroscope)</h3>
+            <div id="gyroscopeData">
+                <p>Alpha (α): <span id="gyroAlpha">-</span></p>
+                <p>Beta (β): <span id="gyroBeta">-</span></p>
+                <p>Gamma (γ): <span id="gyroGamma">-</span></p>
+            </div>
+            
+            <h3>方向感測器 (Device Orientation)</h3>
+            <p>(用於控制小球，主要使用 Beta 和 Gamma 值)</p>
+            <div id="orientationData">
+                <p>Alpha (α - Z 軸): <span id="orientAlpha">-</span></p>
+                <p>Beta (β - X 軸): <span id="orientBeta">-</span></p>
+                <p>Gamma (γ - Y 軸): <span id="orientGamma">-</span></p>
+                <p>Absolute: <span id="orientAbsolute">-</span></p>
+            </div>
+
+            <h3>體感控制小球</h3>
+            <div id="motionBallCanvas">
+                <div id="ball"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 手機感測器測試平台</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

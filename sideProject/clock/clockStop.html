@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<title>靜止時鐘</title>
+<link href="clock.css" rel="stylesheet">
+<script src="js/jquery-3.4.1.js"></script>
+</head>
+
+<script>
+  $("document").ready(function() {
+    var inc = 1000;
+    clock();
+
+    function clock() {
+      const date = new Date();
+
+      /*
+            const hours = ((date.getHours() + 11) % 12 + 1);
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+      */
+
+      var hours = document.getElementById("clockHr").value;
+      var minutes = document.getElementById("clockMin").value;
+      var seconds = document.getElementById("clockSec").value;
+
+      const hour = hours * 30 + 30 * minutes / 60;
+      const minute = minutes * 6 + 6 * seconds / 60;
+      const second = seconds * 6;
+
+      document.querySelector('.hour').style.transform = `rotate(${hour}deg)`
+      document.querySelector('.minute').style.transform = `rotate(${minute}deg)`
+      document.querySelector('.second').style.transform = `rotate(${second}deg)`
+    }
+
+    setInterval(clock, inc);
+
+
+  });
+</script>
+
+<body>
+  <div class="clock">
+    <div class="wrap">
+      <span class="hour" id="foo"></span>
+      <span class="minute"></span>
+      <span class="second"></span>
+      <span class="dot"></span>
+      <span class="hrPoint line changeHr1"></span>
+      <span class="hrPoint line changeHr2"></span>
+      <span class="hrPoint line changeHr3"></span>
+      <span class="hrPoint line changeHr4"></span>
+      <span class="hrPoint line changeHr5"></span>
+      <span class="hrPoint line changeHr6"></span>
+      <span class="hrPoint line changeHr7"></span>
+      <span class="hrPoint line changeHr8"></span>
+      <span class="hrPoint line changeHr9"></span>
+      <span class="hrPoint line changeHr10"></span>
+      <span class="hrPoint line changeHr11"></span>
+      <span class="hrPoint line changeHr12"></span>
+
+    </div>
+
+  </div>
+  <div class="input">
+    <input type="text" id="clockHr" maxlength="2" value="10"> 點 <input type="text" maxlength="2" id="clockMin" value="10"> 分 <input type="text" id="clockSec" value="34" maxlength="2"> 秒
+    &nbsp<a href=".\clock.html">將時鐘改為動態時鐘</a>
+    <p id="inputHr"></p>
+    <p id="inputMi"></p>
+    <p id="inputSe"></p>
+  </div>
+</body>
+
+</html>

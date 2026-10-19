@@ -1,0 +1,9 @@
+@font-face{
+    font-family: 'Cubic';
+    font-display: swap;
+    src: url('../font/Cubic.woff2');
+}
+
+body {
+    font-family: Cubic, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+}
